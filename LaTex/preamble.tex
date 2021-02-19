@@ -1,0 +1,122 @@
+\documentclass[a4paper]{book}
+\usepackage{float}
+\usepackage{verbatim}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsbsy,amssymb,amsfonts, amsthm}
+\usepackage[version=4]{mhchem}
+\usepackage{graphicx}
+\usepackage[includemp,
+	    paperwidth=18.90cm,
+	    paperheight=24.58cm,
+	    top=2.170cm,
+	    bottom=3.510cm,
+	    inner=2.1835cm,
+	    outer=2.1835cm,
+	    marginparwidth=4cm,
+	    marginparsep=0.4cm]{geometry}
+\usepackage{lipsum}  
+\usepackage{caption}  
+\usepackage{marginfix}  
+\usepackage{scrlayer-scrpage}  
+\usepackage{xcolor}
+\usepackage[hypertexnames=false]{hyperref}
+\usepackage{nameref}
+%\usepackage{framed}
+%\usepackage[framemethod=TikZ]{mdframed}
+%\usepackage{appendix}
+\usepackage{tikz}
+\usetikzlibrary{math}
+\usetikzlibrary{shapes,arrows}
+\usepackage{pgfplots}
+%\usepackage{tcolorbox}
+%\usepackage{listings}
+%\usepackage{witharrows}
+\usepackage{circuitikz}
+\pgfplotsset{
+    compat=1.16
+}
+\usepackage[footnote]{snotez}
+\setsidenotes{text-mark-format=\textsuperscript{\normalfont #1},
+                  note-mark-format=#1:,
+		  note-mark-sep=\enskip}
+
+\extrafloats{100}
+
+\newcounter{Sec}
+
+\renewcommand*\thesection{\arabic{section}}
+%
+% \lstset{
+%       basicstyle=\ttfamily,
+%         columns=fullflexible,
+% 	frame=single,
+%       	breaklines=true,
+%       	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+% }
+
+% figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\newcommand{\mygeo}{%
+    \newgeometry{top=2.170cm,
+	bottom=3.510cm,
+	inner=2.1835cm,
+	outer=2.1835cm,
+    	ignoremp}
+}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[subsection] % reset theorem numbering for each chapter
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definizione}[subsection] % definition numbers are dependent on theorem numbers
+\newtheorem{exmp}{Esempio}[subsection]
+\newtheorem{ex}{Esercizio}[subsection] % definition numbers are dependent on theorem numbers
+
+\newcommand{\ffrac}[2]{\ensuremath{\frac{\displaystyle #1}{\displaystyle #2}}}
+\newcommand{\angstrom}{\mbox{\normalfont\AA}}
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+%\renewcommand{\[}{\begin{equation}}
+%\renewcommand{\]}{\end{equation}}
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\counterwithin*{equation}{section}
+\newcommand{\rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+
+
+\newlength{\overflowingheadlen}
+\setlength{\overflowingheadlen}{\linewidth}
+\addtolength{\overflowingheadlen}{\marginparsep}
+\addtolength{\overflowingheadlen}{\marginparwidth}
+
+\renewpagestyle{scrheadings}{
+    {\hspace{-\marginparwidth}\hspace{-\marginparsep}\makebox[\overflowingheadlen][l]{\makebox[2em][r]{\thepage}\quad\rule{1pt}{100pt}\quad{}\leftmark}}%
+    {\makebox[\overflowingheadlen][r]{\rightmark\quad\rule{1pt}{100pt}\quad\makebox[2em][l]{\thepage}}}%
+    {}
+}{
+    {}%
+    {}%
+    {}
+}
+\renewpagestyle{plain.scrheadings}{
+    {}%
+    {}%
+    {}
+}{
+    {\thepage}%
+    {}%
+    {}
+}
+
+
