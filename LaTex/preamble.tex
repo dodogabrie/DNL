@@ -1,61 +1,46 @@
 \documentclass[a4paper]{book}
-\usepackage{float}
 \usepackage{verbatim}
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
 \usepackage{amsmath}
 \usepackage{mathtools}
 \usepackage{amsbsy,amssymb,amsfonts, amsthm}
+\usepackage{floatrow}
 \usepackage[version=4]{mhchem}
+\usepackage[export]{adjustbox}
 \usepackage{graphicx}
 \usepackage[includemp,
 	    paperwidth=18.90cm,
 	    paperheight=24.58cm,
+	    head=100.0pt,
 	    top=2.170cm,
 	    bottom=3.510cm,
 	    inner=2.1835cm,
 	    outer=2.1835cm,
+	    footskip=2.1cm,
 	    marginparwidth=4cm,
 	    marginparsep=0.4cm]{geometry}
 \usepackage{lipsum}  
-\usepackage{caption}  
+\usepackage[skip=1pt]{caption}  
 \usepackage{marginfix}  
 \usepackage{scrlayer-scrpage}  
 \usepackage{xcolor}
 \usepackage[hypertexnames=false]{hyperref}
 \usepackage{nameref}
-%\usepackage{framed}
-%\usepackage[framemethod=TikZ]{mdframed}
-%\usepackage{appendix}
 \usepackage{tikz}
 \usetikzlibrary{math}
 \usetikzlibrary{shapes,arrows}
 \usepackage{pgfplots}
-%\usepackage{tcolorbox}
-%\usepackage{listings}
-%\usepackage{witharrows}
-\usepackage{circuitikz}
 \pgfplotsset{
     compat=1.16
 }
-\usepackage[footnote]{snotez}
-\setsidenotes{text-mark-format=\textsuperscript{\normalfont #1},
-                  note-mark-format=#1:,
-		  note-mark-sep=\enskip}
+\usepackage{sidenotes}
 
 \extrafloats{100}
-
 \newcounter{Sec}
-
 \renewcommand*\thesection{\arabic{section}}
-%
-% \lstset{
-%       basicstyle=\ttfamily,
-%         columns=fullflexible,
-% 	frame=single,
-%       	breaklines=true,
-%       	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
-% }
+
+\definecolor{mygreen}{rgb}{0.0, 0.4, 0.}
 
 % figure support
 \usepackage{import}
@@ -64,8 +49,9 @@
 \usepackage{pdfpages}
 \usepackage{transparent}
 \newcommand{\incfig}[1]{%
-    \def\svgwidth{\columnwidth}
-    \import{./figures/}{#1.pdf_tex}
+    \def\svgwidth{0.95\marginparwidth}
+    \fbox{\import{./figures/}{#1.pdf_tex}}
+    \vspace*{-8pt}
 }
 
 \newcommand{\mygeo}{%
@@ -76,11 +62,41 @@
     	ignoremp}
 }
 
-\theoremstyle{plain}
-\newtheorem{thm}{Theorem}[subsection] % reset theorem numbering for each chapter
 
-\theoremstyle{definition}
+\newtheoremstyle{break}%
+	{1em}{1em}%
+	{}{}%
+	{\bfseries}{}% % Note that final punctuation is omitted.
+	{\newline}
+	{#1 #2: \normalfont(\textcolor{mygreen}{#3})}
+
+\newtheoremstyle{defn}
+	{\topsep}   % ABOVESPACE
+	{\topsep}   % BELOWSPACE
+	{\itshape}  % BODYFONT
+	{0pt}       % INDENT (empty value is the same as 0pt)
+	{\bfseries} % HEADFONT
+	{.}         % HEADPUNCT
+	{5pt plus 1pt minus 1pt} % HEADSPACE
+	{#1 #2: \normalfont(\textcolor{red}{#3})}          % CUSTOM-HEAD-SPEC
+
+\newtheoremstyle{thm}% name of the style to be used
+	{\topsep}% measure of space to leave above the theorem. E.g.: 3pt
+	{\topsep}% measure of space to leave below the theorem. E.g.: 3pt
+	{\itshape}% name of font to use in the body of the theorem
+	{0pt}% measure of space to indent
+	{\bfseries}% name of head font
+	{.}% punctuation between head and body
+	{ }% space after theorem head; " " = normal interword space
+	{#1 #2: \normalfont(\textcolor{red}{\underline{#3}})}
+
+\theoremstyle{thm}
+\newtheorem{thm}{Teorema}[subsection] % reset theorem numbering for each chapter
+
+\theoremstyle{defn}
 \newtheorem{defn}{Definizione}[subsection] % definition numbers are dependent on theorem numbers
+
+\theoremstyle{break}
 \newtheorem{exmp}{Esempio}[subsection]
 \newtheorem{ex}{Esercizio}[subsection] % definition numbers are dependent on theorem numbers
 
@@ -100,13 +116,18 @@
 \addtolength{\overflowingheadlen}{\marginparsep}
 \addtolength{\overflowingheadlen}{\marginparwidth}
 
+\newlength{\mynewlength}
+\setlength{\mynewlength}{\linewidth}
+\addtolength{\mynewlength}{\marginparsep}
+\setlength{\mynewlength}{\marginparwidth}
+
 \renewpagestyle{scrheadings}{
-    {\hspace{-\marginparwidth}\hspace{-\marginparsep}\makebox[\overflowingheadlen][l]{\makebox[2em][r]{\thepage}\quad\rule{1pt}{100pt}\quad{}\leftmark}}%
-    {\makebox[\overflowingheadlen][r]{\rightmark\quad\rule{1pt}{100pt}\quad\makebox[2em][l]{\thepage}}}%
+    {\hspace{-\marginparwidth}\hspace{-\marginparsep}\makebox[\overflowingheadlen][l]{\makebox[2em][r]{\thepage}\quad\rule{1pt}{100pt}\quad{}SEZIONE \rightmark}}%
+    {\makebox[\overflowingheadlen][r]{SEZIONE \rightmark\quad\rule{1pt}{100pt}\quad\makebox[2em][l]{\thepage}}}%
     {}
 }{
-    {}%
-    {}%
+    {\hspace{2.03\marginparwidth}\makebox[\mynewlength][r]{\leftmark\quad\rule[-40pt]{1.3pt}{50pt}\quad\makebox[2em][l]{\thepage}}}%
+    {\hspace{0.13\marginparwidth}\makebox[\mynewlength][l]{\thepage\quad\rule[-40pt]{1.3pt}{50pt}\quad\makebox[2em][l]{\leftmark}}}%
     {}
 }
 \renewpagestyle{plain.scrheadings}{
@@ -114,9 +135,21 @@
     {}%
     {}
 }{
-    {\thepage}%
+    {}%
     {}%
     {}
 }
+
+
+\floatsetup[figure]{margins=hangoutside,
+    facing=yes,
+    capposition=beside,
+    capbesideposition={center,outside},
+floatwidth=\textwidth}
+\floatsetup[table]{margins=hangoutside,
+    facing=yes,
+    capposition=beside,
+    capbesideposition={center,outside},
+floatwidth=\textwidth}
 
 
