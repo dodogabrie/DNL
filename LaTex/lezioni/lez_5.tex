@@ -1,0 +1,153 @@
+\subsection{Flusso di Fase per sistemi non autonomi}%
+\label{sub:Flusso di Fase per sistemi non autonomi}
+Prendiamo nuovamente la definizione di Flusso partendo dal solito sistema:
+\[
+    \begin{dcases}
+	\frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x})\\
+	\vect{x} (0)=\vect{x_0}
+    \end{dcases}
+    \qquad 
+    F \in C^r, \ F:\mathbb{R}^n\to \mathbb{R}^n; \ \vect{x}_0 \in \mathbb{R}^n
+.\] 
+Possiamo caratterizzare la soluzione tramite il funzionale flusso:
+\[
+    \varphi (t,\vect{x}): \mathbb{R}^n\to \mathbb{R}^n
+.\] 
+L'applicazione del funzionale manda la variabile $\vect{x}$ nella soluzione, in questo modo il funzionale caratterizza completamente il sistema.\\
+Le proprietà della $\varphi$ sono:
+\begin{enumerate}
+    \item $\varphi (t, \vect{x}) \in C^r$.
+    \item $\varphi (0, \vect{x}_0) = \vect{x}_0$.
+    \item $\varphi (t + s, \vect{x}_0) = \varphi (t, \varphi (s, \vect{x}_0))$.
+\end{enumerate}
+Introduciamo adesso il flusso nel caso in cui il sistema non è autonomo. Un sistema non autonomo è generalmente caratterizzato dalle equazioni:
+\[
+    \begin{dcases}
+	\frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x}, t)\\
+	\vect{x}(t_0) = \vect{x}_0
+    \end{dcases}
+    \qquad 
+    \vect{x} \in \mathbb{R}^n; \ F \in C^r; \ F: \mathbb{R}^n\to \mathbb{R}^n
+\] 
+Notiamo che nella condizione iniziale si è messo come tempo iniziale $t_0$, questo è dovuto al fatto che, in un sistema non autonomo, la soluzione dipende dalla variabile $t_0$ (e non solo da $t-t_0$ come si avrebbe per un sistema autonomo). Questa caratteristica corrisponde alla perdita di invarianza per traslazione temporale della soluzione.\\
+Le metodologie che permettono di introdurre il flusso in questi sistemi sono $2$:
+\begin{itemize}
+    \item Process Formulation.
+    \item Skew Product Flow Formulation.
+\end{itemize}
+\paragraph{Process Formulation.}%
+\label{par:Process Formulation.}
+Supponiamo che esista e sia unica la soluzione del IVP e che tale soluzione sia globale (definita $\forall \ t$).\\
+Definiamo il flusso di questo sistema come la soluzione dell'IVP $\Phi(t, t_0, \vect{x}_0)$. Le proprietà di $\Phi$  sono:
+\begin{enumerate}
+    \item $\Phi(t, t_0, \vect{x}_0)$ eredità tutte le proprietà del funzionale $F$.
+    \item $\Phi(t, t_0, \vect{x}_0) = \vect{x}_0$ (Proprietà di identità).
+    \item $\Phi(t_2, t_0, \vect{x}_0) = \Phi(t_2, t_1, \Phi(t_1, t_0, \vect{x}_0))$ con $t_0 \le t_1\le t_2$.
+\end{enumerate}
+Potremmo essere più formali definendo lo spazio:
+\[
+    \mathbb{R}^2_{\ge } \equiv \left\{ (t, t_0) \in \mathbb{R}^2 \ | \ t \ge t_0\right\}
+.\] 
+Quindi definiamo il flusso di fase come il funzionale (di variabile generica $*$):
+\[
+    \varphi (t,t_0,*):\mathbb{R}^n\to \mathbb{R}^n \qquad \text{con } (t, t_0) \in \mathbb{R}^2_{\ge }
+.\] 
+Che gode delle solide proprietà di flusso, che ripetiamo:
+\begin{enumerate}
+    \item $\varphi(t, t_0, \vect{x}_0) \in C^r$ con $r\ge 1$.
+    \item $\varphi(t, t_0, \vect{x}_0) = \vect{x}_0$ (Proprietà di identità).
+    \item $\varphi(t_2, t_0, \vect{x}_0) = \varphi(t_2, t_1, \varphi(t_1, t_0, \vect{x}_0))$ con $(t_2, t_1) \in \mathbb{R}^2_{\ge }$, e anche $(t_1, t_0) \in \mathbb{R}^2_{\ge }$ .
+\end{enumerate}
+\begin{exmp}[Flusso per Process Formulation]
+    Prendiamo il sistema:
+    \[
+        \begin{dcases}
+	    \frac{\text{d} x}{\text{d} t} = -2tx\\
+	    x(t_0) = x_0
+        \end{dcases}
+    .\] 
+    Si può dimostrare (esercizio) che la soluzione ha la forma:
+    \[
+	x(t)=x_0e^{-(t^2-t_0^2)} \equiv \varphi (t, t_0, x_0)
+    .\] 
+    La dipendenza da $t_0$ non può essere eliminata in questo caso con una traslazione temporale, questo è dovuto al fatto che l'argomento dell'esponenziale non è riscrivibile come funzione di $t-t_0$:
+    \[
+	t^2-t_0^2 = \left(t-t_0\right)^2 + 2(t-t_0)t_0
+    .\] 
+\end{exmp}
+\noindent
+\paragraph{Skew Product Flow Formulation}%
+\label{par:Skew Product Flow Formulation}
+L'idea alla base del metodo è quella di aggiungere ulteriori equazioni del moto in modo tale da rendere il sistema nuovamente autonomo. A quel punto il flusso di fase sarà quello già visto in precedenza.
+\begin{exmp}[Pendolo]
+    Nel caso del pendolo l'equazione del moto abbiamo visto che è:
+    \[
+	\ddot{x} = - x + A \sin (\omega t)
+    .\] 
+    E per rendere autonomo il sistema nuovamente abbiamo introdotto la variabile $\theta  = \omega t$. La chiave del funzionamento del metodo è proprio il fatto che $\theta$ ha una evoluzione autonoma.
+\end{exmp}
+\noindent
+Formalmente prendiamo di nuovo il sistema di partenza:
+\[
+    \begin{dcases}
+	\frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x}, t)\\
+	\vect{x}(t_0) = \vect{x}_0
+    \end{dcases}
+    \qquad 
+    \vect{x} \in \mathbb{R}^n; \ F \in C^r; \ F: \mathbb{R}^n\to \mathbb{R}^n
+\]
+Introduciamo un sistema dinamico da affiancare a questo:
+\[
+    \begin{dcases}
+	\frac{\text{d} \vect{q}}{\text{d} t} = G(\vect{q})\\
+	\vect{q} (t_0)= \vect{q}_0
+    \end{dcases}
+.\] 
+Questo nuovo sistema è autonomo, possiamo allora risolvere il problema nel sistema di variabili:
+\[
+    \vect{y} =(\vect{x}, \vect{q}) \in \mathbb{R}^n \times \mathbb{R}^d
+.\] 
+Con $\mathbb{R}^d$ spazio di definizione di $\vect{q}$.
+\[
+    \begin{dcases}
+	\frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x}, \vect{q})\\
+	\vect{x} (t_0)=\vect{x_0}\\
+	\frac{\text{d} \vect{q}}{\text{d} t} = G(\vect{q})\\
+	\vect{q} (t_0)=\vect{q}_0
+    \end{dcases}
+.\] 
+Il sistema in $\vect{q}$ è definito "Driver", il sistema in $\vect{x}$ invece è spesso detto "schiavizzato" dal Driver. Il sistema complessivo risulta comunque autonomo.\\
+Quindi possiamo definire il flusso come lo spazio delle soluzioni in $\vect{x}$ e $\vect{q}$:
+\[
+    \varphi_t(\vect{x}_0, \vect{q}_0) = (\vect{x} (t, \vect{x}_0, \vect{q}_0), \vect{q} (t, \vect{q}_0))
+.\] 
+Essendo un sistema autonomo valgono le proprietà di flusso già viste:
+\begin{enumerate}
+    \item $\varphi_t \in C^r$ con $r\ge 1$.
+    \item $\varphi_{t_0}(\vect{x}_0, \vect{q}_0) = (\vect{x}_0,\vect{q}_0)$.
+    \item $\varphi_{t+s}(\vect{x}_0, \vect{q}_0) = \varphi_t(\varphi_s(\vect{x}_0, \vect{q}_0))$.
+\end{enumerate}
+Concentriamoci sulla terza proprietà ed esplicitiamola in modo diverso:
+\[\begin{aligned}
+    \varphi_{t+q} (\vect{x}_0, \vect{q}_0) =&  (\vect{x} (t+s , \vect{x}_0, \vect{q}_0), \vect{q} (t+s, \vect{q}_0)) = \\
+                                           =& (\vect{x} (t, \vect{x} (s, \vect{x}_0,\vect{q}_0) \vect{q}(s, \vect{q}_0) ), \vect{q} (t, \vect{q} (s, \vect{q}_0)) ) = \\
+					   =&(\vect{x} (t, \vect{x} (s, \vect{x}_0,\vect{q}_0),  \vect{q}(s, \vect{q}_0) ), \vect{q} (t+s, \vect{q}_0))
+.\end{aligned}\]
+Ed uguagliando la prima dopo l'uguale con l'ultima deve esser vero che:
+\begin{defn}[Cocycle Property]
+    \[
+	\vect{x} (t+s, \vect{x}_0, \vect{q}_0) = \vect{x} (t, \vect{x} (s, \vect{x}_0, \vect{q}_0), \vect{q} (s, \vect{q}_0))
+    .\] 
+\end{defn}
+\noindent
+\begin{exmp}[Esempio di Cocycle Property]
+    Prendiamo la seguente variabile "Driver":
+    \[
+	q(t) = t \in \mathbb{R} \qquad q(t_0)=t_0
+    .\] 
+    La proprietà in questo caso si esprime come:
+    \[
+	\vect{x} (t+s, \vect{x}_0, t_0) = \vect{x} ( t, \vect{x} (s, \vect{x}_0, t_0), t_0 + s)
+    .\] 
+\end{exmp}
+\noindent
