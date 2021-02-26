@@ -1,5 +1,5 @@
 Un sistema dinamico può essere descritto, a livello intuitivo, come un sistema fisico il cui stato evolve nel tempo.
-\section{Sistemi dinamici Deterministici e Processi Stocastici.}%
+\section{Definire un Sistema dinamico}%
 \label{sub:Sistema dinamico Deterministico e Stocastico.}
 Prendiamo un insieme $X$\sidenote{\scriptsize Che definiremo avanti come \textit{Spazio degli stati}, \textit{Spazio degli eventi} o \textit{Spazio delle fasi}.} 
 , lo stato $x$ di un sistema al tempo iniziale è definito da $x_0 = x(t=0)$
@@ -32,10 +32,10 @@ Significa che $ \forall \ \omega^* \in \Omega$ corrisponde un punto $\vect{x} (t
     Collezione di funzioni $\forall \ t$ al variare di $\omega$ nello spazio degli eventi.
 \end{defn}
 \noindent
-\section{Rappresentazione di un Sistema Dinamico}%
+\subsection{Rappresentazione di un Sistema Dinamico}%
 \label{sub:Rappresentazione di un Sistema Dinamico}
-\subsection{Sistema dinamico a tempo continuo.}%
-\label{sub:Sistema dinamico a tempo continuo.}
+\paragraph{Sistema dinamico a tempo continuo.}%
+\label{par:Sistema dinamico a tempo continuo.}
 Un SD a tempo continuo è rappresentato in generale da un sistema di equazioni differenziali:
 \[
     \frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x}, t, \vect{u});
@@ -61,8 +61,8 @@ La funzione $F$ è definita nel seguente dominio:
 \end{defn}
 \noindent
 Sarà \textbf{importante} saper ricostruire i giusti insiemi di definizione di tutti i termini per i casi di studio analizzati.
-\subsection{Sistemi di equazioni differenziali}%
-\label{sub:Sistemi di equazioni differenziali}
+\paragraph{Sistemi di equazioni differenziali}%
+\label{par:Sistemi di equazioni differenziali}
 Una equazione differenziale è definita dalla seguente:
 \begin{equation}
     E\left(\frac{\text{d} ^n x}{\text{d} t^n} , \ldots, \frac{\text{d} x}{\text{d} t}, x, t\right) = 0 
@@ -124,8 +124,8 @@ In conclusione il sistema da risolvere è:
     Sottoinsieme di $\mathbb{R}^n$ con le soluzioni (gli stati).
 \end{defn}
 \noindent
-\subsection{Sistema dinamico a tempo discreto}%
-\label{sub:Sistema dinamico a tempo discreto}
+\paragraph{Sistema dinamico a tempo discreto}%
+\label{par:Sistema dinamico a tempo discreto}
 Una prima rappresentazione di SD a tempo discreto\sidenote{\scriptsize Valida per i sistemi dinamici "fisici" che studieremo, più tardi daremo anche una definizione più generale ed astratta.}
 è la seguente:
 \[
@@ -170,8 +170,8 @@ Ovviamente l'intervallo $\Delta t$ dipende dal contesto e dal tipo di sistema so
    Il modello lineare è il più semplice che si possa costruire per studiare le popolazioni e, per quasi tutti i casi, non basta a spiegare i fenomeni fisici che ci circondano: è necessario elaborare un modello più complesso\ldots
 \end{exmp}
 \noindent
-\subsection{Principio di sovrapposizione}%
-\label{sub:Principio di sovrapposizione}
+\paragraph{Principio di sovrapposizione}%
+\label{par:Principio di sovrapposizione}
 Riprendiamo l'Esempio \ref{ex:pop_lin}, abbiamo concluso che l'andamento dello stato del sistema (la popolazione) seguiva la legge:
 \[
     N_n = r^nN_0
@@ -189,7 +189,7 @@ Se lo studio prevede che queste due popolazioni si uniscano\sidenote{\scriptsize
 \end{thm}
 \noindent
 Cosa avviene se i due sistemi non evolvono linearmente?
-\section{Introduzione al Modello Logistico}%
+\subsection{Introduzione al Modello Logistico}%
 \label{sub:Introduzione al Modello Logistico}
 Prendiamo il seguente modello di popolazione:
 \[
@@ -216,7 +216,6 @@ Un caso particolare di questa classe di sistemi è stato al centro di molti stud
 \end{defn}
 \noindent
 Nel modello logistico la dipendenza di $r$ dalla popolazione permette un meccanismo di retroazione che sfavorisce la crescita della popolazione stessa.
-\clearpage
 \begin{exmp}[Modello logistico a popolazioni stellari.]
     Il modello logistico può essere utilizzato come "toy model" per descrivere il fenomeno di formazione delle stelle del tipo "Supernovae Triggered": 
     stelle che nascono in seguito all'esplosione di supernovae. \\
@@ -243,10 +242,10 @@ Nel modello logistico la dipendenza di $r$ dalla popolazione permette un meccani
     .\] 
 \end{exmp}
 \noindent
-\section{Definizione Formale di Sistema Dinamico}%
+\subsection{Definizione Formale di Sistema Dinamico}%
 \label{sub:Definizione Formale di Sistema Dinamico}
-\subsection{Spazio metrico}%
-\label{sub:Spazio metrico}
+\paragraph{Spazio metrico}%
+\label{par:Spazio metrico}
 Prima di generalizzare le definizioni si SD è necessario definire uno spazio metrico:
 \begin{defn}[Spazio metrico]
     L'inseme $X$ è spazio metrico se $\exists \ d:$ 
@@ -271,8 +270,8 @@ Prima di generalizzare le definizioni si SD è necessario definire uno spazio me
     .\] 
 \end{exmp}
 \noindent
-\subsection{Definizione di SD a tempo discreto}%
-\label{sub:Definizione di SD a tempo discreto}
+\paragraph{Definizione di SD a tempo discreto}%
+\label{par:Definizione di SD a tempo discreto}
 \begin{defn}[SD a tempo discreto]
     Un sistema dinamico a tempo discreto è rappresentato da una mappa $G: X\to X$ tale che
     \begin{itemize}
@@ -342,8 +341,8 @@ Prima di generalizzare le definizioni si SD è necessario definire uno spazio me
     Non è un caso che, per entrambi i casi, le stringhe fisse presentino una periodicità negli elementi ($n$-periodicità).
 \end{exmp}
 \noindent
-\subsection{Definizione di SD a tempo continuo}%
-\label{sub:Definizione di SD a tempo continuo}
+\paragraph{Definizione di SD a tempo continuo}%
+\label{par:Definizione di SD a tempo continuo}
 \begin{defn}[Sistema dinamico a tempo continuo]
     Sia $X$ uno spazio metrico e $\varphi_t$ ($t \in \mathbb{R}$ ) una famiglia di mappe definite da:
     \[
@@ -388,8 +387,8 @@ Prima di generalizzare le definizioni si SD è necessario definire uno spazio me
     \end{itemize}
 \end{exmp}
 \noindent
-\subsection{Soluzione, grafico e orbita di SD a tempi continui}%
-\label{sub:Soluzione, grafico e orbita di SD a tempi continui}
+\paragraph{Soluzione, grafico e orbita di SD a tempi continui}%
+\label{par:Soluzione, grafico e orbita di SD a tempi continui}
 Si dice sistema dinamico autonomo un SD a tempi continui indipendente in modo esplicito dal tempo:
 \[
     \frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x}, t) \qquad \vect{x}\in \mathbb{R}^n, F:\mathbb{R}^n\to \mathbb{R}^n
