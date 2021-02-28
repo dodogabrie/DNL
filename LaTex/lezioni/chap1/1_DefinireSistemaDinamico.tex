@@ -456,3 +456,60 @@ e supponiamo che la soluzione esista.
     .\] 
 \end{exmp}
 \noindent
+\subsection{Linearità di un Sistema Dinamico}%
+\label{sub:Linearità di un Sistema Dinamico}
+Prendiamo un sistema dinamico a tempi continui così definito:
+\begin{equation}
+    \frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x}, t) \qquad \vect{x}  \in \mathbb{R}^n; t \in \mathbb{R}; F: \mathbb{R}^n\times \mathbb{R} \to \mathbb{R}^n
+    \label{eq:3_SD_cont}
+\end{equation}
+\[
+    \vect{x}  = \left(x_1, x_2, \ldots, x_n\right) \qquad F = (F_1, F_2, \ldots, F_n)
+.\] 
+\begin{defn}[Condizione di linearità]
+    \label{def:cond_lin}
+    Un SD a tempi continui come quello di equazione \ref{eq:3_SD_cont} è lineare se:
+    \[
+	F(\vect{x}  + \vect{y}, t) = F(\vect{x}, t) + F(\vect{y}, t) \qquad \forall \vect{x}, \vect{y}  \in \mathbb{R}^n
+    .\] 
+\end{defn}
+\noindent
+Questa condizione è sufficiente ma non necessaria.
+\begin{exmp}[Circuito RC]
+    \marginpar{
+        \captionsetup{type=figure}
+        \fbox{\includegraphics[width=\marginparwidth]{figures/tikz/3_rlc.pdf}}
+        \caption{\scriptsize Circuito RC.}
+        \label{fig:tikz-3_rlc-pdf}
+    }
+    Prendiamo il circuito RC come in figura \ref{fig:tikz-3_rlc-pdf}, l'equazione che regola la carica nel circuito è la seguente:
+    \[
+        \frac{\text{d} q}{\text{d} t} = \frac{V}{R}-\frac{q}{RC}
+    .\] 
+    In questo caso la variabile $x$ corrisponde con la carica.\\
+    Il sistema non rispetta la condizione \ref{def:cond_lin}, infatti nello sviluppare il calcolo per due correnti, $q_1$ e $q_2$, rimane un termine $2V / R$. \\
+    Nonostante questo il sistema è ancora lineare.
+\end{exmp}
+\noindent
+\begin{exmp}[Pendolo]
+    \marginpar{
+        \captionsetup{type=figure}
+            \incfig{1_9}
+        \caption{\scriptsize }
+        \label{fig:1_9}
+    }
+    Prendiamo il sistema del pendolo classico, le equazioni del moto della massa $m$ sono:
+    \[
+	\frac{\text{d} ^2\theta}{\text{d} t^2} = -\frac{g}{l}\sin\theta \implies
+        \begin{cases}
+	    \frac{\text{d} \theta}{\text{d} t} = y\\
+	    \frac{\text{d} y}{\text{d} t} = - \frac{g}{l}\sin\theta
+        \end{cases}
+    .\] 
+    Questo sistema è non lineare (c'è il seno).
+\end{exmp}
+\noindent
+\begin{defn}[Criterio generale per la linearità]
+    Un SD si dice lineare se la sua dipendenza dalle variabili di stato è lineare.
+\end{defn}
+\noindent

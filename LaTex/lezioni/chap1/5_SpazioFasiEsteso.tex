@@ -1,0 +1,61 @@
+\section{Spazio delle fasi esteso (SD a tempi continui)}%
+\label{sub:Spazio delle fasi esteso (SD a tempi continui)}
+Si prende un sistema dinamico a tempi continui autonomo e lo si perturba con una componente dipendente dal tempo (un fattore esterno). Il sistema in questo modo diventa non autonomo, l'equazione generale che regola questo tipo di sistema è:
+\[
+    \frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x},t) \qquad \vect{x}\in \mathbb{R}^n; \ F: \mathbb{R}^n \times \mathbb{R}\to \mathbb{R}^n
+.\] 
+Possiamo ricondurre questo sistema ad un sistema autonomo tramite una trasformazione nella variabile temporale:
+\[
+    t = m(s) = s \implies  \frac{\text{d} }{\text{d} t} = \frac{\text{d} s}{\text{d} t} \frac{\text{d} }{\text{d} s} 
+.\] 
+Inserendo nella equazione del moto:
+\[
+    \frac{\text{d} \vect{x}}{\text{d} t} = \frac{\text{d} s}{\text{d} t} \frac{\text{d} \vect{x}}{\text{d} s} = F(\vect{x}, t)
+.\] 
+Possiamo definire il differenziale di $t$  rispetto a $s$: $dt /ds = 1$.
+\[
+    \begin{cases}
+	\frac{\text{d} \vect{x} (s)}{\text{d} s} = F(\vect{x}, t)\\
+	\frac{\text{d} t}{\text{d} s} = 1
+    \end{cases}
+\] 
+\begin{defn}[Spazio delle fasi esteso]
+    Si definisce spazio delle fasi esteso la quantità:
+    \[
+	\vect{y} =(\vect{x}, t) \in \mathbb{R}^n \times \mathbb{R}
+    .\] 
+\end{defn}
+\noindent
+In questo modo, definendo anche il funzionale esteso:
+\[
+    H = (F(\vect{x}, t), 1)
+.\] 
+Si possono generalizzare le equazioni del moto come:
+\[
+    \frac{\text{d} \vect{y}}{\text{d} s} = H(\vect{y})
+.\] 
+Per quanto il problema sia formalmente risolto si deve tenere in considerazione che il nuovo spazio delle fasi potrebbe non essere più un compatto.\\
+Questa mancanza potrebbe diventare un problema nei nostri scopi in quanto siamo spesso interessati alla soluzione asintotica del sistema (che potrebbe smettere di esistere).\\
+In ogni caso aggiungiamo che, se la forzante è periodica, il sistema può essere sempre gestito con questo metodo.
+\begin{exmp}[Forzante oscillante]
+    \[
+	\frac{\text{d} ^2x}{\text{d} t^2} = -x + A\sin (\omega t)
+    .\] 
+    Come sempre si riporta l'equazione ad una di primo ordine:
+    \[
+        \begin{cases}
+            \frac{\text{d} x}{\text{d} t} = y \\
+	    \frac{\text{d} y}{\text{d} t} = -x + A \sin (\omega t)
+        \end{cases}
+    \] 
+    Adesso si introduce la variabile $\theta (t)=\omega t$. Il nuovo sistema, con questa variabile, è descritto nello spazio delle fasi generalizzato e le equazioni sono le seguenti:
+    \[
+        \begin{cases}
+            \frac{\text{d} x}{\text{d} t} = y\\
+	    \frac{\text{d} x}{\text{d} t} = -x + A\sin\theta\\
+	    \frac{\text{d} \theta}{\text{d} t} =\omega
+        \end{cases}
+    \] 
+    Si noti che la variabile $\theta$ non è limitata, quindi lo spazio delle fasi non è più un compatto.
+\end{exmp}
+\noindent
