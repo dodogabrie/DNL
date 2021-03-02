@@ -1,0 +1,132 @@
+\section{Soluzioni speciali di Sistemi Dinamici}%
+\label{sub:Soluzioni speciali di Sistemi Dinamici}
+Analizziamo il regime asintotico di un sistema dinamico, i tipi di soluzione che si possono incontrare sono:
+\begin{enumerate}
+    \item Stati Stazionari Costanti.
+    \item Stati Stazionari Dinamici.
+	\begin{itemize}
+	    \item Periodici.
+	    \item Quasi Periodici.
+	    \item Complessi.
+	\end{itemize}
+\end{enumerate}
+\subsection{Stati Stazionari Costanti}%
+\label{sub:Stati stazionari Costanti}
+Questi stati sono indipendenti dal tempo, ipotizzando che la soluzione stazionaria si $\vect{x}(t)$ allora:
+\[
+    \vect{x} (t + \Delta t)=\vect{x} (t)
+.\] 
+Nei libri sono spesso chiamati Punti Singolari, Punti Critici, Soluzioni Stazionarie.
+\subsection{Stati Stazionari Dinamici}%
+\label{sub:Stati Stazionari Dinamici}
+Lo stato per questi sistemi non è costante nel tempo, analizziamo le più comuni situazioni che si possono presentare in questi sistemi.
+\paragraph{Orbite periodiche}%
+\label{par:Orbite periodiche}
+L'orbita di uno stato stazionario dinamico periodico è un'orbita che si ripete nel tempo.
+\begin{exmp}[Oscillatore non lineare]
+    \marginpar{
+        \captionsetup{type=figure}
+            \incfig{7_1}
+        \caption{\scriptsize Orbita Periodica che attrae la dinamica nello spazio delle fasi.}
+        \label{fig:7_1}
+    }
+    Un oscillatore non lineare è un sistema che presenta un'orbita periodica come in figura \ldots\\
+    Se lo stato $\vect{x}_1$ si trova (con le condizioni iniziali) sull'orbita allora rimarrà su tale orbita a stazionarietà. Se uno stato $\vect{x}_2$ si trova invece in un altro punto dello spazio delle fasi inizialmente allora evolverà per raggiungere l'orbita stabile (a stazionarietà).
+\end{exmp}
+\noindent
+\paragraph{Orbite quasi periodice}%
+\label{par:Orbite quasi periodice}
+Sono orbite che non si ripetono nel tempo, sono più complesse delle orbite periodiche. La loro struttura verrà approfondita nel seguito.
+\paragraph{Comportamenti complessi}%
+\label{par:Comportamenti complessi}
+Quando un sistema presenta, ad esempio, caos deterministico.
+\subsection{Orbite periodiche di sistema dinamico}%
+\label{sub:Orbite periodiche di sistema dinamico}
+\begin{defn}[Orbita periodica per SD a tempo continuo]
+Prendiamo un Sistema Dinamico a tempo continuo:
+\[
+    \begin{dcases}
+	\frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x}, t)\\
+	\vect{x} (t_0) = \vect{x}_0
+    \end{dcases}
+    \qquad
+    F: \ I \times \mathbb{R}^n \to \mathbb{R}^n
+.\] 
+ Sia $\vect{x}_p(t)$ la soluzione dell'IVP, diciamo che $\vect{x}_p(t)$ è periodica se:
+\[
+    \exists \ T \in \mathbb{R}^+: \ \vect{x}_p(t) = \vect{x}_p (t + T) \  \forall t \in I
+.\]    
+\end{defn}
+\noindent
+\begin{defn}[Orbita periodica per SD a tempo continuo]
+    Dato un Sistema Dinamico a tempo discreto:
+    \[
+	\vect{x}_{k+1} = G(\vect{x}_k) \qquad \vect{x}_k \in \mathbb{R}^n
+    .\] 
+    Diciamo che $\vect{x}_p$ è una orbita $q$-periodica con $q \in \mathbb{N}$ se:
+    \[
+	G^{q} (\vect{x}_p) = \vect{x}_p
+    .\] 
+\end{defn}
+\noindent
+Prima di procedere definiamo la seguente categoria di funzioni:
+\begin{defn}[Funzioni quasi periodiche]
+    Una funzione $H$ si dice Quasi Periodica se può essere rappresentata nella seguente forma:
+    \[
+	H(t) = H(\omega_1t, \omega_2t, \ldots, \omega_nt)
+    .\] 
+    Con l'insieme di frequenze $\left\{\omega_i\right\}$ tra di loro Incommensurabili.\\
+    Questo significa che non esiste una combinazione lineare di queste frequenze con coefficienti in $\mathbb{Q}$ che si annulla.
+\end{defn}
+\noindent
+Preso un sistema a tempo continuo non autonomo e supponiamo di avere uno spazio delle fasi con un'orbita chiusa: l'orbita è necessariamente periodica? No.
+\begin{ex}[Sistema in $\mathbb{R}^2$]
+    Prendiamo il seguente:
+    \[
+        \begin{dcases}
+            \frac{\text{d} x}{\text{d} t} = nt^{n-1}y\\
+	    \frac{\text{d} y}{\text{d} t}  = -nt^{n-1}x
+        \end{dcases}
+    \] 
+    Dimostrare che la soluzione è:
+    \[\begin{aligned}
+	&x(t) = A\sin (t^n) + B\sin (t^n)\\
+	&y(t) = A\cos (t^n) - B\sin (t^n)
+    .\end{aligned}\]
+    Verificare che $x^2+y^2 = A^2+B^2$.\\
+    Le soluzioni formano un cerchio di raggio $R^2 = A^2+B^2$. Nonostante questo la soluzione non è periodica perché:
+    \[
+	\nexists \ T \ \text{t.c.} \ t^{u} = (t + T)^u
+    .\] 
+\end{ex}
+\noindent
+\begin{ex}[Verifica di non periodicità]
+    Data la seguente equazione differenziale:
+    \[
+	\frac{\text{d} x}{\text{d} t} = (1+\sin (t))\cdot x = F(x,t)
+    .\] 
+    Dimostrare che, anche se il coefficiente $1+\sin t$ è periodico, la soluzione non è periodica risolvendo il seguente IVP:
+    \[
+        \begin{dcases}
+	    \frac{\text{d} x}{\text{d} t} = (1+\sin t)\cdot x\\
+	    x(0) = x_0
+        \end{dcases}
+    \] 
+    Dimostrare che la seguente funzione è soluzione:
+    \[
+	x(t) = x_0e^{1+t-\text{cost}}
+    .\] 
+    e che questa funzione non è mai periodica $\forall x_0 \in \mathbb{R}$.
+\end{ex}
+\noindent
+\begin{ex}[Esercizio con Simulazione]
+    Presa la seguente equazione differenziale:
+    \[
+	\frac{\text{d} ^2\theta}{\text{d} t^2} = - \frac{g}{l}\sin (\theta) - \frac{\gamma}{ml}\frac{\text{d} \theta}{\text{d} t} + \frac{r}{ml}\sin (\Omega  t)
+    .\] 
+    Ridefinire la variabile temporale e gli opportuni parametri per ricondurlo a:
+    \[
+	\frac{\text{d} ^2\theta}{\text{d} t^2} = - \sin (\theta) - b \frac{\text{d} \theta}{\text{d} t} + A\sin (\Omega  t)
+    .\] 
+    Verificare numericamente che per $b=0.05$, $a = 0.6$, $\Omega  = 0.7$ il sistema presenta un comportamento asintotico complesso.
+\end{ex}

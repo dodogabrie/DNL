@@ -1,0 +1,143 @@
+\section{Campi Vettoriali e Proprietà dei SD a t. con. autonomi}%
+\label{sub:Campi Vettoriali in SD a tempo continuo}
+Prendiamo il solito sistema:
+\[
+    \begin{dcases}
+	\frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x}, t)\\
+	\vect{x} (t_0) = \vect{x}_0
+    \end{dcases}
+\] 
+I campi di esistenza di tutte le quantità sono:
+\[
+    \vect{x}  \in \mathbb{R}^n; \quad F: I \times \mathbb{R}^n\to \mathbb{R}^n; \quad F \in C^r \ (r\ge 1)
+.\] 
+Assumiamo che le soluzioni siano definite globalmente, tale sistema dinamico viene spesso chiamato \textcolor{red}{Campo Vettoriale}.\\
+Facciamo un esempio per capire da dove nasce l'idea che il sistema possa presentare un campo vettoriale.
+\begin{exmp}[Campo Vettoriale in $\mathbb{R}^2$]
+    \marginpar{
+        \captionsetup{type=figure}
+            \incfig{8_1}
+	    \caption{\scriptsize Andamento della soluzione (ipotetica) e campo vettoriale nel punto $P$ che appartiene alla traiettoria.}
+        \label{fig:8_1}
+    }
+    \[
+        \begin{dcases}
+	    \frac{\text{d} x_1}{\text{d} t} =F_1(x_1,x_2,t)\\
+	    \frac{\text{d} x_2}{\text{d} t} = F_2(x_1, x_2, t)
+        \end{dcases}
+    \] 
+    Supponiamo di aver trovato una soluzione particolare $\vect{x}_s(t)$ con condizioni iniziali $V_0 = (x_{10}, x_{20})$.\\
+    Preso un punto appartenente alla soluzione (o orbita) $P(t, x_1, x_2)$ si ha che la tangente alla curva ha come componenti $\left.(F_1, F_2)\right|_{P}$. Questo vettore tangente definisce il campo vettoriale e può essere associato ad ogni punto dell'orbita.
+\end{exmp}
+\noindent
+Dobbiamo aggiungere che, lo stesso sistema proiettato nello spazio delle fasi senza la componente temporale sarebbe una varietà schiacciata in due dimensioni. In questa proiezione può sembrare che le orbite si sovrappongano, questo in realtà non avviene: è dovuto all'aver effettuato una proiezione del moto reale.\\
+Generalmente nel corso avremmo a che fare con SD autonomi.
+\subsection{Proprietà dei sistemi dinamici a tempo continuo autonomi}%
+\label{sub:Proprietà dei sistemi dinamici a tempo continuo autonomi}
+Prendiamo il problema:
+\[
+	\frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x})
+.\] 
+Con le opportune condizioni iniziali e
+\[
+    F \in C^r \ (r\ge 1); \ x \in \mathbb{R}^n; \ F:\mathbb{R}^n\to \mathbb{R}^n
+.\] 
+Chiamiamo l'intervallo di esistenza della soluzione con il nome $I$.
+\begin{thm}[Invarianza per Shift]
+    Sia $\vect{x}_s(t)$ una soluzione dell'IVP per un SD a tempo continuo autonomo con le opportune condizioni iniziali. Allora: 
+    \[
+	\vect{x}_s(t+\tau) \text{ con } t + \tau  \in I 
+    \] 
+    è soluzione.
+\end{thm}
+\noindent
+\begin{proof}
+    Calcoliamo la quantità:
+    \[
+	\frac{\text{d} \vect{x}_s(t+\tau)}{\text{d} t} 
+    .\] 
+    Per vedere se corrisponde anch'essa alla soluzione del problema. La dimostrazione si conclude con il semplice cambio di variabili:
+    \[
+        t' = t + \tau  \implies  \frac{\text{d} }{\text{d} t} = \frac{\text{d} }{\text{d} t'} 
+    .\] 
+    Infatti inserendo nella equazione differenziale otteniamo:
+    \[
+	\frac{\text{d} \vect{x}_s(t')}{\text{d} t'} = F(\vect{x}_s(t'))
+    .\] 
+    Che ci dice appunto che la soluzione traslata è ancora soluzione.
+\end{proof}
+\begin{ex}[Su campo vettoriale]
+    Preso il seguente campo vettoriale:
+    \[
+	\frac{\text{d} x}{\text{d} t} = - (1+x^2)
+    .\] 
+    e sia $x(t_0)=x_0$.
+    \begin{itemize}
+        \item Verificare che una soluzione è:
+	    \[
+		x(t)=- \tan(t-t_0-\arctan (x_0))
+	    .\] 
+	\item Verificare che $x(t+\tau)$ è ancora soluzione.
+    \end{itemize}
+\end{ex}
+\noindent
+\begin{ex}[Teorema di Shift e sistemi non autonomi 1]
+    Preso il sistema
+    \[
+	\frac{\text{d} x}{\text{d} t} = e^t; \qquad  x(0)=x_0
+    .\] 
+    Dimostrare che la soluzione è:
+    \[
+	x(t)=e^t-1+x_0
+    .\] 
+    e verificare che il teorema di invarianza per shift non è verificato.
+\end{ex}
+\noindent
+\begin{ex}[Teorema di Shift e sistemi non autonomi 2]
+   Dato il sistema 
+   \[
+       \frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x}, t); \qquad \text{Soluzione: }\vect{x}_s(t)
+   .\] 
+   Verificare che, posti $\vect{x}_{\tau}(t)$ e $F_{\tau}$:
+   \[
+       \vect{x}_{\tau}(t)=\vect{x}_s(t+\tau); \qquad F_{\tau}(\vect{x}_{\tau}, t) = F(\vect{x}_\tau, t+\tau)
+   .\] 
+   Allora si ha che $\vect{x}_s(t+\tau)$ è soluzione di:
+   \[
+       \frac{\text{d} \vect{x}_\tau}{\text{d} t} = F_\tau (\vect{x}_\tau, t)
+   .\] 
+   In pratica quindi lo shift temporale per un sistema non autonomo richiede di traslare anche il funzionale $F$. 
+\end{ex}
+\noindent
+\begin{thm}[Unicità della soluzione]
+    Dato il sistema dinamico a tempo continuo autonomo:
+    \[
+	\frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x}); \qquad F \in C^r \ (r\ge 1); \quad \vect{x}\in\mathbb{R}^n
+    .\] 
+    Allora $\forall \ \vect{x}_0 \in U \subset \mathbb{R}^n$ ($U$ l'insieme delle soluzioni) $\exists$ soltanto una unica soluzione (orbita) che passa per $\vect{x}_0$.
+\end{thm}
+\begin{proof}
+    Supponiamo esistano due soluzioni passanti per lo stesso punto $\vect{x}_0$:
+    \[
+        \vect{x}_1 \neq \vect{x}_2: 
+	\begin{cases}
+	    \vect{x}_1(t_1)=\vect{x}_0\\
+	    \vect{x}_2(t_2)=\vect{x}_0
+	\end{cases}
+    .\] 
+    Definiamo allora 
+    \[
+	\vect{y}_2(t)=\vect{x}_2(t+t_2-t_1)
+    .\] 
+    Questa è ancora soluzione del sistema autonomo (per il teorema di invarianza sotto shift temporale), inoltre gode della proprietà:
+    \[
+	\vect{y}_2(t_1)=\vect{x}_2(t_2)=\vect{x}_0
+    .\] 
+    Ma al tempo $\vect{t_1}$ per ipotesi anche la soluzione $\vect{x}_1$ verifica la condizione iniziale.\\
+    Tuttavia per il teorema di unicità della soluzione di un IVP fissate le condizioni iniziali si deve avere:
+    \[
+	\vect{x_1} (t)=\vect{y_2} (t) = \vect{x}_2(t+t_2-t_1)
+    .\] 
+    Questo implica che le soluzioni $\vect{x}_1$ e $\vect{x}_2$ sono uguali: assurdo.
+\end{proof}
+\noindent
