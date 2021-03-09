@@ -1,0 +1,280 @@
+\section{Teorema di Liuville}%
+\label{sub:Teorema di Liuville}
+\marginpar{
+    \captionsetup{type=figure}
+        \incfig{9_1}
+    \caption{\scriptsize Evoluzione del volume nello spazio delle fasi per SD a tempo continuo autonomo.}
+    \label{fig:9_1}
+}
+Preso un sistema dinamico a tempo continuo autonomo vogliamo capire come evolve lo spazio delle fasi in maniera non locale (con delle condizioni iniziali) ma globale, per far questo consideriamo l'evoluzione di un intero volume dello spazio delle fasi $V(t)$.\\
+Un importante teorema nello studio di questo tipo di sistemi dinamici è il seguente:
+\begin{thm}[Teorema di Liuville]
+    Preso un sistema dinamico a tempo continuo autonomo:
+\[
+    \frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x})
+\qquad 
+F: U \subset \mathbb{R}^n\to \mathbb{R}^n; \ F \in C^r \ (r\ge 1)
+\] 
+e sia $V(0) \subset U$ un certo volume dello spazio delle fasi. Allora vale la seguente\sidenote{\scriptsize In cui si ricorda che:
+\[
+    \nabla F = \sum_{\sigma=1}^{n} \frac{\partial F_i}{\partial x_i} 
+\] }:
+\begin{equation}
+    \left.\frac{\text{d}}{\text{d} t} V(t)\right|_{t=0} = \int\limits_{V(0)} \nabla F d\vect{x}
+	\label{eq:9_1}
+\end{equation}
+\end{thm}
+\noindent
+\begin{proof}
+    L'evoluzione da un punto $\vect{x}  \in V(0)$ a $\vect{y}\in V(t)$ è guidata dal flusso di fase:
+    \[
+	\vect{y}  = \varphi (t, \vect{x})
+    \] 
+    Possiamo pensare a $\vect{y}$ come una trasformazione di coordinate. 
+    \[
+	\vect{y}  = g(\vect{x}) \qquad g:\mathbb{R}^n\to \mathbb{R}^n; \ \vect{x}, \vect{y}  \in \mathbb{R}^n
+    \] 
+    Le variazioni in $d\vect{x}$ e in $d\vect{y}$ sono legate dal Jacobiano della trasformazione:
+    \[
+	d\vect{y}  = \text{det} \left(J(\vect{x})\right)d\vect{x}
+    \] 
+    Dove ricordiamo la struttura di $J$:
+    \[
+	J(\vect{x}) = \left[\frac{\partial g_i}{\partial x_J} \right]_{i, J = 1,2,\ldots, n}
+    \] 
+    Quindi vale che:
+    \[
+	d\vect{y}  = \text{det} \left(\frac{\partial \varphi (t,\vect{x})}{\partial \vect{x}} \right)d\vect{x}
+    \] 
+    Integrando ambo i membri nel volume $V(0)$:
+    \[
+	\int\limits_{V(0)} d\vect{y} = V(t) = 
+	\int\limits_{V(0)} \text{det}\left(\frac{\partial \varphi (t,\vect{x})}{\partial \vect{x}} \right)d\vect{x}
+    \] 
+    A questo punto si valuta una evoluzione per tempi:
+    \[
+        0 \le t \ll 1
+    \] 
+    e si sviluppa il flusso di fase in $t = 0$  al primo ordine:
+    \[\begin{aligned}
+	\varphi (t, \vect{x}) \simeq & \vect{x}  + \left.\frac{\partial }{\partial t} \varphi (t, \vect{x})\right|_{t=0}\cdot t + o(t^2) = \\
+	    =& \vect{x} + F(\vect{x})t + o(t^2)
+    .\end{aligned}\]
+    Possiamo riscrivere la derivata di $\varphi$  secondo questa ultima approssimazione:
+    \[\begin{aligned}
+	\frac{\partial \varphi (t, \vect{x})}{\partial \vect{x}} = &
+	\left\{\frac{\partial }{\partial x_J} \left[x_i + F_i(\vect{x}) t + o(t^2)\right]\right\}_{i, J = 1, 2, \ldots, n} = \\
+	=& \left\{ \delta_{iJ} +\frac{\partial }{\partial x_J}  F_i(\vect{x}) t + o(t^2)\right\}_{i, J = 1, 2, \ldots, n} 
+    \end{aligned}\]
+    Calcoliamo adesso il determinante di questa quantità\sidenote{\scriptsize Lo Jacobiano in questo caso si scrive come: \[
+	    J(\vect{x}) = \left\{\frac{\partial F_i}{\partial x_J} \right\}_{i, J = 1, 2, \ldots, n}
+    \] }:
+    \begin{equation}
+	\text{det}\left(\frac{\partial }{\partial \vect{x}} \varphi (t, \vect{x})\right) \simeq
+	1 + \text{Tr}(J(\vect{x}))t + o(t^2)
+	\label{eq:9_2}
+    \end{equation}
+    Per una migliore comprensione dello Jacobiano si mostra un esempio pratico (mantenuto all'interno della dimostrazione):
+    \begin{exmp}[Jacobiano in $\mathbb{R}^2$]
+	\[\begin{aligned}
+	    \left\{\delta_{iJ} + \frac{\partial F_i}{\partial x_J} \right\}_{i, J=1,2} = \mathbb{I} + J(\vect{x})t =  
+	    \begin{pmatrix}
+		1 + \frac{\partial F_1}{\partial x_1} t 	&     \frac{\partial F_1}{\partial x_2} t \\
+		\frac{\partial F_2}{\partial x_1} t 		&     1 + \frac{\partial F_2}{\partial x_2} t
+	    \end{pmatrix} 
+	    \equiv A
+	.\end{aligned}\]
+	\[
+	    \text{det}(A) = 1 + t\left(\frac{\partial F_1}{\partial x_1} + \frac{\partial F_2}{\partial x_2} \right) - 
+	    \frac{\partial F_1}{\partial x_1} \frac{\partial F_2}{\partial x_2} t^2 - \frac{\partial F_1}{\partial x_2} \frac{\partial F_2}{\partial x_2} t^2
+	\] 
+	Approssimiamo prendendo solo i termini di ordine $t$ ed emerge la relazione \ref{eq:9_2}:
+	\[
+	    \text{det}(A) = 1 + \text{Tr}(J(\vect{x})) + o(t^2)
+	\] 
+    \end{exmp}
+    \noindent
+    Continuiamo la dimostrazione partendo dalla equazione per il volume:
+    \[
+	V(t) = \int\limits_{V_0} \text{det}\left[\frac{\partial \varphi (t,\vect{x})}{\partial \vect{x}} \right]d\vect{x}
+    \] 
+    Applichiamo l'approssimazione \ref{eq:9_2}:
+    \[
+	V(t) \simeq \int\limits_{V_0} \left[ 1 + \text{Tr}(J(\vect{x}))t \right]d\vect{x} = 
+	V(0) + t\int\limits_{V(0)} \text{Tr}(J(\vect{x}))d\vect{x}
+    \] 
+    A questo punto basta portare il termine $V(0)$  a sinistra e dividere per il tempo per concludere:
+    \[
+	\lim_{t \to 0} \frac{V(t)-V(0)}{t} = \left.\frac{\text{d} V(t)}{\text{d} t} \right|_{t=0} = \int\limits_{V(0)} d\vect{x}\nabla F
+    \] 
+\end{proof}
+\noindent
+Cambiando la notazione ed approssimando la $\varphi$ in punti diversi da $t=0$ ci si accorge che il teorema deve valere $\forall \ t$.
+\begin{exmp}[$\nabla F$ costante]
+    Preso un campo vettoriale del tipo: $\nabla F = k $ costante possiamo applicare il teorema:
+    \[
+	\frac{\text{d} V}{\text{d} t} = \int\limits_{V(t)} k d\vect{x} = k(V(t))
+    \] 
+    Abbiamo allora una equazione differenziale per $V$, la soluzione è:
+    \[
+	V(t)=e^{kt}V(0)
+    \] 
+    A seconda del segno di $k$ si ha una espansione/contrazione dello spazio delle fasi, l'unico modo per avere una conservazione del volume è $k=0$.
+\end{exmp}
+\noindent
+\subsection{SD a tempo continuo autonomi Conservativi e Dissipativi}%
+\label{sub:SD a tempo continuo autonomi Conservativi e Dissipativi}
+\begin{defn}[Sistema dinamico conservativo]
+    Dato un sistema dinamico a tempo continuo autonomo descritto da un campo vettoriale $F$, il sistema si dice conservativo se vale:
+    \[
+        \nabla F = 0
+    \] 
+\end{defn}
+\noindent
+\begin{defn}[Sistema dinamico dissipativo]
+    Un sistema dinamico a tempo continuo autonomo descritto dal un campo vettoriale $F$ si dice dissipativo se:
+    \[
+        \nabla F < 0
+    \] 
+\end{defn}
+\noindent
+\begin{exmp}[Sistema Hamiltoninano]
+    Prendiamo un sistema di variabili $\vect{x}  \in \mathbb{R}^n$ e $\vect{y}\in \mathbb{R}^n$ descritto da un funzionale $H$: 
+    \[
+        H: \mathbb{R}^{2n}\to \mathbb{R} \qquad H \subset C^2
+    \] 
+    e sia $(\vect{x}, \vect{y})\in U \subset \mathbb{R}^{2n}$ l'insieme di definizione del problema. Le equazioni che descrivono il sistema sono:
+    \[\begin{dcases}
+        \frac{\partial x_i}{\partial t} = \frac{\partial H}{\partial \frac{\partial y_i}{\partial x} } \\
+	\frac{\partial y_i}{\partial t} = - \frac{\partial H}{\partial x_i} 
+    \end{dcases}\] 
+    Possiamo dimostrare che questo campo è conservativo. La forma vettoriale del campo $F$ in questo caso è:
+    \[
+	F(\vect{x},\vect{y}) = \left(\frac{\partial H}{\partial \vect{y}} ; - \frac{\partial H}{\partial \vect{x}} \right) = 
+	\left(\frac{\partial H}{\partial y_1}, \frac{\partial H}{\partial y_2}, \ldots, \frac{\partial H}{\partial y_n}; - \frac{\partial H}{\partial x_1}, \ldots,- \frac{\partial H}{\partial x_n}  \right)
+    \] 
+    Calcoliamo la divergenza del campo\sidenote{\scriptsize $()_J$ è la componente $J$ esima.}:
+    \[\begin{aligned}
+	\nabla F =& \sum_{J=1}^{n} \frac{\partial }{\partial x_J} \left(\frac{\partial H}{\partial \vect{y}} \right)_J +
+	\sum_{J=1}^{n} \frac{\partial }{\partial y_J} \left(-\frac{\partial H}{\partial \vect{x}} \right)_J = \\
+	=& \sum_{J=1}^{n} \frac{\partial ^2H}{\partial x_J\partial y_J} -\sum_{J=1}^{n} \frac{\partial ^2H}{\partial y_J\partial x_J} = 0
+    .\end{aligned}\]
+    In cui l'ultima uguaglianza è vera per il teorema di Schwartz e deve valere che $H\subset C^2$ .
+\end{exmp}
+\noindent
+\begin{exmp}[Sistema con forzante periodica]
+    Prendiamo il sistema descritto dalla seguente equazione differenziale:
+    \[
+	\frac{\text{d} ^2x}{\text{d} t^2} + 2\mu\frac{\text{d} x}{\text{d} t} + \omega^2x = G\cos (\omega t)
+    \] 
+    Possiamo riscriverlo come un sistema di equazioni del primo ordine utilizzando le variabili:
+    \[\begin{dcases}
+        x_1 = x \\
+	x_2 = \frac{\text{d} x}{\text{d} t} \\
+	\theta  = \omega t
+    \end{dcases}\] 
+    Il campo vettoriale è un funzionale definito negli insiemi:
+    \[
+        F:\mathbb{R}^2 \times S^1 \to \mathbb{R}^2 \times S^1
+    \] 
+    In particolare ha la seguente struttura:
+    \[
+	F = (x_2, \ - \mu x_2 - \omega^2x_1 + G\cos(\theta), \ \omega)
+    \] 
+    Ed in conclusione possiamo dire che:
+    \[
+        \nabla F = \frac{\partial F_1}{\partial x_1}  + \frac{\partial F_2}{\partial x_2} + \frac{\partial F_3}{\partial \theta} = - 2\mu
+    \] 
+\end{exmp}
+\noindent
+\begin{exmp}[Calcolo numerico: Attrattore di Lorenz]
+    Preso il seguente sistema dinamico:
+    \[\begin{dcases}
+	\dot{x}=\sigma (y-x)\\
+	\dot{y}=\rho x- y - xz\\
+	\dot{z}=- \beta z + xy
+    \end{dcases}\] 
+    Utilizzando i seguenti parametri:
+    \[
+        \sigma  = 10; \quad \rho  = 28; \quad \beta  = \frac{8}{3}
+    \] 
+    Mostrare che il sistema dinamico è conservativo.
+\end{exmp}
+\noindent
+\subsection{Mappe (autonome) Conservative o Dissipative}%
+\label{sub:Mappe Conservative o Dissipative}
+Data una mappa del tipo:
+\[
+    \vect{x}_{k+1}=G(\vect{x}_k) \qquad G: U\to \mathbb{R}^n; \ \vect{x}\in U \subset \mathbb{R}^n
+\] 
+Si hanno le seguenti:
+\begin{defn}[Mappa Dissipativa]
+    Se vale la seguente:
+    \[
+	\left|\text{det}(J(G))\right|_{\vect{x} =\vect{x}_k} < 1
+    \] 
+    La mappa si dice Dissipativa.
+\end{defn}
+\noindent
+\begin{defn}[Mappa Conservativa]
+    Se vale la seguente:
+    \[
+	\left|\text{det}(J(G))\right|_{\vect{x} =\vect{x}_k} = 1
+    \] 
+    La mappa si dice Conservativa.
+\end{defn}
+\noindent
+\begin{defn}[Mappa Espansiva]
+    Se vale la seguente:
+    \[
+	\left|\text{det}(J(G))\right|_{\vect{x} =\vect{x}_k} > 1
+    \] 
+    La mappa si dice Espansiva.
+\end{defn}
+\noindent
+Dove $J(G)$ è lo Jacobiano della trasformazione $G$.
+\begin{exmp}[Mappa di Henon]
+    Prendiamo il seguente sistema dinamico a tempo discreto autonomo:
+    \[\begin{dcases}
+        x_{n+1}=1+y_n-\alpha x_{n}^2\\
+	y_{n+1}=\beta x_n
+    \end{dcases}\] 
+    Le quantità in gioco sono:
+    \[
+	\vect{V}_n = \begin{pmatrix} x_n \\ y_n \end{pmatrix}  \implies  \vect{V}_{n+1}=G(\vect{V_n})
+    \] 
+    \[
+	G = \begin{pmatrix} G_1(\vect{V}_n) \\ G_2(\vect{V}_n)  \end{pmatrix} = \begin{pmatrix} 1+y_n-\alpha x_n^2 \\ \beta x_n\end{pmatrix} 
+    \] 
+    Lo Jacobiamo della trasformazione $G$ è definito dalla matrice delle derivate:
+    \[
+	J(G)= 
+	\begin{pmatrix} 
+	    -2\alpha x_n  & 1 \\
+	    \beta  & 0
+	\end{pmatrix} 
+	\implies  \text{det}(J)=-\beta
+    \] 
+    Nota la matrice $J$ possiamo anche affermare subito che la mappa è invertibile per $\beta\neq 0$. L'invertibilità non garantisce che la mappa presenti un comportamento "tranquillo", questa mappa infatti può mostrare chaos deterministico (e lo vedremo).
+\end{exmp}
+\noindent
+Si accenna qui al fatto che una mappa 1D invertibile non può presentare caos, questo non è più vero per dimensioni maggiori di 1.
+\begin{exmp}[Mappa logistica]
+    \[
+	x_{n+1} = \mu x_n (1-x_n)
+    \] 
+    Con $\mu\in \left[0, 4\right]$ e $x_n \in \left[0, 1\right]$.\\
+    In questo caso lo Jacobiano è definito dalla semplice derivata della mappa rispetto a $x_n$:
+    \[
+	J(G)=\mu-2\mu x_n = \mu (1-2x_n)
+    \] 
+    Quindi il sistema può cambiare drasticamente il suo comportamento al variare di $\mu$:
+    \begin{itemize}
+	\item $\mu  = 1$ $\implies$ $J(G)=1-2x_n$. \\
+	    In questo caso se $x_n \in \left[0, 1 /2\right[$ il sistema dinamico è invertibile e la mappa è dissipativa.
+	\item $\mu  = 2$ $\implies$ $J(G)=2-4x_n$.\\
+	    In questo caso se $x_n \in \left[0, 1 /4\right[$ la mappa può presentare un andamento espansivo in quando det$(J) = J > 1$.
+    \end{itemize}
+\end{exmp}
+\noindent
+Per i sistemi "complessi" (caotici) lo spazio delle fasi può convergere (in un punto o in una intera zona) oppure può anche espandersi (a meno di vincoli, come può essere la conservazione della energia).

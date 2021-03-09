@@ -141,3 +141,75 @@ Chiamiamo l'intervallo di esistenza della soluzione con il nome $I$.
     Questo implica che le soluzioni $\vect{x}_1$ e $\vect{x}_2$ sono uguali: assurdo.
 \end{proof}
 \noindent
+\subsection{Flusso di fase e Campi Vettoriali}%
+\label{sub:Flusso di fase e Campi Vettoriali}
+Prendiamo un SD a tempo continuo autonomo e consideriamo il flusso di fase di questo sistema con tutte le proprietà già discusse in precedenza. \\
+\begin{thm}[Flusso e Campo Vettoriale]
+    La relazione tra il flusso di un sistema dinamico a tempo continuo autonomo ed il suo Campo vettoriale $F$ è:
+    \[
+	F(\vect{x})=\left.\frac{\partial \varphi (t, \vect{x})}{\partial t} \right|_{t=0}
+    \] 
+\end{thm}
+\noindent
+\begin{exmp}[Sulla relazione flusso-$F$]
+    Dato il campo vettoriale definito dalle seguente equazione differenziale:
+    \[\begin{dcases}
+	\frac{\text{d} x}{\text{d} t} = x^2 \\
+	x(0)=x_0
+    \end{dcases}\] 
+    In questo caso si ha il seguente flusso di fase:
+    \[
+	\varphi (t, x_0)= x(t)= \frac{x_0}{1-x_0t}
+    \] 
+    Dobbiamo notare che tale flusso non è definito su tutto $\mathbb{R}$:
+    \begin{itemize}
+	\item $x_0>0 \implies  \ ] \ -\infty, \frac{1}{x_0} \ [$ è l'intervallo di definizione.
+	\item $x_0<0 \implies  \ ] \ \frac{1}{x_0}, \infty \ [$ è l'intervallo di definizione.
+	\item $x_0=0 \implies\ \mathbb{R} $ è l'intervallo di definizione.
+    \end{itemize}
+    Si verifica immediatamente che, prendendo uno dei due casi non banali, la relazione tra flusso e campo vettoriale è rispettata (semplicemente derivando).
+\end{exmp}
+\noindent
+\begin{thm}[Relazione flusso-campo vettoriale per SD autonomi]
+    Sia $\varphi (t,\vect{x}_0)$ associato all'IVP:
+     \[\begin{dcases}
+	 \frac{\text{d} \vect{x}}{\text{d} x} = F(\vect{x})\\
+	 \vect{x} (0)=\vect{x}_0
+    \end{dcases}\] 
+    Allora vale la relazione:
+    \[
+	\frac{\partial \varphi (t, \vect{x}_0)}{\partial t} = F(\vect{x})
+    \] 
+\end{thm}
+\noindent
+\begin{proof}
+    \begin{equation}
+    \begin{aligned}
+	\frac{\partial \varphi (t, \vect{x}_0)}{\partial t} =&
+	\lim_{\epsilon \to 0}  \frac{\varphi (t+\epsilon, \vect{x}_0)- \varphi (t, \vect{x}_0)}{\epsilon}=\\
+	=& \lim_{\epsilon \to 0} \frac{\varphi (\epsilon, \varphi (t, \vect{x}_0))- \varphi (t, \vect{x}_0)}{\epsilon}
+	\label{eq:9_1}
+    \end{aligned}
+    \end{equation}
+Visto che valgono le seguenti:
+\[
+    \varphi (t,\vect{x}_0)=\vect{x} (t); \qquad \varphi (t, \vect{x}_0)=\varphi (0, \varphi (t, \vect{x}_0))
+\] 
+Allora possiamo sviluppare ulteriormente il calcolo \ref{eq:9_1}:
+\[\begin{aligned}
+    \frac{\partial \varphi (t, \vect{x}_0)}{\partial t} &= 
+    \lim_{\epsilon \to 0} \frac{\varphi (\epsilon, \vect{x}(t)) - \varphi (0, \varphi (t, \vect{x}_0))}{\epsilon} = \\
+							&= \lim_{\epsilon \to 0} \frac{\vect{x}(t + \epsilon) - \vect{x} (t)}{\epsilon} =
+							\frac{\text{d} \vect{x}}{\text{d} t} =F(\vect{x})
+.\end{aligned}\]
+\end{proof}
+\noindent
+\begin{ex}[Esercizi sul teorema]
+    Determinare i campi vettoriali associati ai seguenti flussi:
+    \begin{itemize}
+	\item $\varphi (t, x) = \frac{x e^{t}}{xe^t - x + 1}$.
+	\item $\varphi (t, x) = \frac{x}{(1-2x^2t)^{1 /2}}$.
+	\item $\varphi (t, x, y) = (xe^t, \frac{y}{1-yt})$.
+    \end{itemize}
+\end{ex}
+\noindent

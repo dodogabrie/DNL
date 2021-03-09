@@ -1,0 +1,193 @@
+\section{Soluzioni stazionarie di SD}%
+\label{sub:Sistema dinamico a tempo continuo}
+\subsection{Sistema dinamico a tempo continuo}%
+\label{sub:Soluzioni stazionarie di SD a tempo continuo}
+\begin{defn}[Stato stazionario o Soluzione Stazionaria per SD autonomo]
+    Preso il sistema dinamico:
+    \[
+	\frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x}) \qquad F: U\to \mathbb{R}^n;  F \in C^r \ (r\ge 1); \ \vect{x}\in\mathbb{R}^n 
+    \] 
+    Uno stato $\vect{x}_s \in \mathbb{R}^n$ si dice stazionario se è soluzione del SD e vale che $F(\vect{x}_s) = 0$.
+\end{defn}
+\noindent
+La definizione non è valida nel caso di sistemi non autonomi.
+\begin{exmp}[Sistema non autonomo non ha sol. Stazionarie]
+    Prendiamo il seguente:
+    \[\begin{dcases}
+        \frac{\text{d} x}{\text{d} t} = - x + t\\
+	x(0)=x_0
+    \end{dcases}\] 
+    In questo caso la soluzione è dipendente dal tempo (in modo indipendente da $t-t_0$):
+    \[
+	x(t)= e^{-t}(x_0+1)+t-1
+    \] 
+    Quindi non può esistere la soluzione stazionaria in questo caso: non esiste una soluzione che annulli la $F$ al variare di $t$.
+\end{exmp}
+\noindent
+Vediamo adesso un esempio molto esplicativo per il Phase Portrait e per le soluzioni stazionarie.
+\begin{exmp}[Sistema non lineare con parametro]
+    \[
+	\frac{\text{d} x}{\text{d} t} = -x + ax^3 \equiv F(x)
+    \] 
+    Le soluzioni stazionarie devono rispettare la seguente equazione:
+    \[
+        -x_s + ax_s^3 = 0 \implies  
+	\begin{cases}
+	    x_s = 0 & \forall a \in \mathbb{R}\\
+	    x_s = \pm 1 / \sqrt{a} & \forall a > 0
+        \end{cases}
+    \] 
+    Si vede che al variare del parametro di controllo $a$ compaiono o scompaiono multipli punti fissi, questa è una peculiarità dei sistemi non lineari che approfondiremo in seguito. 
+    \begin{description}
+	\item[1) $a = 0$.] In questo caso il sistema è lineare:
+	    \marginpar{
+	        \captionsetup{type=figure}
+		\incfig{11_1}
+		\caption{\scriptsize Caratterizzare la dinamica prendendo delle condizioni iniziali vicine al punto fisso nel caso $a=0$.}
+	        \label{fig:11_1}
+	    }
+	    \[
+	        \frac{\text{d} x}{\text{d} t} = -x
+	    \] 
+	    Vogliamo classificare l'unica soluzione stazionaria in $x_s = 0$. Applicando una perturbazione a questa soluzione il sistema torna a stazionarietà o inizia una evoluzione diversa? \\
+	    Per rispondere a questa domanda si può prendere delle condizioni iniziali a destra ed a sinistra dell'unico punto fisso come in figura \ref{fig:11_1}: $x_0^+, x_0^-$. \\
+	    Si può subito notare che in $x_0^+$ si ha $F(x)$ negativa, quindi il punto tenderà ad avvicinarsi all'origine, viceversa per $x_0^-$. La soluzione stazionaria è quindi stabile.
+        \item[2) $a < 0$.] 
+	    In questo caso l'equazione del moto diventa:
+	    \marginpar{
+	        \captionsetup{type=figure}
+	            \incfig{11_2}
+		    \caption{\scriptsize Caratterizzare la dinamica prendendo delle condizioni iniziali vicine al punto fisso nel caso $a<0$, in arancio il punto fisso.}
+	        \label{fig:11_2}
+	    }
+	    \[
+	        \frac{\text{d} x}{\text{d} t} = -x + ax^3
+	    \] 
+	    Le orbite hanno lo stesso comportamento del caso analizzato in precedenza, qui però si ha un avvicinamento all'origine non lineare per via del termine cubico (figura \ref{fig:11_2}).
+	\item[3) $a>0$.]
+	    \marginpar{
+	        \captionsetup{type=figure}
+	            \incfig{11_3}
+	        \caption{\scriptsize Caratterizzare la dinamica prendendo delle condizioni iniziali vicine al punto fisso nel caso $a>0$, in arancione le 3 soluzioni stazionarie.}
+	        \label{fig:11_3}
+	    }
+	    La dinamica di questo caso è più ricca delle due precedenti per via degli ulteriori due punti fissi in $\pm 1 /\sqrt{a}$. Lo stesso $F(x)$ in questo caso presenta un andamento diverso: con $a>0$ non è più monotono, decrescente ma assume la forma di figura \ref{fig:11_3}.\\
+	    Le direzioni sono tracciate sempre valutando il segno di $F(x)$, notiamo subito che il punto nell'origine attrae la dinamica (è ancora stabile) mentre le altre due soluzioni stazionare non godono della stessa proprietà.\\
+	    Ponendo un punto nei pressi di $x_s = \pm 1 /\sqrt{a} $ il SD tenderà a divergere o ad avvicinarsi a $x=0$, queste soluzioni sono quindi stazionarie ma instabili.
+    \end{description}
+\end{exmp}
+\noindent
+L'esempio precedente mostra che per risolvere il sistema e determinare la dinamica non è sempre necessario trovare la soluzione analitica, è possibile determinare i punti fissi e valutarne la stabilità.\\
+In questo modo si ottiene il quadro complessivo dell'evoluzione del sistema (possiamo disegnare una approssimazione del Phase Portrait). Questo tipo di approccio è stato inventato da un grande esperto di sistemi dinamici: Henry Poicaré.
+\subsection{Interpretazione fisica: Gradient Dynamical System}%
+\label{sub:Interpretazione fisica: Gradient Dynamical System}
+Quando è possibile esprimere il SD (a tempo continuo, autonomo) nel seguente modo:
+\[
+    \frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x}) = - \frac{\text{d} V(\vect{x})}{\text{d} t} 
+\] 
+Allora il sistema si presta ad una interpretazione intuitivamente semplice: $V(\vect{x})$  rappresenta il potenziale in cui il corpo che compie la traiettoria $\vect{x} (t)$ si trova immerso.\\
+Riprendendo l'esempio unidimensionale visto sopra:
+\marginpar{
+    \captionsetup{type=figure}
+        \incfig{11_4}
+    \caption{\scriptsize Andamento del potenziale per l'esempio sopra nel caso $a>0$, i punti arancioni corrispondono alle 3 soluzioni stazionarie.}
+    \label{fig:11_4}
+}
+\[
+    \frac{\text{d} x}{\text{d} t} = - x + a x^3 = - \frac{\text{d} V(x)}{\text{d} t} 
+\] 
+Possiamo integrare per ottenere il potenziale:
+\[
+    V(x)=\frac{x^2}{2}-\frac{a}{4}x^4
+\] 
+Tale potenziale gode delle seguenti proprietà:
+\begin{itemize}
+    \item è simmetrico $V(x)=V(-x)$.
+    \item $\lim\limits_{x \to \pm\infty} V(x)=-\infty$.
+    \item Si annulla in $(0, \ \pm \sqrt{2 / a})$ se $a>0$, altrimenti si annulla solo nell'origine.
+\end{itemize}
+Per $a>0$ il potenziale assume la forma a doppio monte in figura \ref{fig:11_4}, negli altri due casi invece si ha un paraboloide con minimo in $x=0$: l'unica soluzione stazionaria.
+\begin{exmp}[Punti fissi dell'oscillatore di Duffling]
+    Analizziamo la seguente equazione differenziale:
+    \[
+	\frac{\text{d} ^2x}{\text{d} t^2} + k \frac{\text{d} x}{\text{d} t} + \alpha x + \beta x^3=A\cos (\omega t)
+    \] 
+    Valutiamo il sistema nel caso semplificato:
+    \[
+        A = 0 \quad \alpha  = 1 \quad \beta  = -1 \quad k > 0
+    \] 
+    Selezionare l'ultimo parametro nel dominio positivo ($k>0$) significa dire che il sistema presenta dissipazione.\\
+    Conduciamo il SD ad un sistema di equazioni differenziali del primo ordine:
+    \[\begin{dcases}
+	\frac{\text{d} x}{\text{d} t} = y \equiv F_1(x, y)\\
+	\frac{\text{d} y}{\text{d} t} = -ky - x + x^3 \equiv F_2(x, y)
+    \end{dcases}\] 
+    Possiamo ricavare i punti fissi richiedendo l'annullamento di $F = (F_1, F_2)$:
+    \[\begin{dcases}
+        y = 0\\
+	-ky - x + x^3 = 0
+    \end{dcases}\] 
+    Prendendo il caso semplice in cui $k = 0$, è immediato trovare i seguenti punti fissi:
+    \[
+        V_{1s} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \qquad
+        V_{2s} = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \qquad
+        V_{3s} = \begin{pmatrix} -1 \\ 0 \end{pmatrix}
+    \] 
+    Lo studio della stabilità di questi punti non è scontato. Si deve considerare le direzioni di tutte le orbite in $x$ e in $y$ a destra e sinistra di ogni punto fisso.
+\end{exmp}
+\noindent
+\begin{ex}[Stati Stazioari]
+    Trovare gli stati stazionari dei seguenti SD a tempo continuo autonomi:
+    \begin{itemize}
+    \item 1) \[
+            \frac{\text{d} ^2x}{\text{d} t^2} - \epsilon x\frac{\text{d} x}{\text{d} t}  + x = 0
+        \] 
+    \item  2)
+	\[\begin{dcases}
+        \frac{\text{d} x}{\text{d} t} = - x + x^3\\
+	\frac{\text{d} y}{\text{d} t} = x + y
+        \end{dcases}\] 
+    \item 3)
+        \[\begin{dcases}
+        \frac{\text{d} x}{\text{d} t} = y \\
+	\frac{\text{d} y}{\text{d} t} =- y - \mu x - x^2
+        \end{dcases}\] 
+    \end{itemize}
+\end{ex}
+\noindent
+\subsection{Stati Stazionari di SD a tempo discreto autonomo}%
+\label{sub:Stati Stazionari di SD a tempo discreto autonomo}
+\begin{defn}[Stato Stazionario SD a tempo discreto]
+    Data la mappa $\vect{x}_{k+1}= G(\vect{x}_k)$ con $G: U \subset \mathbb{R}^n \to \mathbb{R}^n$ e $\vect{x}_k \in U$.\\
+    Una soluzione $\vect{x}_{s}$ si dice stazionaria se:
+    \[
+	\vect{x}_s = G(\vect{x}_s)
+    \] 
+    Questo in termini di risposta del sistema implica che l'input deve essere uguale all'output.
+\end{defn}
+\noindent
+\begin{exmp}[Mappa logistica]
+    Prendiamo la solita mappa logistica:
+    \[
+	x_{k+1}= \mu x_k(1-x_k) \quad x_k \in \left[0,1\right]; \ \mu  \in \left[0, 4\right]
+    \] 
+    La richiesta di stato stazionario si traduce in:
+    \[
+	x_s = G(x_s) \implies  x_s = \mu x_s(1-x_s)
+    \] 
+    Risolvendo l'equazione si trovano i candidati:
+    \[\begin{aligned}
+	&x_{s_1}= 0\\
+	& x_{s_2}=\frac{\mu-1}{\mu}
+    .\end{aligned}\]
+    Visto che la dinamica è definita tra $0$ e $1$ la condizione di esistenza del punto fisso $x_{s_2}$ è $\mu >1$.
+\end{exmp}
+\noindent
+\begin{ex}[Punto fisso della mappa logistica]
+    Dimostrare che per $0\le \mu\le 1$ esiste solo uno stato stazionario.\\
+     Suggerimento: utilizzare l'espressione 
+    \[
+        \frac{\text{d} y}{\text{d} t} = \mu-2\mu x
+    \] con $y = \mu x(1-x)$ e fare uso della geometria analitica.
+\end{ex}
+\noindent

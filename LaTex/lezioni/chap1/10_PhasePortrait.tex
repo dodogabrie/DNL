@@ -1,0 +1,52 @@
+\section{Phase Portrait}%
+\label{sub:Phase Portrait}
+Si definisce Phase Portrait (PP) una determinata collezione di orbite nello spazio delle fasi. \\
+Possiamo dire che il PP è una specie di arte: per fare un buon PP è necessario selezionare le orbite significative del sistema, quelle che esprimono al meglio tutta la possibile dinamica che il sistema può presentare.
+\begin{exmp}[Oscillatore armonico]
+    Partiamo da un esempio semplice di PP:
+    \[\begin{dcases}
+        \frac{\text{d} x}{\text{d} t} = y \\
+	\frac{\text{d} y}{\text{d} t} = -x
+    \end{dcases}\] 
+    Espresso in termini di campo vettoriale:
+    \[
+     \vect{V}=\begin{pmatrix} x \\ y \end{pmatrix};
+    \ F(\vect{V})=\begin{pmatrix} y \\ -x \end{pmatrix}  = \begin{pmatrix} F_1(\vect{V}) \\  F_2(\vect{V}) \end{pmatrix} 
+    \] 
+    Il sistema presenta la seguente legge di conservazione:
+    \marginpar{
+        \captionsetup{type=figure}
+            \incfig{10_1}
+        \caption{\scriptsize Phase Portrait per l'oscillatore armonico.}
+        \label{fig:10_1}
+    }
+    \[
+	\frac{\text{d} }{\text{d} t} (x^2 + y^2) = 0 \qquad \forall \ \vect{V}_0 \in \mathbb{R}^2
+    \] 
+    è possibile dimostrarlo semplicemente esplicitando le derivate ed inserendo le equazioni del moto.\\
+    Questa legge di conservazione ci permette di concludere subito che le orbite descritte dal sistema nello spazio delle fasi sono circonferenze centrate nell'origine.
+    \[
+        x^2+y^2=\text{cost} = r_0^2 \qquad r_0 = \sqrt{x_0^2+y_0^2} 
+    \] 
+    La direzione di rotazione è data dai segni nel campo vettoriale, ad esempio scegliendo $(x_0, y_0) = (1, 0)$ si vede che il campo è: $F_0 = (0, -1)$: rotazione antioraria.\\
+    Un'altra riprova del fatto che le orbite sono circonferenze è il fatto che il campo vettoriale è sempre tangente al vettore $\vect{V}$ nello spazio delle fasi:
+    \[
+	\begin{pmatrix} -x \\ y \end{pmatrix} \cdot \begin{pmatrix} x \\ y \end{pmatrix} = 0 \qquad \forall \ (x, y) \in \mathbb{R}^2
+    \] 
+\end{exmp}
+\noindent
+\begin{exmp}[Oscillatore di Duffling (semplificato)]
+    Prendiamo il sistema descritto dalle seguenti equazioni:
+    \[\begin{dcases}
+        \frac{\text{d} x}{\text{d} t} = y \\
+	\frac{\text{d} y}{\text{d} t} = x - x^3 - b y
+    \end{dcases}\] 
+    Questo rappresenta una semplificazione dell'oscillatore di Duffling, nel sistema originale si ha in più una forzante periodica.\\
+    Il sistema presenta due punti che "arrestano la dinamica", ovvero ci sono delle condizioni iniziali per il quale vale che:
+    \[
+	\frac{\text{d} \vect{x}}{\text{d} t} = 0 \qquad \forall \vect{x}  = (x, y) \in \mathbb{R}^2
+    \] 
+    Infatti scegliendo $\vect{x}_0 = (1, 0)$ oppure $\vect{x}_0 = (-1, 0)$ entrambe le equazioni differenziali si annullano.\\
+    Questi punti sono detti \textit{punti fissi}, gli approfondiremo nelle prossime sezioni.
+\end{exmp}
+\noindent
