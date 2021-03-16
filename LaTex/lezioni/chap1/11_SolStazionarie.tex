@@ -191,3 +191,59 @@ Per $a>0$ il potenziale assume la forma a doppio monte in figura \ref{fig:11_4},
     \] con $y = \mu x(1-x)$ e fare uso della geometria analitica.
 \end{ex}
 \noindent
+\begin{exmp}[Stati stazionari della Mappa di Henon]
+   \[\begin{dcases}
+       x_{n+1}=1+y_n - \alpha x_n^2\\
+       y_{n+1}=\beta x_n
+   \end{dcases}\]  
+   Cerchiamo uno stato stazionari $\vect{V}_s = \begin{pmatrix} x_s \\ y_s \end{pmatrix} $ tale che:
+   \[
+       \vect{V}_s = G(\vect{V}_s)
+   \] 
+   Quindi serve che:
+   \[\begin{dcases}
+       x_{s}=1+y_s - \alpha x_s^2\\
+       y_{s}=\beta x_s
+   \end{dcases}
+   \implies 
+   \begin{dcases}
+       x_s = 1 + \beta x_s - \alpha x_s^2\\
+       y_s = \beta x_s
+   \end{dcases}
+   \begin{dcases}
+       \alpha x_s^2 + x_s(1-\beta)-1 = 0\\
+       y_s = \beta x_s
+   \end{dcases}
+   \] 
+   Cercando soluzioni reali la condizione di esistenza per la prima equazione è:
+   \[
+       (1-\beta)^2 + 4\alpha  \ge 0 \implies  \alpha  \ge \frac{-(1-\beta)^2}{4}
+   \] 
+   Scegliendo valori per il quale la mappa presenta un comportamento complesso:
+   \[
+       \alpha  = 1.4, \ \beta  = 0.3
+   \] 
+   Abbiamo che la condizione di esistenza è rispettata.\\
+   Le soluzioni stazionarie della mappa sono:
+   \[
+       \vect{V}_{s_1}= \begin{pmatrix} \frac{-(1-\beta)+ \sqrt{(1-\beta)^2+4\alpha} }{2\alpha}\\ \beta x_s \end{pmatrix} \quad
+       \vect{V}_{s_1}= \begin{pmatrix} \frac{-(1-\beta)- \sqrt{(1-\beta)^2+4\alpha} }{2\alpha}\\ \beta x_s \end{pmatrix} 
+   \] 
+\end{exmp}
+\noindent
+\begin{ex}[Punti stazionari di Mappe ricorsive]
+    Determinare gli stati stazionari delle seguenti mappe ricorsive:
+    \begin{enumerate}
+        \item 
+	    \[\begin{dcases}
+	        x_{k+1}=x_k\\
+		y_{k+1}=x_k + y_k
+	    \end{dcases}\] 
+	\item
+	    \[\begin{dcases}
+	        x_{k+1}=x_k^2\\
+		y_{k+1}=x_k + y_k
+	    \end{dcases}\] 
+    \end{enumerate}
+\end{ex}
+\noindent

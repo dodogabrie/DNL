@@ -1,0 +1,189 @@
+\section{Studio della stabilità mediante linearizzazione}%
+\label{sub:Studio della stabilità mediante linearizzazione per SD a tempo continuo autonomo}
+Prendiamo il sistema dinamico autonomo a tempo continuo:
+\[
+    \frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x}),  \quad \vect{x}\in \mathbb{R}^n, \quad F:\mathbb{R}^n\to \mathbb{R}^n, \quad F \in C^r,\ r\ge 2
+\] 
+Supponiamo che le soluzioni esistano globalmente. \\
+\marginpar{
+    \captionsetup{type=figure}
+        \incfig{13_1}
+	\caption{\scriptsize Perturbazione ($y(t)$) della soluzione $x_p(t)$.}
+    \label{fig:13_1}
+}
+Figura: Se l'orbita è stabile allora $y(t)$  è confinata ad un tubo di flusso\\
+La soluzione allora è definita dalla somma della soluzione imperturbata e del disturbo.
+\[
+    \vect{x(t)} =\vect{x}_p(t)+\vect{y} (t) \qquad \text{ con } \left|\vect{y} (t)\right|\ll 1
+\] 
+Quindi possiamo dire che:
+\[
+    \frac{\text{d} \vect{x}}{\text{d} t} = \frac{\text{d} \vect{x}_p}{\text{d} t} + \frac{\text{d} \vect{t}}{\text{d} t} = F(\vect{x}_p + \vect{y}_p)
+\] 
+\begin{defn}[Funzione differenziabilie]
+    Sia $F:I\to J$ con $I \subset \mathbb{R}^n, \ J \subset \mathbb{R}^n$. $I$ è un aperto e $\vect{x}_0 \in I$.\\
+    Si dice che $F$ è differenziabile in $\vect{x}_0$ se $\exists$ $DF(\vect{x}_0) \in L(\mathbb{R}^n, \mathbb{R}^n)$ (spazio delle applicazioni lineari) tale che:
+    \[
+	\lim_{\left|\vect{h}\right| \to 0} \frac{\left|F(\vect{x}_0+ \vect{h})-F(\vect{x}_0)-DF(\vect{x}_0) \vect{h}\right|}{\left|h\right|} = 0
+    \] 
+\end{defn}
+\noindent
+\begin{thm}[Sullo Jacobiano]
+    Sia $F:I\to J$, $I \subset \mathbb{R}^n, \ J \subset \mathbb{R}^n$, supponiamo $I$  aperto.\\
+    Se $F$  è differenziabile in $\vect{x}_0$  allora:
+    \begin{enumerate}
+        \item esistono le derivate parziali: $\left.\frac{\partial F_I}{\partial x_J}\right|_{\vect{x}_0} $ con $i, J = 1, 2, \ldots n$. 
+	    \item $\forall \ \vect{h}  \in I$ si ha che:
+		\[
+		    \left.\left[DF(\vect{x}_0) \vect{h}\right]\right|_{i} = 
+			\sum_{J=1}^{n} \frac{\partial F_i}{\partial x_J} h_J, 
+			\qquad \left.\left[DF(x_0)\right]\right|_{i, J} = \frac{\partial F_i}{\partial X_J} 
+		\] 
+    \end{enumerate}
+\end{thm}
+\begin{ex}[Calcolo di DF]
+    Presa la mappa:
+    \[
+        F = \begin{pmatrix} F_1 \\ F_2 \end{pmatrix} = 
+	\begin{pmatrix} x_1 -x_2^2 \\ x_1x_2-x_2 \end{pmatrix} 
+    \] 
+    Calcolare $DF(\vect{V}_0)$ nel punto $\vect{V}_0=\begin{pmatrix} 1\\ -1 \end{pmatrix} $.
+\end{ex}
+\noindent
+\noindent
+Tornando alla nostra linearizzazione:
+\[
+    \frac{\text{d} \vect{x}_p(t)}{\text{d} t} + \frac{\text{d} \vect{y} (t)}{\text{d} t} = 
+    F(\vect{x}_p(t)+ \vect{y} (t)) \simeq 
+    F(\vect{x}_p(t))+DF(\vect{x}_p(t))\vect{y}  + O(\vect{y})
+\] 
+Quindi eliminando l'identità nella precedente equazione ci si riduce alla sola dinamica della perturbazione:
+\[
+    \frac{\text{d} \vect{y} (t)}{\text{d} t} = DF(\vect{x}_p(t))\vect{y}\equiv
+    J(\vect{x}_p)\vect{y}
+\] 
+Questo campo vettoriale ha una soluzione soluzione stazionaria: 
+\[
+\vect{y}_s = \begin{pmatrix} 0 \\ \vdots \\ 0 \end{pmatrix}
+\] 
+L'unica cosa da tenere a mente è che $J(\vect{x}_p(t))$  potrebbe dipendere dal tempo (se $\vect{x}_p(t)$ non è una soluzione stazionaria il sistema non è autonomo). Per adesso ci limitiamo a considerare le soluzioni $\vect{x}_p(t)$  stazionarie: $\vect{x}_s$:
+\[
+    \frac{\text{d} \vect{y}}{\text{d} t} = J(\vect{x}_s)\vect{y}  \qquad \vect{J(\vect{x}_s)}  \text{: matrice costante}
+\] 
+\begin{thm}[Stabilità delle soluzioni stazionarie]
+    Dato $\frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x})$ con $\vect{x}\in\mathbb{R}^n$, $F:\mathbb{R}^n \to \mathbb{R}^n$, $F \in C^r, \ r\ge 2$ e sia $\vect{x}_s$ tale che $F(\vect{x}_s)=0$.\\
+    Se tutti gli autovalori di $J(\vect{x}_s)$ hanno parte reale negativa allora $\vect{x}_s$ è asintoticamente stabile.
+\end{thm}
+\noindent
+Teniamo presente che la stabilità espressa dal teorema è stabile, se si può dimostrare anche che la condizione vale anche per intorni arbitrari allora possiamo decretare anche la stabilità globale.\\
+Potrei utilizzare lo stesso approccio per un sistema non autonomo? Potrei trovare gli autovalori della matrice $J$ non autonoma. \\
+Se trovo autovalori con parte reale minore di zero potrei concludere la stabilità del sistema? \textbf{NO}.
+\begin{exmp}[Il teorema non funziona per sistemi non autonomi]
+    \[
+	\frac{\text{d} }{\text{d} t} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = A(t)\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} 
+    \] 
+    Con:
+    \[
+	A(t) = 
+	\begin{pmatrix} 
+	    -1 + \frac{3}{2}\cos^2t & 1- \frac{3}{2}\sin t\cos t \\
+	    -1 -3\sin t \cos t & -1 + \frac{3}{2}\sin^2t
+	\end{pmatrix} 
+    \] 
+    Prendendo il vettore nullo avrei uno stato stazionario per il sistema. Cerchiamo gli autovalori della matrice $A$:
+    \[\begin{aligned}
+	\text{det}(A(t)- \Lambda  \mathbb{I}) =& (-1 + \frac{3}{2}\cos^2t - \Lambda)(-1+\frac{3}{2}\sin^2t -\Lambda)+\\
+					       &+(1+\frac{3}{2}\sin t\cos t)(1-\frac{3}{2}\sin t\cos t)=0
+    .\end{aligned}\]
+    Dalla equazione secolare si ottiene:
+    \[
+        \Lambda^2 + \frac{\Lambda}{2}+\frac{1}{2}=0 \implies  \Delta  = \frac{1}{4}-2 = -\frac{7}{4} <0
+    \] 
+    Quindi abbiamo autovalori complessi coniugati (CC):
+    \[
+	\Lambda_{12} = \frac{-1 \pm i \sqrt{\frac{7}{4}}}{4} \implies  \text{Re}(\Lambda_{12})=-\frac{1}{4}
+    \] 
+    Applicando alla lettera il teorema la soluzione stazionaria deve essere stabile. Se consideriamo invece:
+    \[
+	\vect{x}_1(t)=e^{t /2}\begin{pmatrix} -\cos t \\ \sin t \end{pmatrix}  \qquad \vect{x}_1(t)=e^{-t}\begin{pmatrix} \sin t \\ \cos t \end{pmatrix} 
+    \] 
+    Si scopre che queste due sono soluzioni indipendenti (per casa). \\
+    Quindi prendendo queste due soluzioni per descrivere la soluzione del sistema dinamico e ponendoci in un intorno della soluzione stazionaria si vede che una direzione non è stabile ($\vect{x_1}$), mentre una direzione è stabile $\vect{x}_2$. Il fatto che la soluzione in $\vect{x}_1$ diverga rende il punto $\vect{V}_0 = \begin{pmatrix} 0\\ 0 \end{pmatrix} $ instabile. \\
+   Questo dimostra che quando la matrice Jacobiana non è autonoma il teorema non si applica.
+\end{exmp}
+\noindent
+\begin{exmp}[Sistema autonomo]
+    \[\begin{dcases}
+	\frac{\text{d} x}{\text{d} t} = - y + x(x^2+y^2)\\
+	\frac{\text{d} y}{\text{d} t} = x + y(x^2+y^2)
+    \end{dcases}
+    =
+    \begin{pmatrix} F_1(x, y)\\ F_2(x, y) \end{pmatrix} 
+    \] 
+    L'unico stato stazionario in questo caso è il vettore $\vect{V}_s = (0,0)$.\\
+    Per determinare la stabilità come prima cosa dobbiamo calcolare la generica matrice $J$:
+    \[
+	J(\vect{V})=
+        \left.
+	\begin{pmatrix} 
+	    3x^2 + y^2 & -1 + 2xy \\
+	    1 + 2xy & x^2 + 3y^2
+	\end{pmatrix} 
+        \right|_{\vect{V} = \vect{V}_s} = 
+	\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} 
+    \] 
+    Gli autovalori di questa matrice sono dati dalla equazione secolare:
+    \[
+        \Lambda^2+1 = 0 \implies  \Lambda_{12} = \pm i
+    \] 
+    Quindi la parte reale è nulla\ldots\\
+    Notiamo che la sola parte lineare di questo sistema rappresenta un oscillatore armonico, l'unico punto fisso dell'oscillatore armonico (l'origine) è stabile secondo Lyapunov. In realtà questa conclusione è errata: lo stato stazionario non è stabile. \\
+    Dobbiamo allora stare attenti al fatto che quando qualcuno degli autovalori ha una parte reale nulla c'è bisogno di molta cautela nella interpretazione dei risultati.\\
+    Possiamo dimostrare l'instabilità di tale punto fisso sfruttando la simmetria del termine non lineare:
+    \[\begin{aligned}
+	&x(t)= r(t)\cos (\theta (t))\\
+	&y(t)= r(t)\sin (\theta (t))
+    .\end{aligned}\]
+    con $x^2+y^2 = r^2$.
+    \[\begin{aligned}
+	&\frac{\text{d} x(t)}{\text{d} t} = \frac{\text{d} r}{\text{d} t} \cos (\theta)- r\sin\theta\frac{\text{d} \theta}{\text{d} t} \\
+	&\frac{\text{d} y}{\text{d} t} = \frac{\text{d} r}{\text{d} t} \sin\theta  + r\cos\theta  \frac{\text{d} \theta}{\text{d} t} 
+    .\end{aligned}\]
+    Mettendo nelle equazioni del moto:
+    \[
+	-r\sin\theta  \frac{\text{d} \theta}{\text{d} t} + \frac{\text{d} r}{\text{d} t} \cos\theta  = 
+	    - r(t)\sin\theta  + r\cos\theta r^2
+    \] 
+    \[
+        r\cos\theta  \frac{\text{d} \theta}{\text{d} t} + \frac{\text{d} r}{\text{d} t} \sin\theta  = r\cos\theta  + r \sin\theta r^2
+    \] 
+    Moltiplicando la prima equazione per il seno di $\theta$ e la seconda per il coseno di $\theta$ e sottraendo membro a membro le equazioni:
+    \[
+	r \frac{\text{d} \theta}{\text{d} t} = r \implies  \frac{\text{d} \theta}{\text{d} t} = 1 \implies  \theta (t)=t + \theta_0
+    \] 
+    Per casa: moltiplicare la la prima equazione per $\cos\theta$ e la seconda per $\sin\theta$ e sommarle. Si ottiene che:
+    \[
+        \frac{\text{d} r}{\text{d} t} = r^3
+    \] 
+    Quindi il sistema dinamico di partenza si è ridotto a:
+    \[\begin{dcases}
+        \frac{\text{d} r}{\text{d} t} = r^3\\
+	\frac{\text{d} \theta}{\text{d} t} =1
+    \end{dcases}\] 
+    Abbiamo un sistema dinamico definito in un manifold: 
+    \[
+        S^1 \times R^+ \cup \left\{0\right\}
+    \] 
+    L'equazione interessante è la prima: questa ci dice che il sistema evolve sempre verso $r \to \infty$ per qualsiasi intorno del punto fisso. Quindi lo stato stazionario non è stabile.
+\end{exmp}
+\noindent
+\begin{defn}[Soluzione stazionaria iperbolica]
+    Dato il seguente campo vettoriale: $\frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x})$ con $\vect{x}\in\mathbb{R}^n$, $F:\mathbb{R}^n \to \mathbb{R}^n$ e $\vect{x}_s$ tale che $F(\vect{x}_s)=0$.\\
+    Diciamo che $\vect{x}_s$ è una soluzione stazionaria iperbolica se nessuno degli autovalori di $J(\vect{x}_s)$ ha parte reale nulla.
+\end{defn}
+\noindent
+\begin{defn}[Soluzione stazionaria non iperbolica]
+    Dato il seguente campo vettoriale: $\frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x})$ con $\vect{x}\in\mathbb{R}^n$, $F:\mathbb{R}^n \to \mathbb{R}^n$ e $\vect{x}_s$ tale che $F(\vect{x}_s)=0$.\\
+    Diciamo che $\vect{x}_s$ è una soluzione stazionaria non iperbolica se non è iperbolica\ldots
+\end{defn}
+\noindent
