@@ -1,0 +1,126 @@
+\section{SD a tempo continuo in $\mathbb{R}^2$  della forma $\frac{\text{d}^2x}{\text{d} t^2} = F(t, x, \dot{x})$}%
+\label{sub:SD a tempo continuo in   della forma}
+In questa sezione ci limitiamo a studiare il caso in cui il sistema dinamico è autonomo, vedremo più avanti il caso dipendente dal tempo.
+\[
+    \frac{\text{d} ^2x}{\text{d} t^2} = F(x, \frac{\text{d} x}{\text{d} t} )
+\] 
+\begin{exmp}[Oscillatore armonico smorzato]
+    \[
+	\frac{\text{d} ^2x}{\text{d} t^2} = -k x - \mu\frac{\text{d} x}{\text{d} t} 
+    \] 
+\end{exmp}
+\noindent
+\begin{exmp}[Circuito Van Der Pol]
+    \[
+	I_R(V)=aV+bV^2
+    \] 
+    L'equazione che descrive tale circuito è del tipo di quelle che studiamo adesso:
+    \[
+	\frac{\text{d} ^2x}{\text{d} t^2} = F(x, \dot{x})
+    \] 
+\end{exmp}
+\noindent
+Nello studio di questi sistemi solitamente la prima cosa da fare è ricondurci ad un sistema di equazioni del primo ordine: ponendo $y = \frac{\text{d} x}{\text{d} t} $  allora possiamo riscrivere il sistema nella forma:
+\[\begin{dcases}
+    \frac{\text{d} x}{\text{d} t} = y\\
+    \frac{\text{d} y}{\text{d} t} = F(x,y)
+\end{dcases}\] 
+\paragraph{Stati stazionari del SD}%
+\[\begin{dcases}
+    y=0\\
+    F(x,0)=0
+\end{dcases}\] 
+Quindi gli stati stazionari si trovano tutti sull'asse $x$.\\
+Consideriamo il rapporto delle derivate rispetto a $x$ e $y$:
+\[
+    \frac{\frac{\text{d} y}{\text{d} t}}{\frac{\text{d} x}{\text{d} t} } = \frac{F(x,y)}{y} \qquad   \text{con } y\neq 0
+\] 
+Riscrivendo il rapporto da bravi fisici possiamo dire che:
+\begin{equation}
+    \frac{\text{d} y}{\text{d} x} = \frac{F(x, y)}{y}
+    \label{eq:2_6_1}
+\end{equation}
+Questa relazione porta alcune interessanti conseguenze: immaginando un'orbita che si avvicina all'asse $x$ e passa per un punto dell'asse $x$ non stazionario come in figura \ldots, grazie alla relazione siamo in grado di dire che la tangente sull'asse $x$ è perpendicolare all'asse stesso per via della divergenza della tangente quando $y\to 0$.
+\begin{enumerate}
+    \item L'attraversamento di un punto sull'asse $x$ non stazionario è perpendicolare all'asse stesso.
+    \item La soluzione della equazione \ref{eq:2_6_1} ci permette di tracciare tutte le possibili orbite del SD.
+\end{enumerate}
+\begin{exmp}[Applicazione a pendolo non smorzato]
+    Prendiamo il sistema dinamico:
+    \[
+	\frac{\text{d} ^2x}{\text{d} t^2} = - \omega^2\sin (x) \implies  
+	\begin{dcases}
+	    \frac{\text{d} x}{\text{d} t} = y \\
+	    \frac{\text{d} y}{\text{d} t} = -\omega^2\sin x
+	\end{dcases}
+    \quad x \in S^1, y \in \mathbb{R}
+    \] 
+    Caratterizziamo il comportamento degli stati stazionari:
+    \[\begin{dcases}
+        y = 0\\
+	F(x, 0)=0
+    \end{dcases}
+    \implies
+    \begin{cases}
+        y=0\\
+	\sin x = 0
+    \end{cases}
+    \implies 
+    (k\pi, 0)
+    \quad 
+    k \in \mathbb{Z}
+\] 
+Visto che abbiamo dei manifold localmente è sempre possibile mappare $S_1\times \mathbb{R} \to \mathbb{R}^2$. Procediamo quindi come se $x$ fosse una variabile ordinaria e cartesiana:
+\[
+    J(x, y) = \begin{pmatrix} 0 & 1 \\ - \omega^2\cos x & 0 \end{pmatrix} 
+\] 
+\textbf{1.} $\left|k\right|$ pari:
+\[
+    J_{\text{pari}} = \begin{pmatrix} 0 & 1 \\ -\omega^2 & 0 \end{pmatrix} \implies  \Lambda^2 + \omega^2 = 0 \implies  \Lambda  = \pm i \omega
+\] 
+Quindi in $0, 2\pi, 4\pi\ldots$ localmente possiamo aspettarci dei centri.
+\textbf{2.} $\left|k\right|$ dispari:
+\[
+    J_{\text{dis}} = \begin{pmatrix} 0 & 1 \\ \omega^2 & 0 \end{pmatrix} \implies  \Lambda^2 - \omega^2 = 0 \implies  \Lambda  = \pm  \omega
+\] 
+Quindi abbiamo in questo caso due autovalori reali, uno positivo e l'altro negativo: delle selle.\\
+Calcoliamo gli autovettori di questo caso, dobbiamo studiare il problema:
+\[
+    \Lambda  = 1 \implies  \begin{pmatrix} 0 & 1 \\ \omega^2 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \omega\begin{pmatrix} x \\ y \end{pmatrix} \implies  \begin{pmatrix} y \\ \omega x \end{pmatrix} = \begin{pmatrix} \omega x \\ \omega y \end{pmatrix} 
+\] 
+\[\begin{dcases}
+    y = \omega x\\
+    \omega y = \omega^2x
+\end{dcases}\implies  y = \omega x \] 
+Quindi la direzione instabile è rappresentata dal vettore:
+\[
+    \vect{v}_{\Lambda_1} = \begin{pmatrix} 1 \\ \omega \end{pmatrix} 
+\] 
+Procedendo in maniera analoga per la direzione stabile si ottiene:
+\[
+    \vect{v}_{\Lambda_2} = \begin{pmatrix} 1 \\ -\omega \end{pmatrix} 
+\] 
+Come possiamo vedere in figura le selle separano lo spazio delle fasi in due regimi: all'interno dell'occhio le orbite sono chiuse (l'orbita è confinata all'interno), all'esterno dell'occhio invece le orbite sono "aperte". Le due regioni non si parlano e sono separate proprio dalle orbite che attraversano le selle.\\
+Utilizziamo l'equazione \ref{eq:2_6_1} nel nostro esempio:
+\[
+    \frac{\text{d} y}{\text{d} x} = \frac{-\omega^2\sin x}{y}
+\] 
+Quindi la soluzione è subito:
+\[
+    dy y = -\omega^2\sin xdx \implies  \frac{y^2}{2} = \omega^2  \cos x + c
+\] 
+Tale relazione ha senso soltanto se:
+\[
+    \omega^2 \cos x + c \ge 0
+\] 
+Se $\omega  = 1$ allora è sufficiente prendere $c \ge  1$. In questo caso abbiamo che:
+\[
+    y = \pm \sqrt{2(\cos x + c)} 
+\] 
+Quanto vale $c$ nel caso in cui la curva debba passare per $(\pi, 0)$? Deve essere vero che:
+\[
+    0 = \pm \sqrt{2(-1 + c)} \implies  c = 1
+\] 
+
+\end{exmp}
+\noindent

@@ -1,0 +1,254 @@
+\section{Soluzione generale dell'IVP di un sistema dinamico $\dot{\vect{x}} = A \vect{x}$ }%
+Dato il sistema dinamico:
+\[
+    \frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x}),  \qquad F: \mathbb{R}^n\to \mathbb{R}^n, \qquad \vect{x}_s \text{ stato stazionario.}
+\] 
+La linearizzazione in un intorno di $\vect{x}_s$  porta a dover risolvere un problema lineare della forma:
+\[
+    \frac{\text{d} \vect{x}}{\text{d} t} = J\vect{x}  
+\] 
+Con $J$ matrice Jacobiana valutata in $\vect{\vect{x}_s}$.\\
+Dobbiamo dare un senso al concetto di derivabilità di un esponenziale di una matrice. 
+\[
+    e^{At} \quad (A \in L(\mathbb{R}^n)) \implies  \frac{\text{d} }{\text{d} t} e^{At}\ldots ?
+\] 
+\begin{thm}[Derivata di esponenziale di operatore lineare]
+    Se $A$  è una matrice $n\times n$  allora:
+    \[
+        \frac{\text{d}}{\text{d} t} e^{At}  = Ae^{At}
+    \] 
+\end{thm}
+\noindent
+\begin{proof}
+    \[\begin{aligned}
+	\frac{\text{d} }{\text{d} t} e^{At} =& \lim_{h \to 0} \frac{e^{A(t+h)}-e^{At}}{h} =\\
+	                       =&\lim_{h \to 0} \frac{e^{At}e^{Ah}-e^{At}}{h} = \\
+			       = & \lim_{h \to 0} e^{At}\frac{e^{Ah}-\mathbb{I}}{h}
+    .\end{aligned}\]
+    Visto che $\left|h\right|\ll 1$  si ha che $e^{Ah}\simeq \mathbb{I}+ Ah$. 
+    \[
+        \frac{\text{d} }{\text{d} t} e^{At} = e^{At}\lim_{h \to 0} \frac{\mathbb{I} + Ah - \mathbb{I}}{h} = e^{At}A
+    \] 
+\end{proof}
+\noindent
+\begin{thm}[Soluzione dell'IVP]
+    Sia $A$ matrice $n\times n$ e $\vect{x}_0 \in \mathbb{R}^n$. Allora l'IVP 
+    \[\begin{dcases}
+        \frac{\text{d} \vect{x}}{\text{d} t} = A\vect{x}\\
+	\vect{x}(0)=\vect{x}_0
+    \end{dcases}\] 
+    Ha una unica soluzione data da:
+    \[
+	\vect{x} (t) = e^{At}\vect{x}_0
+    \] 
+\end{thm}
+\noindent
+\begin{proof}
+    Se $\vect{x} (t)$ è soluzione allora deve essere vero che:
+    \[
+	\vect{x} (0)=\vect{x}_0
+    \] 
+    Questo è verificato perché $e^{A 0}= \mathbb{I} + \sum_{k}^{\infty} \frac{(A\cdot 0)^k}{k!}= \mathbb{I}$.\\
+    Inoltre abbiamo che la soluzione rispetta effettivamente l'equazione:
+    \[
+        \frac{\text{d} \vect{x}}{\text{d} t} = \frac{\text{d} }{\text{d} t} e^{At}\vect{x}_0 = Ae^{At}\vect{x}_0 = A \vect{x}
+    \] 
+\end{proof}
+\noindent
+Nota la soluzione $\vect{x} (t)$ dell'IVP allora definisco:
+\[
+    \vect{y} (t) = e^{-At}\vect{x} (t) \qquad \vect{y} (0)=\vect{x}_0
+\] 
+Facendo la derivata di questa nuova variabile:
+\[\begin{aligned}
+    \frac{\text{d} \vect{y}}{\text{d} t} &= - A e^{-At}\vect{x} (t) + e^{-At}\frac{\text{d} \vect{x}}{\text{d} t} = \\
+					 &=-Ae^{-At}\vect{x} (t) + e^{-At}A\vect{x}= 0 
+.\end{aligned}\]
+Abbiamo allora trovato una costante del moto per l'IVP generico.
+\begin{exmp}[Sistema dinamico lineare in $\mathbb{R}^2$ ]
+    Prendiamo il SD in $\mathbb{R}^2$:
+    \[\begin{dcases}
+        \frac{\text{d} x_1}{\text{d} t} = -2x_1 - x_2\\
+	\frac{\text{d} x_2}{\text{d} t} = x_1-2x_2
+    \end{dcases}\] 
+    Possiamo riscriverlo nella forma matriciale:
+    \[
+        \frac{\text{d} }{\text{d} t} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} =
+	\begin{pmatrix} -2 & -1 \\ 1 & -2 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = A \vect{x}
+    \] 
+    Questa matrice è del tipo Jordan (con  $a = -2$ e $b = -1$). Possiamo porre $\vect{x} (0) = \begin{pmatrix} x_{1,0} & x_{2, 0} \end{pmatrix}$, in tal caso:
+    \[
+	\vect{x} (t) = e^{tA}\vect{x} (0)
+    \] 
+    Ricordiamo che per la matrice di Jordan $C$ si ha che:
+    \[
+	e^{At}=e^{at}\begin{pmatrix} \cos (bt) & -\sin (bt)\\ \sin (bt) & \cos (bt) \end{pmatrix} 
+    \] 
+    Nel nostro caso si ha che:
+    \[
+	e^{At}=e^{-2t}\begin{pmatrix} \cos (t) & -\sin (t) \\ \sin (t) & \cos (t) \end{pmatrix} 
+    \] 
+    E la soluzione si vede subito essere:
+    \[
+	\vect{x} (t) = e^{-2t} \begin{pmatrix} \cos (t)x_{1,0} - \sin (t)x_{2, 0} \\ \sin (t)x_{1,0} + \cos (t)x_{2,0} \end{pmatrix} 
+    \] 
+    Supponiamo di prendere $x_{1,0}=1$ e $x_{2,0} = 0$. In tal caso:
+    \[
+	\vect{x} (t)=e^{-2t}\begin{pmatrix} \cos t \\ \sin t \end{pmatrix} 
+    \] 
+\end{exmp}
+\noindent
+\subsection{Sistemi dinamici lineari in $\mathbb{R}^2$}%
+Dato un sistema dinamico:
+\[
+    \frac{\text{d} \vect{x}}{\text{d} t} =A\vect{x}, \quad \vect{x}\in \mathbb{R}^2, \quad A \in L(\mathbb{R}^2)
+\] 
+$P$  invertibile: $PAP^{-1}= S$, con 
+\[
+    S \in \left\{\begin{pmatrix} \Lambda  & 0 \\ 0 & \mu \end{pmatrix}, \begin{pmatrix} \Lambda  & 1 \\ 0 & \Lambda \end{pmatrix}, 
+    \begin{pmatrix} a & -b \\ b & a \end{pmatrix} \right\}
+\] 
+Le dinamiche sono state ricavate per ogni matrice:
+\begin{itemize}
+    \item 
+	\[
+	    \begin{pmatrix} \Lambda  & 0 \\ 0 & \mu \end{pmatrix} \implies  e^{At} = \begin{pmatrix} e^{\Lambda t} & 0 \\ 0 & e^{\mu t} \end{pmatrix} 
+	\] 
+    \item 
+	\[
+	    \begin{pmatrix} \Lambda  & 1 \\ 0 & \Lambda \end{pmatrix} \implies  e^{At} = e^{\Lambda t}\begin{pmatrix} 1 & t \\ 0 & 1 \end{pmatrix} 
+	\] 
+    \item 
+	\[
+	    \begin{pmatrix} a & -b \\ b & a \end{pmatrix} \implies  e^{At} = e^{at} \begin{pmatrix} \cos (bt) & -\sin (bt) \\ \sin (bt) & \cos (bt) \end{pmatrix}
+	\] 
+\end{itemize}
+\paragraph{Classificazione del comportamento dinamico}%
+\label{par:Classificazione del comportamento dinamico}
+\begin{exmp}[1]
+    \[
+	\vect{x} (t) = \begin{pmatrix} e^{\Lambda t} & \\ 0 & e^{\mu t} \end{pmatrix} \begin{pmatrix} x_{1,0} \\ x_{2, 0} \end{pmatrix} 
+    \] 
+    \begin{itemize}
+        \item  Se $\Lambda, \mu  < 0 $ abbiamo un pozzo.
+	\item Se $\Lambda, \mu  >0 $ abbiamo una sorgente.
+	\item Se $\mu >0$ e $\Lambda  < 0 $ o viceversa abbiamo una sella.
+    \end{itemize}
+   
+\end{exmp}
+\noindent
+\begin{exmp}[2]
+    Se abbiamo che:
+    \[
+	\vect{x} (t) = \begin{pmatrix} e^{\Lambda t}  & t e^{\Lambda t} \\ 0 & e^{\Lambda t} \end{pmatrix} \begin{pmatrix} x_{1,0} \\ x_{2, 0} \end{pmatrix} = \begin{pmatrix} e^{\Lambda t}\left(x_{1, 0} + t x_{2,0}\right) \\ e^{\Lambda t}x_{2, 0} \end{pmatrix} 
+    \] 
+    Se $\Lambda <0$ abbiamo un pozzo e viceversa abbiamo una sorgente.
+\end{exmp}
+\noindent
+\begin{exmp}[3]
+        \[
+	    \vect{x} (t) = e^{at} \begin{pmatrix} \cos (bt) & -\sin (bt) \\ \sin (bt) & \cos (bt) \end{pmatrix} \begin{pmatrix} x_{1,0} \\ x_{2, 0} \end{pmatrix} = e^{at}\begin{pmatrix} x_{1, 0}\cos (bt) - x_{2, 0}\sin (bt) \\ x_{1, 0}\sin (bt) + x_{2, 0}\cos (bt) \end{pmatrix} 
+    \] 
+    Possiamo definire allora:
+    \[
+        R = \sqrt{x_{1,0}^2 + x_{2, 0}^2} 
+    \] 
+    E riscrivere la soluzione come:
+    \[
+	\vect{x} (t) = e^{at}R \begin{pmatrix} \frac{x_{1, 0}}{R}\cos(bt) - \frac{x_{2, 0}}{R}\sin (bt) \\ \frac{x_{1, 0}}{R}\sin (bt) + \frac{x_{2, 0}}{R}\cos (bt) \end{pmatrix} 
+    \] 
+    Introducendo l'angolo $\alpha$:
+    \[
+	\alpha  = \arctan\left(\frac{x_{2, 0}}{x_{1, 0}}\right)
+    \] 
+    Si ha che:
+    \[\begin{aligned}
+	& x_{1}(t) = R e^{at}\sin (\alpha-bt)\\
+	& x_2(t) = R a^{at}\cos (\alpha-bt)
+    .\end{aligned}\]
+    Il Phase Portrait in questo caso dipende dal parametro $a$.
+\end{exmp}
+\noindent
+\begin{exmp}[Stati stazionari non iperbolici]
+    Prendiamo un sistema dinamico che si riduce alla matrice di Jordan:
+    \[
+	\begin{pmatrix} \Lambda  & 0 \\ 0 & \mu \end{pmatrix} 
+    \] 
+    Quando $\Lambda$ e $\mu$ sono nulli non siamo in grado di dire nulla sul sistema. Vediamolo con due sistemi di esempio:
+    \[\begin{dcases}
+        \frac{\text{d} x}{\text{d} t} = -x^3\\
+	\frac{\text{d} y}{\text{d} t} = -3y^3
+    \end{dcases}\implies\vect{V}_s = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \] 
+    \[\begin{dcases}
+        \frac{\text{d} x}{\text{d} t} = - x^2\\
+	\frac{\text{d} y}{\text{d} t} = - y^2
+    \end{dcases}\implies\vect{V}_s = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\] 
+    Per il primo si ha che:
+    \[
+	J = \begin{pmatrix} -3x^2 & 0 \\ 0 & - y^2 \end{pmatrix} \implies  J(\vect{V}_s) = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix} 
+    \] 
+    Quindi $\Lambda  = \mu  = 0$. Analogamente per il secondo sistema.\\
+    Nonostante gli autovalori del sistema siano gli stessi il loro comportamento dinamico è completamente diverso.\\
+    Nel primo caso infatti il sistema nell'origine attrae la dinamica: abbiamo uno stato stazionario stabile. Nel secondo caso invece il punto stazionario è attrattivo a destra e repulsivo a sinistra (per le $x$).\\
+    Il secondo stato stazionario non è quindi più stabile, in conclusione quando lo stato stazionario è \textbf{non iperbolico} bisogna stare ben attenti e non applicare al volo tutte queste considerazioni.
+\end{exmp}
+\noindent
+\subsection{Classificazione degli stati staz. in $\mathbb{R}^2$ (con traccia e determinante di $J$)}%
+Prendiamo un sistema dinamico a tempo continuo:
+\[\begin{dcases}
+    \frac{\text{d} x}{\text{d} t} = F_1(x, y)\\
+    \frac{\text{d} y}{\text{d} t} = F_2(x, y)
+\end{dcases}\] 
+E supponiamo di avere lo stato stazionario:
+\[
+    \vect{V}_s= \begin{pmatrix} x_s \\ y_s \end{pmatrix} 
+\] 
+La matrice Jacobiana è definita come sempre:
+\[
+    J(\vect{V}_s) =A = \left.\begin{pmatrix} \frac{\partial F_1}{\partial x} & \frac{\partial F_1}{\partial y} \\ \frac{\partial F_2}{\partial x} & \frac{\partial F_2}{\partial y}  \end{pmatrix} \right|_{\vect{V}_s}
+\] 
+Quindi definiamo la variabile di perturbazione $\vect{y}$:
+\[
+    \frac{\text{d} \vect{y}}{\text{d} t} = A\vect{y}
+\] 
+Con $\vect{V}  = \vect{V}_s + \vect{y}$, $\vect{y}  = (y_1, y_2)$, $\left|\vect{y}\right|\ll 1$.\\
+Lo studio degli autovalori della matrice $A$  definisce il comportamento della perturbazione attorno allo stato stazionario, quindi descrive interamente la dinamica attorno a quest'ultimo.\\
+Definiamo la matrice linearizzata $A$  con i parametri:
+\[
+    A = \begin{pmatrix} a & b \\ c & d \end{pmatrix} 
+\] 
+Allora l'equazione secolare diventa:
+\[
+    \text{det}\left[A-\Lambda\mathbb{I}\right]=0 \implies ad - \Lambda (a+d)+\Lambda^2-bc = 0
+\] 
+Utilizziamo traccia e determinante:
+\[\begin{aligned}
+    & T = a+d \\
+    & D = ad-bc
+.\end{aligned}\]
+Possiamo ottenere il seguente polinomio caratteristico:
+\[
+    \Lambda^2-\Lambda T+D = 0
+\] 
+Quindi dei quattro parametri $(a,b,c,d)$  gli unici che contano nello studio del sistema sono le combinazioni $T$  e $D$.\\
+La prima cosa da capire è quando l'equazione ammette o no radici reale:
+\[\begin{aligned}
+    &a. \qquad \Delta  = T^2-4D>0 \implies  D \le \frac{T^2}{4}\\
+    &b:\qquad \Delta  = T^2-4D<0 \implies  D > \frac{T^2}{4}
+.\end{aligned}\]
+\marginpar{
+    \captionsetup{type=figure}
+        \incfig{2_5_1}
+    \caption{\scriptsize }
+    \label{fig:2_5_1}
+}
+
+Nel caso a.:
+\[
+    \Lambda_{1, 2} = \frac{T \pm \sqrt{T^2 - 4D}}{2} 
+\] 
+Ricordiamo la proprietà delle soluzioni di una equazione del secondo grado: $\Lambda_1\cdot \Lambda_2 = D$, si ha che il determinante ci dice se il segno delle soluzioni è concorde o discorde, di conseguenza separa la tipologia di punto stazionario come in figura .\\
+Nel caso b. abbiamo la struttura degli autovalori:
+\[\begin{aligned}
+    & \Lambda_1 = \frac{T\pm i\sqrt{4D-T^2}}{2}
+.\end{aligned}\]

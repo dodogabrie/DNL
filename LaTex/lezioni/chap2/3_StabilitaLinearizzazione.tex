@@ -1,0 +1,536 @@
+\section{Studio della stabilità mediante linearizzazione}%
+\label{sub:Studio della stabilità mediante linearizzazione per SD a tempo continuo autonomo}
+Prendiamo il sistema dinamico autonomo a tempo continuo:
+\[
+    \frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x}),  \quad \vect{x}\in \mathbb{R}^n, \quad F:\mathbb{R}^n\to \mathbb{R}^n, \quad F \in C^r,\ r\ge 2
+\] 
+Supponiamo che le soluzioni esistano globalmente. \\
+\marginpar{
+    \captionsetup{type=figure}
+        \incfig{2_3_1}
+	\caption{\scriptsize Perturbazione ($y(t)$) della soluzione $x_p(t)$.}
+    \label{fig:2_3_1}
+}
+Figura: Se l'orbita è stabile allora $y(t)$  è confinata ad un tubo di flusso\\
+La soluzione allora è definita dalla somma della soluzione imperturbata e del disturbo.
+\[
+    \vect{x(t)} =\vect{x}_p(t)+\vect{y} (t) \qquad \text{ con } \left|\vect{y} (t)\right|\ll 1
+\] 
+Quindi possiamo dire che:
+\[
+    \frac{\text{d} \vect{x}}{\text{d} t} = \frac{\text{d} \vect{x}_p}{\text{d} t} + \frac{\text{d} \vect{t}}{\text{d} t} = F(\vect{x}_p + \vect{y}_p)
+\] 
+\begin{defn}[Funzione differenziabilie]
+    Sia $F:I\to J$ con $I \subset \mathbb{R}^n, \ J \subset \mathbb{R}^n$. $I$ è un aperto e $\vect{x}_0 \in I$.\\
+    Si dice che $F$ è differenziabile in $\vect{x}_0$ se $\exists$ $DF(\vect{x}_0) \in L(\mathbb{R}^n, \mathbb{R}^n)$ (spazio delle applicazioni lineari) tale che:
+    \[
+	\lim_{\left|\vect{h}\right| \to 0} \frac{\left|F(\vect{x}_0+ \vect{h})-F(\vect{x}_0)-DF(\vect{x}_0) \vect{h}\right|}{\left|h\right|} = 0
+    \] 
+\end{defn}
+\noindent
+\begin{thm}[Sullo Jacobiano]
+    Sia $F:I\to J$, $I \subset \mathbb{R}^n, \ J \subset \mathbb{R}^n$, supponiamo $I$  aperto.\\
+    Se $F$  è differenziabile in $\vect{x}_0$  allora:
+    \begin{enumerate}
+        \item esistono le derivate parziali: $\left.\frac{\partial F_I}{\partial x_J}\right|_{\vect{x}_0} $ con $i, J = 1, 2, \ldots n$. 
+	    \item $\forall \ \vect{h}  \in I$ si ha che:
+		\[
+		    \left.\left[DF(\vect{x}_0) \vect{h}\right]\right|_{i} = 
+			\sum_{J=1}^{n} \frac{\partial F_i}{\partial x_J} h_J, 
+			\qquad \left.\left[DF(x_0)\right]\right|_{i, J} = \frac{\partial F_i}{\partial X_J} 
+		\] 
+    \end{enumerate}
+\end{thm}
+\noindent
+Tornando alla nostra linearizzazione:
+\[
+    \frac{\text{d} \vect{x}_p(t)}{\text{d} t} + \frac{\text{d} \vect{y} (t)}{\text{d} t} = 
+    F(\vect{x}_p(t)+ \vect{y} (t)) \simeq 
+    F(\vect{x}_p(t))+DF(\vect{x}_p(t))\vect{y}  + O(\vect{y})
+\] 
+Quindi eliminando l'identità nella precedente equazione ci si riduce alla sola dinamica della perturbazione:
+\[
+    \frac{\text{d} \vect{y} (t)}{\text{d} t} = DF(\vect{x}_p(t))\vect{y}\equiv
+    J(\vect{x}_p)\vect{y}
+\] 
+Questo campo vettoriale ha una soluzione soluzione stazionaria: 
+\[
+\vect{y}_s = \begin{pmatrix} 0 \\ \vdots \\ 0 \end{pmatrix}
+\] 
+L'unica cosa da tenere a mente è che $J(\vect{x}_p(t))$  potrebbe dipendere dal tempo (se $\vect{x}_p(t)$ non è una soluzione stazionaria il sistema non è autonomo). Per adesso ci limitiamo a considerare le soluzioni $\vect{x}_p(t)$  stazionarie: $\vect{x}_s$:
+\[
+    \frac{\text{d} \vect{y}}{\text{d} t} = J(\vect{x}_s)\vect{y}  \qquad \vect{J(\vect{x}_s)}  \text{: matrice costante}
+\] 
+\begin{thm}[Stabilità delle soluzioni stazionarie]
+    Dato $\frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x})$ con $\vect{x}\in\mathbb{R}^n$, $F:\mathbb{R}^n \to \mathbb{R}^n$, $F \in C^r, \ r\ge 2$ e sia $\vect{x}_s$ tale che $F(\vect{x}_s)=0$.\\
+    Se tutti gli autovalori di $J(\vect{x}_s)$ hanno parte reale negativa allora $\vect{x}_s$ è asintoticamente stabile.
+\end{thm}
+\noindent
+Teniamo presente che la stabilità espressa dal teorema è locale, se si può dimostrare anche che la condizione vale anche per intorni arbitrari allora possiamo decretare anche la stabilità globale.\\
+Potrei utilizzare lo stesso approccio per un sistema non autonomo? Gli autovalori della matrice $J$ non autonoma sono ricavabili analiticamente. \\
+Se in tal caso trovassi autovalori con parte reale minore di zero potrei concludere la stabilità del sistema? \textbf{NO}.
+\begin{exmp}[Il teorema non funziona per sistemi non autonomi]
+    \[
+	\frac{\text{d} }{\text{d} t} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = A(t)\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} 
+    \] 
+    Con:
+    \[
+	A(t) = 
+	\begin{pmatrix} 
+	    -1 + \frac{3}{2}\cos^2t & 1- \frac{3}{2}\sin t\cos t \\
+	    -1 -3\sin t \cos t & -1 + \frac{3}{2}\sin^2t
+	\end{pmatrix} 
+    \] 
+    Prendendo il vettore nullo avrei uno stato stazionario per il sistema. Cerchiamo gli autovalori della matrice $A$:
+    \[\begin{aligned}
+	\text{det}(A(t)- \Lambda  \mathbb{I}) =& (-1 + \frac{3}{2}\cos^2t - \Lambda)(-1+\frac{3}{2}\sin^2t -\Lambda)+\\
+					       &+(1+\frac{3}{2}\sin t\cos t)(1-\frac{3}{2}\sin t\cos t)=0
+    .\end{aligned}\]
+    Dalla equazione secolare si ottiene:
+    \[
+        \Lambda^2 + \frac{\Lambda}{2}+\frac{1}{2}=0 \implies  \Delta  = \frac{1}{4}-2 = -\frac{7}{4} <0
+    \] 
+    Quindi abbiamo autovalori complessi coniugati (CC):
+    \[
+	\Lambda_{12} = \frac{-1 \pm i \sqrt{\frac{7}{4}}}{4} \implies  \text{Re}(\Lambda_{12})=-\frac{1}{4}
+    \] 
+    Applicando alla lettera il teorema la soluzione stazionaria deve essere stabile. Se consideriamo invece:
+    \[
+	\vect{x}_1(t)=e^{t /2}\begin{pmatrix} -\cos t \\ \sin t \end{pmatrix}  \qquad \vect{x}_1(t)=e^{-t}\begin{pmatrix} \sin t \\ \cos t \end{pmatrix} 
+    \] 
+    Si scopre che queste due sono soluzioni indipendenti (per casa). \\
+    Quindi prendendo queste due soluzioni per descrivere la soluzione del sistema dinamico e ponendoci in un intorno della soluzione stazionaria si vede che una direzione non è stabile ($\vect{x_1}$), mentre una direzione è stabile $\vect{x}_2$. Il fatto che la soluzione in $\vect{x}_1$ diverga rende il punto $\vect{V}_0 = \begin{pmatrix} 0\\ 0 \end{pmatrix} $ instabile. \\
+   Questo dimostra che quando la matrice Jacobiana non è autonoma il teorema non si applica.
+\end{exmp}
+\noindent
+\begin{exmp}[Sistema autonomo]
+    \[\begin{dcases}
+	\frac{\text{d} x}{\text{d} t} = - y + x(x^2+y^2)\\
+	\frac{\text{d} y}{\text{d} t} = x + y(x^2+y^2)
+    \end{dcases}
+    =
+    \begin{pmatrix} F_1(x, y)\\ F_2(x, y) \end{pmatrix} 
+    \] 
+    L'unico stato stazionario in questo caso è il vettore $\vect{V}_s = (0,0)$.\\
+    Per determinare la stabilità come prima cosa dobbiamo calcolare la generica matrice $J$:
+    \[
+	J(\vect{V})=
+        \left.
+	\begin{pmatrix} 
+	    3x^2 + y^2 & -1 + 2xy \\
+	    1 + 2xy & x^2 + 3y^2
+	\end{pmatrix} 
+        \right|_{\vect{V} = \vect{V}_s} = 
+	\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} 
+    \] 
+    Gli autovalori di questa matrice sono dati dalla equazione secolare:
+    \[
+        \Lambda^2+1 = 0 \implies  \Lambda_{12} = \pm i
+    \] 
+    Quindi la parte reale è nulla\ldots\\
+    Notiamo che la sola parte lineare di questo sistema rappresenta un oscillatore armonico, l'unico punto fisso dell'oscillatore armonico (l'origine) è stabile secondo Lyapunov. In realtà questa conclusione è errata: lo stato stazionario non è stabile. \\
+    Dobbiamo allora stare attenti al fatto che quando qualcuno degli autovalori ha una parte reale nulla c'è bisogno di molta cautela nella interpretazione dei risultati.\\
+    Possiamo dimostrare l'instabilità di tale punto fisso sfruttando la simmetria del termine non lineare:
+    \[\begin{aligned}
+	&x(t)= r(t)\cos (\theta (t))\\
+	&y(t)= r(t)\sin (\theta (t))
+    .\end{aligned}\]
+    con $x^2+y^2 = r^2$.
+    \[\begin{aligned}
+	&\frac{\text{d} x(t)}{\text{d} t} = \frac{\text{d} r}{\text{d} t} \cos (\theta)- r\sin\theta\frac{\text{d} \theta}{\text{d} t} \\
+	&\frac{\text{d} y}{\text{d} t} = \frac{\text{d} r}{\text{d} t} \sin\theta  + r\cos\theta  \frac{\text{d} \theta}{\text{d} t} 
+    .\end{aligned}\]
+    Mettendo nelle equazioni del moto:
+    \[
+	-r\sin\theta  \frac{\text{d} \theta}{\text{d} t} + \frac{\text{d} r}{\text{d} t} \cos\theta  = 
+	    - r(t)\sin\theta  + r\cos\theta r^2
+    \] 
+    \[
+        r\cos\theta  \frac{\text{d} \theta}{\text{d} t} + \frac{\text{d} r}{\text{d} t} \sin\theta  = r\cos\theta  + r \sin\theta r^2
+    \] 
+    Moltiplicando la prima equazione per il seno di $\theta$ e la seconda per il coseno di $\theta$ e sottraendo membro a membro le equazioni:
+    \[
+	r \frac{\text{d} \theta}{\text{d} t} = r \implies  \frac{\text{d} \theta}{\text{d} t} = 1 \implies  \theta (t)=t + \theta_0
+    \] 
+    Per casa: moltiplicare la la prima equazione per $\cos\theta$ e la seconda per $\sin\theta$ e sommarle. Si ottiene che:
+    \[
+        \frac{\text{d} r}{\text{d} t} = r^3
+    \] 
+    Quindi il sistema dinamico di partenza si è ridotto a:
+    \[\begin{dcases}
+        \frac{\text{d} r}{\text{d} t} = r^3\\
+	\frac{\text{d} \theta}{\text{d} t} =1
+    \end{dcases}\] 
+    Abbiamo un sistema dinamico definito in un manifold: 
+    \[
+        S^1 \times R^+ \cup \left\{0\right\}
+    \] 
+    L'equazione interessante è la prima: questa ci dice che il sistema evolve sempre verso $r \to \infty$ per qualsiasi intorno del punto fisso. Quindi lo stato stazionario non è stabile.
+\end{exmp}
+\noindent
+\subsection{Concetto di iperbolicità}%
+\label{sub:Concetto di iperbolicità}
+Introduciamo un concetto importante nella caratterizzazione degli stati stazionari:
+\begin{defn}[Soluzione stazionaria iperbolica]
+    Dato il seguente campo vettoriale: $\frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x})$ con $\vect{x}\in\mathbb{R}^n$, $F:\mathbb{R}^n \to \mathbb{R}^n$ e $\vect{x}_s$ tale che $F(\vect{x}_s)=0$.\\
+    Diciamo che $\vect{x}_s$ è una soluzione stazionaria iperbolica se nessuno degli autovalori di $J(\vect{x}_s)$ ha parte reale nulla.
+\end{defn}
+\noindent
+\begin{defn}[Soluzione stazionaria non iperbolica]
+    Dato il seguente campo vettoriale: $\frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x})$ con $\vect{x}\in\mathbb{R}^n$, $F:\mathbb{R}^n \to \mathbb{R}^n$ e $\vect{x}_s$ tale che $F(\vect{x}_s)=0$.\\
+    Diciamo che $\vect{x}_s$ è una soluzione stazionaria non iperbolica se non è iperbolica.
+\end{defn}
+\noindent
+\subsection{Classificazione dei possibili stati stazionari non iperbolici in $\mathbb{R}^2$}%
+\label{sub:Classificazione dei possibili stati stazionari non iperbolici in R2}
+Prendiamo un sistema dinamico:
+\[\begin{dcases}
+    \frac{\text{d} x}{\text{d} t} = F(x, y)\\
+    \frac{\text{d} y}{\text{d} t} = G(x, y)
+\end{dcases}\] 
+E supponiamo che esista uno stato stazionario $\vect{V}_s$:
+\[
+    \vect{V }_s = \begin{pmatrix} x_s \\ y_s \end{pmatrix} 
+\]
+Identifichiamo con $J$ lo Jacobiano:
+\[
+    J = 
+    \begin{pmatrix} 
+	\frac{\partial F}{\partial x} & \frac{\partial F}{\partial y} \\
+	\frac{\partial G}{\partial x} & \frac{\partial G}{\partial y} 
+    \end{pmatrix} 
+    = 
+    \begin{pmatrix} a & b \\ c & d \end{pmatrix} 
+\] 
+Cerchiamo le condizioni per il quale lo stato stazionario non è iperbolico: almeno un autovalore di $J$ calcolato in $\vect{V}_s$ deve essere nullo.\\
+La prima situazione banale è quella in cui $a = b = c = d = 0$. In tal caso tutti gli autovalori sono nulli. \\
+Più in generale utilizziamo un trucchetto per il nostro scopo: introduciamo la traccia $T$ ed il determinante $D$ di $J$. Gli autovalori della matrice possono essere espressi in termini di questi due parametri:
+\[
+    \text{det}\left[\begin{pmatrix} a & b \\ c & d \end{pmatrix} - \Lambda  \mathbb{I}\right] = 0 
+\] 
+\[
+    \implies  a d - \Lambda (a + d) + \Lambda^2 - c b = \Lambda^2 - T\Lambda + D = 0
+\] 
+Quindi gli autovalori sono:
+\[
+    \Lambda_{12} = \frac{T \pm \sqrt{T^2 - 4D}}{2}
+\] 
+Andiamo ad analizzare in quali situazioni si può avere un autovalore nullo: 
+\begin{enumerate}
+    \item Matrice nulla. 
+    \item Se $T=0$, $D > 0$ (resta solo una radice negativa)
+    \item Se $T = 0$, $D = 0$.
+    \item $D = 0$ e $T \neq 0$ $\implies$ $\Lambda_{12} = \frac{T \pm \sqrt{T^2} }{2}$  
+\end{enumerate}
+In dimensione maggiore di $2$ la chiave è caratterizzare gli zeri del polinomio caratteristico.\\
+Supponiamo di avere un polinomio: 
+\[\begin{aligned}
+    &P(x) = a_0 x^{n}+ a_1x^{n-1} + a_2 x^{n-2}+ \ldots + a_{n} \\
+    &\text{ con  } a_i \in \mathbb{R}, \ \forall  \ i = 0 , \ldots, n \ (a_0\neq 0)
+.\end{aligned}\]
+Cerchiamo gli zeri di questo polinomio caratteristico.\\
+Il teorema fondamentale dell'algebra ci assicura $n$ soluzioni per questo polinomio. \\ 
+Data una soluzione $\overline{x}$ si ha che $P(\overline{x}) = 0$ con $\overline{x}\in \mathbb{C}$ allora si ha che $\overline{x}^*$ è anch'esso radice del polinomio.
+\begin{thm}[Regola dei segni]
+    Dato il polinomio $P(x)$ se nella sequenza:
+    \[
+        a_0, a_1, a_2, \ldots, a_n
+    \] 
+    ci sono $k$ variazioni del segno tra $a_i $ e $a_{i+1}$ allora il numero di radici positive è $k$ o $k-2m$ con $m \in \mathbb{N}$.
+\end{thm}
+\noindent
+\begin{exmp}[Sulla regola dei segni]
+    Prendiamo i seguenti due polinomi:
+    \begin{itemize}
+        \item 
+	    \[
+        	x^3 + 4 x^2 - 5x - 4 
+        	\] 
+        	In tal caso le radici sono: $(1, -4, -1)$. Quindi $k = 1$.
+	\item 
+        \[
+        x^3 + 6 x^2 + 9 x + 4
+    \] 
+    Le radici sono (-1. -4, -1) e $k=0$.
+    \end{itemize}
+\end{exmp}
+\noindent
+\subsection{Tabella di Rauth}%
+\label{sub:Tabella di Rauth}
+Riprendiamo il polinomio generico:
+\[\begin{aligned}
+    &P(x) = a_0 x^{n}+ a_1x^{n-1} + a_2 x^{n-2}+ \ldots + a_{n} \\
+    &\text{ con  } a_i \in \mathbb{R}, \ \forall  \ i = 0 , \ldots, n \ (a_0\neq 0)
+.\end{aligned}\]
+La tabella di Routh si costruisce prendendo i termini $a_{2i}$ ed i termini $a_{2i + 1}$ separatamente.
+\[
+    \begin{matrix}
+	   & \left\{r_{1,i}\right\}: & a_0  & a_2  & a_4  &\ldots\\
+	   & \left\{r_{2, i}\right\}:& a_1 & a_3  & a_5 & \ldots\\
+	   & \left\{r_{3, i}\right\}: & r_{3, 1} & r_{3,2} & r_{3,3} & \ldots\\
+	   & \left\{r_{4, i}\right\}: & r_{4, 1} & r_{4,2} & r_{4,3} & \ldots
+    \end{matrix}
+\] 
+Prendiamo $i \ge 3$, in tal caso possiamo definire la sequenza:
+\[\begin{aligned}
+    \left(r_{i, 1} \quad r_{i, 2} \quad r_{i, 3} \quad \ldots\right) = &\left(r_{i-2, 2} \quad r_{i-2, 3} \quad r_{i-2, 4} \quad \ldots\right) + \\
+    & - \frac{r_{i-2, 1}}{r_{i-1,1}}(r_{i-1,2} \quad r_{i-1,3} \quad r_{i-1,4} \quad \ldots)
+.\end{aligned}\]
+Ad esempio abbiamo che:
+\[
+    r_{i,1}= r_{i-2,2} - \frac{r_{i-2,1}}{r_{i-1,1}}r_{i-1,2} = 
+    \frac{r_{i-2,2}r_{i-1,1}- (r_{i-2, 1}r_{i-1,2})}{r_{i-1,1}}
+\] 
+Possiamo anche calcolare un altro termine:
+\[\begin{aligned}
+     r_{3,1} = r_{1,2}- &\frac{r_{1,1}}{r_{2,1}}r_{2,2} = a_2 - \frac{a_0}{a_1} a_3 = \\
+    &=\frac{ a_1a_2-a_0a_3}{a_1} = - \frac{\text{det}\begin{pmatrix} a_0 & a_2 \\ a_1 & a_3 \end{pmatrix} }{a_1}
+.\end{aligned}\]
+Per casa verificare che:
+\[
+    r_{3,2} = - \frac{\text{det}\begin{pmatrix} a_0 & a_4 \\ a_1 & a_5 \end{pmatrix} }{a_1}
+\] 
+\begin{exmp}[Calcolo della tabella di Routh]
+    Prendiamo il polinomio:
+    \[
+	P(x)=x^3 + 6x^2 + 11x + 6 
+    \] 
+    Quindi $a_0 = 1, \ a_1 = 6 , \ a_2 = 11, \ a_3 = 6$. \\
+    Costruiamo la tabella di Rauth:
+    \[\begin{aligned}
+	&\left\{r_{1,i}\right\}:  1 \quad 11 \quad 0 \\
+	&\left\{r_{2,i}\right\}: 6 \quad 6 \quad 0
+    .\end{aligned}\]
+    Calcoliamo anche gli elementi della terza riga:
+    \[
+	r_{3, 1}= \frac{r_{2,1}r_{1,2}-r_{1,1}r_{2,2}}{r_{2,1}}= \frac{6 \cdot  11 - 1 \cdot  6}{6} = \frac{60}{6} = 10
+    \] 
+    Per casa dimostrare che:
+    \[
+        r_{3,2} = 0
+    \] 
+    Questo perché questo termine deriva da una colonna di zeri nella tabella di Routh. Proviamo a calcolare altri termini:
+    \[
+        r_{4, 1} = \frac{6 \cdot r_{3, 1}}{10} = 6 \qquad r_{4, 2} = 0
+    \] 
+    L'annullarsi del secondo coefficiente deriva ancora una volta dalla colonna di zeri nella tabella.\\
+    La tabella finale è quindi composta da\sidenote{
+    \[
+        \begin{matrix}
+	    & 1 & 11& 0 \\
+	    & 6 & 6 & 0 \\
+	    & 10& 0 & 0 \\
+	    & 6 & 0 & 0 
+        \end{matrix}
+    \]}.\\
+     In questo caso abbiamo che, per il teorema sotto, le radici del polinomio sono tutte negative (in parte reale). Per completezza le radici sono sono: $-1, -2, -3$.
+\end{exmp}
+\noindent
+\begin{thm}[Teorema di Routh-Hurwitz]
+    Dato il polinomio $P(x)$ di ordine $n$. Allora le sue radici hanno parte reale strettamente minore di $0$ se e solo se gli elementi della prima colonna della tabella di Routh sono diversi da zero e hanno tutti lo stesso segno.
+\end{thm}
+\noindent
+In inoltre ad ogni cambiamento di segno corrisponde una radice reale positiva.
+\begin{exmp}[Sul teorema di RH]
+    \[
+	P(x)= x^3 + 4x^2 - 5x - 4
+    \] 
+    La tabella di Routh si scrive come:
+    \[\begin{aligned}
+	\left\{r_{1, i}\right\}: &1 \quad - 5 \quad 0 \\
+	\left\{r_{2, i}\right\}: &4 \quad - 4 \quad 0 \\
+	   &r_{3, 1} \quad r_{3, 2} \quad \\
+	   &r_{4, 1} \quad r_{4,2}
+    .\end{aligned}\]
+    \[
+        r_{3,1}= \frac{r_{1, 2}r_{2, 1}- r_{1, 1}r_{2, 2}}{r_{2, 1}} = -4 \qquad r_{3, 2}= 0 \qquad r_{4, 1} = 0
+    \] 
+    L'ultimo termine non banale è:
+    \[
+	r_{4, 1} = r_{2, 2}- \frac{r_{2, 1}}{r_{3, 1}}r_{3,3} = \frac{-4 \cdot -4 - (4)\cdot 0 }{-4} = -4
+    \] 
+    Quindi la tabella finale è\sidenote{
+    \[
+        \begin{matrix}
+	    1  & -5 & 0 \\
+	    4  & -4 & 0 \\
+	    -4 & 0  & 0 \\
+	    -4 & 0  & 0
+        \end{matrix}
+    \] }.\\
+    Visto che c'è un cambiamento di segno allora non tutti gli autovalori hanno parte reale minore di zero ed inoltre ce n'è una positiva. \\
+    Per casa verificare che le radici del polinomio sono: $(1, -4, -1)$.
+\end{exmp}
+\noindent
+\subsection{Terminologia associata alla classificazione degli stati stazionari costanti per SD a tempo continuo autonomi}%
+\label{sub:Terminologia associata alla classificazione degli stati stazionari costanti}
+Preso il solito sistema dinamico:
+\[
+    \frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x}) \qquad \vect{x}\in \mathbb{R}^n \quad F:\mathbb{R}^n\to \mathbb{R}^n
+\] 
+e preso $\vect{x}_s$ stato stazionario.
+\paragraph{1) $\vect{x}_s$ iperbolico.}%
+\begin{defn}[Punto sella]
+    \marginpar{
+        \captionsetup{type=figure}
+            \incfig{2_3_2}
+        \caption{\scriptsize Punto sella: le curve indicano 4 direzioni che devono necessariamente esistere.}
+        \label{fig:2_3_2}
+    }
+    Si dice che $\vect{x}_s$ è punto sella se gli autovalori della matrice Jacobiana $J(\vect{x}_s)$ hanno parti reali sia positive che negative.
+\end{defn}
+\noindent
+\begin{defn}[Pozzo]
+    \marginpar{
+        \captionsetup{type=figure}
+            \incfig{2_3_3}
+        \caption{\scriptsize Pozzo.}
+        \label{fig:2_3_3}
+    }
+    $\vect{x}_s$ è un pozzo se tutti gli autovalori di $J(\vect{x}_s)$ hanno parte reale negativa.
+\end{defn}
+\noindent
+\begin{defn}[Sorgente]
+    \marginpar{
+        \captionsetup{type=figure}
+            \incfig{2_3_4}
+        \caption{\scriptsize Sorgente.}
+        \label{fig:2_3_4}
+    }
+    $\vect{x}_s$ è una sorgente se tutti gli autovalori di $J(\vect{x}_s)$ hanno parte reale positiva.
+\end{defn}
+\noindent
+\paragraph{2) Non iperbolico}%
+\begin{defn}[Centro]
+    $\vect{x}_s$ è un centro se gli autovalori di $J(\vect{x}_s)$ sono tutti immaginari puri e diversi da zero.
+\end{defn}
+\noindent
+\begin{exmp}[1]
+    Prendiamo il sistema dinamico in $\mathbb{R}^2$:
+    \[\begin{dcases}
+	\frac{\text{d} x}{\text{d} t} = 3x + y = F_1(x, y)\\
+	\frac{\text{d} y}{\text{d} t} = 3y = F_2(x, y)
+    \end{dcases}\] 
+    Lo stato stazionario è definito da:
+    \[
+	\vect{V}_s: \ F(\vect{V}_s) = 0 \ \implies  \vect{V}_s = \begin{pmatrix} 0 \\ 0 \end{pmatrix} 
+    \] 
+    Lo Jacobiano è dato da:
+    \[
+	J = \begin{pmatrix} 3 & 1 \\ 0 & 3 \end{pmatrix} 
+    \] 
+    Il polinomio caratteristico del sistema è:
+    \[
+	\text{det}\left[J-\Lambda\mathbb{I}\right] = 0 \implies  (3-\Lambda)^2 = 0
+    \] 
+    Gli autovalori sono $3$ con molteplicità 2. Questo implica che $\vect{V}_s$ è una sorgente.
+\end{exmp}
+\noindent
+\begin{exmp}[Oscillatore armonico]
+    Preso l'oscillatore armonico:
+   \[\begin{dcases}
+       \frac{\text{d} x}{\text{d} t} = y\\
+       \frac{\text{d} y}{\text{d} t} = -x
+   \end{dcases}\]  
+   Sappiamo che lo stato stazionario è l'origine, inoltre la matrice Jacobiana è:
+   \[
+       J = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} 
+   \] 
+   Quindi abbiamo subito che:
+   \[
+       \Lambda^2 + 1 = 0 \implies  \Lambda_{1, 2} = \pm i
+   \] 
+   Nella definizione espressa sopra questo implica che il punto stazionario è un centro.
+\end{exmp}
+\noindent
+\begin{exmp}[Sistema in $\mathbb{R}^2$]
+    \[\begin{dcases}
+        \frac{\text{d} x}{\text{d} t}  = - x - 10 y \\
+	\frac{\text{d} y}{\text{d} t} = 10x - y
+    \end{dcases}\] 
+    L'unico stato stazionario è $\vect{V}_s = \begin{pmatrix} 0 \\ 0 \end{pmatrix} $, lo Jacobiano è invece:
+    \[
+	J = \begin{pmatrix} -1 & -10 \\ 10 & -1 \end{pmatrix} \implies\text{det}\left[J-\Lambda\mathbb{I}\right] = 0
+    \] 
+    \[
+	\left(\Lambda+1\right)^2+ 100 = 0 \implies  P(\Lambda)=\Lambda^2 + 2\Lambda  + 101 = 0
+    \] 
+    Il discriminante di questa equazione è: $\Delta =-400$ quindi abbiamo due soluzioni complesse:
+    \[
+        \Lambda_1=-1-10i, \qquad \Lambda_2 = -1+10i
+    \] 
+    Quindi questo è un pozzo poiché la parte reale è minore di zero.\\
+    Se volessimo applicare il teorema di Routh dobbiamo calcolare la tabella:
+    \[
+        \begin{matrix}
+	    1 & 101 & 0 \\
+	    2 & 0   & 0
+        \end{matrix}
+	\implies  r_{i, J}=- \frac{\text{det}\begin{pmatrix} r_{i-2,1} & r_{i-2, J+1} \\ r_{i-1, 1} & r_{i-1, J+1} \end{pmatrix}}{r_{i-1,1}}
+    \] 
+\end{exmp}
+\noindent
+\begin{exmp}[Di punto sella]
+    \[\begin{dcases}
+        \frac{\text{d} x}{\text{d} t} = x + 5 y\\
+	\frac{\text{d} y}{\text{d} t} = -3y
+    \end{dcases}\] 
+    L'unico stato stazionario è anche in questo caso l'origine. 
+    \[
+	J = \begin{pmatrix} 1 & 5 \\ 0 & -3 \end{pmatrix} \implies  P(\Lambda)=(1-\Lambda)(-3-\Lambda)=0
+    \] 
+    Quindi $\Lambda_1=1$ e $\Lambda_2=-3$: abbiamo una sella.
+\end{exmp}
+\noindent
+\begin{exmp}[Oscillatore di Duffling]
+    \[
+    \ddot{x}+ k \dot{x}+ \alpha x + \beta x^3 = A\cos (\omega t) \qquad \alpha =1, \ \beta  = -1, \ A = 0, \ k \ge 0
+    \] 
+    Il sistema si riduce a:
+    \[\begin{dcases}
+	\frac{\text{d} x}{\text{d} t} = y = F_1(x, y)\\
+	\frac{\text{d} y}{\text{d} t} = -ky -x+x^3 = F_2(x,y)
+    \end{dcases}\] 
+    Gli stati stazionari $\vect{V}_s$ sono tali per cui $F(\vect{V}_s)=0$.\\
+    Per casa verificare che:
+    \[
+        \vect{V}_{1,s}=\begin{pmatrix} 0\\ 0 \end{pmatrix} \qquad \vect{V}_{2,3,s}= \begin{pmatrix} \pm 1 \\ 0 \end{pmatrix} 
+    \] 
+    Possiamo trovare lo Jacobiano:
+    \[
+	J(x,y)=
+	\begin{pmatrix} 0 & 1 \\ 3x^2-1 & -k \end{pmatrix} \equiv J(\vect{V})
+    \] 
+    Per calcolare gli autovalori del sistema dobbiamo metterci in uno stato stazionario:
+    \[
+	J(\vect{V}_{1,s})=\begin{pmatrix} 0 & 1 \\ -1 & -k \end{pmatrix} \implies  \text{det}\left[J-\Lambda\mathbb{I}\right]=0
+    \] 
+    \[
+	P(\Lambda)=\Lambda^2+k\Lambda +1=0
+    \] 
+    Possiamo utilizzare il metodo di Cartesio: essendo $k$ positivo allora il polinomio non ha variazione di segno nelle soluzioni, sono tutte negative.\\
+    Il discriminante vale:
+    \[
+        \Delta =k^2-4
+    \] 
+    Quindi, essendo $k>0$ serve $k\ge 2$ per avere radici reali. In questo caso si ha che:
+    \[
+        \Lambda_{12} = \frac{-k \pm \sqrt{k^2-4} }{2}
+    \] 
+    Quindi anche nel caso in cui il discriminante è reale le radici restano sempre entrambe negative.\\
+    Se invece prendiamo $0<k<2$ allora si ha che il $\Delta <0$ e le due radici hanno comunque parte reale negativa: $-k$.\\
+    Prendiamo un altro stato stazionario adesso: $\vect{V}_{2,s}$:
+    \[
+	J(\vect{V}_{2,s}) = \begin{pmatrix} 0 & 1 \\ 2 & -k \end{pmatrix} 
+    \] 
+    Quindi abbiamo il polinomio caratteristico:
+    \[
+	P(\Lambda)= (\Lambda+k)\Lambda  - 2 = \Lambda^2+k\Lambda-2=0
+    \] 
+    Usando Cartesio essendo $k$ positivo c'è una variazione di segno: c'è una radice positiva. Questo implica che il punto non è stabile.
+    \[
+        \Lambda_{12} = \frac{-k\pm\sqrt{k^2+8} }{2}
+    \] 
+    Quindi lo stato stazionario è una sella. Per casa si può verificare che anche $\vect{V}_{3,s}$ è una sella.
+\end{exmp}
+\noindent

@@ -1,0 +1,25 @@
+\section{Stabilità delle soluzioni}%
+\begin{ex}[Oscillatore armonico]
+    Dato il sistema dinamico a tempo continuo
+    \[\begin{dcases}
+        \frac{\text{d} x}{\text{d} t} = y\\
+	\frac{\text{d} y}{\text{d} t} = -x
+    \end{dcases}\] 
+    Dimostrare che $\vect{V}_s= \begin{pmatrix} 0\\ 0 \end{pmatrix} $ è stabile secondo Lyapunov e dire se tale soluzione è asintoticamente stabile.
+\end{ex}
+\noindent
+\begin{ex}[Stabilità soluzione]
+    Dato il SD $\frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x})$ con $\vect{x}\in \mathbb{R}^n$ e $F: \mathbb{R}^n\to \mathbb{R}^n$.\\
+    Assumiamo che $\exists \ \alpha, \beta$ con $(\beta >0)$:
+    \[
+	F(\vect{x})\cdot \vect{x}\le \alpha\left|\vect{x}\right|^2+ \beta
+    \] 	
+    \begin{itemize}
+        \item Dimostrare che le soluzioni sono globalmente definite.
+	\item Dimostrare, nel caso $\alpha <0$, che esiste $r$ (raggio di una palla in $\mathbb{R}^n$) e $T$ tali per cui se $t>T$ allora $\left|\vect{x} (t)\right|<r$.
+	\item Determinare $r$.
+    \end{itemize}
+
+\end{ex}
+\noindent
+

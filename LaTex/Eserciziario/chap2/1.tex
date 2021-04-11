@@ -1,0 +1,44 @@
+\section{Soluzioni stazionarie}%
+\begin{ex}[Stati Stazioari]
+    Trovare gli stati stazionari dei seguenti SD a tempo continuo autonomi:
+    \begin{itemize}
+    \item 1) \[
+            \frac{\text{d} ^2x}{\text{d} t^2} - \epsilon x\frac{\text{d} x}{\text{d} t}  + x = 0
+        \] 
+    \item  2)
+	\[\begin{dcases}
+        \frac{\text{d} x}{\text{d} t} = - x + x^3\\
+	\frac{\text{d} y}{\text{d} t} = x + y
+        \end{dcases}\] 
+    \item 3)
+        \[\begin{dcases}
+        \frac{\text{d} x}{\text{d} t} = y \\
+	\frac{\text{d} y}{\text{d} t} =- y - \mu x - x^2
+        \end{dcases}\] 
+    \end{itemize}
+\end{ex}
+\noindent
+\begin{ex}[Punto fisso della mappa logistica]
+    Dimostrare che per $0\le \mu\le 1$ esiste solo uno stato stazionario.\\
+     Suggerimento: utilizzare l'espressione 
+    \[
+        \frac{\text{d} y}{\text{d} t} = \mu-2\mu x
+    \] con $y = \mu x(1-x)$ e fare uso della geometria analitica.
+\end{ex}
+\noindent
+\begin{ex}[Punti stazionari di Mappe ricorsive]
+    Determinare gli stati stazionari delle seguenti mappe ricorsive:
+    \begin{enumerate}
+        \item 
+	    \[\begin{dcases}
+	        x_{k+1}=x_k\\
+		y_{k+1}=x_k + y_k
+	    \end{dcases}\] 
+	\item
+	    \[\begin{dcases}
+	        x_{k+1}=x_k^2\\
+		y_{k+1}=x_k + y_k
+	    \end{dcases}\] 
+    \end{enumerate}
+\end{ex}
+\noindent

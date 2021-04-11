@@ -1,0 +1,51 @@
+\section{Soluzioni Speciali di Sistema dinamico}%
+\begin{ex}[Sistema in $\mathbb{R}^2$]
+    Prendiamo il seguente:
+    \[
+        \begin{dcases}
+            \frac{\text{d} x}{\text{d} t} = nt^{n-1}y\\
+	    \frac{\text{d} y}{\text{d} t}  = -nt^{n-1}x
+        \end{dcases}
+    \] 
+    Dimostrare che la soluzione è:
+    \[\begin{aligned}
+	&x(t) = A\sin (t^n) + B\sin (t^n)\\
+	&y(t) = A\cos (t^n) - B\sin (t^n)
+    .\end{aligned}\]
+    Verificare che $x^2+y^2 = A^2+B^2$.\\
+    Le soluzioni formano un cerchio di raggio $R^2 = A^2+B^2$. Nonostante questo la soluzione non è periodica perché:
+    \[
+	\nexists \ T \ \text{t.c.} \ t^{u} = (t + T)^u
+    .\] 
+\end{ex}
+\noindent
+\begin{ex}[Verifica di non periodicità]
+    Data la seguente equazione differenziale:
+    \[
+	\frac{\text{d} x}{\text{d} t} = (1+\sin (t))\cdot x = F(x,t)
+    .\] 
+    Dimostrare che, anche se il coefficiente $1+\sin t$ è periodico, la soluzione non è periodica risolvendo il seguente IVP:
+    \[
+        \begin{dcases}
+	    \frac{\text{d} x}{\text{d} t} = (1+\sin t)\cdot x\\
+	    x(0) = x_0
+        \end{dcases}
+    \] 
+    Dimostrare che la seguente funzione è soluzione:
+    \[
+	x(t) = x_0e^{1+t-\text{cost}}
+    .\] 
+    e che questa funzione non è mai periodica $\forall x_0 \in \mathbb{R}$.
+\end{ex}
+\noindent
+\begin{ex}[Esercizio con Simulazione]
+    Presa la seguente equazione differenziale:
+    \[
+	\frac{\text{d} ^2\theta}{\text{d} t^2} = - \frac{g}{l}\sin (\theta) - \frac{\gamma}{ml}\frac{\text{d} \theta}{\text{d} t} + \frac{r}{ml}\sin (\Omega  t)
+    .\] 
+    Ridefinire la variabile temporale e gli opportuni parametri per ricondurlo a:
+    \[
+	\frac{\text{d} ^2\theta}{\text{d} t^2} = - \sin (\theta) - b \frac{\text{d} \theta}{\text{d} t} + A\sin (\Omega  t)
+    .\] 
+    Verificare numericamente che per $b=0.05$, $a = 0.6$, $\Omega  = 0.7$ il sistema presenta un comportamento asintotico complesso.
+\end{ex}

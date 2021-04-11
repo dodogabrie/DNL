@@ -1,0 +1,35 @@
+\section{Studio della stabilità mediante linearizzazione}%
+\begin{ex}[Calcolo di DF]
+    Presa la mappa:
+    \[
+        F = \begin{pmatrix} F_1 \\ F_2 \end{pmatrix} = 
+	\begin{pmatrix} x_1 -x_2^2 \\ x_1x_2-x_2 \end{pmatrix} 
+    \] 
+    Calcolare $DF(\vect{V}_0)$ nel punto $\vect{V}_0=\begin{pmatrix} 1\\ -1 \end{pmatrix} $.
+\end{ex}
+\noindent
+\begin{ex}[Trovare la tabella di Routh]
+    1) \\
+    Determinare la tabella di Routh corrispondente al seguente polinomio:
+    \[
+	P(x) = x^3 + 6 x^2 + 9 x + 4
+    \] 
+    Verificare tramite il teorema di Routh-Hurwitz che tutte le radici hanno parte reale negativa. (Le radici sono $-1, -4, -1$).\\
+    2) \\
+    Come per il caso precedente analizzare il polinomio:
+    \[
+	P(x)=x^4-4x^3 - 10 x^2 + 28x - 15
+    \] 
+\end{ex}
+\begin{ex}[Sulla stabilità degli stati stazionari]
+    \[\begin{dcases}
+        \frac{\text{d} x}{\text{d} t} = y\\
+	\frac{\text{d} y}{\text{d} t} = - \delta y - \mu x - x^2
+    \end{dcases}\] 
+    Supporre che $\delta, \mu  \neq 0$. 
+    \begin{enumerate}
+        \item Determinare gli stati stazionari e studiarne la stabilità mediante la linearizzazione del sistema dinamico nell'intorno dello stato stazionario.
+	\item Studiare la stabilità degli stati stazionari utilizzando il teorema di Routh-Hurwitz e confrontare con i risultati in 1.
+    \end{enumerate}
+\end{ex}
+\noindent

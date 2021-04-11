@@ -66,49 +66,6 @@ Chiamiamo l'intervallo di esistenza della soluzione con il nome $I$.
     .\] 
     Che ci dice appunto che la soluzione traslata è ancora soluzione.
 \end{proof}
-\begin{ex}[Su campo vettoriale]
-    Preso il seguente campo vettoriale:
-    \[
-	\frac{\text{d} x}{\text{d} t} = - (1+x^2)
-    .\] 
-    e sia $x(t_0)=x_0$.
-    \begin{itemize}
-        \item Verificare che una soluzione è:
-	    \[
-		x(t)=- \tan(t-t_0-\arctan (x_0))
-	    .\] 
-	\item Verificare che $x(t+\tau)$ è ancora soluzione.
-    \end{itemize}
-\end{ex}
-\noindent
-\begin{ex}[Teorema di Shift e sistemi non autonomi 1]
-    Preso il sistema
-    \[
-	\frac{\text{d} x}{\text{d} t} = e^t; \qquad  x(0)=x_0
-    .\] 
-    Dimostrare che la soluzione è:
-    \[
-	x(t)=e^t-1+x_0
-    .\] 
-    e verificare che il teorema di invarianza per shift non è verificato.
-\end{ex}
-\noindent
-\begin{ex}[Teorema di Shift e sistemi non autonomi 2]
-   Dato il sistema 
-   \[
-       \frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x}, t); \qquad \text{Soluzione: }\vect{x}_s(t)
-   .\] 
-   Verificare che, posti $\vect{x}_{\tau}(t)$ e $F_{\tau}$:
-   \[
-       \vect{x}_{\tau}(t)=\vect{x}_s(t+\tau); \qquad F_{\tau}(\vect{x}_{\tau}, t) = F(\vect{x}_\tau, t+\tau)
-   .\] 
-   Allora si ha che $\vect{x}_s(t+\tau)$ è soluzione di:
-   \[
-       \frac{\text{d} \vect{x}_\tau}{\text{d} t} = F_\tau (\vect{x}_\tau, t)
-   .\] 
-   In pratica quindi lo shift temporale per un sistema non autonomo richiede di traslare anche il funzionale $F$. 
-\end{ex}
-\noindent
 \begin{thm}[Unicità della soluzione]
     Dato il sistema dinamico a tempo continuo autonomo:
     \[
@@ -203,13 +160,4 @@ Allora possiamo sviluppare ulteriormente il calcolo \ref{eq:9_1}:
 							\frac{\text{d} \vect{x}}{\text{d} t} =F(\vect{x})
 .\end{aligned}\]
 \end{proof}
-\noindent
-\begin{ex}[Esercizi sul teorema]
-    Determinare i campi vettoriali associati ai seguenti flussi:
-    \begin{itemize}
-	\item $\varphi (t, x) = \frac{x e^{t}}{xe^t - x + 1}$.
-	\item $\varphi (t, x) = \frac{x}{(1-2x^2t)^{1 /2}}$.
-	\item $\varphi (t, x, y) = (xe^t, \frac{y}{1-yt})$.
-    \end{itemize}
-\end{ex}
 \noindent

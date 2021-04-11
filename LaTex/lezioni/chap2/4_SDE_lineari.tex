@@ -1,0 +1,372 @@
+\section{Generalità sulle equazioni differenziali lineari a coeff. costanti}%
+\label{sub:Generalità sulle equazioni differenziali lineari a coeff. costanti}
+Dato un sistema del tipo:
+\[
+    \vect{x}\in \mathbb{R}^n \qquad A \in L(\mathbb{R}^n), \qquad \frac{\text{d} \vect{x}}{\text{d} t} = A\vect{x}
+\] 
+In qui $A$  rappresenta per noi la Jacobiana (della linearizzazione). Caratterizzare le soluzioni ci da una idea delle orbite nei pressi del punto stazionario.
+\begin{exmp}[Conoscenza locale delle soluzione e caratterizzazione delle orbite]
+    \[
+	A = \begin{pmatrix} -1 & 0 \\ 0  & 2 \end{pmatrix} 
+    \] 
+    Tradotto in sistema dinamico:
+    \[\begin{dcases}
+        \frac{\text{d} x_1}{\text{d} t} = - x_1\\
+	\frac{\text{d} x_2}{\text{d} t} = 2x_2
+    \end{dcases}
+    \implies  \ \forall \vect{c} = \begin{pmatrix} c_1 \\ c_2 \end{pmatrix} \in \mathbb{R}^2
+\] 
+    \[
+        \vect{x} (t)= \begin{pmatrix} e^{-t} & 0 \\ 0 & e^{2t} \end{pmatrix} \begin{pmatrix} c_1 \\ c_2 \end{pmatrix} = \varphi (t, \vect{c})
+    \] 
+    Quindi vediamo che lungo la direzione $ x_1$ il sistema converge mentre lungo $x_2$ il sistema diverge (punto di sella). 
+\end{exmp}
+\noindent
+\begin{thm}[Diagonabilizzabilità]
+    Se $A$ è una matrice reale $n\times n$ avente $n$ autovalori reali e distinti allora $A$ è diagonalizzabile.\\
+    Se esistono $n$ autovalori distinti e reali allora:
+    \[
+        \forall \ J = 1, 2, \ldots, n \quad \exists \ v_{J}\neq 0: 
+    \] 
+    \[
+        A\vect{v}_J = \Lambda_J \vect{v}_J
+    \] 
+\end{thm}
+\noindent
+Con il precedente teorema possiamo definire la matrice:
+\[
+    P \in L (\mathbb{R}^n): \quad P \equiv \left[\vect{v}_1, \vect{v}_2, \ldots, \vect{v}_n\right]
+\] 
+La matrice così costruita è invertibile (gli autovalori sono ortogonali tra loro), quindi esiste $P^{-1}$: 
+\[
+    P^{-1}AP = \text{diag}\left[\Lambda_1, \Lambda_2, \Lambda_3, \ldots, \Lambda_n\right]
+\] 
+Il nuovo sistema di riferimento nella nuova rappresentazione (diagonalizzata) trasforma i vettori nel seguente modo:
+\[
+    \vect{y} = P^{-1}\vect{x}
+\] 
+La dinamica in questo nuovo sistema di riferimento sarà espressa dalla derivata di questo nuovo vettore.
+\[
+    \frac{\text{d} \vect{t}}{\text{d} t} = \frac{\text{d} }{\text{d} t} \left[P^{-1}\vect{x}\right] = 
+    P^{-1}\frac{\text{d} \vect{x}}{\text{d} t} 
+\] 
+Poiché $P$  autonoma: abbiamo imposto il sistema iniziale indipendente dal tempo. Quindi:
+\[
+    \frac{\text{d} \vect{y}}{\text{d} t} = P^{-1}A\vect{x}  = P^{-1}APP^{-1}\vect{x}  = P^{-1}AP \vect{y}
+\] 
+In conclusione abbiamo che:
+\[
+    \frac{\text{d} \vect{y}}{\text{d} t} = \text{diag}\left[\Lambda_1\Lambda_2\ldots\Lambda_n\right]\vect{y}
+\] 
+Questo significa che l'evoluzione della componente $i$-esima del sistema sarà:
+\[
+    \frac{\text{d} y_i}{\text{d} t} = \Lambda_i y_i \implies  y_i(t)=e^{\Lambda_i t}y_{i, 0}
+\] 
+In cui si è definito implicitamente il vettore delle componenti iniziali $\vect{y}_0$. 
+\[
+    \vect{y} (t)= \text{diag}\left[e^{\Lambda_1t}e^{\Lambda_2t}\ldots e^{\Lambda_nt}\right]\vect{y}_0
+\] 
+Ogni asse in questo sistema evolve in modo indipendente dagli altri, la dinamica è completamente separata.\\
+Per tornare alla rappresentazione originaria (delle vecchie coordinate) è necessario utilizzare la trasformazione:
+\[
+    \vect{x} (t)= P \vect{y} (t)
+\] 
+Quindi anche:
+\[\begin{aligned}
+    \vect{x} (t)=& P \text{diag}\left[e^{\Lambda_1 t}e^{\Lambda_2t}\ldots e^{\Lambda_nt}\right]\vect{y}_0 = \\
+		 &=P \text{diag}\left[e^{\Lambda_1t}e^{\Lambda_2t}\ldots e^{\Lambda_nt}\right]P^{-1}P\vect{y}_0 = \\
+		 &=P \text{diag}\left[e^{\Lambda_1t}e^{\Lambda_2t}\ldots e^{\Lambda_nt}\right]P^{-1}\vect{x}_0
+.\end{aligned}\]
+\begin{exmp}[Autovettori di sistema dinamico]
+    Dato il sistema dinamico in $\mathbb{R}^2$:
+    \[\begin{dcases}
+        \frac{\text{d} x_1}{\text{d} t} = -x_1 -3x_2\\
+	\frac{\text{d} x_2}{\text{d} t} = 2x_2
+    \end{dcases}
+    \implies  \frac{\text{d} \vect{x}}{\text{d} t} = \begin{pmatrix} -1 & -3 \\ 0 & 2 \end{pmatrix} \vect{x}  \equiv A \vect{x}
+    \] 
+    \[
+	\text{det}\left[A-\Lambda\mathbb{I}\right] = \text{det}\begin{pmatrix} -(1+\Lambda) & -3 \\ 0 & 2-\Lambda \end{pmatrix} = 0
+    \] 
+    Quindi l'equazione secolare:
+    \[
+	\left(2-\Lambda\right)\left(\Lambda +1\right)=0 \implies  \Lambda_1 = -1, \ \Lambda_2 = 2
+    \] 
+    Abbiamo quindi una sella. \\
+    Troviamo adesso gli autovettori:
+    \[
+	A\vect{v} = \Lambda\vect{v} 
+    \] 
+     Nel caso di $\Lambda_1$:
+    \[
+      \begin{pmatrix} -1 & -3 \\ 0 & 2 \end{pmatrix} \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} -a \\-b \end{pmatrix} \implies 
+      \begin{cases}
+          -a -3b = -a \\
+	  2b = -b
+      \end{cases}  \implies 
+      \vect{v}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix} 
+      \] 
+      Nel caso di $\Lambda_2$:
+      \[
+	  \begin{pmatrix} -1 & -3 \\ 0 & 2 \end{pmatrix} \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} 2a \\ 2b \end{pmatrix}  \implies  
+          \begin{cases}
+              b \text{ arbitrario}\\
+	      a = -b
+          \end{cases}
+	  \implies 
+	  \vect{v}_2 = \begin{pmatrix} -1 \\ 1 \end{pmatrix} 
+      \] 
+      Abbiamo quindi la matrice di trasformazione:
+      \[
+	  P = \left[\vect{v}_1\vect{v}_2\right] = \begin{pmatrix} 1 & -1 \\ 0 & 1 \end{pmatrix} 
+      \] 
+      Possiamo verificare (per casa) che l'inversa ha la struttura:
+      \[
+	  P^{-1} = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} 
+      \] 
+      In conclusione si ha che:
+      \[
+	  P^{-1}AP = \begin{pmatrix} -1 & 0 \\ 0 & 2 \end{pmatrix} 
+      \] 
+      Quindi è necessario fare il cambio di coordinate:
+      \[
+	  \vect{y} (t)=P^{-1}\vect{x} (t), \quad \vect{y }_0 = P^{-1}\vect{x}_0
+      \] 
+      ed in questo sistema la dinamica è semplice: sono esponenziali separati sugli assi.
+      \[
+	  \vect{y} (t)= \begin{pmatrix} e^{-t} & 0 \\ 0 & e^{2t} \end{pmatrix} \begin{pmatrix} y_{1, 0}\\y_{2, 0} \end{pmatrix} 
+      \] 
+      Tornando alla rappresentazione originale la sella rimane ma viene distorta (la contrazione / espansione non avviene più sugli assi ma, ad esempio, nella direzione $(-1, 1)$).
+      \[\begin{aligned}
+	  \vect{x} (t)=& \begin{pmatrix} x_1(t)\\ x_2(t) \end{pmatrix} = P \ \text{diag}\left[e^{\Lambda_1t}\ldots e^{\Lambda_nt}\right]
+	  P^{-1}\begin{pmatrix}x_{1,0}\\ x_{2, 0}  \end{pmatrix} = \\
+		       &= \begin{pmatrix} 1 & -1 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} e^{-t} & 0 \\ 0 & e^{2t} \end{pmatrix} 
+	  \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} x_{1, 0}\\ x_{2, 0} \end{pmatrix} 
+      .\end{aligned}\]
+      Verificare per casa che, facendo il conto:
+      \[
+	  \vect{x} (t)= \begin{pmatrix} x_{1, 0}e^{-t}+x_{2, 0}(e^{-t}-e^{2t})\\x_{2, 0}e^{2t} \end{pmatrix} 
+      \] 
+\end{exmp}
+\noindent
+\subsection{Generalizzazione di esponenziale di un operatore.}%
+La struttura $\frac{\text{d} \vect{x}}{\text{d} t} = A \vect{x} $ è particolare, noi vorremmo generalizzare la soluzione a $n$ dimensioni del seguente problema unidimensionale:
+\[
+    \frac{\text{d} x}{\text{d} t} = \alpha x \implies  x(t)= e^{\alpha t}x_0
+\] 
+Per farlo dobbiamo inserire tale problema in un determinato contesto: quello degli operatori lineari da $\mathbb{R}^n$ a $\mathbb{R}^n$:
+\[
+    T: \mathbb{R}^n\to \mathbb{R}^n, \quad T \in L(\mathbb{R}^n)
+\] 
+Data la matrice $A$ quadrata $n\times n$ dobbiamo dare un senso alla espressione: $e^{At}$.\\
+Definiamo prima di tutto una norma in $L(\mathbb{R}^n)$:
+\[
+    \forall \ T \in L(\mathbb{R}^n) \implies  \left|\left|T\right|\right| = \text{max}_{\left|\vect{x}\le 1\right|}\left|T(\vect{x})\right|
+\] 
+Con $\left|\right|$ norma euclidea.\\
+Le proprietà di questa norma sono:
+\begin{enumerate}
+    \item $\left|\left|T\right|\right|\ge 0$, se $\left|\left|T\right|\right|=0$ allora $T$ è l'operatore nullo.
+    \item $\left|\left|kT\right|\right|= \left|k\right|\left|\left|T\right|\right|$ $\forall \ k \in \mathbb{R}$.
+    \item $\left|\left|T+S\right|\right|\le \left|\left|T\right|\right| + \left|\left|S\right|\right|$.
+\end{enumerate}
+Diamo anche una definizione di convergenza in questo spazio:
+\begin{defn}[Convergenza nello spazio $L(\mathbb{R}^n)$	]
+    Data una sequenza $T_k \in L(\mathbb{R}^n)$ allora questa è convergente all'operatore $T \in L(\mathbb{R}^n)$ se:
+    \[
+        \forall \ \epsilon >0 \ \exists N: \quad \left|\left|T-T_k\right|\right|<\epsilon  \text{ se } k \ge N
+    \] 
+\end{defn}
+\noindent
+\begin{thm}[Proprietà della norma degli operatori lineari]
+    Siano $S, T \in L(\mathbb{R}^n)$ e $\vect{x}\in \mathbb{R}^n$ allora si ha:
+    \begin{enumerate}
+	\item $\left|T(\vect{x})\right|\le \left|\left|T\right|\right|\cdot \left|\vect{x}\right|$.
+	\item $\left|\left|T \cdot S\right|\right|\le \left|\left|T\right|\right|\cdot \left|\left|S\right|\right|$.
+	\item $\left|\left|T^k\right|\right| \le \left|\left|T\right|\right|^k$ (composto $k$ volte a sinistra ed elevato alla $k$ a destra).
+    \end{enumerate}
+\end{thm}
+\noindent
+Possiamo dimostrare la 1.
+\[
+    \left|T(\vect{x})\right|= \left|T\left(\frac{\vect{x}}{\left|\vect{x}\right|}\left|\vect{x}\right|\right)\right|=
+    \left|T\left(\frac{\vect{x}}{\left|\vect{x}\right|}\right)\right|\left|\vect{x}\right|
+\] 
+Dalla definizione di norma:
+\[
+    \left|\left|T\right|\right| = \text{max}_{\vect{y}\in \mathbb{R}^n, \left|\vect{y}\le 1\right|}\left|T(\vect{t})\right|
+\] 
+Si ha immediatamente la minorazione poiché nella definizione si ha il massimo, nella prima espressione invece si ha un particolare $\vect{x}$.\\
+La 2. si può dimostrare (per casa). 
+\begin{thm}[Convergenza assoluta ed uniforme di operatore lineare]
+    Si $T\in L(\mathbb{R}^n)$ e sia $t_0>0$. Allora la serie:
+    \[
+        \sum_{}^{} \frac{T^{k}t^k}{k!}
+    \] è assolutamente e uniformemente convergente per $\left|t\right|\le t_0$.
+\end{thm}
+\noindent
+\begin{proof}
+    Prima di tutto si valuta la norma:
+    \[
+        \left|\left|\frac{T^kt^k}{k!}\right|\right| = \frac{\left|t^k\right|}{k!}\left|\left|T^k\right|\right|
+    \] Per la proprietà 3. si ha che:
+    \[
+        \left|\left|\frac{T^kt^k}{k!}\right|\right|  \le \frac{\left|t^k\right|}{k!}\left|\left|T^k\right|\right|
+    \] 
+    Dato che $\left|t\right|\le t_0$ allora:
+    \[
+        \left|\left|\frac{T^kt^k}{k!}\right|\right| \le \frac{\left|t\right|^k}{k!}\left|\left|T\right|\right|^{k}\le \frac{\left|t_0^k\right|}{k!}
+	\left|\left|T^k\right|\right|
+    \] 
+    Se pongo $a= \left|\left|T\right|\right|$ si ottiene che:
+    \[
+        \sum_{}^{} \left|\left|\frac{T^kt^k}{k!}\right|\right|\le \sum_{}^{} \frac{t_0^k}{k!}a^k = 
+	e^{at_0}
+    \] 
+    Quindi la serie è maggiorata, dal cui la tesi.
+\end{proof}
+\noindent
+\begin{defn}[Esponenziale di un operatore]
+    Sia $T\in L(\mathbb{R}^n)$, allora $e^T$ è definito da:
+    \[
+        e^{T}=\sum_{k}^{\infty} \frac{T^{k}}{k!}
+    \] 
+\end{defn}
+\noindent
+Se si applica tale definizione alla matrice $At \in L(\mathbb{R}^n)$ si ottiene che:
+\[
+    e^{At} = \sum_{k}^{\infty} \frac{A^kt^k}{k!}
+\] 
+\begin{thm}[Cambio di base per un esponenziale]
+    Se $T, P \in L(\mathbb{R}^n)$ e $P$ è un operatore invertibile e $S = PTP^{-1}$ allora si ha che:
+    \[
+        e^{S}=Pe^{T}P^{-1}
+    \] 
+\end{thm}
+\noindent
+\begin{proof}
+    \[
+	e^{S}=\sum_{k}^{\infty} \frac{(PTP^{-1})^k}{k!} = \mathbb{I} + \frac{PTP^{-1}}{1!} + \frac{PTP^{-1} PTP^{-1}}{2!} + \ldots
+    \] 
+    In cui sono presenti, termine dopo termine, un sacco di identità che si semplificano.
+    \[
+        e^{S} = \mathbb{I} + \frac{PTP^{-1}}{1!} + \frac{PT^2P^{-1}}{2!} + \ldots
+    \] 
+    Quindi possiamo dire che (segue già la tesi se si vuole):
+    \[
+        e^{S}=P\left[e^{T}\right]P^{-1}
+    \] 
+\end{proof}
+\noindent
+Se adesso si ha $\frac{\text{d} \vect{x}}{\text{d} t} = A\vect{x}$  ed $A $ è diagonalizzabile (supponendo che esistano $n$ autovalori reali distinti) allora possiamo dire che
+\[
+    \text{diag}\left[\Lambda_1\Lambda_2\ldots \Lambda_n\right]t = t P^{-1}A P
+\] 
+Quindi anche che:
+\[
+    e^{At}=P e^{\text{diag}\left[\Lambda_1\Lambda_2\ldots \Lambda_n\right]t}P^{-1}
+\] 
+Utilizzando la tecnologia esposta in precedenza abbiamo l'importante risultato:
+\[
+    e^{At} = P \text{diag}\left[e^{\Lambda_1t}e^{\Lambda_2t}\ldots e^{\Lambda_n t}\right] P^{-1}
+\] 
+\subsection{Esponenziale delle matrici di Jordan 2$\times$2}%
+\begin{thm}[Importanza delle matrici di Jordan]
+    Presa una matrice $A\in L(\mathbb{R}^2)$ (matrice $2\times 2$) reale. Allora esiste una trasformazione invertibile $P$ tale che 
+    \[
+	P^{-1}AP = S \qquad 
+	S \in \left\{
+	\begin{pmatrix} \Lambda  & 0 \\ 0 & \mu \end{pmatrix} ,
+        \begin{pmatrix} \Lambda  & 1 \\ 0 & \Lambda \end{pmatrix},
+        \begin{pmatrix} a & -b \\ b & a \end{pmatrix} \right\} = \left\{A,B,C\right\}
+    \] 
+\end{thm}
+\noindent
+\paragraph{Matrice $C$}%
+Calcoliamo adesso $e^{S}$ con $S=\begin{pmatrix} a & -b \\ b & a \end{pmatrix}$. Per farlo conviene introdurre il parametro $\Lambda$ come:
+\[
+    \Lambda  = a + ib
+\] 
+Quindi la matrice $S$  si riscrive come\sidenote{\scriptsize Che non è lo stesso $\Lambda$ delle altre due matrici\ldots}:
+\[
+    S = \begin{pmatrix} \text{Re}\Lambda  & - \text{Imm}\Lambda  \\ \text{Imm}\Lambda  & \text{Re}\Lambda\end{pmatrix} 
+\] 
+Per definizione si ha che:
+\[
+    e^S = \sum_{k=0}^{\infty} \frac{S^k}{k!}
+\] 
+Valutiamo anche $S^2$:
+\[
+    S^{2} = \begin{pmatrix} a^2-b^2 & -2ab \\ 2ab & a^2-b^2 \end{pmatrix} 
+\] 
+Si preserva quindi la struttura di simmetria della matrice originale. Si può provare per induzione che questo fatto è piuttosto generale.
+\[
+    \Lambda^2=a^2-b^2+2iab \implies  S^2 = 
+    \begin{pmatrix} \text{Re}\Lambda^2 & -\text{Im}\Lambda^2 \\ \text{Im}\Lambda^2 & \text{Re}\Lambda^2\end{pmatrix} 
+\] 
+In generale quindi:
+\[
+    S^k = 
+    \begin{pmatrix} \text{Re}\Lambda^k & -\text{Im}\Lambda^k \\ \text{Im}\Lambda^k & \text{Re}\Lambda^k\end{pmatrix} \qquad 
+    k = 0, 1, \ldots
+\] 
+Tornando all'esponenziale di $S$:
+\[
+    e^S = \sum_{k=0}^{\infty} \frac{S^k}{k!} = \sum_{k}^{\infty} \frac{1}{k!}
+    \begin{pmatrix} \text{Re}\Lambda^k & -\text{Im}\Lambda^k \\ \text{Im}\Lambda^k & \text{Re}\Lambda^k\end{pmatrix}
+\] 
+Per capire cosa viene fuori facciamo il conto per un termine di matrice:
+\[
+    \sum_{k}^{\infty} \frac{\text{Re}(\Lambda^k)}{k!} = \text{Re}\sum_{k}^{\infty} \frac{\Lambda^k}{k!} =
+    \text{Re}(e^\Lambda )
+\] 
+Possiamo ripetere la cosa per tutti gli elementi di matrice, quindi si ha la matrice finale:
+\[
+    e^S = \begin{pmatrix} \text{Re}(e^\Lambda) & - \text{Im}(e^\Lambda) \\ \text{Im}(e^\Lambda) & \text{Re}(e^\Lambda) \end{pmatrix} 
+\] 
+Tenendo di conto del fatto che:
+\[\begin{aligned}
+    &e^\Lambda  = e^{a+ib}=e^ae^{ib}=e^a(\cos b + i \sin b) \implies \\
+    & \implies  \text{Re}(e^\Lambda)=e^a \cos b \quad \text{Im}(e^\Lambda)=e^a\sin b
+.\end{aligned}\]
+Possiamo esplicitare ancor di più l'esponenziale di $S$:
+\[
+    e^S = e^a \begin{pmatrix} \cos b & - \sin b \\ \sin b & \cos b \end{pmatrix} 
+\] 
+Potremmo ottenere lo stesso risultato anche per una matrice del tipo $e^{St}$:
+\[
+    e^{St}=e^{at}\begin{pmatrix} \cos (bt) & - \sin (bt)\\ \sin (bt) & \cos (bt) \end{pmatrix} 
+\] 
+\paragraph{Matrice $B$}%
+Andiamo avanti esplicitando il valore di $e^S$ quando $S = \begin{pmatrix} \Lambda  & 1 \\ 0 & \Lambda \end{pmatrix} $.
+\begin{thm}[Proprietà di operatori che commutano]
+    Dati due operatori $S, T \in L(\mathbb{R}^n)$ tali per cui $\left[S,T\right] = ST-TS=0$ allora:
+    \[
+        e^{S+T}=e^S e^T
+    \] 
+\end{thm}
+\noindent
+Osserviamo che la struttura di $S$ permette di scrivere:
+\[
+    S = \begin{pmatrix} \Lambda  & 1 \\ 0 & \Lambda \end{pmatrix} = 
+    \Lambda  \cdot \mathbb{I} + \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} \equiv M + N
+\] 
+Si vede immediatamente che $\left[M,N\right]=0$. Quindi possiamo usare il teorema precedente per calcolare $e^S$. \\
+La matrice sopra è anche appartenente al gruppo delle matrici \textit{nilpotenti}: si comporta da proiettore. Inoltre la matrice $N$ ha la proprietà: $N^2 = 0$.\\
+Facendo l'espansione esponenziale a pezzi:
+\[
+    e^{\Lambda\mathbb{I}}=e^{\Lambda}\mathbb{I} = \begin{pmatrix} e^\Lambda  & 0 \\ 0 & e^{\Lambda} \end{pmatrix} 
+\] 
+\[
+    e^{N}= \mathbb{I} + N + 0 = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} 
+\] 
+Quindi in conclusione:
+\[
+    e^{S} = e^{\Lambda\mathbb{I}}e^N = \begin{pmatrix} e^\Lambda  & 0 \\ 0 & e^{\Lambda} \end{pmatrix} \begin{pmatrix} 1 & 1 \\ 0 & 1\end{pmatrix} =
+    e^\Lambda  \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} 
+\] 
+Per quanto riguarda la dinamica invece\sidenote{\scriptsize Bisogna rifare tutti gli step per vederlo}:
+\[
+    e^{St}=e^{\Lambda t}\begin{pmatrix} 1 & t \\ 0 & 1 \end{pmatrix} 
+\] 
+Per approfondire gli argomenti: \textit{Moris Wo Hirsch, Stephen Smale: Differential equations, Dynamical Systems and linear algebra (Cap. 5)}

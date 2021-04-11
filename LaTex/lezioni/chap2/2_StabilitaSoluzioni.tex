@@ -1,0 +1,239 @@
+\section{Stabilità delle soluzioni}%
+\label{sub:Stabilità delle soluzioni}
+Quando si parla di stabilità di un sistema si intende la stabilità rispetto ad una perturbazione esterna, osservandone il comportamento dopo la perturbazione.\\
+Inoltre si parla di stabilità sempre in un contesto asintotico: serve che il sistema sia definito in $t\to \infty$. Alcuni teoremi che ci garantisce l'esistenza della soluzione asintotica per sistemi non autonomi sono i seguenti.
+\begin{thm}[Bounded Global Existence]
+    Preso un sistema dinamico:
+    \[\begin{dcases}
+        \frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x}) \\
+	\vect{x} (0)=\vect{x}_0
+    \end{dcases}\] 
+    \[
+	\vect{x}\in \mathbb{R}^n \ F: \mathbb{R}^n \to \mathbb{R}^n  
+    \] 
+    Se valgono le seguenti condizioni:
+    \begin{enumerate}
+        \item $F$ è localmente Lipschitziana: $(\left|F(\vect{x})- F(\vect{y})\right|\le k(\vect{x})\left|\vect{x}-\vect{y}\right|)$
+	\item $F$ è limitata: $\exists \ M >0 : \left|F(\vect{x})\right|\le M$.
+    \end{enumerate}
+    Allora la soluzione dell'IVP è globalmente definita.
+\end{thm}
+\noindent
+\begin{thm}[Esistenza Globale della soluzione]
+    Se $F$ è globalmente Lipshitziana ($k(\vect{x})=k$ indipendente da $\vect{x}$) allora la soluzione è globalmente definita.
+\end{thm}
+\noindent
+\begin{defn}[Stabilità secondo Lyapunov]
+    \marginpar{
+        \captionsetup{type=figure}
+            \incfig{2_2_1}
+        \caption{\scriptsize Concettualmente la soluzione e stabile se tutte le altre soluzioni con diverse condizioni iniziali nel suo intorno rimangono nel tubo di flusso nel tempo.}
+        \label{fig:2_2_1}
+    }
+    Dato il sistema dinamico a tempo continuo autonomo: $\frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x})$, $\vect{x}\in \mathbb{R}^n$, $F: \mathbb{R}^n\to \mathbb{R}^n$ e sia $\vect{x}_p(t)$ una soluzione dell'IVP.\\
+    Diciamo che $\vect{x}_p(t)$ è \textbf{stabile secondo Lyapunov} se
+    \[
+    \forall \ \epsilon  > 0 \quad \exists \ \delta (\epsilon)>0:
+    \] 
+    \[
+	\text{se } \left|\left|\vect{x}(0)-\vect{x}_p(0)\right|\right|< \delta (\epsilon) \implies  
+	\left|\left|\vect{x} (t)-\vect{x}_p(t)\right|\right|<\epsilon  \quad \forall \ t >0
+    \] 
+    Con $\vect{x} (t)$ soluzione dell'IVP.
+\end{defn}
+\noindent
+\begin{defn}[Stabilità asintotitca]
+    \marginpar{
+        \captionsetup{type=figure}
+            \incfig{2_2_2}
+        \caption{\scriptsize Concettualmente se la soluzione è asintotica allora tutte le soluzioni nell'intorno cadono in essa per $t\to \infty$.}
+        \label{fig:2_2_2}
+    }
+    Nelle stesse ipotesi della precedente definizione diciamo che $\vect{x}_p(t)$ (soluzione di riferimento) è \textbf{asintoticamente stabile} se è:
+    \begin{enumerate}
+        \item Stabile secondo Lyapunov.
+	\item $\lim\limits_{t \to \infty} \left|\left|\vect{x}(t)-\vect{x}_p(t)\right|\right| = 0$.
+    \end{enumerate}
+\end{defn}
+\noindent
+\begin{exmp}[Sistema stabile ma non stabile asintoticamente]
+    \[\begin{dcases}
+        \frac{\text{d} \vect{x}}{\text{d} t} = 0\\
+	\vect{x}(0)=\vect{x}_0
+    \end{dcases}\] 
+    La soluzione è banalmente: $\vect{x}_p = \vect{x}_0$. Questa soluzione è stabile secondo Lyapunov:\\
+    Presa un'altra soluzione $\vect{x}$ tale che $\vect{x} (0)=\vect{x}_0$.
+    \[
+	\epsilon >0 \quad \left|\left|\vect{x}_p(t) - \vect{x} (t)\right|\right|=
+	\left|\left|\vect{x}_0 - \vect{y}_0 \right|\right| < \epsilon
+    \] 
+    Allora basta prendere $\delta (\epsilon) = \epsilon$.\\
+    Notiamo che questa soluzione non è asintoticamente stabile, le due soluzioni restano sempre distanti nel tempo.
+\end{exmp}
+\noindent
+
+\subsection{Stabilità a tempo discreto}%
+\label{sub:Stabilità a tempo discreto}
+La cosa particolare della seconda definizione è che condizione 2) non basta per dire che una soluzione sia stabile anche secondo Lyapunov.
+\begin{defn}[Stabilità per SD a tempo discreto autonomi secondo Lyapunov]
+    \marginpar{
+        \captionsetup{type=figure}
+            \incfig{2_2_3}
+	    \caption{\scriptsize L'idea è che una soluzione che si trovi ad un certo punto a meno di $\delta (\epsilon)$ di distanza da $\vect{x}_s$ nel tempo iniziale non è in grado di uscire dalla bolla di raggio $\epsilon$.}
+        \label{fig:2_2_3}
+    }
+    Data la mappa
+    \[
+	\vect{x}_{k+1}=G(\vect{x}_k) \ \text{con} \vect{x}_k \in \mathbb{R}^n \ \text{e } G: \mathbb{R}^n\to \mathbb{R}^n.
+    \] 
+    Diciamo che un orbita\sidenote{\scriptsize $\left\{\vect{u}_k\right\}$ Inteso come insieme di valori} $\left\{\vect{u}_k\right\}$ è \textbf{stabile secondo Lyapunov} se 
+    \[
+	\forall \epsilon > 0 \ \exists \delta (\epsilon)>0:
+    \] 
+    Per ogni altra orbita $\vect{V}_k$ per la quale vale che:
+    \[
+	\left|\left|\vect{V}_m - \vect{u}_m\right|\right|< \delta (\epsilon), \ m \in \mathbb{N} \implies 
+        \left|\left|\vect{V}_K - \vect{u}_K\right|\right|<\epsilon \quad \forall K > m
+    \]
+\end{defn}
+\noindent
+\begin{defn}[Stabilità asintotica di SD a tempo discreto]
+
+    Nelle stesse ipotesi della definizione precedente, diciamo che l'orbita $\left\{\vect{u}_k\right\}$ è asintoticamente stabile se:
+    \begin{enumerate}
+        \item è stabile secondo Lyapunov.
+	\item $\lim_{k \to \infty} \left|\left|\vect{V}_k-\vect{u}_k\right|\right|=0$ per ogni altra orbita $\vect{V_k}$ nell'intorno $\delta (\epsilon)$.
+    \end{enumerate}
+\end{defn}
+\noindent
+\subsection{Stabilità secondo Lyapunov di stati stazionari di SD a tempo continuo}%
+\label{sub:Stabilità secondo Lyapunov di stati stazionari di SD a tempo continuo}
+Sia $\frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x})$  con $\vect{x}_s$ stazionario ($F(\vect{x}_s) = 0$). Ricordiamo che lo stato stazionario è anch'esso una soluzione.
+\begin{defn}[Stabilità di stato stazionario secondo Lyapunov]
+    Si dice che $\vect{x}_s$ è stabile secondo Lyapunov se
+    \[
+	\forall \epsilon  > 0 \exists \ \delta (\epsilon) > 0:
+    \] 
+    \[
+	\text{se } \left|\left|\vect{x}_0-\vect{x}_s\right|\right|< \delta (\epsilon) \implies  \left|\left|\vect{x} (t)-\vect{x}_s\right|\right| < \epsilon
+    \] 
+\end{defn}
+\noindent
+\begin{defn}[Stabilità asintotica di stato stazionario]
+    Nelle stesse ipotesi della definizione precedente diciamo che $\vect{x}_s$ è asintoticamente stabile se 
+    \begin{enumerate}
+        \item $\vect{x}_s$ è stabile secondo Lyapunov.
+	\item $\lim\limits_{t \to \infty} \left|\left|\vect{x} (t)-\vect{x}_s\right|\right|=0$.
+    \end{enumerate}
+\end{defn}
+\noindent
+\begin{exmp}[Vinograd]
+In un articolo di Vinograd del 1957 (ineguality of the method of deterministic experiments for the study of nonlinear diff. equations) è stato dimostrato che il seguente sistema:
+\[\begin{dcases}
+    \frac{\text{d} x}{\text{d} t} = x^2(y-x)+y^5 = F_1(x, y)\\
+    \frac{\text{d} y}{\text{d} t} = y^2(y-2x)= F_2(x, y)
+\end{dcases}\] 
+Che l'unico stato stazionario è $\vect{V}_s = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$ (per casa)  e che $\vect{V}_s$  è tale che:
+\[
+    \lim_{t \to \infty} \left|\left|\vect{V} (t)-\vect{V}_s\right|\right|=0
+\] 
+Quindi lo stato stazionario è asintoticamente stabile ma non è stabile secondo Lyapunov.
+\end{exmp}
+\noindent
+\subsection{Esempi sulla stabilità secondo Lyapunov di soluzioni di ODE}%
+\label{sub:Esempi sulla stabilità secondo Lyapunov di soluzioni di ODE}
+\begin{exmp}[1]
+    Prendiamo il campo vettoriale definito come:
+    \[\begin{dcases}
+        \frac{\text{d} \vect{x}}{\text{d} t} = - a^2x \qquad a \in \mathbb{R}, a\neq 0\\
+	x(0)=x_0	
+    \end{dcases}\] 
+    La soluzione dell'IVP è: $x_p(t)= x_0e^{-a^2t}$. Abbiamo inoltre lo stato stazionario nullo: $x_s = 0$. \\
+    Dimostriamo che la soluzione stazionaria è stabile secondo Lyapunov, ovvero che:
+    \[
+	\forall \epsilon>0  \  \text{ (assegnato)}: \ \left|x(t)-x(s)\right|<\epsilon
+    \] 
+    \[
+	\left|x(t)-x_s\right|= \left|x_0e^{-a^2t}-0\right| = e^{-a^2t}\left|x_0\right| \le \left|x_0\right|
+    \] 
+    Basta allora prendere $\delta (\epsilon)=\epsilon$:
+    \[
+	\implies  \ \forall x_0: \ \left|x_0\right|<\delta (\epsilon) \to \left|x(t)-x_s\right|<\epsilon
+    \] 
+    Quindi la soluzione è stabile secondo Lyapunov. Inoltre:
+    \[
+	\left|x(t)-x_s\right|=\left|x_0e^{-a^2t}\right|\to 0 \text{ con } t\to \infty
+    \] 
+    Allora $x_s$ è anche asintoticamente stabile.
+\end{exmp}
+\noindent
+\begin{exmp}[2]
+    Prendiamo il campo vettoriale non autonomo\sidenote{\scriptsize Tutte le definizioni sono analoghe, l'unica modifica da tenere in considerazione è che l'intorno del punto iniziale (il tubo) può essere dipendente dal tempo.}:
+    \[
+        \frac{\text{d} x}{\text{d} t} = - tx
+    \] 
+    Dimostrare (per casa) che $x(t)= x_0\exp\left(-\frac{1}{2}(t^2-t_0^2)\right)$ soddisfa l'IVP:
+    \[\begin{dcases}
+        \frac{\text{d} x}{\text{d} t} = -tx\\
+	x(t_0)= x_0
+    \end{dcases}\] 
+    Dimostriamo adesso che la soluzione di riferimento:
+    \[
+        x_p(t)= x_p\exp\left(-\frac{1}{2}(t^2-t_0^2)\right)
+    \] 
+    è stabile secondo Lyapunov.
+    \[
+	\left|x(t)-x_p(t)\right|= \left|x_0e^{-1 /2(t^2-t_0^2)} - x_pe^{-1 /2(t^2-t_0^2)}\right|
+    \] 
+    Se $t\ge t_0$ $\implies$ $\exp \left(- \frac{1}{2}(t^2-t_0^2)\right)<1$ Quindi:
+    \[
+	\left|x(t)-x_p(t)\right|\le \left|x_0-x_p\right|< \epsilon  \implies  \delta (\epsilon)=\epsilon
+    \] 
+    La soluzione è anche asintoticamente stabile.
+    \[
+	\lim_{t \to \infty} \left|x(t)-x_p(t)\right| = 0
+    \] 
+\end{exmp}
+\noindent
+\begin{exmp}[3]
+    Dato il campo vettoriale in $\mathbb{R}^2$:
+    \[\begin{dcases}
+	\frac{\text{d} x}{\text{d} t} = x-10y = F_1(x,y)\\
+	\frac{\text{d} y}{\text{d} t} = 10x-y = F_2(x, y)
+    \end{dcases}\] 
+    L'unico stato stazionario è dato da:
+    \[\begin{dcases}
+        x + 10 y = 0\\
+	10 x - y = 0
+    \end{dcases}
+    \implies  \vect{V}_s P \begin{pmatrix} 0 \\ 0 \end{pmatrix} 
+\]  
+Per casa trovare la generica soluzione dell'IVP con 
+\[
+    x(0)= x_0, \quad y(0)=y_0
+\] Verificare che la soluzione è:
+\[\begin{aligned}
+    x(t)=e^{-t}\left[x_0\cos (10t)-y_0\sin (10t)\right]\\
+    y(t)=e^{-t}\left[x_0\sin (10t)+y_0\cos (10t)\right]
+.\end{aligned}\]
+Vogliamo dimostrare che $\vect{V}_s$ è stabile secondo Lyapunov.
+\[\begin{aligned}
+    \left|\vect{V} (t)-\vect{V}_s\right| =& e^{-t}\left[x_0^2\cos^2(10t)+ \right.\\ 
+					  &+ y_0^2\sin^2(10t)-2x_0y_0\sin (10t)\cos (10t) + \\
+					  &+ x_0^2\sin^2(10t)+ y_0^2\cos^2(10t)+\\ 
+					  &\left.+ 2x_0y_0\sin (10t)\cos (10t)\right] = \\
+					  &= e^{-t}\left[x_0^2+ y_0^2\right]^{1 /2}
+.\end{aligned}\]
+Visto che stiamo considerando $t>0$ allora:
+\[
+    \left|\vect{V} (t)-\vect{V}_s\right| <\epsilon  \text{ se } \delta (\epsilon)=\epsilon  \text{ e } \left[x_0^2+y_0^2\right]^{1 /2}<\epsilon
+\] 
+Quindi $\vect{V}_s$ è stabile secondo Lyapunov.\\
+Osserviamo anche che $\vect{V}_s$ è anche asintoticamente stabile:
+\[
+    \lim_{t \to \infty} \left|\vect{V} (t)-\vect{V}_s\right|=0
+\] 
+\end{exmp}
+\noindent
+La definizione di stabilità secondo Lyapunov ha una utilità concettuale poiché ci da una idea di quello che è un punto stabile, a livello applicativo non è banale dimostrare la stabilità: in moltissimi casi nemmeno conosciamo le soluzioni!\\
+Quello che è possibile fare è sviluppare una teoria sui SD a tempo continuo (e discreto) che ci consente di testare la definizione di Lyapunov in modo diretto.
