@@ -1,0 +1,280 @@
+\section{Sistemi lineari in dimensione $n$}%
+\label{sub:Sistemi lineari in dimensione n}
+Le proprietà dei sistemi di $\mathbb{R}^2$  ci permettono di caratterizzare quasi completamente anche quello che succede in $\mathbb{R}^n$.\\
+Supponiamo di avere un sistema dinamico autonomo:
+\[
+    \frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x}) \qquad \vect{x}\in \mathbb{R}^n, \qquad F: \mathbb{R}^n \to \mathbb{R}^n \in C^r, r\ge 2
+\] 
+Dato uno stato stazionario $\vect{x}_s$: $F(\vect{x}_s) = 0$ vogliamo riutilizzare tutta la metodologia affrontata per $\mathbb{R}^2$  anche in questo caso multidimensionale.
+\[
+    \frac{\text{d} \vect{y}}{\text{d} t} = A \vect{y}
+\] 
+Nel caso in cui $A$ è una matrice reale con $n$ autovalori distinti e reali allora possiamo diagonalizzare la matrice e integrare subito il sistema essendo completamente separabile.\\
+\begin{thm}[Autovettore C.C.]
+    Sia $A$ matrice reale e sia $\Lambda \in \mathbb{C}$ un autovalore\sidenote{\scriptsize Ci sarà anche $\Lambda^*$: il suo complesso coniugato} di $A$ ($\text{det}(A-\Lambda\mathbb{I})=0$) con $\vect{W}$ il relativo autovettore. Possiamo dire che l'autovalore del complesso coniugato è:
+    \[
+        A\vect{W}^* = \Lambda\vect{W}^*
+    \] 
+    Ovvero anche gli autovettori sono complessi coniugati.
+\end{thm}
+\noindent
+\begin{thm}[Soluzione del sistema in n dimensioni]
+    Dato il SD: 
+    \[
+        \frac{\text{d} \vect{x}}{\text{d} t} = A \vect{x} \qquad \vect{x}\in \mathbb{R}^{2n}
+    \] 
+    con $A$ che possiede $2n$ autovalori distinti 
+    \[
+	\Lambda_J = a_J + i b_J \quad \text{e} \quad \Lambda^*_{J} = a_J - i b_{J} \quad \text{con} \quad J = 1, 2, \ldots, n.
+    \] 
+    Siano $\vect{W}_J = \vect{u}_J + i \vect{v}_J$ e $\vect{W}_J = \vect{u}_J + i \vect{v}_J$ ($\vect{u}_J, \vect{v}_J$ reali). Allora si ha:
+    \begin{enumerate}
+        \item L'insieme $\left\{u_1,u_2,\ldots, u_n, v_1, v_2, \ldots, v_n\right\}$ è una base di $\mathbb{R}^{2n}$.
+	\item La matrice $P = \left[v_1 u_1 v_2 u_2 \ldots v_n u_n\right]$ è invertibile.
+	\item $P^{-1}AP = \text{diag}\left\{\begin{pmatrix} a_J & -b_J \\ b_J & a_J \end{pmatrix} \right\}$.
+	\item La soluzione dell'IVP $\left\{\frac{\text{d} \vect{x}}{\text{d} t} = A \vect{x} \qquad \vect{x}(0) = \vect{x}_0\right\}$  è data da:
+	    \[
+		\vect{x} (t)=P\text{diag}\left\{e^{a_{J}t}\begin{pmatrix} \cos (b_Jt) & - \sin (b_Jt) \\ \sin (b_Jt) & \cos (b_{j}t) \end{pmatrix} \right\} P^{-1}\vect{x}_0
+	    \] 
+    \end{enumerate}
+\end{thm}
+\noindent
+Notiamo la totale simmetria rispetto ai teoremi di $\mathbb{R}^2$.
+\begin{exmp}[Sistema in dimensione 4]
+    Dato il sistema dinamico:
+    \[
+	\frac{\text{d} \vect{x}}{\text{d} t} = A \vect{x}  \qquad 
+	A = 
+	\begin{pmatrix} 
+	    1 & - 1 & 0 & 0 \\
+	    1 & 1 & 0 & 0 \\
+	    0 & 0 & 3 & -2 \\
+	    0 & 0 & 1 & 1
+        \end{pmatrix} 
+    \] 
+    Gli autovalori si calcolano tramite l'equazione secolare:
+    \[\begin{aligned}
+	\ldots \quad &(1-\Lambda)^2\left[(3-\Lambda)(1-\Lambda)+2\right]+\left[(3-\Lambda)(1-\Lambda)+2\right] = \\
+		     &\left[(1-\Lambda)^2 + 1\right]\left[(3-\Lambda)(1-\Lambda) +2\right]= 0
+    .\end{aligned}\]
+    Quindi abbiamo il set di autovalori:
+    \[
+        \Lambda_{12} = 1 \pm i \qquad \Lambda_{34} = 2\pm i
+    \] 
+    In questo modo possono essere inseriti i vari parametri nella matrice di cambio di variabile del teorema.
+\end{exmp}
+\noindent
+
+\subsection{Autovalori Complessi, Autovalori non distinti}%
+\label{sub:Autovalori Complessi, Autovalori non distinti}
+Specializziamo il teorema precedente ad alcuni casi particolari.\\
+Preso il sistema dinamico del tipo:
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = A\v{x}, \quad \v{x}\in \mathbb{R}^m, \quad \v{x}(0) = \v{x}_0
+.\] 
+Supponiamo le seguenti cose:
+\begin{enumerate}
+    \item $m$ sia definito nel seguente modo: $m = k + 2n$.
+    \item $A$ possiede $k$ autovalori reali e distinti $\Lambda_1, \ldots, \Lambda_k$.
+    \item Ci sono $2n$ autovalori complessi coniugati distinti $\Lambda_{k+1}, \Lambda^*_{k+1}, \ldots, \Lambda_n, \Lambda^*_n$.
+\end{enumerate}
+Allora vale il teorema:
+\begin{thm}[Soluzione con autovalori reali e complessi]
+    Dato il sistema dinamico sopra, supponiamo che $A$ abbia:
+    \begin{itemize}
+        \item $k$ autovalori reali distinti $\Lambda_J$ con $J=1, \ldots, k$.
+	\item $2n$ autovalori c.c. distinti $\Lambda_J = a_J + ib_J$, $\Lambda^*_J = a_J + ib_J$ con $J = k+1, \ldots, k + n$.
+	\item $\v{V}_J$ autovettore relativo all'autovalore $\Lambda_L$ con $J = 1, 2, \ldots, k$. 
+	\item $\v{\mu}_J \pm i \v{v}_J$ autovalori relativi a $\Lambda_J/$$\Lambda^*_J$ con $J = k+1, \ldots, 2n$.
+    \end{itemize}
+    Allora vale che:
+    \begin{enumerate}
+        \item L'insieme definito da $Q = \left\{\v{V}_1, \ldots, \v{V}_k, \v{\mu}_{k+1}, \v{v}_{k+1}, \ldots, \v{\mu}_{k + n}, \v{v}_{k + n} \right\}$ è una base di $\mathbb{R}^m$.
+    \item La matrice $P = \left[\left\{\v{V}\right\}, \left\{\v{\mu}\right\}\left\{\v{v}\right\}\right]$ è invertibile.
+    \item  $P^{-1}AP = \text{diag}\left[ \Lambda_1, \ldots, \Lambda_k, B_{k+1}, \ldots, B_{k+n} \right]$ con 
+	\[
+	    B_J = \begin{pmatrix} a_J & - b_J \\ b_J & a_J \end{pmatrix} \text{ con } J = k+1, \ldots, k+n
+	.\] 
+    \item La soluzione si scrive come:
+	\[
+	    \v{x}(t) = P\text{diag}\left[e^{\Lambda_1t}\ldots e^{\Lambda_kt} \overline{B}_{k+1}\ldots\overline{B}_{k+n}\right]P^{-1}\v{x}_0
+	.\] 
+	con $\overline{B}_J = e^{a_J t}\begin{pmatrix} \cos (b_Jt) & - \sin (b_Jt) \\ \sin (b_Jt) & \cos (b_Jt)  \end{pmatrix} $ 
+    \end{enumerate}
+\end{thm}
+
+\begin{exmp}[Dimensione 3]
+    \[
+	\frac{\text{d} \v{x}}{\text{d} t} = A \v{x}, \quad \v{x}(0) = \v{x}_0, \quad 
+	A = 
+	\begin{pmatrix} -3 & 0 & 0 \\
+	0 & 3 & -2 \\
+	0 & 1 & 1
+    	\end{pmatrix} 
+    .\] 
+    Calcoliamo gli autovalori:
+    \[
+	-(3 + \Lambda) \left[(3-\Lambda) (1-\Lambda) + 2\right]=0
+    .\] 
+    Quindi abbiamo che:
+    \begin{itemize}
+        \item $3+\Lambda  = 0 \implies  \Lambda_1 = -3$.
+	\item $(3-\Lambda) (1-\Lambda) = 0 \implies  \Lambda_{2,3} = 2 \pm i $.
+    \end{itemize}
+    Per gli autovettori invece si ha che:
+    \[
+        \v{V}_1 = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} \quad \Lambda_1 = -3
+    .\] 
+    \[
+	\v{V}_{2, 3} = \begin{pmatrix} 0 \\ 1 \pm i \\ 1 \end{pmatrix} 
+    .\] 
+    Quindi la matrice $P$ è:
+    \[
+	P = 
+	\begin{pmatrix} 
+	    1 & 0 & 0 \\
+	    0 & 1 & 1 \\
+	    0 & 0 & 1
+	\end{pmatrix}  \implies  
+	P^{-1} = 
+	\begin{pmatrix} 
+	    1 & 0 & 0 \\
+	    0 & 1 & -1\\
+	    0 & 0 & 1
+	\end{pmatrix} 
+    .\] 
+    Quindi si ha anche che  :
+    \[
+        P^{-1}A P = 
+	\begin{pmatrix} 
+	    -3 & 0 & 0 \\
+	    0 & 2 & -1 \\
+	    0 & 1 & 2 
+	\end{pmatrix} 
+    .\] 
+    Per casa verificare anche che:
+    \[
+	\v{x}(t) = 
+	\begin{pmatrix} 
+	    e^{-3t} & 0 & 0 \\
+	    0 & e^{2t}(\cos t + \sin t) & -2e^{2t}\sin t \\
+	    0 & e^{2t}\sin t & e^{2t}(\cos t - \sin t) 
+	\end{pmatrix} 
+    .\] 
+\end{exmp}
+\noindent
+In generale vale un teorema sulle matrici $n\times n$ aventi autovalori distinti.
+\begin{thm}[Abbondanza delle matrici con autovalori distinti]
+    L'insieme delle matrici $A \in L(\mathbb{R}^n)$ con autovalori distinti è aperto e denso.
+\end{thm}
+\noindent
+Che succede invece nel caso in cui si ha una molteplicità negli autovalori?
+
+\subsection{Sistema dinamico con autovalori non distinti}%
+\label{sub:Sistema dinamico con autovalori non distinti}
+\begin{defn}[Autovettore generalizzato]
+    Se  $\Lambda$ è autovalore di $A\in L(\mathbb{R}^n)$ avente molteplicità $m$ con $m\le n$ si definisce autovettore generalizzato di $A$ ogni soluzione $\neq 0$ di $(A-\Lambda\mathbb{I})^k \v{v} = 0$ con $\v{v}\neq 0$ e $k = 1, \ldots, m$.
+\end{defn}
+\noindent
+\begin{defn}[Matrice nilpotente di ordine $k$]
+    Sia $N$ una matrice reale tale che $N\in L(\mathbb{R}^n)$. Allora $N$ è nilpotente di ordine $k$ se $N^{k-1}\neq 0$ e $N^k = 0$.
+\end{defn}
+\noindent
+\begin{thm}[Sugli autovettori generalizzati]
+Sia $A$ una matrice $n\times n$ avente tutti gli autovalori reali $\Lambda_J$ con $J = 1, 2, \ldots, n$ allora vale:
+\begin{itemize}
+    \item Esiste una base di autovettori generalizzati $\v{v}_1, \v{v_2}, \ldots, \v{v}_n$.
+    \item La matrice $P=\left[\v{v}_1, \ldots, \v{v}_n\right]$ è invertibile.
+    \item $A$ può essere decomoposta come somma di due matrici: $A = S + N$. Tali matrici hanno le seguenti proprietà:
+	\begin{enumerate}
+	    \item $P^{-1}SP = \text{diag}\left[\Lambda_J\right]$.
+	    \item $N = A-S$, si dimostra che $N$ è Nilpotente di ordine $k\le n$.
+	\end{enumerate}
+    \item $S$ e $N$ commutano.
+\end{itemize}
+\end{thm}
+\noindent
+\begin{thm}[Soluzione con autovettori generalizzati]
+    Nelle ipotesi e tesi del precedente teorema la soluzione di 
+    \[
+	\frac{\text{d} \v{x}}{\text{d} t} = A \v{x} \qquad \v{x}(0) = \v{x}_0 
+    .\] 
+    è data da: 
+    \[
+	\v{x}(t) = P \text{diag}\left[e^{\Lambda_Jt}\right]P^{-1}\left[\mathbb{I} + Nt + \frac{N^{k-1} + t^{k-1}}{(k-1) !}\right]\v{x}_0
+    .\] 
+\end{thm}
+\noindent
+\begin{exmp}[Sistema in $\mathbb{R}^2$]
+    Prendiamo il solito sistema:
+    \[
+	\frac{\text{d} \v{x}}{\text{d} t} = A \v{x}, \quad \v{x}\in \mathbb{R}^2, \quad \v{x}(0) = \v{x}_0, \qquad 
+	A = \begin{pmatrix} 3 & 1 \\ -1 & 1  \end{pmatrix} 
+    .\] 
+    Gli autovalori si ricavano da:
+    \[
+	(3-\Lambda) (1-\Lambda) + 1 = 0 \implies  \Lambda_1 =  \Lambda_2 = 2
+    .\] 
+    Visto che vale la $P^{-1}SP = \text{diag}\left[\Lambda_J\right]$ e che in questo caso gli autovalori sono tutti uguali, abbiamo subito dalla commutazione che:
+    \[
+	S = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} 
+    .\] 
+    Quindi anche:
+    \[
+	N = A-S = \begin{pmatrix} 1 & 1 \\ -1 & 1 \end{pmatrix} 
+    .\] 
+    E si può verificare che $N^2 = 0$. La soluzione ha la struttura:
+    \[
+	\v{x}(t) = P \text{diag}\left[e^{\Lambda_Jt}\right] P^{-1}\ldots = 
+	\begin{pmatrix} 
+	    e^{2t} & 0 \\
+	    0 & e^{2t}
+	\end{pmatrix} 
+	\left[\mathbb{I} + Nt\right]\v{x}_0
+    .\] 
+    Quindi anche:
+    \[
+	\v{x}(t) = e^t \left\{
+	    \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}  + \begin{pmatrix} t & t \\ - t & -t \end{pmatrix} 
+	\right\}\v{x}_0
+    .\] 
+\end{exmp}
+\noindent
+Mettiamoci adesso nella situazione in cui tutti gli autovalori sono complessi. In questo caso vale il teorema:
+\begin{thm}[SD con autovalori complessi]
+    Dato l'IVP con la matrice $A \in L(\mathbb{R}^{2n})$:
+    \[
+	\frac{\text{d} \v{x}}{\text{d} t} = A\v{x}, \qquad \v{x}(0) = \v{x}_0, \qquad A \text{ è reale}, \qquad \v{x} \in \mathbb{R}^n
+    .\] 
+    Supponiamo che $A$ abbia i seguenti autovalori:
+    \[\begin{aligned}
+	&\Lambda_J = a_J + ib_J\\
+	&\Lambda^*_J = a_J-ib_J
+    .\end{aligned}\]
+    con $J = 1, \ldots, n$. Allora si ha che:
+    \begin{itemize}
+        \item Esistono autovettori generalizzati complessi $\v{W}_J = \v{u}_J + i\v{v}_J$ e $\v{W}^*_J = \v{u}_J-i\v{v}_J$.
+	\item L'insieme $Q = \left[\v{u}_1, \v{v}_1, \ldots, \v{u}_n, \v{v}_n \right]$ è una base di $\mathbb{R}^n$.
+	\item $P = \left[\v{v}_1\v{u}_1\ldots\v{v}_n\v{u}_n\right]$ è invertibile.
+	\item $A = S + N$ tali che:
+	    \begin{itemize}
+	        \item $PSP^{-1} = \text{diag}
+		    \begin{pmatrix} 
+			a_J & -b_J\\
+			b_J & a_J
+		    \end{pmatrix} $ 
+		\item $N = A-S$ è nilpotente di ordine $k \le 2n$.
+	    \end{itemize}
+	\item Le matrici $S$ e $N$ commutano.
+    \end{itemize}
+\end{thm}
+\noindent
+\begin{thm}[Soluzione complessa con autovettori generalizzati]
+    Nelle ipotesi del precedente teorema si ha che:
+    \[
+	\v{x}(t) = 
+	P\text{diag}\left[e^{a_Jt}\begin{pmatrix} \cos (b_Jt) & -\sin (b_Jt) \\ \sin (b_Jt) & \cos (b_Jt)  \end{pmatrix}\right]
+	    P^{-1}\left[\mathbb{I} + N t + \frac{N^{k-1} + t^{k-1}}{(k-1)!}\right]\v{x}_0	
+    .\] 
+\end{thm}
+\noindent

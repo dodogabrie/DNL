@@ -1,0 +1,351 @@
+\section{Insiemi invarianti (stabili, instabili e centro)}%
+\label{sec: Insiemi invarianti (stabili, instabili e centro)}%
+\begin{defn}[Insieme invariante rispetto al flusso di fase]
+    Sia $E \subset \mathbb{R}^n$ e sia $\varphi_t(\v{x}_0): \mathbb{R}^n\to \mathbb{R}^n$ un flusso di fase tale che:
+    \[
+	\varphi_t(\v{x}_0) = e^{At}\v{x}_0
+    .\] 
+    Con $A$ matrice reale $n \times n$.
+    Diciamo che $E$ è invariante rispetto a $\varphi_t$ se:
+    \[
+        \varphi_t(E) \subset E \quad \forall t \in \mathbb{R}
+    .\] 
+    Inoltre $E$ è positivamente invariante rispetto a $\varphi_t$ se vale che:
+    \[
+	\varphi_t(E) \subset E \quad  \forall t \in \left\{0\right\} \cup \mathbb{R}^+
+    .\] 
+\end{defn}
+\noindent
+\begin{thm}[Invarianza dell'autospazio generalizzato]
+Dato il sistema dinamico $\frac{\text{d} \v{x}}{\text{d} t} = A\v{x} $ con $\v{x}\in \mathbb{R}^n$ e $A$ matrice reale $n \times n$\sidenote{Ipotizziamo di aver gia linearizzato questo sistema}. \\
+Supponiamo che $\Lambda$ sia un autovalore di $A$ e sia $E$ l'autospazio generalizzato di tale autovalore.\\
+Allora $A(E) \subset E$.
+\end{thm}
+\noindent
+Si dimostra ricordando la definizione di autospazio generalizzato.\\
+Data una matrice reale $n \times n$ (associata al sistema dinamico del teorema sopra). Supponiamo di aver calcolato tutti gli autovalori di questa matrice, in tal caso possiamo trovare anche tutti gli autovettori generalizzati. \\
+Possiamo suddividere gli autovalori di $A$ in tre gruppi.
+\begin{defn}[Linear Stable manifold ]
+    Indichiamo questo insieme come $E^S$, definito come:
+    \[
+        E^S = \text{span}\left\{\v{v}_1^s, \ldots \v{v}_{n_s}^s\right\}
+    .\] 
+    Dove i $\left\{\v{v}_J^s\right\}$ con $J = 1,\ldots, n_s$ sono gli autovettori generalizzati corrispondenti agli autovalori con parte reale \textbf{negativa}.
+\end{defn}
+\noindent
+\begin{defn}[Linear Unstable manifold ]
+    Indichiamo questo insieme come $E^U$, definito come:
+    \[
+        E^U = \text{span}\left\{\v{v}_1^u, \ldots \v{v}_{n_u}^u\right\}
+    .\] 
+    Dove i $\left\{\v{v}_J^u\right\}$ con $J = 1,\ldots, n_u$ sono gli autovettori generalizzati corrispondenti agli autovalori con parte reale \textbf{positiva}.
+\end{defn}
+\noindent
+\begin{defn}[Linear Center manifold ]
+    Indichiamo questo insieme come $E^C$, definito come:
+    \[
+        E^C = \text{span}\left\{\v{v}_1^c, \ldots \v{v}_{n_c}^c\right\}
+    .\] 
+    Dove i $\left\{\v{v}_J^c\right\}$ con $J = 1,\ldots, n_c$ sono gli autovettori generalizzati corrispondenti agli autovalori con parte reale \textbf{nulla}.
+\end{defn}
+\noindent
+La dimensionalità del sistema in questione, date le precedenti definizioni, sarà data da $n = n_s + n_u + n_c$.
+\begin{exmp}[Manifold stabili e centro]
+    Sia dato il seguente sistema dinamico a tempo continuo:
+    \[
+        \frac{\text{d} \v{x}}{\text{d} t} = A \v{x} \quad  \v{x}\in \mathbb{R}^2 \quad
+	A = 
+    \begin{pmatrix}
+	0  & 1 \\
+	0 & -4 \\
+    \end{pmatrix}
+    .\] 
+    Determinare le varietà (o Manifold) stabili.\\
+    Calcoliamo per prima cosa gli autovalori:
+    \[
+	P(\lambda) = \text{det}\left[A-\lambda\mathbb{I}\right] = -\lambda (-4-\lambda) =0
+    .\] 
+    Quindi $\lambda_{1, 2} = 0; -4$. Troviamo adesso gli autovettori:
+    \[
+	\v{v}_{1}^c = \begin{pmatrix} 1 \\ 0 \end{pmatrix}; \qquad  \v{v}_{1}^s = \begin{pmatrix} 1 \\ - 4 \end{pmatrix} 
+    .\] 
+    Notiamo, per esempio, che lo span di $\v{v}_1^c$ è tutto l'asse $x$.
+    \marginpar{
+        \captionsetup{type=figure}
+            \incfig{2_8_1}
+        \caption{\scriptsize Varietà centro e varietà stabile }
+	\label{fig:2_8_1}
+    }
+    \[\begin{aligned}
+	&E^S = \text{span}\left\{\v{v}_1^s = \begin{pmatrix} 1 \\ -4 \end{pmatrix} \right\}\\
+	&E^U = \left\{0\right\}\\
+	&E^C = \text{span}\left\{\v{v}_1^c = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \right\}
+    .\end{aligned}\]
+    Notiamo quindi che un qualunque punto dell'asse $x$ è uno stato stazionario. Tutti i punti con $y\neq 0$ invece tendono a decadere esponenzialmente sull'asse $x$ con traiettorie aventi la stessa pendenza della curva $\v{v}_1^s$ di figura \ref{fig:2_8_1}
+\end{exmp}
+\noindent 
+\begin{exmp}[Sistema dinamico in $\mathbb{R}^3$]
+    Dato il sistema dinamico:
+    \[
+        \frac{\text{d} \v{x}}{\text{d} t} = A \v{x}, \quad \v{x}\in \mathbb{R}^3 \quad  A = 
+    \begin{pmatrix}
+	-1  & -1  & 0  \\
+	1  & -1 & 0 \\
+	0 & 0 & 2 \\
+    \end{pmatrix}
+    .\] 
+    Determinare $E^S, E^u, E^c$. Notiamo che la matrice è a blocchi, in quello in alto abbiamo una matrice di Jordan che abbiamo studiato, in basso abbiamo un numero positivo che ci porta a pensare ad un asse instabile.\\
+    Visto che vale:
+    \[
+        A^{up} = 
+    \begin{pmatrix}
+	a & -b   \\
+	-b & a \\
+    \end{pmatrix} 
+    \implies 
+    e^{A^{up}t} = e^{at}
+    \begin{pmatrix}
+    \cos(bt) & - \sin(bt)  \\
+    \sin(bt) & \cos(bt)  \\
+    \end{pmatrix}
+    .\] 
+    con $a = -1$ nel caso in questione abbiamo una varietà stabile nelle due direzioni $x, y$.\\
+    Troviamo gli autovalori:
+    \[
+	P(\lambda) = \text{det}
+    \begin{pmatrix}
+	-1-\lambda & -1 & 0 \\
+	1 & -1-\lambda & 0 \\
+	0 & 0 & 2-\lambda \\
+    \end{pmatrix}
+    =
+    (2-\lambda) \left[(1+\lambda)^2 + 1\right] = 0
+    .\] 
+    Quindi abbiamo $\lambda_1 = 2$, $\lambda_{2,3} = -1 \pm i$.
+    Troviamo gli autovettori corrispondenti:
+    \[
+        \v{v}_1^u = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} \qquad 
+	\v{w}_{1,2}^s = \begin{pmatrix} 1 \\ \pm i \\ 0 \end{pmatrix}
+    .\] 
+    Abbiamo usato la notazione con $\v{w}$ poichè è un vettore complesso $\v{w} \in \mathbb{C}^3$. Si ha quindi che:
+    \[
+        \v{w}_{1,2}^s = \v{v}_{1}^s + i \v{v}_2^s = \begin{pmatrix} 1  \\ 0 \\ 0 \end{pmatrix}  + 
+	i \begin{pmatrix} 0  \\ 1 \\ 0 \end{pmatrix}
+    .\] 
+    Ed in conclusione:
+    \marginpar{
+        \captionsetup{type=figure}
+            \incfig{2_8_2}
+        \caption{\scriptsize Varietà dell'esercizio che ci indicano il flusso di fase, sul piano $x, y$ abbiamo una rotazione dovuta alla componente complessa.}
+	\label{fig:2_8_2}
+    }
+    \[\begin{aligned}
+	& E^s = \text{span}\left\{\v{v}_1^s, \v{v}_2^s\right\}\\
+	& E^u = \text{span}\left\{\v{v}_1^u\right\}\\
+	& E^c = \left\{0\right\}
+    .\end{aligned}\]
+    La matrice di trasformazione $P$ è:
+    \[
+        P = \left[\v{v}_1^u \v{v}_2^s \v{v}_1^s\right] = 
+    \begin{pmatrix}
+	0  & 0 & 1 \\
+	0 & 1 & 0 \\
+	1 & 0 & 0 \\
+    \end{pmatrix}
+    .\] 
+    Quindi la soluzione si scrive come:
+    \[\begin{aligned}
+	\v{v}(t) &= P \text{diag}\left[e^{\lambda_1 t}\ldots e^{\lambda_k}t B_{k+1}\ldots B_{k + \frac{n-k}{2}}\right]P^{-1}\v{x}_0\\
+		 & = P \text{diag}\left[e^{2t}e^{-t}
+	\begin{pmatrix}
+	    \cos t & \sin t  \\
+	    -\sin t & \cos  t \\
+	\end{pmatrix}
+		 \right]
+		 P^{-1}\v{v}_0
+    .\end{aligned}\]
+\end{exmp}
+\noindent
+\begin{thm}[Proprietà dei sottospazi generalizzati]
+    Dato il sistema dinamico \[
+	\frac{\text{d} \v{x}}{\text{d} t} = A \v{x} \qquad  \v{x}\in \mathbb{R}^n \qquad  A \in L(\mathbb{R}^n) 
+    .\] 
+    Sia $\varphi_t(\v{x})$ il corrispondente flusso di fase. Siano $E^s, E^u, E^c$ i sottospazi generalizzati\sidenote{\scriptsize Ovvero costruiti utilizzando gli autovettori generalizzati come nell'esempio precedente} corrispondenti agli autovalori di $A$. Allora vale che:
+    \begin{itemize}
+	\item 
+	    $\varphi_t(E^s) \subset E^s$.\\
+            $\varphi_t(E^u) \subset E^u$.\\
+            $\varphi_t(E^c) \subset E^c$.
+	\item $\mathbb{R}^n = E^s \oplus E^u \oplus E^c$ 
+    \end{itemize}
+\end{thm}
+\noindent
+Per dimostrarlo si supponga $S \subset \mathbb{R}^n$ e $S$ invariante rispetto ad $A$:
+\[
+    A(S) \subset S \qquad (\forall \v{v}\in S: A\v{v}\in S) 
+.\] 
+Possiamo dire che $S$  è invariante rispetto a $cA$  con $c\in \mathbb{R}$. Inoltre se $S$  è invariante rispetto a $A_1$  e $A_2$  (matrici $n \times n$) allora sarà invariante anche rispetto a $c_1A_1 + c_2A_2$. Infine
+\[
+    e^{At}=\lim_{N \to \infty}\sum_{J=0}^{N} \frac{A^J t^J}{J!} \equiv \lim_{N \to \infty} L_N(t) 
+.\] 
+Questo limite corrisponde ad una convergenza uniforme, se tale serie è uniformenmente convergente allora esiste un teorema che garantisce che tale successione sia di Cauchy. Quindi quando applico $L_N$ ad un vettore in $S$ allora il limite rimarrà in $S$\ldots\sidenote{\scriptsize Questi sono i punti chiave della dimostrazione} 
+
+
+\begin{defn}[Insiemi omeomorfi]
+    Sia $X$ uno spazio metrico e $A, B \subset X$. Diciamo che $A$ e $B$ sono omeomorfi (oppure topologicamente equivalenti) se esiste $h:A\to B$ che abbia le seguenti proprietà:
+    \begin{itemize}
+	\item Bigettiva.
+	\item $h$ e $h^{-1}$ sono continue: appartengono a $C^0$.
+    \end{itemize}
+    $h$ è chiamato anche omomorfismo.\sidenote{\scriptsize Se $h$ e $h^{-1}$ sono $C^2$ abbiamo un diffeomorfismo.}
+\end{defn}
+\noindent
+Dato il campo vettoriale 
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) \quad  \v{x}\in \mathbb{R}^n \quad  F:\mathbb{R}^n\to \mathbb{R}^n
+.\] 
+Con uno stato stazionario $\v{x}_s: $  $F(\v{x}_s) =0$. A questo sistema abbiamo associato un sistema linearizzato nel punto stazionario:
+\[
+    \frac{\text{d} \v{y}}{\text{d} t} = J(\v{x}_s) \v{y}
+.\] 
+Quello che ci chiediamo è quanto queste orbite linearizzate rispecchino il sistema non lineare in un intorno di $\v{x}_s$. Quindi ci chiediamo quanto il sistema linearizzato e quello non lineare siano equivalenti in un intorno di $\v{x}_s$.\\
+Notiamo che, dato uno stato stazionario $\v{x}_s$ possiamo sempre definire $\v{x}=\v{x}_s + \v{z}$, quindi:
+\[
+    \frac{\text{d} \v{z}}{\text{d} t} = F(\v{x}_s - \v{x}) = F(\v{z}) 
+.\] 
+Quindi lo stato stazionario si sposta in $\v{z}=0$. Questo è comodo per il seguente teorema.
+\marginpar{
+        \captionsetup{type=figure}
+        \incfig{2_8_4}
+	\caption{\scriptsize Soluzione lineare ($\v{y}$) e soluzione non lineare ($\v{x}$) in un intorno $U$ di $\v{x}_s$.}
+    \label{fig:2_8_4}
+    }
+\begin{thm}[Hartman-Grobman]
+Sia dato il sistema dinamico 
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}); \quad \v{x}\in \mathbb{R}^n; \quad F:\mathbb{R}^n\to \mathbb{R}^n; \quad \v{x}_s \text{ staz}
+.\] 
+Sia $\varphi_t(\v{x})$ il flusso di fase associato al SD, indichiamo con $\tilde{\varphi}_t(\v{x})$ il flusso del campo linearizzato $\dot{\v{y}}=J(\v{x}_s) \v{y}$. Sia inoltre $\v{x}_s$ uno stato stazionario iperbolico.\\
+Allora esiste un intorno $U$ di $\v{x}_s$ nel quale si ha un omomorfismo $H$ che manda le orbite del sistema lineare in quelle del sistema non lineare e viceversa. 
+Tale omeomorfismo preserva l'orientamento temporale.
+\end{thm}
+\noindent
+Questo significa che se $\v{y}_0\to \v{y}_1 \implies  H(\v{y}_0) \to H(\v{y}_1)$.
+
+% Stack Overflow %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\catcode`\@=11
+\newdimen\cdsep
+\cdsep=2em
+
+\def\cdstrut{\vrule height .5\cdsep width 0pt depth .4\cdsep}
+\def\@cdstrut{{\advance\cdsep by 2em\cdstrut}}
+
+\def\arrow#1#2{
+  \ifx d#1
+    \llap{$\scriptstyle#2$}\left\downarrow\cdstrut\right.\@cdstrut\fi
+  \ifx u#1
+    \llap{$\scriptstyle#2$}\left\uparrow\cdstrut\right.\@cdstrut\fi
+  \ifx r#1
+    \mathop{\hbox to \cdsep{\rightarrowfill}}\limits^{#2}\fi
+  \ifx l#1
+    \mathop{\hbox to \cdsep{\leftarrowfill}}\limits^{#2}\fi
+}
+\catcode`\@=12
+\cdsep=3em
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\[
+    \v{x}(t) =\varphi_t(\v{x}_0); \quad  \v{x}(t) =H(\v{y}(t) ) = \varphi_t(\v{x}_0) = \varphi_t(H(\v{y}_0) ) 
+.\] 
+La struttura dell'omeomorfismo è riassunta a lato (\sidenote{
+$$
+\begin{matrix}
+  \v{x}_0              & \arrow{r}{\varphi_t}   & \v{x}(t)   \cr
+  \arrow{u}{H}        &                & \arrow{d}{H^{-1}}        \cr
+  \v{y}_0             & \arrow{r}{\tilde{\varphi}_t} & \v{y}(t)                   \cr
+\end{matrix}
+$$
+}).\\
+Abbiamo quindi le conseguenti relazioni: 
+\[\begin{aligned}
+    &\v{y}(t) = H^{-1}\varphi_t H \v{y}_0\\
+    &\tilde{\varphi_t}\v{y}(t) = H^{-1}\varphi_t H \v{y}_0 \implies  \tilde{\varphi_t}= H^{-1}\varphi_t H
+.\end{aligned}\]
+\begin{exmp}[Applicazione del teorema in $\mathbb{R}^2$]
+Prendiamo il seguente sistema dinamico:
+\[
+\begin{dcases}
+\frac{\text{d} x}{\text{d} t} = x-y^2\\
+\frac{\text{d} y}{\text{d} t} = -y
+\end{dcases}
+\]
+Gli stati stazionari sono definiti da:
+\[\begin{aligned}
+    &x-y^2=0\\
+    &y = 0
+.\end{aligned}
+\implies 
+\v{v}_s = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
+\]
+Per gli autovalori si ha che:
+\[
+    J = 
+\begin{pmatrix}
+    1  & 0 \\
+    0 & -1 \\
+\end{pmatrix}
+\implies  \lambda_{1, 2} = \pm 1
+.\] 
+Quindi abbiamo una sella. Il sistema linearizzato in un intorno di $\v{v}_s$  è:
+\[
+\begin{dcases}
+\frac{\text{d} x}{\text{d} t} = x \\
+\frac{\text{d} y}{\text{d} t} = -y
+\end{dcases}
+\]
+Quindi la soluzione locale è:
+\[
+\begin{dcases}
+    x(t) = x_0e^t\\
+    y(t) = y_0e^{-t}
+\end{dcases}
+\]
+(Per casa) dimostrare che per il sistema dinamico non lineare vale:
+\begin{equation}
+\begin{dcases}
+    x(t) = x_0e^{t} + \frac{y_0^2}{3}(e^{-2t}-e^t) \\
+    y(t) = y_0e^{-t}
+\end{dcases}
+\label{eq:8_1}
+\end{equation}
+Possiamo cercare di capire come deve essere fatto l'omeomorfismo locale $H$, si scopre che:
+\[
+    H:\mathbb{R}^2\to \mathbb{R}^2; \quad  
+    \begin{pmatrix} x \\ y \end{pmatrix} \xrightarrow{H} \begin{pmatrix} x-\frac{y^3}{3} \\ y \end{pmatrix}
+.\] 
+Si può dimostrare che la mappa cercata è proprio questa, inoltre si ha che $H^{-1}$  esiste e vale:
+\[
+    H^{-1}:\mathbb{R}^2\to \mathbb{R}^2; \quad  
+    \begin{pmatrix} x \\ y \end{pmatrix} \xrightarrow{H^{-1}} \begin{pmatrix} x + \frac{y^2}{3} \\ y \end{pmatrix}
+.\] 
+Preso il campo vettoriale di equazione \ref{eq:8_1} ed applicandogli la trasformazione $H$ si ha che:
+\[
+    H\left(\begin{pmatrix} x(t)  \\ y(t)  \end{pmatrix}\right) = 
+    \begin{pmatrix} x_0e^t + \frac{y_0^2}{3}(e^{-2t}-e^t) - \frac{y_0^2}{3}e^{-2t}  \\ y_0e^{-t} \end{pmatrix} =
+    \begin{pmatrix} x_0e^t-\frac{y_0^2}{3}e^t \\ y_0e^{-t} \end{pmatrix}
+.\] 
+Possiamo riscrivere la mappa che abbiamo ottenuto in questo modo:
+\[
+    H\left(\varphi_t\left(\begin{pmatrix} x_0 \\ y_0 \end{pmatrix}\right) \right) =
+\begin{pmatrix}
+    e^t & 0 \\
+    0 & e^{-t} \\
+\end{pmatrix}
+\begin{pmatrix} x_0-\frac{y_0^2}{3} \\ y_0 \end{pmatrix} = \tilde{\varphi}_t\left(\begin{pmatrix} x_0-\frac{y_0^2}{3} \\ y_0 \end{pmatrix}\right)
+.\] 
+\end{exmp}
+\noindent
+La prima matrice corrisponde proprio al flusso di fase lineare.
+\[
+    H(\varphi_t(\v{x})) = \tilde{\varphi}_t \left(\begin{pmatrix} x_0-\frac{y_0^2}{3} \\ y_0 \end{pmatrix}\right) = 
+    \tilde{\varphi_t}(H(\v{x}))
+.\] 
