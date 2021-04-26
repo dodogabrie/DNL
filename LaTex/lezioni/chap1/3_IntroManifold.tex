@@ -8,51 +8,50 @@ Abbiamo fin'ora affermato che lo stato di un sistema dinamico è descritto da un
 	    \frac{\text{d} y}{\text{d} t} = -\frac{g}{l}\sin\theta
         \end{cases}
     \] 
-    In questo caso abbiamo che lo stato $\vect{x} = (\theta, y)$ non è un vettore di $\mathbb{R}^n$ generico: 
-    \begin{itemize}
-        \item $\theta$ è un angolo. 
-	\item $y$ è una velocità angolare.
-    \end{itemize}
+    In questo caso abbiamo che lo stato $\vect{x} = (\theta, y)$ non è un vettore di $\mathbb{R}^n$ generico: $\theta$ è un angolo, $y$ è una velocità angolare.\\
     Lo stato è descritto in $\mathbb{R}^2$, la dinamica del sistema giace su una superficie dello spazio delle fasi detto \textbf{Manifold}.\\
-    Il manifold per il problema del pendolo è una superficie cilindrica:
-    \[
-        \theta\in S_1 \qquad y \in \mathbb{R}\qquad \text{Con $S_1$ cerchio}
-    .\] 
+    Il manifold per il problema del pendolo è una superficie cilindrica, si ha infatti che $\theta\in S_1$ e $y \in \mathbb{R}$ con $S_1$ cerchio di raggio unitario.
 \end{exmp}
 \noindent
-Anche se un manifold non coincide con $\mathbb{R}^n$ localmente (sulla varietà) può essere caratterizzato da $\mathbb{R}^n$.
 \begin{defn}[Omomorfismo]
     Sia $h: U\to V$ con $U, V \subset \mathbb{R}^n$. Supponiamo che $\exists \ h^{-1}$, allora $h$ è omomorfismo se $h$ e $h^{-1}$ sono entrambe continue.
 \end{defn}
+\noindent 
+\begin{defn}[Diffeomorfismo $C^r$]
+    Siano $U, V \subset \mathbb{R}^n$ e $F:U\to V$. Diciamo che $F$ è un diffeomorfismo $C^r$ ($r\ge 1$) se esiste $F^{-1}$ e inoltre sia $F$ che $F^{-1}$ sono entrambe $C^r$ (derivata continua fino all'ordine $r$).
+\end{defn}
 \noindent
 \begin{defn}[Manifold n-dimensionale]
-    Sia $M\subset \mathbb{R}^n$ e $\vect{x}  \in M$, sia $W$ un intorno di $\vect{x}$. Diciamo che $M$ è un manifold $k$-dimensionale ($k<n$ ) se $\exists$ un omomorfismo $h: W\to \mathbb{R}^n$.
+    Sia $M \in \mathbb{R}^N$, diciamo che $M$ è un $K$ Dimensional Manifold se ($K<N$) se:
+    \begin{itemize}
+	\item $\forall m \in M $ esiste un \textbf{Intorno aperto} $W_i$ di esso con la proprietà: $M = \bigcup_i W_i$.
+	\item $\forall W_i$ esiste un omomorfismo $\phi_i: W_i \to V_i \subset \mathbb{R}^N$.
+	\item Se $W_i \cap W_j \neq 0$ la mappa $\phi_i \circ \phi_j = c_{ij}$  definita in $\phi_j(W_i \circ W_j)$ è un diffeomorfismo $C^r$ ($r\ge 1$).
+    \end{itemize}
 \end{defn}
 \noindent
-In pratica l'omomorfismo manda i punti appartenenti al manifold in un sottoinsieme $U \subset \mathbb{R}^n$. L'insieme $U$, in cui viene mappato l'intorno $W$ di $\vect{x}\in M$ è detto carta del manifold: $U = h(W)$.\\
-\begin{defn}[Atlante di un manifold]
-Se è possibile costruire per tutti i punti di $M$ un intorno in cui vale l'omomorfismo allora l'insieme $U \subset \mathbb{R}^n$ in cui i punti di $M$ vengono mappati è detto Atlante di $M$.
-\end{defn}
-\noindent
-La cosa importante è che tramite $h$ è possibile introdurre le proprietà di differenziabilità sul manifold utilizzando le definizioni di differenziabilità su $\mathbb{R}^n$ che sono ben definite.
+Ogni coppia $(W_i, \phi_i)$ è detta \textcolor{red}{Carta}, mentre l'insieme di tutte le carte $\left\{(W_i, \phi_i) \right\}$ è detto \textcolor{red}{Atlante}.\\
+La cosa importante è che tramite i funzionali $\phi$ è possibile introdurre le proprietà di differenziabilità sul manifold utilizzando le definizioni di differenziabilità su $\mathbb{R}^N$ (euclidee) che sono ben definite.
 \begin{figure}[H]
     \centering
     \fbox{\import{./figures/chap1/}{3_2.pdf_tex}}
     \caption{\scriptsize Azione dell'omomorfismo sul manifold.}
     \label{fig:3_2}
 \end{figure}
-
-\subsection{Mappare la dinamica di un Manifold in $R^n$}%
+\subsection{Mappare la dinamica di un Manifold in uno spazio euclideo $\mathbb{R}^K$}%
 \label{sub:Mappare la dinamica di un Manifold in Rn }
-Supponiamo di avere la mappa $G: W\to W$, ovvero manda punti di $W$ (un intorno del punto $\vect{x}  \in M$) in punti di $W$.\\
-Prendiamo $\vect{x}_1 \in W$: $\vect{x}_2 = G(\vect{x}_1)\in W$.\\
-Possiamo mappare la $G$ in $\mathbb{R}^n$ nel seguente modo:
+Supponiamo di avere la mappa $G: W_i\to W_i$, ovvero manda punti del sottoinsieme $W_i$ (un intorno del punto $m$) del Manifold in punti di $W_i$.\\
+Prendiamo $\vect{x}_1 \in W_i$: $\vect{x}_2 = G(\vect{x}_1)\in W_i$.\\
+Possiamo mappare la $G$ in $\mathbb{R}^K$ nel seguente modo:
 \[
-    \vect{y}_1 = h(\vect{x}_1); \qquad \vect{y}_2 = h(\vect{x}_2)
+    \vect{y}_1 = \phi_i(\vect{x}_1); \qquad \vect{y}_2 = \phi_i(\vect{x}_2)
 .\] 
-I punti $\vect{y}_{1,2}$ appartengono a $\mathbb{R}^n$. Il modo in cui si trasporta la differenziabilità all'interno del manifold è il seguente:
+I punti $\vect{y}_{1,2}$ appartengono a $\mathbb{R}^K$. Il modo in cui si trasporta la differenziabilità all'interno del manifold è il seguente:
 \[
-    \vect{y}_2 = h(G(\vect{x}_1)) = h(G(h^{-1}(\vect{y}_1)))
+    \vect{y}_2 = \phi_i(G(\vect{x}_1)) = \phi_i(G(\phi_i^{-1}(\vect{y}_1)))
 .\] 
-Visto che $h$ e $G$ sono note, che $h$ è omomorfismo e che $\vect{y}_1, \vect{y}_2 \in \mathbb{R}^n$ abbiamo che le proprietà di diff. sono applicabili ai funzionali sul manifold nello stesso modo in cui le applichiamo su $\mathbb{R}^n$.
-
+Visto che $\phi_i$ e $G$ sono note, che $\phi_i$ è omomorfismo e che $\vect{y}_1, \vect{y}_2 \in \mathbb{R}^K$ abbiamo che le proprietà di diff. sono applicabili ai funzionali sul manifold nello stesso modo in cui le applichiamo su $\mathbb{R}^K$. Inoltre si ha che:
+\[
+    \v{y}_2 = \phi_i \circ G \circ \phi_i^{-1}(\v{y}_1) 
+.\] 
+Definisce l'evoluzione dinamica del sistema su $\mathbb{R}^K$ .

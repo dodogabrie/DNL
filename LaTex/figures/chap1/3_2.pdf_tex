@@ -1,4 +1,4 @@
-%% Creator: Inkscape 1.0 (4035a4fb49, 2020-05-01), www.inkscape.org
+%% Creator: Inkscape 1.0.1 (3bc2e813f5, 2020-09-07), www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
 %% Accompanies image file '3_2.pdf' (pdf, eps, ps)
 %%
@@ -54,16 +54,25 @@
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{3_2.pdf}}%
-    \put(0.30056841,0.0948391){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$M$\end{tabular}}}}%
+    \put(0.70027434,0.37290057){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\bar{x}_k$\end{tabular}}}}%
+    \put(0.96088901,0.02428308){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\bar{x}_s$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{3_2.pdf}}%
-    \put(0.22131109,0.22817218){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$W$\end{tabular}}}}%
+    \put(0.03970528,0.36632167){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x_k$\end{tabular}}}}%
+    \put(0.29565575,0.01790416){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x_s$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{3_2.pdf}}%
-    \put(0.8233239,0.22253826){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U$\end{tabular}}}}%
-    \put(0.60078639,0.54366844){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x_k$\end{tabular}}}}%
-    \put(0.96980449,0.02253616){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x_s$\end{tabular}}}}%
+    \put(0.33201777,0.41569933){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$W_i$\end{tabular}}}}%
+    \put(0.52274472,0.4189349){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$W_j$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{3_2.pdf}}%
-    \put(0.50378434,0.17264215){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$h$\end{tabular}}}}%
+    \put(0.45285177,0.44243197){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$m$\end{tabular}}}}%
+    \put(0.62087055,0.50585929){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$M$\end{tabular}}}}%
+    \put(0.42809131,0.27220597){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c_{ij}=\phi_i \circ \phi_j$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{3_2.pdf}}%
-    \put(0.45404801,0.40279462){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$h^{-1}$\end{tabular}}}}%
+    \put(0.82351174,0.36412516){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\phi_j(W_j)$\end{tabular}}}}%
+    \put(0.1762656,0.32356331){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\phi_i(W_i)$\end{tabular}}}}%
+    \put(0.79775853,0.08291508){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_j\subset \mathbb{R}^n$\end{tabular}}}}%
+    \put(0.35805656,0.09233181){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\phi_i(W_i\cap W_j)$\end{tabular}}}}%
+    \put(0.42251932,0.02106649){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\phi_j(W_i\cap W_j)$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{3_2.pdf}}%
+    \put(0.09541236,0.07361134){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V_i\subset \mathbb{R}^n$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

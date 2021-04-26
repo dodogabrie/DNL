@@ -3,9 +3,84 @@
 \begin{ex}[$\Sigma_2$ (della shift map) spazio metrico]
     Dimostrare che $\Sigma_2$ è uno spazio metrico.
 \end{ex}
-\noindent
-\begin{ex}[Sulla continuità di $\sigma$ (per la shift mapt)]
-    dimostrare che $\sigma$ è continua in $\overline{s}=(0, 0, \ldots, 0)$.
+\paragraph{Soluzione}%
+È necessario dimostrare le 4 proprietà della distanza $d$ definita come:
+\[
+    d = \sum_{j=0}^{\infty} \frac{\left|s_j-t_j\right|}{2^j}
+.\] 
+Le prime 3 sono banali, la triangolare è l'unica da valutare.
+\[
+    d(s, t) \le d(s, k) + d(k, t) = \sum_{j=0}^{\infty} \frac{\left|s_j-k_j\right| + \left|k_j-t_j\right|}{2^j} 
+.\] 
+Che risulta verificata poichè vale la triangolare per la norma all'interno della sommatoria.
+\begin{ex}[$\sigma$ continua]
+    Dimostrare che la $\sigma$ nello spazio metrico ($\Sigma_2, d$) è continua.
 \end{ex}
 \noindent
-
+\paragraph{Soluzione}%
+Dimostriamo prima che se due stringhe hanno i primi $n$ simboli identici vale la disuguaglianza:
+\[
+    \forall t, s \in \Sigma_2 \text{ con } t_i = s_i, \ i = 1, \ldots, n \implies  d(s, t) \le \frac{1}{2^n}
+.\] 
+Partiamo dalla seguente relazione:
+\[
+    d(s, t) = \sum_{j=0}^{\infty} \frac{\left|s_j - t_j\right|}{2^j}=\sum_{j=n+1}^{\infty} \frac{\left|s_j - t_j\right|}{2^j}
+    \le \sum_{j=n+1}^{\infty} \frac{1}{2^j}
+    \label{eq:1123}
+.\] 
+Si tratta quindi di trovare un estremo superiore alla ultima sommatoria. Definiamo la quantità ausiliaria:
+\[
+    A_{n}=\sum_{j=0}^{n} \frac{1}{2^j}
+.\] 
+Tale quantità rispetta la seguente uguaglianza:
+\[
+    A_n = A_{n+1}-\frac{1}{2^{n+1}} \quad \implies  \quad  A_{n+1} = A_n + \frac{1}{2^n\cdot 2} \implies  \frac{A_{n+1}}{\frac{1}{2}}= \frac{1}{\frac{1}{2}}+ 1 + \frac{1}{2}+\ldots+ \frac{1}{2^n} = 2 + A_{n}
+    \label{eq:1121}
+.\] 
+In conclusione si ottiene la relazione:
+\[
+    A_{n+1}=1 + \frac{A_n}{2}
+    \label{eq:1122}
+.\] 
+Possiamo sostituire il termine $A_{n+1}$ ottenuto nella \ref{eq:1122} nella prima equazione di \ref{eq:1121}, in questo modo si esprime $A_n$ senza sommatoria:
+\[
+    A_n = 1 + \frac{A_n}{2}-\frac{1}{2^{n+1}} \implies  A_n = \frac{1-\left(\frac{1}{2}\right)^{n+1}}{1- \frac{1}{2}}=
+    2\left(1-\left(\frac{1}{2}\right)^{n+1}\right)
+.\] 
+Possiamo concludere mettendo in relazione la sommatoria di \ref{eq:1123} con la $A_n$ ricavata:
+\[
+    \sum_{j=n+1}^{\infty} \frac{1}{2^j} = \sum_{j=0}^{\infty} \frac{1}{2^j} - \sum_{j=0}^{n} \frac{1}{2^j} = A_{\infty}-A_n=
+    2-2\left(1-\left(\frac{1}{2}\right)^{n+1}\right) = \frac{1}{2^n}
+.\] 
+Quindi si ottiene la relazione cercata per le due stringhe con i primi $n$ termini identici:
+\[
+    d(s,t) \le \frac{1}{2^n}
+.\] 
+Adesso serve dimostrare che:
+\[
+    \text{Se }  d(s, t) < \frac{1}{2^n} \implies  s_i = t_i \ \forall i = 1, \ldots, n
+.\] 
+Per assurdo ipotizziamo non sia vero. Se $\exists$ $k\le n$ tale che $s_k \neq t_k$ allora deve valere, per quanto dimostrato prima, che
+\[
+    d(s, t) \ge \frac{1}{2^k}
+.\] 
+Ma essendo $k\le n$ abbiamo anche che:
+\[
+    d(s, t) \ge \frac{1}{2^k} \ge \frac{1}{2^n}
+.\] 
+Che contraddice l'ipotesi assurda.\\
+Con queste basi possiamo dimostrare la continuità di $\sigma$:\\
+dato $\epsilon >0$ ed $s \in \Sigma_2$ allora $\exists n$ tale che $1 /2^n<\epsilon$. Prendendo $\delta  = \frac{1}{2^{n+1}}$ allora $\exists t\in \Sigma_2$ tale che $d(s,t) <\delta$. \\
+In particolare per rispettare la disuguaglianza si deve scegliere $t$ del seguente tipo:
+\[
+    t = (s_0, s_1, \ldots , s_{n+1}, t_{n+2}, \ldots) 
+.\] 
+La $\sigma$ applicata a questi due vettori restituisce:
+\[\begin{aligned}
+    & \sigma (s)=(s_1,s_2,s_3, \ldots, s_{n+1}, s_{n+2}, \ldots)  \\
+    & \sigma(t) = (s_1,s_2,s_3,\ldots,s_{n+1}, t_{n+2}, \ldots) 
+.\end{aligned}\]
+Visto che si hanno i primi $n$ elementi uguali abbiamo che la relazione necessaria per la continuità è rispettata:
+\[
+    d(\sigma (s) , \sigma (t) ) \le \frac{1}{2^n}<\epsilon
+.\] 

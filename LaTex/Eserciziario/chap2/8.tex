@@ -1,5 +1,5 @@
 \section{Manifold lineari, stabile, instabile e centro}%
-\begin{ex}[]
+\begin{ex}[Richiamo della stabilità secondo Lyapunov]
     Dimostrare che ogni stato stazionario dell'esercizio
     \[
         \frac{\text{d} \v{x}}{\text{d} t} = A \v{x} \quad  \v{x}\in \mathbb{R}^2 \quad
@@ -9,10 +9,41 @@
 	0 & -4 \\
     \end{pmatrix}
     .\] 
-    Che abbiamo dimostrato essere della forma: $\begin{pmatrix} x_s \\ 0 \end{pmatrix} $ è stabile secondo Lyapunov (non bisogna usare gli autovalori, utilizzare la tecnologia della definizione di Lyapunov).
+    Che abbiamo dimostrato essere della forma: $\v{x}_p  = \begin{pmatrix} x_s \\ 0 \end{pmatrix} $ è stabile secondo Lyapunov (non bisogna usare gli autovalori, utilizzare la tecnologia della definizione di Lyapunov).
 \end{ex}
-\noindent
-\begin{ex}[]
+\paragraph{Soluzione}%
+Dobbiamo dimostrare che il sistema dinamico dell'esercizio, descritto anche dal seguente sistema di equazioni differenziali:
+\[
+\begin{dcases}
+\dot{x} = y\\
+\dot{y}=-4y
+\end{dcases}
+\]
+rispetta la seguente:
+\[
+    \text{Se } \left|\left|\v{x}(0) - \v{x}_p(0) \right|\right|<\delta (\epsilon) \implies  
+    \left|\left|\v{x}(t) -\v{x}_p(t) \right|\right|<\epsilon  \quad \forall t > 0
+.\] 
+La soluzione analitica si trova risolvento prima per $y$ e poi sostiuento ed integrando per $x$:
+\[
+\begin{dcases}
+    x(t) = x_0 + \frac{y_0}{4}(1-e^{-4t})\\
+    y(t) = y_0 e^{-4t}
+\end{dcases}
+\]
+Possiamo subito notare che entrambe le soluzioni sono limitate superiormente:
+\[
+\begin{dcases}
+    x(t) < x_0 + \frac{y_0}{4} \equiv k_0\\
+    y(t) < y_0
+\end{dcases}
+\]
+Quindi abbiamo che 
+\[
+    \sqrt{(x(t) - x_s)^2 + y^2(t) } \le \sqrt{(k_0-x_s)^2 + y_0^2} \equiv \gamma_0
+.\] 
+Quindi essendo questa norma limitata basta scegliere arbitrariamente $\delta (\epsilon) = \epsilon$ per ottenere che la soluzione in questione è stabile secondo Lyapunov.
+\begin{ex}[Ricerca dei sottospazi generalizzati]
     Dato il sistema dinamico con matrice $A$:
     \[
         A = 
@@ -33,28 +64,6 @@
     .\] 
     Determinare $E^s, E^u, E^c$.
 \end{ex}
-\noindent
-\begin{ex}[]
-    Dato il sistema dinamico 
-     \[
-        \frac{\text{d} \v{x}}{\text{d} t} = A \v{x} \quad  \v{x}\in \mathbb{R}^2 \quad  A = 
-    \begin{pmatrix}
-	-1 & -3 \\
-	-3 & -1 \\
-    \end{pmatrix}
-    .\] 
-    Sia $H:\mathbb{R}^2\to \mathbb{R}^2 $  tale che:
-    \[
-        \forall \v{v} = \begin{pmatrix} x \\ y \end{pmatrix} \in \mathbb{R}^2: \ \v{v}\to H\v{v}
-    .\] 
-    Con:
-    \[
-        H = \frac{1}{\sqrt{2} } 
-    \begin{pmatrix}
-	1 & -1 \\
-	1 & 1 \\
-    \end{pmatrix}
-    .\]  
-    Determinare come viene trasformato il SD attraverso $H$.
-\end{ex}
-\noindent
+\paragraph{Soluzione}%
+Vedere l'esempio svolto a lezione per entrambi i casi.
+

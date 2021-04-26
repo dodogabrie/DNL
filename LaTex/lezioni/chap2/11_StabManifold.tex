@@ -1,0 +1,320 @@
+\section{Local stable, unstable Manifold}%
+\label{sub:Local stable, unstable Manifold}
+Attraverso la linearizzazione in un intorno di uno stato stazionario $\v{x}_s$ abbiamo definito le quantità $E^s, E^u, E^c$. Vogliamo caratterizzare la stabilità dei punti stazionari anche nel caso di un sistema non lineare. \\
+Notiamo che questa stabilità che andiamo a studiare sono relative agli stati stazionari ma possono essere definite anche per orbite periodiche del sistema.
+\begin{defn}[local stable Manifold]
+    \[
+	W_{loc}^s(\v{x}_s) = \left\{\v{x}\in u | \varphi (t, \v{x}) \to \v{x}_s \text{ con } t\to \infty
+	, \varphi (t, \v{x}) \in u \ \forall t \ge 0\right\}
+    .\] 
+\end{defn}
+\begin{defn}[Local Unstable Manifold]
+    \[
+	W_{loc}^u(\v{x}_s) = \left\{\v{x}\in U | \varphi (t, \v{x}) \to \v{x}_s \text{ con } t\to -\infty
+	, \varphi (t, \v{x}) \in U \ \forall t \ge 0\right\}
+    .\] 
+\end{defn}
+\noindent
+Possiamo chiederci quanto possiamo estendere queste definizioni, cercando di allargare la stabilità/instabilità globalmente. \\
+Possiamo definire delle quantità globali a partire dalle definizioni di Manifold Locali, quindi facendo evolvere i punti che stanno sui Manifold Locali. 
+\begin{defn}[Global Stable Manifold]
+    \[
+	W^s(\v{x}_s) = \bigcup_{t\le 0}\varphi (t, W_{loc}^s(\v{x}_s))
+    .\] 
+\end{defn}
+\begin{defn}[Global Unstable Manifold]
+    \[
+	W^s(\v{x}_s) = \bigcup_{t\le 0}\varphi (t, W_{loc}^u(\v{x}_s))
+    .\] 
+\end{defn}
+\noindent
+Ma siamo sempre tenuti a definire queste quantità? Quando esistono?\\
+Dato il SD a tempo continuo:
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) \qquad  \v{x}\in \mathbb{R}^n \qquad  F:\mathbb{R}^n\to \mathbb{R}^n 
+    \qquad  F\in C^r, \ r > 1
+.\] 
+La richiesta che $r>1$ è dovuta al fatto che faremo uno sviluppo in serie. Supponiamo che esista lo stato stazionario $\v{x}_s$ ($F(\v{x}_s) = 0$). \\
+Trasliamo dapprima lo stato stazionario nell'origine:
+\[
+    \v{x} = \v{y}+\v{x}_s
+.\] 
+Quindi il sistema dinamico traslato avrà lo stato stazionario in $\v{y}_s=\v{0}$.
+\[
+    \frac{\text{d} \v{y}}{\text{d} t} = F(\v{x}_s + \v{y}) 
+.\] 
+Sviluppiamo in serie il secondo membro dell'equazione.
+\[
+    F(\v{x}_s + \v{y}) = F(\v{x}_s) + J(\v{x}_s) \v{y} + R(\v{y}) \qquad R(\v{y}) \sim O(\left|\v{y}\right|^2) 
+.\] 
+Il sistema esplicitato al primo ordine è (esatto):
+\[
+    \frac{\text{d} \v{y}}{\text{d} t} = J(\v{x}_s) \v{y} + R(\v{y}) 
+.\] 
+Per quanto riguarda la parte lineare del problema abbiamo sviluppato in questo capitolo tutta la tecnologia per determinare il tipo di stato stazionario. Per la parte lineare possiamo allora determinare una trasformazione lineare $T$ tale che:
+\[
+    T^{-1}A T = A' = 
+\begin{pmatrix}
+    A_s & 0 & 0 \\
+    0 & A_u & 0 \\
+    0 & 0 & A_c \\
+\end{pmatrix}
+.\] 
+La matrice $A'$ è ovviamente una matrice a blocchi. Come abbiamo visto $A_s$ è la matrice degli autovalori con parte reale negativa, $A_u$ è lo span degli autovettori con parte reale positiva etc\ldots\\
+Notiamo che essendo $T$ lineare manda lo stato stazionario $\v{y}_s$ situato nell'origine nell'origine stessa (proprietà dell trasformazioni lineari).\\
+Introduciamo adesso il cambio di coordinate:
+\[
+    \begin{pmatrix} \text{stabile} \\ \text{instabile}\\ \text{centro} \end{pmatrix} \sim 
+    \begin{pmatrix} \v{u} \\ \v{v}\\ \v{w} \end{pmatrix} \equiv 
+    T^{-1}\v{y}
+.\] 
+Applichiamo questo cambio al SD:
+\[
+    \frac{\text{d} \v{y}}{\text{d} t} = A \v{y} + R(\v{y}) \quad\to \quad
+    T^{-1}\frac{\text{d} \v{y}}{\text{d} t} = T^{-1}A \v{y} + T^{-1}R(\v{y}) 
+.\] 
+Possiamo riparafrasare l'ultima equazione aggiungendo una identità:
+\[
+    \frac{\text{d} }{\text{d} t} T^{-1}\v{y} = T^{-1}A TT^{-1}\v{y} + T^{-1}R(\v{y}) 
+.\] 
+\[
+    \frac{\text{d} }{\text{d} t} \begin{pmatrix} \v{u} \\ \v{v}\\ \v{w} \end{pmatrix} = 
+    \begin{pmatrix}
+        A_s & 0 & 0 \\
+        0 & A_u & 0 \\
+        0 & 0 & A_c \\
+    \end{pmatrix}
+    \begin{pmatrix} \v{u} \\ \v{v}\\\v{w} \end{pmatrix}
+    + T^{-1}R(\v{y}) 
+.\] 
+L'ultima quantità sarà una funzione del tipo :
+\[
+    T^{-1}R(\v{y}) = 
+    \begin{pmatrix} R_{s}(\v{u}, \v{v}, \v{w}) \\  R_{u}(\v{u}, \v{v}, \v{w}) \\ R_{w}(\v{u}, \v{v}, \v{w})\end{pmatrix}
+.\] 
+Con questa notazioe abbbiamo decomposto il sistema in 3 dinamiche separate:
+\begin{itemize}
+    \item \textbf{Stabile}:
+	\[
+	    \frac{\text{d} \v{u}}{\text{d} t} = A_s \v{u} + R_s(\v{u}, \v{v}, \v{w}) 
+	.\] 
+    \item \textbf{Instabile}:
+	\[
+	    \frac{\text{d} \v{v}}{\text{d} t} = A_u \v{u} + R_u(\v{u}, \v{v}, \v{w}) 
+	.\] 
+    \item \textbf{Centro}:
+	\[
+	    \frac{\text{d} \v{w}}{\text{d} t} = A_w \v{u} + R_w(\v{u}, \v{v}, \v{w}) 
+	.\] 
+\end{itemize}
+\begin{thm}[Esistenza degli Stable/Unstable Manifold]
+    Consideriamo il sistema dinamico introdotto sopra e consideriamo che sia $C^r$ con $r\ge 2$. Allora in un opportuno intorno di $(\v{u}, \v{v}, \v{w})_s = (\v{0}, \v{0}, \v{0})$\sidenote{\scriptsize In cui questi sono blocchi di zeri}
+    \begin{enumerate}
+	\item Esistono $W_{loc}^s(\v{0}), W_{loc}^u(\v{0}),W_{loc}^c(\v{0})$.
+	\item $W_{loc}^l(\v{0})$ con $l = (s, u, c) $ sono $C^r$.
+	\item $W_{loc}^s(\v{0}), W_{loc}^u(\v{0}),W_{loc}^c(\v{0})$ si incontrano in $(\v{0}, \v{0}, \v{0})$.
+	\item $W_{loc}^s(\v{0}), W_{loc}^u(\v{0}),W_{loc}^c(\v{0})$ sono tangenti ai rispettivi sottospazi $E^s, E^u, E^c$.
+	\item $W_{loc}^s(\v{0}), W_{loc}^u(\v{0}),W_{loc}^c(\v{0})$ sono invarianti (la soluzione del sistema dinamico rimane in essi per evoluzione).
+    \end{enumerate}
+\end{thm}
+\noindent
+La quarta proprietà indica che tali insiemi sono rappresentabili come grafici opportuni (funzioni vettoriali).\\
+Partiamo dalla varietà stabile ($W_{loc}^s(\v{0}) $), consideriamo la coordinata della parte stabile $\v{u}$ come variabilie indipendente: 
+\[\begin{aligned}
+    W_{loc}^s(\v{0}) = &\left\{
+	(\v{u}, \v{v}, \v{w}) \in \mathbb{R}^s \times \mathbb{R}^u \times \mathbb{R}^c |
+	\v{v} = h_v^s(\v{u}), \v{w}=h_w^s(\v{u}): \right.\\
+		       &
+			   h_v^s(\v{0}) , h_w^s(\v{0}) = \v{0}, \ D(h_v^s(\v{u}))_{\v{u}=\v{0}} = \v{0}, 
+                           D(h_w^s(\v{u}))_{\v{u}=\v{0}} = \v{0} \\
+		       & \text{con } \left|\v{u}\right|< \delta
+    \left. \right\}
+.\end{aligned}\]
+In maniera analoga si ha:
+\[\begin{aligned}
+    W_{loc}^u(\v{0}) = &\left\{
+	(\v{u}, \v{v}, \v{w}) \in \mathbb{R}^s \times \mathbb{R}^u \times \mathbb{R}^c |
+	\v{u} = h_v^u(\v{v}), \v{w}=h_w^u(\v{v}): \right.\\
+		       &
+			   h_u^u(\v{0}) , h_w^u(\v{0}) = \v{0}, \ D(h_u^u(\v{v}))_{\v{v}=\v{0}} = \v{0}, 
+                           D(h_w^u(\v{v}))_{\v{v}=\v{0}} = \v{0} \\
+		       & \text{con } \left|\v{v}\right|< \delta
+    \left. \right\}
+.\end{aligned}\]
+\[\begin{aligned}
+    W_{loc}^c(\v{0}) = &\left\{
+	(\v{u}, \v{v}, \v{w}) \in \mathbb{R}^s \times \mathbb{R}^u \times \mathbb{R}^c |
+	\v{u} = h_u^c(\v{w}), \v{v}=h_v^c(\v{w}): \right.\\
+		       &
+			   h_u^c(\v{0}) , h_v^s(\v{0}) = \v{0}, \ D(h_u^c(\v{w}))_{\v{w}=\v{0}} = \v{0}, 
+                           D(h_v^c(\v{w}))_{\v{w}=\v{0}} = \v{0} \\
+		       & \text{con } \left|\v{w}\right|< \delta
+    \left. \right\}
+.\end{aligned}\]
+\subsubsection{Invarianza rispetto alla dinamica}%
+\label{subsub:Invarianza rispetto alla dinamica}
+\begin{exmp}[]
+    \[
+    \begin{dcases}
+	\frac{\text{d} x}{\text{d} t} = f(x, y) \\
+	\frac{\text{d} y}{\text{d} t} = g(x, y) 
+    \end{dcases}
+    \]
+    \marginpar{
+            \captionsetup{type=figure}
+            \incfig{2_11_3}
+            \caption{\scriptsize Condizione di dinamica tangente}
+        \label{fig:2_11_3}
+        }
+    
+	Supponiamo ci sia una relazione $y=h(x)$ con un andamento mostrato in figura \ref{fig:2_11_3}, sarà vero che:
+    \[
+	\frac{\text{d} y}{\text{d} x} = \frac{\text{d} }{\text{d} x} h(x) \implies 
+	dy = \frac{\text{d} h(x) }{\text{d} x} \implies  \frac{\text{d} y}{\text{d} t} = \frac{\text{d} h(x) }{\text{d} x}
+	\frac{\text{d} x}{\text{d} t}  
+    .\] 
+    Quindi abbiamo riottenuto una specie di derivata orbitale. \\
+    La condizione per il quale tale curva sia invariante rispetto alla dinamica è:
+    \[
+	g(x, h(x)) = \frac{\text{d} h(x) }{\text{d} x} f(x, h(x)) 
+    .\] 
+\end{exmp}
+\noindent
+Possiamo generalizzare la questione:
+\[
+\begin{dcases}
+    \frac{\text{d} \v{x}}{\text{d} t} = f(\v{x}, \v{y}) \\
+    \frac{\text{d} \v{y}}{\text{d} t} = g(\v{x}, \v{y}) 
+\end{dcases}
+\]
+con $\v{x}\in \mathbb{R}^n$, $\v{y}\in \mathbb{R}^n$ e $h:\mathbb{R}^m\to \mathbb{R}^m$ tale che:
+\[
+    \v{x}\to h(\v{x}) = \v{y}
+.\] 
+La condizione di invarianza si scrive allo stesso modo del caso bidimensionale:
+\[
+    g(\v{x}, h(\v{x})) = \nabla h \cdot f(\v{x}, h(\v{x})) 
+.\] 
+\begin{exmp}[]
+    Prendiamo il sistema dinamico a tempo continuo in $\mathbb{R}^2$ non lineare:
+    \[
+    \begin{dcases}
+    \frac{\text{d} x}{\text{d} t} = x \\
+    \frac{\text{d} y}{\text{d} t} = -y + x^2
+    \end{dcases}
+    \]
+    Sappiamo risolvere questo sistema analiticamente, per esercizio proviamo a utilizzare la metodologia di questa sezione. \\
+    Lo stato stazionario è l'origine:
+    \[
+        \v{V}_s = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
+    .\] 
+    Il calcolo degli autovalori ci dice che $\v{V}_s $ è una sella.
+    \[
+	P(\lambda) = (1 + \lambda) (1 - \lambda) \implies  \lambda_{1, 2} = \pm 1
+    .\] 
+    Calcoliamo allora $E^s$ e $E^u$:
+    \[
+	J(\v{V}_s) = 
+    \begin{pmatrix}
+	1  & 0 \\
+	0 & -1 \\
+    \end{pmatrix}
+    .\] 
+    RIsolviamo il sistema:
+    \[
+	(J(\v{V}_s) - \lambda \mathbb{I})
+	\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x \\ y \end{pmatrix}
+    .\] 
+    Nel caso di $\lambda_1 = 1$ si ha che:
+    \[
+	\v{v}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \implies  E^u = \left\{(x, y) \in \mathbb{R} | y = 0\right\}
+    .\] 
+    Nel caso di $\lambda_2 = -1$ si ha subito che:
+    \[
+	\v{v}_2 = \begin{pmatrix} 0 \\ 1 \end{pmatrix} \implies  E^s = \left\{(x, y) \in \mathbb{R}^2 | x = 0\right\}
+    .\] 
+    Procediamo con il calcolo di $W^u_{loc}(\v{0})$, per farlo possiamo utilizzare due approcci:\\
+    \textbf{Approccio 1}\\
+    Utilizziamo il trucchetto analitico:
+    \[
+	\frac{\frac{\text{d} y}{\text{d} t}}{\frac{\text{d} x}{\text{d} t} } = \frac{\text{d} y}{\text{d} x} = \frac{-y + x^2}{x}
+    .\] 
+    Quindi ci si riduce al seguente:\sidenote{\scriptsize Notiamo che questo procedimento è già stato sviluppato nel caso del pendolo per trovare le orbite del phase portrait\ldots}
+    \begin{equation}
+	\frac{\text{d} y}{\text{d} x} = \frac{-y}{x} + x \implies  \frac{\text{d} y}{\text{d} x}  + y f(x) = r(x) 
+	\label{eq:2_11_1}
+    \end{equation}
+    Quindi all'interno delle orbite del phase portrait che (risolvono questa equazione) possiamo trovare anche il Manifold instabile $W_{loc}^u$.\\
+    La soluzione di \ref{eq:2_11_1} sarà del tipo\sidenote{\scriptsize Soluzione generale, si può dimostrare}:
+    \[
+	y(x) = e^{-H}c + e^{-H}\int e^Hr(x) dx \qquad  H = \int f(x) dx
+    .\] 
+    Mettendo dentro le nostre quantità si ha la soluzione esplicita:
+    \marginpar{
+            \captionsetup{type=figure}
+            \incfig{2_11_2}
+	    \caption{\scriptsize Manifold instabile e stabile non lineari per questo esempio (nel caso dello stabile vedremo nell'approccio 2 come ricavarlo.}
+        \label{fig:2_11_2}
+        }
+    \[
+	f(x) = \frac{1}{x} \qquad  r(x) = x \quad\implies\quad  y(x) = \frac{x^2}{3} + \frac{c}{x}
+    .\] 
+    Se imponiamo che $y(x)$ passi per $\v{V}_s$ allora si ottiene subito:
+    \[
+	y(x) = \frac{x^2}{3} \implies  \frac{\text{d} y}{\text{d} x} =\left.\frac{2x}{3}\right|_{\v{V}_s} = 0
+    .\] 
+    La varietà che abbiamo trovato ($y(x)$) corrisponde al Manifold Non lineare Instabile (che è unico per il teorema sopra).\\
+    \textbf{Approccio 2}\\
+    Utilizziamo un altro metodo per ottenere $W_{loc}^u(0)$. Assumiamo esista $h$ per cui:
+    \[
+	y = h(x) 
+    .\] 
+    Sfruttiamo la condizione di invarianza:
+    \[
+	\frac{\text{d} y}{\text{d} t} = \frac{\text{d} h(x) }{\text{d} x} \frac{\text{d} x}{\text{d} t} 
+    .\] 
+    Assumiamo che:
+    \[
+	y(x) = h(x) = q + rx + ax^2 + bx^3 + cx^4 + O(x^5) 
+    .\] 
+    e tramite questa espansione polinomiale cerchiamo di capire quali coefficienti permettono di rispettare la condizione di invarianza.\\
+    $ q$ deve essere nullo poichè il manifold deve passare dall'origine, $r$ è invece nullo per la condizione di tangenza in $0$.
+    \[
+	\frac{\text{d} h(x) }{\text{d} x} = 2ax + 3bx^2+ 4cx^4 + \ldots
+    .\] 
+    Inserendo nella equazione:
+    \[
+	-y + x^2 = (2ax + 3bx^2+ 4cx^4 + \ldots)\frac{\text{d} x}{\text{d} t}
+    .\] 
+    \[
+	-h(x) + x^2 = (2ax + 3bx^2+ 4cx^4 + \ldots)x
+    .\] 
+    \[
+	(1-a)x^2 - bx^3 - cx^4 = (2ax + 3bx^2+ 4cx^4 )x
+    .\] 
+    Eguagliando le varie potenze si scopre che rimane soltanto $a = \frac{1}{3}$.
+    \[
+	y(x) = h(x) = \frac{x^2}{3}
+    .\] 
+    Determiniamo adesso il Manifold stabile. 
+    \[
+	x = h(y) 
+    .\] 
+    Ed imponiamo l'invarianza di tale curva rispetto alla dinamica.
+    \[
+	\frac{\text{d} x}{\text{d} t} = \frac{\text{d} h(y) }{\text{d} y} \frac{\text{d} y}{\text{d} t} \implies 
+	x = \frac{\text{d} h(y) }{\text{d} y} (-y+ x^2) \implies 
+	h(y) = \frac{\text{d} h(y) }{\text{d} y} (-y+ h^2(y) )
+    .\] 
+    Ipotizziamo che $h(y) $ sia esprimibile in serie di potenze:
+    \[
+	h(y) = ay^2 + by^3+ \ldots \implies  \frac{\text{d} h(y) }{\text{d} y} = 2ay + 3by^2 +\ldots
+    .\] 
+    \[
+	ay^2 + by^3 = (2ay + 3by^2) (-y + a^2y^4 + b^2y^6) 
+    .\] 
+    Uguagliando come prima i coefficienti si ottiene che tutti i coefficienti sono nulli.\\
+    Implica che il manifold stabile non lineare è proprio $x = 0$, significa che la dinamica lineare nel caso del sottospazio stabile è proprio esatta! Non è solo una approssimazione.
+\end{exmp}
+\noindent
+

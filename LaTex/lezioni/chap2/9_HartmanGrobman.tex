@@ -1,0 +1,173 @@
+\section{Teorema di Hartman-Grobman}%
+\begin{thm}[Hartman-Grobman]
+Sia dato il sistema dinamico 
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}); \quad \v{x}\in \mathbb{R}^n; \quad F:\mathbb{R}^n\to \mathbb{R}^n; \quad \v{x}_s \text{ staz}
+.\] 
+Sia $\varphi_t(\v{x})$ il flusso di fase associato al SD, indichiamo con $\tilde{\varphi}_t(\v{x})$ il flusso del campo linearizzato $\dot{\v{y}}=J(\v{x}_s) \v{y}$. Sia inoltre $\v{x}_s$ uno stato stazionario iperbolico.\\
+Allora esiste un intorno $U$ di $\v{x}_s$ nel quale si ha un omomorfismo $H$ che manda le orbite del sistema lineare in quelle del sistema non lineare e viceversa. 
+Tale omeomorfismo preserva l'orientamento temporale.
+\end{thm}
+\noindent
+Questo significa che se $\v{y}_0\to \v{y}_1 \implies  H(\v{y}_0) \to H(\v{y}_1)$.
+
+% Stack Overflow %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\catcode`\@=11
+\newdimen\cdsep
+\cdsep=2em
+
+\def\cdstrut{\vrule height .5\cdsep width 0pt depth .4\cdsep}
+\def\@cdstrut{{\advance\cdsep by 2em\cdstrut}}
+
+\def\arrow#1#2{
+  \ifx d#1
+    \llap{$\scriptstyle#2$}\left\downarrow\cdstrut\right.\@cdstrut\fi
+  \ifx u#1
+    \llap{$\scriptstyle#2$}\left\uparrow\cdstrut\right.\@cdstrut\fi
+  \ifx r#1
+    \mathop{\hbox to \cdsep{\rightarrowfill}}\limits^{#2}\fi
+  \ifx l#1
+    \mathop{\hbox to \cdsep{\leftarrowfill}}\limits^{#2}\fi
+}
+\catcode`\@=12
+\cdsep=3em
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\[
+    \v{x}(t) =\varphi_t(\v{x}_0); \quad  \v{x}(t) =H(\v{y}(t) ) = \varphi_t(\v{x}_0) = \varphi_t(H(\v{y}_0) ) 
+.\] 
+La struttura dell'omeomorfismo è riassunta a lato (\sidenote{
+$$
+\begin{matrix}
+  \v{x}_0              & \arrow{r}{\varphi_t}   & \v{x}(t)   \cr
+  \arrow{u}{H}        &                & \arrow{d}{H^{-1}}        \cr
+  \v{y}_0             & \arrow{r}{\tilde{\varphi}_t} & \v{y}(t)                   \cr
+\end{matrix}
+$$
+}).\\
+Abbiamo quindi le conseguenti relazioni: 
+\[\begin{aligned}
+    &\v{y}(t) = H^{-1}\varphi_t H \v{y}_0\\
+    &\tilde{\varphi_t}\v{y}(t) = H^{-1}\varphi_t H \v{y}_0 \implies  \tilde{\varphi_t}= H^{-1}\varphi_t H
+.\end{aligned}\]
+\begin{exmp}[Applicazione del teorema in $\mathbb{R}^2$]
+Prendiamo il seguente sistema dinamico:
+\[
+\begin{dcases}
+\frac{\text{d} x}{\text{d} t} = x-y^2\\
+\frac{\text{d} y}{\text{d} t} = -y
+\end{dcases}
+\]
+Gli stati stazionari sono definiti da:
+\[\begin{aligned}
+    &x-y^2=0\\
+    &y = 0
+.\end{aligned}
+\implies 
+\v{v}_s = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
+\]
+Per gli autovalori si ha che:
+\[
+    J = 
+\begin{pmatrix}
+    1  & 0 \\
+    0 & -1 \\
+\end{pmatrix}
+\implies  \lambda_{1, 2} = \pm 1
+.\] 
+Quindi abbiamo una sella. Il sistema linearizzato in un intorno di $\v{v}_s$  è:
+\[
+\begin{dcases}
+\frac{\text{d} x}{\text{d} t} = x \\
+\frac{\text{d} y}{\text{d} t} = -y
+\end{dcases}
+\]
+Quindi la soluzione locale è:
+\[
+\begin{dcases}
+    x(t) = x_0e^t\\
+    y(t) = y_0e^{-t}
+\end{dcases}
+\]
+(Per casa) dimostrare che per il sistema dinamico non lineare vale:
+\begin{equation}
+\begin{dcases}
+    x(t) = x_0e^{t} + \frac{y_0^2}{3}(e^{-2t}-e^t) \\
+    y(t) = y_0e^{-t}
+\end{dcases}
+\label{eq:8_1}
+\end{equation}
+Possiamo cercare di capire come deve essere fatto l'omeomorfismo locale $H$, si scopre che:
+\[
+    H:\mathbb{R}^2\to \mathbb{R}^2; \quad  
+    \begin{pmatrix} x \\ y \end{pmatrix} \xrightarrow{H} \begin{pmatrix} x-\frac{y^3}{3} \\ y \end{pmatrix}
+.\] 
+Si può dimostrare che la mappa cercata è proprio questa, inoltre si ha che $H^{-1}$  esiste e vale:
+\[
+    H^{-1}:\mathbb{R}^2\to \mathbb{R}^2; \quad  
+    \begin{pmatrix} x \\ y \end{pmatrix} \xrightarrow{H^{-1}} \begin{pmatrix} x + \frac{y^2}{3} \\ y \end{pmatrix}
+.\] 
+Preso il campo vettoriale di equazione \ref{eq:8_1} ed applicandogli la trasformazione $H$ si ha che:
+\[
+    H\left(\begin{pmatrix} x(t)  \\ y(t)  \end{pmatrix}\right) = 
+    \begin{pmatrix} x_0e^t + \frac{y_0^2}{3}(e^{-2t}-e^t) - \frac{y_0^2}{3}e^{-2t}  \\ y_0e^{-t} \end{pmatrix} =
+    \begin{pmatrix} x_0e^t-\frac{y_0^2}{3}e^t \\ y_0e^{-t} \end{pmatrix}
+.\] 
+Possiamo riscrivere la mappa che abbiamo ottenuto in questo modo:
+\[
+    H\left(\varphi_t\left(\begin{pmatrix} x_0 \\ y_0 \end{pmatrix}\right) \right) =
+\begin{pmatrix}
+    e^t & 0 \\
+    0 & e^{-t} \\
+\end{pmatrix}
+\begin{pmatrix} x_0-\frac{y_0^2}{3} \\ y_0 \end{pmatrix} = \tilde{\varphi}_t\left(\begin{pmatrix} x_0-\frac{y_0^2}{3} \\ y_0 \end{pmatrix}\right)
+.\] 
+La prima matrice corrisponde proprio al flusso di fase lineare.
+\[
+    H(\varphi_t(\v{x})) = \tilde{\varphi}_t \left(\begin{pmatrix} x_0-\frac{y_0^2}{3} \\ y_0 \end{pmatrix}\right) = 
+    \tilde{\varphi_t}(H(\v{x}))
+.\] 
+\end{exmp}
+\noindent
+Notiamo che il teorema di HG assicura l'esistenza dell'isomorfismo ma non dice niente su come si costruisce. A tale scopo si usano solitamente due approcci: quello numerico e quello delle forme normali. \\
+In questo corso non abbiamo il tempo di approfondire questi aspetti.\\
+Rimane aperta anche un'altra questione: cosa succede se si ha uno stato stazionario non iperbolico\sidenote{\scriptsize autovalore con parte reale nulla} in un sistema non lineare? In generale non esiste alcun omeomorfismo. Se il sistema lo permette si può sempre utilizzare la definizione di Lyapunov per vedere se tale punto è stabile.\\
+Visto che solitamente il metodo di Lyapunov non è facilmente applicabile dobbiamo cercare altre tecniche.
+\begin{exmp}[in cui non posso affidarmi al Teorema di Hartman-Grobman]
+    Prendiamo il sistema dinamico:
+    \[
+	\frac{\text{d}^2 x}{\text{d} t^2} + x + \epsilon  x^2\frac{\text{d} x}{\text{d} t} = 0
+    .\] 
+    Abbiamo aggiunto all'oscillatore armonico un attrito non lineare. Cerchiamo gli stati stazionari e la loro stabilità.\\
+    L'intuizione ci dice che il sistema può esplodere o collassare a seconda del segno di $\epsilon$: se $\epsilon>0$ il sistema si stabilizza nell'origine, viceversa il sistema diverge.\\
+    Applichiamo al sistema gli strumenti standard di questo corso, riportiamolo da prima a sistema di equazioni differenziali del primo ordine.
+    \[
+    \begin{dcases}
+	\frac{\text{d} x}{\text{d} t} = y = F_1(x, y) \\
+	\frac{\text{d} y}{\text{d} t} = - x - \epsilon x^2 y = F_2(x, y) 
+    \end{dcases}
+    \implies  \v{V}_s = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
+    \]
+    Studiamo la stabilità di $\v{V}_s$ utilizzando la matrice $J$:
+    \[
+	A = J(\v{V}_s) = 
+	\left.
+        \begin{pmatrix}
+	0 & 1 \\
+	-1 - 2\epsilon xy & -\epsilon x^2 \\
+        \end{pmatrix}
+	\right|_{\v{V}= \v{V}_s}
+	= 
+        \begin{pmatrix}
+	0 & 1 \\
+	-1 & 0 \\
+        \end{pmatrix}
+        .\] 
+	Gli autovettori di $A$ sono descritti dal polinomio
+	\[
+	    P(\lambda) = \lambda^2 + 1 = 0 \implies  \lambda_1 = i, \ \lambda_1^* = -i
+	.\] 
+	Quindi abbiamo uno stato di tipo centro: linearizzando abbiamo riottenuto l'oscillatore armonico. In questo caso sappiamo che il centro è un centro stabile.\\
+	Tuttavia questa conclusione contraddice l'intuizione fisica della possibile esplosione del sistema in dipendenza dal segno di $\epsilon$.\\
+	In una situazione come questa dobbiamo trovare un metodo alternativo, possibilmente senza dover passare per il criterio di Lyapunov. Questo metodo è chiamato Teorema di Lyapunov.
+\end{exmp}
+\noindent

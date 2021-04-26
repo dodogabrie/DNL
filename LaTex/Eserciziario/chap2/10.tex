@@ -1,0 +1,77 @@
+\section{Teorema di Lyapunov}%
+\begin{ex}[Ripasso sul gradiente]
+    Presa 
+    \[
+	z = S(x, y) \in C^1 \qquad S\ge 0
+    .\] 
+    E preso l'insieme $E$ tale che $c \in \mathbb{R}^+$: 
+    \[
+	E = \left\{(x, y) | S(x, y) = c\right\}
+    .\] 
+    Preso quindi il gradiente:
+    $\nabla (S(x, y) -c) = (s_x, s_y) $ 
+    DImostrare che se si prende $P = (x_0, y_0) \in E$ tale per cui:
+    \[
+        \left. \frac{\partial S}{\partial y} \right|_{x_0, y_0}
+    .\] 
+    Allora $(s_x, s_y)$ è ortogonale alla tangente in $P$.
+\end{ex}
+\noindent
+\begin{ex}[Utilizzo del teorema di Lyapunov]
+    Sia dato il sistema dinamico a tempo continuo 
+    \[
+        \frac{\text{d}^2 x}{\text{d} t} + \epsilon x^2 \frac{\text{d} x}{\text{d} t} + x = 0 
+    .\] 
+    Dimostrare che $\v{V}_s = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$ è stabile secondo Lyapunov.
+\end{ex}
+\paragraph{Soluzione}%
+Definiamo dapprima la quantità $y = \frac{\text{d} x}{\text{d} t}$ in modo da rendere il sistema un SD in $\mathbb{R}^2$ del primo ordine a tempo continuo.\\
+Utilizziamo il teorema di Lyapunov con il seguente funzionale:
+\[
+    V(x, y): \mathbb{R}^2\to \mathbb{R}^2; \qquad V(x,y) = \frac{1}{2}x^2+\frac{1}{2}y^2
+.\] 
+Tale quantità rispetta le ipotesi del teorema, la derivata orbitale infatti vale:
+\[
+    \frac{\text{d} }{\text{d} t} V(\v{x}) = \nabla V \cdot \frac{\text{d} \v{x}}{\text{d} t} =
+    (x,y) \cdot (y, -\epsilon x^2y - x) = -\epsilon x^2y^2 
+.\] 
+Si vede immediatamente che per $\epsilon >0$ il sistema è stabile secondo Lyapunov, viceversa tale stato stazionario è instabile.
+\begin{ex}[Sul teorema di Krasovskii]
+   Prendiamo le equazioni di Lorenz: 
+   \[
+   \begin{dcases}
+       \frac{\text{d} x}{\text{d} t} = 6(y-x) \\
+       \frac{\text{d} y}{\text{d} t} = r x - y - xz \\
+       \frac{\text{d} z}{\text{d} t} = xy - bz
+   \end{dcases}
+   \]
+   Con i parametri: $\sigma  >0, r > 0 , b > 0$ ( I parametri utilizzati da Lorenz per mostrare il caos deterministico sono $\sigma  = 10, r = 28, b = \frac{8}{3}$).
+   \begin{enumerate}
+       \item Trovare gli stati stazionari (ce ne sono 3).
+       \item Determinare le proprietà di stabilità di questi stati stazionari.Trovare gli stati stazionari (ce ne sono 3).
+       \item Determinare le proprietà di stabilità di $\v{V}_{s_1} = \v{0}$ al variare di $r$.
+       \item Mostrare che per $r = 1$ $\v{V}_{s_1}$ è non iperbolico.
+       \item Utilizzando la seguente funzione di Lyapunov:
+	   \[
+	       V(x, y, z) = \frac{1}{2}\left(\frac{x^2}{\delta} + y^2 + z^2\right)
+	   .\] 
+	 Mostrare che $\v{V}_{s_1}$ è stabile secondo Lyapunov.
+   \end{enumerate}
+\end{ex}
+\noindent
+\begin{ex}[]
+    Dato il SD a tempo continuo:
+    \[
+    \begin{dcases}
+    \frac{\text{d} x_1}{\text{d} t} = -x_2^3\\
+    \frac{\text{d} x_2}{\text{d} t} = x_1^3
+    \end{dcases}
+    \]
+    \begin{enumerate}
+        \item Determinare gli stati stazionari.
+	\item Determinare le proprietà di stabilità degli stati stazionari.
+	\item Dimostrare, utilizzando il teorema di Lyapunov che l'origine è stabile secondo Lyapunov.
+	\item Determinare la superficie dove giacciono tutte le orbite del sistema dinamico.
+    \end{enumerate}
+\end{ex}
+\noindent

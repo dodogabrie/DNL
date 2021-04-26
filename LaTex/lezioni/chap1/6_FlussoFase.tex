@@ -66,7 +66,7 @@ Notiamo che se $\varphi_t$  è invertibile allora il suo inverso è $\varphi_{-t
     .\] 
     Prima di ricavare il flusso di fase determiniamo la soluzione:
     \[
-        \frac{dx}{x^2-1} = dt \implies  dx \left[\frac{1}{x-1}-\frac{1}{x+1}\right] = dt
+        \frac{dx}{x^2-1} = dt \implies  \frac{dx}{2} \left[\frac{1}{x-1}-\frac{1}{x+1}\right] = dt
     .\] 
     Integrando a destra e sinistra:
     \[
@@ -87,9 +87,8 @@ Notiamo che se $\varphi_t$  è invertibile allora il suo inverso è $\varphi_{-t
     .\] 
     In questo caso abbiamo un flusso che non è rappresentato da una matrice ma da un funzionale. Possiamo dimostrare che è un flusso: le prime due richieste sono ovvie. La terza invece è lasciata per esercizio, si tratta di fare tanti conti.
 \end{exmp}
-\noindent
-\subsection{Flusso di Fase per sistemi non autonomi}%
-\label{sub:Flusso di Fase per sistemi non autonomi}
+\subsection{Generalizzazione $n$ dimensionale}%
+\label{sub:Generalizzazione $n$ dimensonale}
 Prendiamo nuovamente la definizione di Flusso partendo dal solito sistema:
 \[
     \begin{dcases}
@@ -110,6 +109,8 @@ Le proprietà della $\varphi$ sono:
     \item $\varphi (0, \vect{x}_0) = \vect{x}_0$.
     \item $\varphi (t + s, \vect{x}_0) = \varphi (t, \varphi (s, \vect{x}_0))$.
 \end{enumerate}
+\subsection{Flusso di Fase per sistemi non autonomi}%
+\label{sub:Flusso di Fase per sistemi non autonomi}
 Introduciamo adesso il flusso nel caso in cui il sistema non è autonomo. Un sistema non autonomo è generalmente caratterizzato dalle equazioni:
 \[
     \begin{dcases}
@@ -131,7 +132,7 @@ Supponiamo che esista e sia unica la soluzione del IVP e che tale soluzione sia 
 Definiamo il flusso di questo sistema come la soluzione dell'IVP $\Phi(t, t_0, \vect{x}_0)$. Le proprietà di $\Phi$  sono:
 \begin{enumerate}
     \item $\Phi(t, t_0, \vect{x}_0)$ eredità tutte le proprietà del funzionale $F$.
-    \item $\Phi(t, t_0, \vect{x}_0) = \vect{x}_0$ (Proprietà di identità).
+    \item $\Phi(t_0, t_0, \vect{x}_0) = \vect{x}_0$ (Proprietà di identità).
     \item $\Phi(t_2, t_0, \vect{x}_0) = \Phi(t_2, t_1, \Phi(t_1, t_0, \vect{x}_0))$ con $t_0 \le t_1\le t_2$.
 \end{enumerate}
 Potremmo essere più formali definendo lo spazio:
@@ -145,7 +146,7 @@ Quindi definiamo il flusso di fase come il funzionale (di variabile generica $*$
 Che gode delle solide proprietà di flusso, che ripetiamo:
 \begin{enumerate}
     \item $\varphi(t, t_0, \vect{x}_0) \in C^r$ con $r\ge 1$.
-    \item $\varphi(t, t_0, \vect{x}_0) = \vect{x}_0$ (Proprietà di identità).
+    \item $\varphi(t_0, t_0, \vect{x}_0) = \vect{x}_0$ (Proprietà di identità).
     \item $\varphi(t_2, t_0, \vect{x}_0) = \varphi(t_2, t_1, \varphi(t_1, t_0, \vect{x}_0))$ con $(t_2, t_1) \in \mathbb{R}^2_{\ge }$, e anche $(t_1, t_0) \in \mathbb{R}^2_{\ge }$ .
 \end{enumerate}
 \begin{exmp}[Flusso per Process Formulation]

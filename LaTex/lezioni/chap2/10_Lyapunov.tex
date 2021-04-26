@@ -1,0 +1,329 @@
+\section{Teorema di Lyapunov}%
+\label{sub:Teorema di Lyapunov}
+Preso un sistema dinamico in $\mathbb{R}^2$ del tipo:
+\[
+\begin{dcases}
+    \frac{\text{d} x}{\text{d} t} = f(x, y) \\
+    \frac{\text{d} y}{\text{d} t} = g(x, y) 
+\end{dcases}
+\qquad
+\v{W}= \begin{pmatrix} x \\ y \end{pmatrix}
+\qquad
+f,g \in C^r \ (r\ge 1) 
+\]
+Supponiamo che esista uno stato stazionario $\v{W}_s$ per il sistema.
+\[
+\begin{dcases}
+    f(x_s, y_s) =0\\
+    g(x_s, y_s) =0
+\end{dcases}
+\]
+Supponiamo inoltre che esista una funzione 
+\[
+    V:\mathbb{R}^2\to \mathbb{R} \qquad  V \in C^1
+.\] 
+Con le seguenti proprietà
+
+\begin{enumerate}
+    \item $V(x_s, y_s) =0$.
+\marginpar{
+        \captionsetup{type=figure}
+        \incfig{2_10_1}
+	\caption{\scriptsize Curve di livello crescenti, una inclusa nell'altra, con al centro il punto stazionario $\v{W}_s$}
+    \label{fig:2_10_1}
+    }
+    \item Le curve $V(x, y) = c$ (curve di livello) sono chiuse e contenti $\v{W}_s$ al loro interno.
+    \item $V(x, y) >0$.
+    \item Le curve di livello sono crescenti, ovvero prendendo $c_1 > c_2$ la curva di $c_2$ ingloba la curva di $c_1$.
+\end{enumerate}
+Preso un opportuno intorno $U$ del punto stazionario per avere stabilità del punto stazionario il campo vettoriale deve essere tangente alla frontiera di $U$ o puntare all'interno.
+\marginpar{
+        \captionsetup{type=figure}
+        \incfig{2_10_2}
+        \caption{\scriptsize Campo vettoriale che punta verso l'interno o è tangente alla curva di livello definita dall'intorno $U$.}
+    \label{fig:2_10_2}
+    }
+\noindent\\
+Vogliamo esprimere la condizione che il campo vettoriale punti verso l'interno dello stato stazionario utilizzando la definizione di curva di livello
+\marginpar{
+        \captionsetup{type=figure}
+        \incfig{2_10_3}
+	\caption{\scriptsize Esempio di insieme $V(x, y) \in \mathbb{R}^2$, definito come un paraboloide con al centro il punto stazionario.}
+    \label{fig:2_10_3}
+    }
+
+\[
+    V(x, y) - c = 0
+.\] 
+e la definizione stessa di campo vettoriale.\\
+A tale scopo si può costruire un vettore partendo dalla curva $V$ che sia perpendicolare ad essa punto per punto:  $\nabla V$.\\
+Per esprimere il fatto che il campo vettoriale punta (o è tangente) verso l'interno della curva di livello di interesse utilizziamo la seguente condizione:
+\[
+    \nabla V(x, y) \cdot (\frac{\text{d} x}{\text{d} t} , \frac{\text{d} y}{\text{d} t} ) \le 0
+.\] 
+\begin{defn}[Derivata orbitale]
+    Data $V:\mathbb{R}^n\to \mathbb{R}$, $D \in \mathbb{R}^n $ e su $D$ sia definito il campo vettoriale (S.D. a tempo continuo)
+    \[
+	\frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) 
+    .\] 
+    Si definisce derivata orbitale la seguente quantitità scalare\sidenote{\scriptsize Ricordando che le $\v{x}$ sono funzioni del tempo}:
+    \[
+	\frac{\text{d} V}{\text{d} t} = \frac{\text{d} }{\text{d} t} V(\v{x}) = \nabla V(\v{x}) \cdot \frac{\text{d} \v{x}}{\text{d} t} 
+    .\] 
+\end{defn}
+\noindent
+\begin{thm}[Teorema di Lyapunov]
+   Sia dato il sistema dinamico a tempo continuo:
+   \[
+       \frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) \qquad  \v{x}\in \mathbb{R}^n, \qquad  F:\mathbb{R}^n \to  \mathbb{R}^n
+   .\] 
+   E sia $\v{x}_s\in \mathbb{R}^n$ uno stato stazionario ($F(\v{x}_s) = 0$). Sia inoltre $V:U\to \mathbb{R}$ con $U\in \mathbb{R}^n$ e $\v{x}_s \in U$, $V \in C^1$.\\
+   Se $V(\v{x}) $ soddisfa le seguenti condizioni:
+   \begin{itemize}
+       \item $V(\v{x}_s) = 0$, $V(\v{x}) >0$ $\forall \v{x} \neq \v{x}_s$  (ipotesi di "paraboloide").
+       \item La derivata orbitale è tale per cui: $\frac{\text{d} V}{\text{d} t} \le 0 $ in $U - \left\{\v{x}_s\right\}$.
+   \end{itemize}
+   Allora $\v{x}_s$ è stabile secondo Lyapunov.  Inoltre se risulta in $U-\left\{\v{x}_s\right\}$  che 
+   \[
+       \frac{\text{d} V}{\text{d} t} < 0 
+   .\] 
+   Allora $\v{x}_s$ è asintoticamente stabile.
+\end{thm}
+\noindent
+\begin{proof}
+Prendiamo $\delta >0$ e definiamo i seguenti insiemi:
+\[\begin{aligned}
+    &B_{\delta }(\v{x}_s) = \left\{\v{x}| \left|\v{x}-\v{x}_s\right|\le \delta\right\}\\
+    &\overline{B}_{\delta }(\v{x}_s) = \left\{\v{x}| \left|\v{x}-\v{x}_s\right| = \delta\right\}
+.\end{aligned}\]
+\marginpar{
+        \captionsetup{type=figure}
+        \incfig{2_10_5}
+        \caption{\scriptsize Intorno $U_1$ in cui giace il minimo  sul bordo $\overline{B}_\delta$ }
+    \label{fig:2_10_5}
+    }
+\noindent
+In cui il secondo insieme è il contorno del primo. In questa superficie sferica ci sarà un punto in cui la funzione $V$ avrà un minimo (funzione continua su un compatto\ldots). Chiamiamo il minimo di $V(\v{x})$ su $\overline{B}_\delta$ come $m$.\\
+Definiamo allora un nuovo intorno di $\v{x}_s$ come:
+\[
+    U_1 = \left\{\v{x}| \v{x}\in B_\delta (\v{x}_s), V(\v{x}) < m \right\}
+.\] 
+Prendendo $(x_0, y_0) \in U_1$ l'orbita corrispondente non potrà lasciare $B_\delta (\v{x}_s) $ poiche per ipotesi si ha
+\[
+    \frac{\text{d} V}{\text{d} t} \le 0
+.\] 
+e questo dimostra la stabilità dello stato stazionario.
+\end{proof}
+\noindent
+Si può estendere questo teorema anche al caso non autonomo (non fatto in classe per assenza di tempo).
+\begin{thm}[Instabilità]
+    Nelle stesse ipotesi del teorema precedente, se risulta che 
+     \[
+	 \frac{\text{d}}{\text{d} t} V(\v{x}) > 0 \text{ per } \v{x}\in U-\left\{\v{x}_s\right\}
+    .\] 
+    Allora $\v{x}_s$ è instabile.
+\end{thm}
+\noindent
+\begin{exmp}[]
+    Dato il sistema dinamico a tempo continuo
+    \[
+    \begin{dcases}
+	\frac{\text{d} x_1}{\text{d} t} = 2x_2 + x_1(x_1^2 + x_2^4) = F_1(x_1,x_2)  \\
+	\frac{\text{d} x_2}{\text{d} t} = -2x_1 + x_2(x_1^2 + x_2^4) = F_2(x_1,x_2) 
+    \end{dcases}
+    \]
+    Si trova subito che gli stati stazionari sono:
+    \[
+        \v{W}_s = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
+    .\] 
+    (Dimostrare per casa che è l'unico). Calcoliamo la Jacobiana del sistema\sidenote{\scriptsize Notando subito che la parte di equazioni non lineare va via}:
+    \[
+	J(\v{W}_s) =
+    \begin{pmatrix}
+	0  & 2 \\
+	-2 & 0 \\
+    \end{pmatrix}
+    .\] 
+    Quindi abbiamo autovalori complessi coniugati: $\lambda_{1,2} = \pm 2i$. Questo implica l'imopssibilità di utilizzare HG. Ci resta soltanto il teorema di Lyapunov.\\
+    Il costo di utilizzare il teorema di Lyapunov è che suppone l'esistenza della funzione di $V$ ma non ci dà un criterio per costruirla! La costruzione di tale funzione ha tutta una sua letteratura a se, noi vedremo solo superficialmente questo aspetto.\\
+    Ad esempio, per un sistema conservativo, una buona funzione di Lyapunov è l'energia stessa.\\ 
+    Nel caso in questione abbiamo
+    \[
+	V(x_1, x_2) = \frac{1}{2}x_1^2 + \frac{1}{2}x_2^2
+    .\] 
+    Verifichiamo se è una funzione di Lyapunov.
+    \begin{itemize}
+	\item $V(\v{W}_s) = 0$.
+	\item $V(\v{W})>0 $  $ \forall \v{W}\neq \begin{pmatrix} 0 \\ 0 \end{pmatrix}$.
+	\item $\frac{\text{d} }{\text{d} t} V(\v{W}) = \nabla V \cdot F(\v{W})  \le 0$.
+    \end{itemize}
+    I primi due sono verificati, l'ultimo non è banale:
+    \[\begin{aligned}
+	\frac{\text{d} V}{\text{d} t} &= (x_1, x_2) \cdot (2x_2 + x_1(x_1^2 + x_2^4) , - x_1 + x_2(x_1^2 + x_2^4)  ) =\\
+				      &= (x_1^2 + x_2^4) (x_1^2 + x_2^2) >0
+    .\end{aligned}\]
+    Quindi si conclude subito che $\v{W}_s$ è instabile.
+\end{exmp}
+\noindent
+\begin{exmp}[Oscillatore non lineare con forzante dissipativa]
+    Prendiamo il SD già visto in precedenza:
+    \[
+        \frac{\text{d} ^2x}{\text{d} t^2} + \epsilon  x^2\frac{\text{d} x}{\text{d} t} + x = 0 
+    .\] 
+    Negli esercizi si è mostrato che, per $\epsilon >0$ il sistema presenta uno stato stabile secondo Lyapunovo in $x = \dot{x} = 0$. Tale stato inoltre risulta anche asintoticamente stabile.\\
+    Possiamo giustificare quest'ultima assunzione con il fatto che, da un punto di vista fisico, se $\epsilon$ è positivo abbiamo un oscillatore armonico con una perturbazione che porta via energia al sistema.
+    \marginpar{
+            \captionsetup{type=figure}
+            \incfig{2_10_6}
+            \caption{\scriptsize Regioni con derivata orbitale nulla e regioni con derivata orbitale negativa. Le freccie blu indicano l'azione della mappa sui punti appartententi ai due assi.}
+        \label{fig:2_10_6}
+        }\\
+    Tuttavia il teorema di Lyapunov non è in grado di assicurarci la stabilità asintotica quando la quantità $\frac{\text{d} V}{\text{d} t}$ non è strettamente minore di zero, come ad esempio avviene in questo caso in cui:
+    \[
+        V(x,\dot{x}) = \frac{1}{2}x^2 + \frac{1}{2}\dot{x}^2 \quad \implies  \quad
+	\frac{\text{d} V}{\text{d} t} = - \epsilon x^2\dot{x}^2
+    .\] 
+    Tale derivata orbitale si annulla infatti sui due assi mostrati in figura \ref{fig:2_10_6}. \\
+    Possiamo tuttavia osservare che l'azione del sistema dinamico sui punti di quest'asse (ad esempio $P$ e $P'$ in figura \ref{fig:2_10_6}) è quello di traslarli verso le zone in cui la derivata orbitale del funzionale $V$ è strettamente negativa: quelle in cui i punti "scivolano verso il centro"\sidenote{\scriptsize Possiamo sempre immaginare il funzionale $V$ come il parabolodie avente al centro il punto stazionario}.
+\end{exmp}
+\noindent
+Per quanto visto nel precedente esempio deve esistere una estensione del teorema di Lyapunov che tratta anche questi casi particolari, infatti si parla di\sidenote{\scriptsize Stability of motion, N. Krasovskii (1963)}:
+\begin{thm}[Teorema di Krasovskii]
+    Dato il sistema dinamico a tempo continuo:
+    \[
+	\frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) \quad  \v{x}\in \mathbb{R}^n \quad  F:\mathbb{R}^n\to \mathbb{R}^n \quad  
+	F \in C^r, \ (r\ge 1) 
+    .\] 
+    Avente $\v{x}_s$ stato stazionario. Supponiamo esista la funzione di Lyapunov $V(\v{x})$, $V(\v{x}) \in C^1$, $V:\mathbb{R}^n\to \mathbb{R}^n$.\\
+    Sia $D_\delta$ un intorno definito come:
+    \[
+	D_\delta  = \left\{\v{x}\in \mathbb{R}^n \ | \ V(\v{x}) < \delta\right\}
+    .\] 
+    In cui vale $\frac{\text{d} V}{\text{d} t} \le 0$ $\forall \v{x} \in D_\delta$. \\
+    Supponiamo inoltre che l'unica soluzione dell'IVP
+    \[
+    \begin{dcases}
+	\frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) \\
+	\v{x}(0) = \v{x}_0
+    \end{dcases}
+    \]
+    giacente interamente in $D_\delta$ e che soddisfa $\frac{\text{d} V}{\text{d} t} = 0 $  sia soltanto $\v{x}_s$.\\
+    Allora $\v{x}_s$ è asintoticamente stabile.
+\end{thm}
+\noindent
+Applichiamo adesso il teorema all'oscillatore non lineare dell'esempio precedente.
+\begin{exmp}[Oscillatore non lineare e teorema di Krasovskii]
+    \[
+        \frac{\text{d} ^2x}{\text{d} t^2} + \epsilon  x^2\frac{\text{d} x}{\text{d} t} + x = 0 
+    .\] 
+    Riscriviamolo dapprima nella forma orinaria:
+    \[
+    \begin{dcases}
+    \frac{\text{d} x_1}{\text{d} t} = x_2\\
+    \frac{\text{d} x_2}{\text{d} t} = - x_1 - \epsilon x_1^2x_2
+    \end{dcases}
+    \]
+    Prendiamo come intorno $D_\delta$ l'intervallo dell'asse $x_1$:
+    \[
+	D_\delta  = \left\{(x_1, x_2) \in \mathbb{R}^2 \ | \ \left|x_1\right| < k; \ x_2 = 0  \right\}
+    .\] 
+    Visto che su tale asse la funzione $V(x)$ ha derivata orbitale nulla allora possiamo prendere $\delta$ arbitrario per il nostro intorno. \\
+    Rimane da mostrare che l'unica soluzione che rimane $D_\delta$ è la stazionaria (in questo caso quella nulla). Per farlo basta mostrare che per qualunque condizione iniziale presa in $D_\delta$ il SD "butta fuori" l'orbita da tale intervallo.\\
+    Prendento allora:
+    \[
+        \v{V}_p = \begin{pmatrix} x_p \\ 0 \end{pmatrix} \quad  0 < x_p < k
+    .\] 
+    Il campo vettoriale in $\v{V}_p$ sarà:
+    \[
+    \begin{dcases}
+    \frac{\text{d} x_1}{\text{d} t} = 0\\
+    \frac{\text{d} x_2}{\text{d} t} = - x_p \neq 0
+    \end{dcases}
+    \]
+    Quindi abbiamo che con queste condizioni iniziali l'orbita esce da $D_\delta$, l'unica soluzione che può rimanervi è appunto lo stato stazionario. 
+\end{exmp}
+\noindent
+\begin{exmp}[Costruzione della funzione di Lyapunov]
+   Dato il sistema dinamico:
+   \[
+   \begin{dcases}
+   \frac{\text{d} x}{\text{d} t} = - 2y + yz\\
+   \frac{\text{d} y}{\text{d} t} = x - xz\\
+   \frac{\text{d} z}{\text{d} t} = xy 
+   \end{dcases}
+   \]
+   Verificare per casa che l'unico stato stazionario $\v{V}_s$ è l'origine. Studiamone la stabilità.
+   \[
+       J(\v{V}_s) = 
+       \left.
+       \begin{pmatrix}
+           0 & -2 & y \\
+           1 & 0 & -x \\
+           y & x & 0 \\
+       \end{pmatrix}
+       \right|_{\v{V}_s}
+       = 
+       \begin{pmatrix}
+           0 & -2 & 0 \\
+           1 & 0 & 0 \\
+           0 & 0 & 0 \\
+       \end{pmatrix}
+   .\] 
+   L'equazione secolare della matrice è:
+   \[
+       -\lambda(\lambda^2 + 2) = P(\lambda) = 0 \implies  \lambda_1 = 0; \lambda_{2,3}=\pm i\sqrt{2} 
+   .\] 
+   Quindi adesso non possiamo dire altro poiché lo stato non è iperbolico, l'unica strada è il teorema di Lyapunov che comporta la grossa difficoltà di costruire l'omonima funzione $V$. \\
+   Operativamente noi possiamo procedere a tentativi, ad esempio:
+   \[
+       V(x, y, z) = c_1x^2 + c_2y^2 + c_3z^2
+   .\] 
+   Questa si annulla nello stato stazionario, valutiamone la derivata orbitale:
+   \[\begin{aligned}
+       \frac{\text{d} V}{\text{d} t} =& (2c_1x, 2c_2y, 2c_3z) \cdot (y(z-2), x(1-z), xy) =\\
+				      &=2c_1xy(z-2) + 2c_2yx(1-z) + 2c_3zxy =  \\
+				      &= xyz(2c_1-2c_2+2c_3) + xy(2c_2-4c_1) 
+   .\end{aligned}\]
+   Visto che il teorema di Lyapunov ci chiede che questa derivata sia minore \textbf{o uguale} a zero noi potremmo essere "furbi" e richiedere l'annullamento di questa quantità, i coefficienti devono quindi rispettare il sistema:
+   \[
+   \begin{dcases}
+   2c_1-2c_2+2c_3=0\\
+   2c_2-4c_1=0 \implies  c_2 = 2c_1
+   \end{dcases}
+   \]
+   Inserendo la seconda nella prima si trova anche che $c_3 = c_1$. Possiamo ad esempio scegliere $c_1 > 0$ e di conseguenza $c_2, c_3 > 0$. Quindi vale anche l'ipotesi che il funzionale sia positivo.
+   \[
+       V(x, y, z) = x^2 + 2y^2 + z^2
+   .\] 
+   Segue quindi la conclusione che $\v{V}_s$ è stabile secondo Lyapunov.
+\end{exmp}
+\noindent
+Dato un sistema dinamico a tempo continuo
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) \qquad  \v{x}\in \mathbb{R}^n \qquad  F: \mathbb{R}^n\to \mathbb{R}^n
+.\] 
+Supponiamo che esista $V: \mathbb{R}^n\to \mathbb{R}$  tale per cui
+\[
+    \frac{\text{d} V}{\text{d} t} = 0
+.\] 
+Allora tutte le orbite del SD sono superfici definite da $V(\v{x}) = c$.
+\begin{exmp}[Oscillatore]
+    \[
+    \begin{dcases}
+    \frac{\text{d} x}{\text{d} t} = y\\
+    \frac{\text{d} y}{\text{d} t} = -x
+    \end{dcases}
+    \]
+    Prendiamo il funzionale:
+    \[
+	V(x, y) = \frac{x^2+y^2}{2}
+    .\] 
+    Quindi 
+    \[
+	\frac{\text{d} V}{\text{d} t} = (x, y) \cdot (y, -x) = 0
+    .\] 
+    Da cui tutte le orbite del sistema soddisfano l'equazione:
+    \[
+        x^2+ y^2 = \overline{c}
+    .\] 
+\end{exmp}
