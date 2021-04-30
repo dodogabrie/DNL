@@ -277,7 +277,8 @@ La condizione di invarianza si scrive allo stesso modo del caso bidimensionale:
     \[
 	y(x) = h(x) = q + rx + ax^2 + bx^3 + cx^4 + O(x^5) 
     .\] 
-    e tramite questa espansione polinomiale cerchiamo di capire quali coefficienti permettono di rispettare la condizione di invarianza.\\
+    La località del manifold sta proprio nell'aver troncato questa espressione per $h(x)$.\\
+    Tramite questa espansione polinomiale cerchiamo di capire quali coefficienti permettono di rispettare la condizione di invarianza.\\
     $ q$ deve essere nullo poichè il manifold deve passare dall'origine, $r$ è invece nullo per la condizione di tangenza in $0$.
     \[
 	\frac{\text{d} h(x) }{\text{d} x} = 2ax + 3bx^2+ 4cx^4 + \ldots
@@ -294,7 +295,7 @@ La condizione di invarianza si scrive allo stesso modo del caso bidimensionale:
     .\] 
     Eguagliando le varie potenze si scopre che rimane soltanto $a = \frac{1}{3}$.
     \[
-	y(x) = h(x) = \frac{x^2}{3}
+	W_{loc}^u(0)  = y(x) = h(x) = \frac{x^2}{3}
     .\] 
     Determiniamo adesso il Manifold stabile. 
     \[
@@ -314,7 +315,247 @@ La condizione di invarianza si scrive allo stesso modo del caso bidimensionale:
 	ay^2 + by^3 = (2ay + 3by^2) (-y + a^2y^4 + b^2y^6) 
     .\] 
     Uguagliando come prima i coefficienti si ottiene che tutti i coefficienti sono nulli.\\
-    Implica che il manifold stabile non lineare è proprio $x = 0$, significa che la dinamica lineare nel caso del sottospazio stabile è proprio esatta! Non è solo una approssimazione.
+    Implica che il manifold stabile non lineare ($W_{loc}^{s}(0)$)  è proprio $x = 0$, significa che la dinamica lineare nel caso del sottospazio stabile è proprio esatta! Non è solo una approssimazione.
 \end{exmp}
 \noindent
-
+\begin{exmp}[Applicazione del teorema del Manifold Stabile, Instabile, Centro]
+    Prendiamo il sistema dinamico definito come:
+    \[
+    \begin{dcases}
+    \frac{\text{d} x_1}{\text{d} t} = x_2\\
+    \frac{\text{d} x_2}{\text{d} t} = - x_1 + x_1^3 - 2\mu x_2
+    \end{dcases}
+    \]
+    Questo è nuovamente l'oscillatore di Duffling nella forma non forzata.\\
+    Troviamo gli stati stazionari, per uno di questi cerchiamo di esprimere il Local Stable/Unstable Manifold.
+    \[\begin{aligned}
+    &\begin{dcases}
+    x_2=0\\
+    -x_1 + x_1^3 - 2 \mu  x_2 = 0
+    \end{dcases}
+    \implies \\
+    &\implies\v{V}_{1s} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \quad \v{V}_{2s} = \begin{pmatrix} -1 \\ 0 \end{pmatrix} \quad
+    \v{V}_{3s} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}
+    .\end{aligned}\]
+    \[
+	J(x_1,x_2) = 
+        \begin{pmatrix}
+	    0 & 1 \\
+	    -1+3x_1^2 & -2\mu \\
+        \end{pmatrix}
+	\implies 
+	J(0, 0) = 
+    \begin{pmatrix}
+	0 & 1 \\
+	-1 & -2\mu 
+    \end{pmatrix}
+    .\] 
+    \[
+    P(\lambda) = (\lambda  + \mu)^2 \implies  \lambda_{1,2} = - \mu
+    .\] 
+    Quindi il primo stato stazionario (origine) è stabile.\\
+    Notiamo che per la Jacobiana gli stati $\v{V}_{2s}$ e $\v{V}_{3s}$ sono equivalenti (in termini di stabilità).
+    \[
+	J(\v{V}_{3s}) = J(1, 0) = 
+    \begin{pmatrix}
+	0 & 1 \\
+	2 & -2\mu \\
+    \end{pmatrix}
+    .\] 
+    \[
+	P(\lambda) = \lambda^2 + 2\mu  \lambda  - 2 = 0
+    .\] 
+    Visto che il determinante della matrice per gli autovalori è:
+    \[
+        \Delta  = 4\mu^2 + 8 > 0
+    .\] 
+    E la traccia è negativa allora abbiamo due selle in $\v{V}_{2/3 s}$ .\\
+    In particolare si ha:
+    \[
+        \lambda_{1,2} = \frac{-2\mu  \pm 2\sqrt{\mu^2 + 2}}{2}=-\mu\pm\sqrt{\mu^2 + 2} 
+    .\] 
+    Cerchiamo adesso gli autovettori relativi allo stato $\v{V}_{3s}$:
+    \[
+	J(\v{V}_{3s}) \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = 
+    \begin{pmatrix}
+	0 & 1 \\
+	2 & -2\mu \\
+    \end{pmatrix}
+    \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}
+    = 
+	\lambda_1\begin{pmatrix} x_1 \\ x_2 \end{pmatrix}
+    .\] 
+    Guardando la matrice si vede subito che gli autovettori devono essere del tipo:
+    \[
+        \v{v}_1 = \begin{pmatrix} 1 \\ \lambda_1 \end{pmatrix} \qquad  \v{v}_2 = \begin{pmatrix} 1 \\ \lambda_2 \end{pmatrix}
+    .\] 
+    Quindi abbiamo gli insiemi:
+    \[\begin{aligned}
+	&E^s = \left\{\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} | \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} \alpha  \v{v_1}, 
+	\alpha  \in \mathbb{R}\right\}\\
+        &E^u = \left\{\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} | \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} \alpha  \v{v_2}, 
+	\alpha  \in \mathbb{R}\right\}
+    .\end{aligned}\]
+    Trasliamo adesso nell'origine lo stato stazionario $\v{V}_{3s} = (1, 0)$.
+    \[
+	\v{x} = \v{x}_s + \v{y} \implies  \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \v{V}_{3s} + \v{y} \implies 
+	\v{y} = \begin{pmatrix} x_1 - 1 \\ x_2 \end{pmatrix}
+    .\] 
+    Le nuove equazioni si scrivono come:
+    \[
+    \begin{dcases}
+    \frac{\text{d} x_1}{\text{d} t} = \frac{\text{d} y_1}{\text{d} t} = y_2\\
+    \frac{\text{d} x_2}{\text{d} t} = \frac{\text{d} y_2}{\text{d} t} = - (1 + y_1) + (1 + y_1)^3 - 2\mu y_2 
+    \end{dcases}
+    \]
+    Riassumendo si ha il sistema dinamico traslato:
+    \[
+    \begin{dcases}
+    \frac{\text{d} y_1}{\text{d} t} = y_2\\
+    \frac{\text{d} y_2}{\text{d} t} = 2y_1 -2\mu y_2 + 3y_1^2 + 3y_1^3
+    \end{dcases}
+    .\] 
+    Che in forma matriciale appare come:
+    \[
+    \frac{\text{d} }{\text{d} t} \begin{pmatrix} y_1 \\ y_2 \end{pmatrix} = 
+    \begin{pmatrix}
+        0 & 1 \\
+        2 & -2\mu \\
+    \end{pmatrix}
+    \begin{pmatrix} y_1 \\ y_2 \end{pmatrix} + \begin{pmatrix} 0 \\ 3y_1^2 + y_1^3 \end{pmatrix}
+    \]
+    Si risale quindi alla forma standar per applicare il teorema:
+    \[
+	\frac{\text{d} \v{y}}{\text{d} t} = A \v{y} + R(\v{y}) 
+    .\] 
+    Introduciamo allora la trasformazione:
+    \[
+        \begin{pmatrix} u \\ v \end{pmatrix}=T^{-1}\begin{pmatrix} y_1 \\ y_2 \end{pmatrix} \qquad
+	T = 
+    \begin{pmatrix}
+	1  & 1 \\
+	\lambda_1 & \lambda_2 \\
+    \end{pmatrix}
+    .\] 
+    Applichiamo $T^{-1}$  a destra e sinistra della equazione del moto per $\v{y}$:
+    \[
+        T^{-1}\frac{\text{d} \v{y}}{\text{d} t} = \frac{\text{d} }{\text{d} t} T^{-1}\v{y}=
+	T^{-1}A \v{y} + T^{-1}R(\v{y}) 
+    .\] 
+    Utilizzando una identità si ha che:
+    \[
+        \frac{\text{d} }{\text{d} t} \begin{pmatrix} u \\ v \end{pmatrix}= 
+	T^{-1}A TT^{-1}\v{y} + T^{-1}R(\v{y}) 
+    .\] 
+    Per casa verificare che:
+    \[
+        T^{-1}A T  = 
+    \begin{pmatrix}
+	 \lambda_1 & 0 \\
+	 0 & \lambda_2  \\
+    \end{pmatrix}
+    .\] 
+    Dato l'input:
+    \[
+        T^{-1}=
+    \begin{pmatrix}
+	\frac{\lambda_2}{\lambda_2-\lambda_1} & \frac{1}{\lambda_1-\lambda_2} \\
+	\frac{\lambda_1}{\lambda_1-\lambda_2} & \frac{1}{\lambda_2-\lambda_1} \\
+    \end{pmatrix}
+    .\] 
+    Notiamo anche che, per definizione di trasformazione $T$ si ha:
+    \[
+        \begin{pmatrix} y_1 \\ y_2 \end{pmatrix} = T \begin{pmatrix} u \\ v \end{pmatrix} \implies 
+	\begin{pmatrix} y_1 \\ y_2 \end{pmatrix} = 
+    \begin{pmatrix}
+	1  & 1 \\
+	\lambda_1 & \lambda_2 \\
+    \end{pmatrix}
+    \begin{pmatrix} u \\ v \end{pmatrix} = 
+    \begin{pmatrix} u + v \\ \lambda_1 u + \lambda_2 v \end{pmatrix}
+    .\] 
+    Quindi abbiamo:
+    \[
+	R(\v{y}) \to \overline{R}(u, v): \qquad  \begin{pmatrix} 0 \\ 3y_1^2 + y_1^3 \end{pmatrix}\to 
+	\begin{pmatrix} 0 \\ 3(u + v) ^2 + (u + v) ^3 \end{pmatrix}
+    .\] 
+    E facendo un bel pò di conti si conclude che:
+    \[
+	T^{-1}R(\v{y}) = 
+	T^{-1}\overline{R}(u, v) = 
+	\frac{1}{\lambda_2-\lambda_1}
+	\begin{pmatrix} -3(u + v) ^2 - (u + v)^3 \\ 3(u + v)^2 + (u + v)^3 \end{pmatrix}
+    .\] 
+    \[
+        \frac{\text{d} }{\text{d} t} \begin{pmatrix} u \\ v \end{pmatrix}=
+    \begin{pmatrix}
+	\lambda_1 & 0 \\
+	0  & \lambda_2 \\
+    \end{pmatrix}
+    \begin{pmatrix} u \\ v \end{pmatrix} + 
+    \frac{1}{\lambda_2-\lambda_1}
+	\begin{pmatrix} -3(u + v) ^2 - (u + v)^3 \\ 3(u + v)^2 + (u + v)^3 \end{pmatrix}
+    .\] 
+    Scriviamo adesso una relazione non lineare tra $u$ e $v$: vogliamo scrivere la coordinata della parte stabile in funzione della coordinata della parte instabile\sidenote{\scriptsize Vogliamo calcolare questa trasformazione localmente}:
+    \[
+	u = h^u(v) 
+    .\] 
+    Similmente possiamo riscrivere la parte instabile in funzione di quella stabile tramite $h^s$:
+    \[
+	v = h^s(u) 
+    .\] 
+    Ricordiamo le due proprietà:
+    \[\begin{aligned}
+	&h^u(0) = 0 \qquad  \left.\frac{\text{d} }{\text{d} v} h^u(0)\right|_{v=0} = 0\\
+	&h^s(0) = 0 \qquad  \left.\frac{\text{d} }{\text{d} v} h^s(0)\right|_{u=0} = 0
+    .\end{aligned}\]
+    Prendiamo l'equazione per la $v$:
+    \[
+	\frac{\text{d} v}{\text{d} t} = \lambda_2v + \frac{1}{\lambda_2-\lambda_1} \left[3(u+v)^2 + (u + v)^3\right]
+    .\] 
+    Visto che vogliamo esprimere $v$ in termini di $u$ tramite $h^s$:
+    \[\begin{aligned}
+	\frac{\text{d} v}{\text{d} t} &= \frac{\text{d} h^s}{\text{d} u}  \frac{\text{d} u}{\text{d} t} = \\
+				      &=\lambda_2h^s(u) + \frac{1}{\lambda_2-\lambda_1}\left[3(u + h^s(u))^2 + (u + h^s(u)) ^3\right]
+    .\end{aligned}\]
+    Di per se l'equazione è già problematica, se poi pensiamo anche che è necessario inserire anche l'equazione per la derivata di $u$: 
+    \[
+        \frac{\text{d} u}{\text{d} t} = \lambda_1u - \frac{3(u + v)^2 - (u + v)^3}{\lambda_2-\lambda_1}
+    .\] 
+    Si ha che il termine a destra della equazione per $dv / dt$ è (sostiuiamo $v = h^s(u)$ nella precedente):
+    \begin{equation}
+    \begin{aligned}
+	&\frac{\text{d} h^s}{\text{d} t} \left[\lambda_1u - \frac{3(u + h^s(u))^2 - (u + h^s(u))^3}{\lambda_2-\lambda_1}\right]=\\
+	&=\lambda_2 h^s(u) + \frac{1}{\lambda_2-\lambda_1}\left[3(\mu + h^s(u))^2 + (u + h^s(u))^3\right]
+    .\end{aligned}
+    \label{eq:2_11_2}
+    \end{equation}
+    Mettendo tutto insieme si comprende l'esigenza di utilizzare macchine per il calcolo simbolico in questi casi: ricavare $h^{s /u}$ non è praticamente possibile da queste equazioni.\\
+    Proviamo a procedere assumendo che:
+    \[
+	h^s(u) = b_0 + b_1u + b_2 u^2 + \ldots
+    .\] 
+    Per le condizioni di tangenza di ha sempre $b_0=b_1=0$:
+    \[
+	h^s(u) = b_2u^2 + b_3 u ^3 + \ldots
+    .\] 
+    Sostituendo nella \ref{eq:2_11_2} ed eguagliando a zero i coefficienti del corrispondente polinomio si ha:
+    \[\begin{aligned}
+	&b_2 = \frac{-3}{(\lambda_2-\lambda_1) (\lambda_2-\lambda_1)}\\
+	&b_1 = \frac{-(1+12b_2)}{(\lambda_2-\lambda_1) (\lambda_2-\lambda_1)}
+    .\end{aligned}\]
+    In manieara analoga si possono effettuare i medesimi conti per $u = h^u(v)$. Tramite una espansione/sostituzione delle equazioni etc\ldots si arriva a:
+    \[
+	\frac{\text{d} u}{\text{d} t} = \lambda_1u - \frac{3(u + v)^2}{\lambda_2-\lambda_1}- \frac{(u + v)^3}{\lambda_2-\lambda_1}
+    .\] 
+    e tramite una polinomiale:
+    \[
+	h^s(u) = c_2v^2 + c_3v^3
+    .\] 
+    Si arriva a:
+    \[\begin{aligned}
+	&c_2 = - \frac{3}{(\lambda_1-\lambda_2)(\lambda_1-2\lambda_2) }\\
+	&c_3 = - \frac{(1 + 12 c_2) }{(\lambda_1-\lambda_2) (\lambda_1-3\lambda_2) }
+    .\end{aligned}\]
+\end{exmp}
+\noindent

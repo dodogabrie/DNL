@@ -10,7 +10,7 @@
     .\] 
     Preso quindi il gradiente:
     $\nabla (S(x, y) -c) = (s_x, s_y) $ 
-    DImostrare che se si prende $P = (x_0, y_0) \in E$ tale per cui:
+    Dimostrare che se si prende $P = (x_0, y_0) \in E$ tale per cui:
     \[
         \left. \frac{\partial S}{\partial y} \right|_{x_0, y_0}
     .\] 
@@ -48,7 +48,6 @@ Si vede immediatamente che per $\epsilon >0$ il sistema è stabile secondo Lyapu
    Con i parametri: $\sigma  >0, r > 0 , b > 0$ ( I parametri utilizzati da Lorenz per mostrare il caos deterministico sono $\sigma  = 10, r = 28, b = \frac{8}{3}$).
    \begin{enumerate}
        \item Trovare gli stati stazionari (ce ne sono 3).
-       \item Determinare le proprietà di stabilità di questi stati stazionari.Trovare gli stati stazionari (ce ne sono 3).
        \item Determinare le proprietà di stabilità di $\v{V}_{s_1} = \v{0}$ al variare di $r$.
        \item Mostrare che per $r = 1$ $\v{V}_{s_1}$ è non iperbolico.
        \item Utilizzando la seguente funzione di Lyapunov:
@@ -58,7 +57,38 @@ Si vede immediatamente che per $\epsilon >0$ il sistema è stabile secondo Lyapu
 	 Mostrare che $\v{V}_{s_1}$ è stabile secondo Lyapunov.
    \end{enumerate}
 \end{ex}
-\noindent
+\paragraph{Soluzione}%
+1)\\
+Risolvendo il sistema a derivate nulle si ottengono le tre soluzioni stazionarie:
+\[
+    \v{V}_{s_1}= \begin{pmatrix} 0 \\ 0 \\ 0\end{pmatrix} \quad 
+    \v{V}_{s_2}= \begin{pmatrix} \sqrt{b(r-1)}  \\ \sqrt{b(r-1)} \\ r-1 \end{pmatrix} \quad 
+    \v{V}_{s_3}= \begin{pmatrix} -\sqrt{b(r-1)} \\ -\sqrt{b(r-1)} \\ r-1 \end{pmatrix} 
+.\] 
+Queste tre valgono per tutti gli $r > 1$, se $r = 1$ si ha soltanto lo stato $\v{V}_{s_1}$ (tre volte degenere).\\
+2)\\
+Esplicitiamo lo Jacobiano nel punto $\v{V}_{s_1}$:
+\[
+    J(\v{V}_{s_1}) =
+    \begin{pmatrix}
+        -\sigma & \sigma & 0 \\
+        r & -1 & 0 \\
+        0 & 0 & -3 \\
+    \end{pmatrix}
+.\] 
+Quindi si può risolvere il problema agli autovalori ottenendo:
+\[\begin{aligned}
+    & \lambda_1 = - b < 0\\
+    & \lambda_{23} = \frac{- (\sigma +1) \pm \sqrt{(\sigma + 1)^2 - 4 \sigma (1-r)}}{2}
+.\end{aligned}\]
+Quindi se $0<r<1$ si ha che:
+\[
+    (\sigma + 1)^2 - 4 \sigma (1-r) = (\sigma-1)^2 + 4r >0
+.\] 
+Quindi essendo questa quantità comunque inferiore a $\sigma + 1$ si ha che $\lambda_{23} < 0:$ un pozzo.\\
+Se invece $r>1$ allora abbiamo una sella poichè un autovalore diventa positivo.\\
+Se $r=1$ abbiamo $\lambda_2 < 0$ e $\lambda_3 = 0$ quindi uno stato stazionario non iperbolico.\\
+Utilizzando la funzione $V$ e la sua derivata orbitale si dimostra che quest'ultimo è comunque stabile secondo Lyapunov.
 \begin{ex}[]
     Dato il SD a tempo continuo:
     \[
@@ -75,3 +105,13 @@ Si vede immediatamente che per $\epsilon >0$ il sistema è stabile secondo Lyapu
     \end{enumerate}
 \end{ex}
 \noindent
+\paragraph{Soluzione}%
+Lo Jacobiano nell'unico punto stazionario $\v{V}_{s}$ (l'origine) presenta due autovalori nulli: abbiamo un punto non iperbolico.\\
+Se si sceglie il funzionale
+\[
+    V(x_1,x_2) = x_1^4 + x_2^4
+.\] 
+Si ha subito la stabilità di tale punto con il teorema di Lyapunov. Inoltre essendo la derivata orbitale di tale funzionale nulla abbiamo che le superfici in cui giacciono le orbite del SD sono proprio
+\[
+    x_1^4 + x_2^4 = c \ge 0
+.\] 

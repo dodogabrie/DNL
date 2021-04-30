@@ -1,0 +1,49 @@
+\begin{ex}[Numerico]
+    Data la mappa:
+    \[
+	x_{k+1} = rx_k(1-x_k) 
+    .\] 
+    Mostrare numericamente che per $r=2$ l'orbita $\left\{\v{\mu}_k = 1 /2; \ k \in \mathbb{N}\right\}$ è stabile secondo Lyapunov.
+\end{ex}
+\noindent
+\begin{ex}[Henon map]
+    Data la mappa ricorsiva
+    \[
+    \begin{dcases}
+	x_{n+1} = 1 + y_n - \alpha x_n^2 = G_1(x_n, y_n) \\
+	y_{n+1}=\beta x_n = G_2(x_n, y_n) 
+    \end{dcases}
+    \qquad
+    \v{V}_n = \begin{pmatrix} x_n \\ y_n \end{pmatrix}
+    \]
+    Troviare gli stati stazionari della mappa.
+\end{ex}
+\noindent
+\paragraph{Soluzione}%
+    \[
+    \begin{dcases}
+    x_s = 1 + y_s - \alpha x_s^2\\
+    y_s = \beta x_s
+    \end{dcases}
+    \]
+    Sostituendo la seconda nella prima:
+    \[
+        \alpha x_s^2 + x_s - 1 - y_s = 0 \implies 
+	\alpha x_s^2 + x_s(1-\beta) -1 = 0
+    .\] 
+    Calcolandone il discriminante ed imponendo che sia reale si ha:
+    \[
+	\Delta  = (1-\beta)^2 + 4 \alpha\ge 0 \implies  \alpha  \ge \frac{-(1-\beta)^2}{4}
+    .\] 
+    Scegliendo $\alpha  = 1.4$ e $\beta  = 0.3$ la mappa è caotica.\\
+    Gli stati stazionari saranno:
+    \[\begin{aligned}
+	& x_s^{1,2} = \frac{-(1-\beta) \pm \sqrt{(1-\beta  )^2 + 4\alpha}}{2\alpha} 
+	& y_s^{1, 2} = \beta x_s^{1, 2}
+    .\end{aligned}\]
+
+\begin{ex}[Sempre su Henon]
+    Determinare gli autovalori della matrice Jacobiana della mappa di Henon calcolata negli stati stazioari.\\
+    Porre $\beta =0.3$ e $\alpha =0.08$ e verificare che lo stato stazioario $\v{V}_s^1 = \begin{pmatrix} x_s^1 \\ y_s^1 \end{pmatrix}$ è una sella mentre $\v{V}_s^2$ è un pozzo. 
+\end{ex}
+\noindent

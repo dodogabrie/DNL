@@ -8,13 +8,13 @@
 	-3 & -1 \\
     \end{pmatrix}
     .\] 
-    Sia $H:\mathbb{R}^2\to \mathbb{R}^2 $  tale che:
+    Sia $R:\mathbb{R}^2\to \mathbb{R}^2 $  tale che:
     \[
-        \forall \v{v} = \begin{pmatrix} x \\ y \end{pmatrix} \in \mathbb{R}^2: \ \v{v}\to H\v{v}
+        \forall \v{v} = \begin{pmatrix} x \\ y \end{pmatrix} \in \mathbb{R}^2: \ \v{v}\to R\v{v}
     .\] 
     Con:
     \[
-        H = \frac{1}{\sqrt{2} } 
+        R = \frac{1}{\sqrt{2} } 
     \begin{pmatrix}
 	1 & -1 \\
 	1 & 1 \\
@@ -22,4 +22,28 @@
     .\]  
     Determinare come viene trasformato il SD attraverso $H$.
 \end{ex}
-\noindent
+\paragraph{Soluzione}%
+Si definisce la quantità:
+\[
+    \v{y} = h(\v{x}) = R \v{x}
+.\] 
+L'azione della trasformazione sul SD può essere espressa mediante questo vettore:
+\[
+    \frac{\text{d} \v{y}}{\text{d} t} = \frac{\text{d} }{\text{d} t} (R \v{x}) = R\frac{\text{d} \v{x}}{\text{d} t} =
+    R A \v{x} = R A R^{-1} R \v{x} \equiv A' \v{x}
+.\] 
+Invertendo la matrice si ottiene: 
+\[
+    R^{-1} = \frac{1}{\sqrt{2}}\frac{1}{2} 
+    \begin{pmatrix}
+        1  & 1 \\
+       -1  & 1 \\
+    \end{pmatrix}
+    \quad\implies\quad 
+    A' = 
+    \begin{pmatrix}
+        1 & 0 \\
+        0 & -2 \\
+    \end{pmatrix}
+.\] 
+Quindi si hanno gli autovalori $\lambda_1 = 1$, $\lambda_2 = -2$ per il sistema.
