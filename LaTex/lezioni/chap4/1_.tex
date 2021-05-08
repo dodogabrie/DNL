@@ -1,0 +1,110 @@
+\section{Stati non-Wandering ed $\omega$ limit set}%
+\subsection{Stati non-Wandering}%
+\marginpar{
+        \captionsetup{type=figure}
+        \incfig{4_1_1}
+        \caption{\scriptsize $\v{P}$ è uno stato non-Wandering: preso un punto in $U$ la sua dinamica si intersecherà nuovamente con $U$}
+    \label{fig:4_1_1}
+    }
+Ricordiamo dapprima la definizione di un insieme $A$ invariante rispetto alla dinamica indotta dal flusso di fase $\varphi_t$:
+\[
+    A \subset \mathbb{R}^n \implies  \varphi_t(A) \subset A
+.\] 
+\begin{defn}[Stati non-Wandering per SD a tempo continuo]
+Preso un campo vettoriale con il flusso di fase $\varphi_t:\mathbb{R}^n\to \mathbb{R}^n$ diciamo che $\v{P} \in \mathbb{R}^n$ è non-Wandering se $\forall U$ intorno di $\v{P}$ e $\forall T > 0$ allora $\exists t: \left|t\right|>T$ tale per cui
+\[
+    \varphi_t(U) \cap U \neq 0 
+.\] 
+\end{defn}
+\noindent
+\begin{defn}[Stati non-Wandering per SD a tempo discreto]
+    Data la mappa ricorsiva
+    \[
+	\v{x}_{k+1} = G(\v{x}_k) \quad  \v{x}_k \in \mathbb{R}^n
+    .\] 
+    Diciamo che $\v{P}$ è non-Wandering se $\forall U$ intorno di $\v{P}$ esiste $n\in \mathbb{Z}$ tale per cui
+    \[
+	G^n(U)  \cap U \neq 0
+    .\] 
+\end{defn}
+\noindent
+\begin{defn}[Non-Wanderning set]
+    L'insieme degli stati non-Wandering è denominato non-Wandering set.
+\end{defn}
+\noindent
+\begin{defn}[Stati Wandering]
+    Uno stato si dice Wandering se non è non-Wandering (si ha quindi anche lo Wandering set).
+\end{defn}
+\noindent
+\begin{exmp}[Sella iperbolica]
+    Prendiamo uno stato sella $\v{P}$ e consideriamone il manifold locale stabile $W_{loc}^s(\v{P})$ e instabile $W_{loc}^u(\v{P})$. Questo stato stazionario è non-Wandering: in ogni intorno del punto $\v{P}$ valgono le proprietà descritte sopra.
+\end{exmp}
+\noindent
+\begin{exmp}[Orbite periodiche]
+    Le orbite periodiche sono non-Wandering, questo perchè l'orbita torna proprio nello stato per definizione\ldots
+\end{exmp}
+\noindent
+Intuitivamente gli stati Wandering hanno a che vedere con la dinamica transiente del sistema, viceversa quelli non-Wandering hanno ha che vedere con la dinamica asintotica del sistema.
+\subsection{$\omega (\alpha)$ limit set}%
+La nozione di $\omega$-limit set ha a che vedere con il comportamento asintotico delle orbite del sistema: caratterizza il comportamento asintotico di un SD sia nel futuro ($\omega$) che nel passato ($\alpha$). 
+\begin{defn}[$\omega$-limit state di un campo vettoriale]
+    Dato il sistema dinamico $\frac{\text{d} \v{x}}{\text{d} t} = F(\v{x})$, $\v{x}\in \mathbb{R}^n$ con il flusso di fase $\varphi_t:\mathbb{R}^n\to \mathbb{R}^n$. Diciamo che $\v{x}_0\in \mathbb{R}^n$ è un $\omega$-limit state di $\v{x}\in \mathbb{R}^n$ ($\v{x}_0 \in \omega (\v{x})$) se esiste una sequenza $t_i$:
+    \[
+        t_i \to \infty \quad  i \to \infty
+    .\] 
+    Tale per cui:
+    \[
+	\lim_{t_i \to \infty} \varphi_{t_i}(\v{x}) = \v{x}_0
+    .\] 
+\end{defn}
+\noindent
+Perché utilizzare una collezione discreta di tempi? Perché vedremo che in alcuni sistemi prendendo un limite continuo non si ha una buona definizione di questo insieme (come vedremo).
+\begin{defn}[$\omega$-limit state di una mappa ricorsiva]
+    Data la mappa ricorsiva $\v{x}_{k+1}=G(\v{x}_k)$ con $G:\mathbb{R}^n\to \mathbb{R}^n$ e $\v{x}_k \in \mathbb{R}^n$. Diciamo che $\v{x}_0 \in \mathbb{R}^n$ è un $\omega$-limit state di $\v{x}$ se esiste una sequenza $\left\{n_i|i=1, 2, \ldots, \infty \ ; \ n_i \to \infty\right\}$ tale per cui
+    \[
+	\lim_{n_i \to \infty} G^{n_i}(\v{x}) = \v{x}_0
+    .\] 
+\end{defn}
+\noindent
+\begin{defn}[$\alpha$-limit state per un campo vettoriale]
+    Dato il sistema dinamico $\frac{\text{d} \v{x}}{\text{d} t} = F(\v{x})$, $\v{x}\in \mathbb{R}^n$ con il flusso di fase $\varphi_t:\mathbb{R}^n\to \mathbb{R}^n$. Diciamo che $\v{x}_0\in \mathbb{R}^n$ è un $\alpha$-limit state di $\v{x}\in \mathbb{R}^n$ ($\v{x}_0 \in \alpha (\v{x})$) se esiste una sequenza $t_i$:
+    \[
+        t_i \to -\infty \quad  i \to \infty
+    .\] 
+    Tale per cui:
+    \[
+	\lim_{t_i \to -\infty} \varphi_{t_i}(\v{x}) = \v{x}_0
+    .\] 
+\end{defn}
+\noindent 
+\begin{defn}[$\alpha$-limit state di una mappa ricorsiva]
+    Data la mappa ricorsiva $\v{x}_{k+1}=G(\v{x}_k)$ con $G:\mathbb{R}^n\to \mathbb{R}^n$ e $\v{x}_k \in \mathbb{R}^n$. Diciamo che $\v{x}_0 \in \mathbb{R}^n$ è un $\alpha$-limit state di $\v{x}$ se esiste una sequenza $\left\{n_i|i=1, 2, \ldots \infty \ ; \ n_i \to -\infty\right\}$ tale per cui
+    \[
+	\lim_{n_i \to -\infty} G^{n_i}(\v{x}) = \v{x}_0
+    .\] 
+\end{defn}
+\noindent
+\begin{defn}[$\omega$($\alpha$)-limit set]
+    L'insieme di tutti gli $\omega$($\alpha$)-limit states è denominato $\omega$($\alpha$)-limit set.
+\end{defn}
+\noindent
+\subsection{Proprietà degli  $\omega$($\alpha$)-limit set}%
+Consideriamo un campo vettoriale 
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) \quad  \v{x}\in \mathbb{R}^n \quad  F: \mathbb{R}^n\to \mathbb{R}^n
+.\] 
+con associato il campo vettoriale $\varphi_t:\mathbb{R}^n\to \mathbb{R}^n$. Sia inoltre $A \subset \mathbb{R}^n$ un insieme compatto e positivamente invariante rispetto alla dinamica:
+\[
+    \varphi_t(A) \subset A
+.\] 
+Formuliamo il teorema che caratterizza la struttura dei set asintotici e quindi l'intera dinamica asintotica.
+\begin{thm}[Proprietà del $\omega$-limit set]
+    Sia dato un campo vettoriale ed $A \in \mathbb{R}^n$ sia compatto e positivamente invariante. Allora $\forall \v{P} \in A$ l'evoluzione asintotica di $\v{P}$ (che va in $\omega (\v{P})$) si ha:
+    \begin{enumerate}
+	\item $\omega (\v{P}) \neq 0$.
+	\item $\omega (\v{P})$ è un insieme chiuso.
+	\item $\omega (\v{P})$ è invariante rispetto alla dinamica.
+	\item $\omega (\v{P})$ è connesso.
+    \end{enumerate}
+\end{thm}
+\noindent

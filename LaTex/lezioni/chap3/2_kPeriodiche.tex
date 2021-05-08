@@ -1,0 +1,124 @@
+\section{Orbite k periodiche per mappe ricorsive}%
+Data la mappa ricorsiva
+\[
+    x_{n+1}=G(x_n) \quad  x_n \in \mathbb{R}, \quad  G:\mathbb{R}^n\to \mathbb{R}^n
+.\] 
+Se avessi uno stato stazionario $x_s$ allora la sua evoluzione dinamica mi produce $x_s$ stesso ($x_s = G(x_s)$), 
+possiamo quindi dire che $x_s$ è una orbita di periodo $T=1$.\\
+Presa invece una mappa con due punti $x_1, x_2$ tali per cui
+\[\begin{aligned}
+    &x_2 = G(x_1) \\
+    &x_1= G(x_2) 
+.\end{aligned}\]
+In questo caso si ha una orbita periodica di periodo $T=2$. 
+\begin{defn}[Orbita k-periodica]
+    Data la mappa:
+    \[
+	x_{n+1} = G(x_n) \quad  x_n \in \mathbb{R}, \quad  G:\mathbb{R}^n\to \mathbb{R}^n
+    .\] 
+    Si definisce orbita $k$ periodica del SD a tempo discreto l'insieme
+    \[
+        O = \left\{p_0, p_1, \ldots, p_{k-1}\right\}
+    .\] 
+    Se $p_j = G^k(p_j)$ $\forall j \in \left\{0, 1, \ldots, k-1\right\}$.
+\end{defn}
+\noindent
+Notiamo che la relazione
+\[
+    p_j = G^k(p_j) \text{ con } G^k = G \circ G \circ \ldots \circ G
+.\] 
+Indica che $p_j$ è uno \textbf{stato stazioario della mappa iterata $k$ volte}.\\
+Si può estendere la definizioe al caso multidimensionale.
+\begin{defn}[Orbita k periodica $n$ dimensionale]
+Sia data la mappa
+\[
+    \v{x}_{p+1} = G(\v{x}_p) \qquad  \v{x}_p \in \mathbb{R}^n, \qquad  G:\mathbb{R}^n\to \mathbb{R}^n
+.\] 
+Si definisce orbita $k$ periodica in n dimensioni l'insieme di stati:
+\[
+    O = \left\{\v{x}_{p, 0}, \v{x}_{p, 1}, \ldots,  \v{x}_{p, k-1}\right\}
+.\] 
+I cui stati hanno la proprietà:
+\[
+    \v{x}_{p, j} = G^k(\v{x}_{p, j}) \quad  j = (0, 1, \ldots, k-1) 
+.\] 
+\end{defn}
+\noindent
+\subsection{Stabilità delle orbite $k$ periodiche in sistema discreto (1D)}%
+Data la mappa 
+\[
+    x_{n+1}= G(x_n) \qquad  x_n \in \mathbb{R} \qquad  G:\mathbb{R}^n\to \mathbb{R}^n
+.\] 
+e supponiamo che esista un'orbita $k$  periodica per tale SD: $\left\{p_j\right\}_{j = 1, \ldots, k-1}$  tale che $p_j = G^k(p_j)$ $\forall j$.\\
+Studiare la stabilità di una orbita $k$  periotica significa studiare la stabilità della mappa iterata $k$  volte $G^k$.\\
+Definiamo questa mappa come:
+\[
+    Q \equiv G \circ G \circ \ldots \circ G \qquad  \text{k volte}
+.\] 
+E studiamo gli stati stazioari di $Q$:
+\[
+    y_{n+1} = Q(y_j) \implies  p_j = Q (p_j) 
+.\] 
+Possiamo ottenere la Jacobiana di $Q$  come:
+\[
+    J(y) = \frac{\text{d} Q(y) }{\text{d} y} = \frac{\text{d} }{\text{d} y} (G^k(y)) 
+    = \frac{\text{d} }{\text{d} y} \left[G(G^{k-1}(y) ) \right] 
+.\] 
+Ma per la Chain Rule sulle derivate:
+\[
+    J(y) = \left.\frac{\text{d} G}{\text{d} y}\right|_{y = G^{k-1}(y)} \cdot \frac{\text{d} G^{k-1}}{\text{d} y} =
+    \left.\frac{\text{d} G}{\text{d} y}\right|_{y = G^{k-1}(y) } \left[\frac{\text{d} }{\text{d} y}G(G^{k-2}(y) )  \right]
+.\] 
+Possiamo procedere con questa scomposizione:
+\[
+    J(y) = 
+    \left.\frac{\text{d} G}{\text{d} y}\right|_{y = G^{k-1}(y) } 
+	\left.\frac{\text{d} G}{\text{d} y}\right|_{y=G^{k-2}(y) }\left[\frac{\text{d} }{\text{d} y}G^{k-2}(y) \right]
+.\] 
+Quindi lo Jacobiano è il prodotto di tutte le mappe:
+\[
+    J(y) = 
+    \left.\frac{\text{d} G}{\text{d} y}\right|_{y = G^{k-1}(y) } \left.\frac{\text{d} G}{\text{d} y}\right|_{y=G^{k-2}(y) }\ldots 
+    \frac{\text{d} G}{\text{d} y}
+.\] 
+Applicando tale risultato al caso dell'orbita periodica di partenza si otterrà il risultato seguente:
+\[
+    \frac{\text{d} Q}{\text{d} x}_{x=p_j} = \prod_{j=1}^{k} \left.\frac{\text{d} G}{\text{d} x}\right|_{x=p_{j-1}} 
+\] 
+Pertanto si ha che
+\[\begin{aligned}
+    &\left|\left.\frac{\text{d} Q}{\text{d} x}\right|_{x=p_j}\right| =
+	\left| \prod_{j=1}^{k} \left.\frac{\text{d} G}{\text{d} x}\right|_{x=p_{j-1}} \right| < 1  \text{ (Pozzo)  }\\
+    &\left|\left.\frac{\text{d} Q}{\text{d} x}\right|_{x=p_j}\right| = 
+	\left|\prod_{j=1}^{k} \left.\frac{\text{d} G}{\text{d} x}\right|_{x=p_{j-1}} \right| > 1  \text{ (Sorgente)  }
+.\end{aligned}\]
+\subsection{Stabilità delle orbite $k$ periodiche in sistema discreto (nD)}%
+Nel caso di mappe $\mathbb{R}^n$ invece si ha che il ruolo delle derivate viene giocato dalle matrici Jacobiane.\\
+Data la mappa:
+\[
+    \v{x}_{p+1}=G(\v{x}_{p}) \qquad  \v{x}\in \mathbb{R}^n \qquad  G:\mathbb{R}^n\to \mathbb{R}^n
+.\] 
+con una orbita $k$ periodica:
+\[
+    O = \left\{\v{x}_{p, 0}, \ldots, \v{x}_{p, k-1}\right\}
+.\] 
+La chain rule vale anche in questo caso:
+\begin{exmp}[Chain rule in 2D]
+    \[
+        G:\mathbb{R}^2\to \mathbb{R}^2
+    .\] 
+    Vogliamo le derivate (matrice Jacobiana) di $G^k$.\\
+    Dobbiamo solo fare attenzione al fatto che adesso l'ordine di scrittura delle matrici conta\ldots
+    \[
+	DG^k(\v{x}_{p, 0}) = DG(\v{x}_{p, k-1}) DG(\v{x}_{p, k-2})\ldots DG(\v{x}_{p, 0}) 
+    .\] 
+    Se partissi invece da $\v{x}_{p, j}$ allora otterrei:
+    \[
+	DG^{k}(\v{x}_{p, j}) = DG(\v{x}_{p, j-1}) DG(\v{x}_{p, j-2})\ldots DG(\v{x}_{p, 0}) \ldots DG(\v{x}_{k-1}) DG(\v{x}_{k-2}) \ldots DG(\v{x}_{p, j}) 
+    .\] 
+\end{exmp}
+\noindent
+C'è un teorema che afferma che shiftando il punto della orbita k periodica di partenza ciclicamente gli autovalori della matrice complessiva non cambiano.
+\begin{thm}[Autovalore di matrici Shiftate]
+    Date $A, B$ matrici $n\times n$, se $\lambda$ è autovalore di $AB$ allora è anche autovalore di $BA$. 
+\end{thm}

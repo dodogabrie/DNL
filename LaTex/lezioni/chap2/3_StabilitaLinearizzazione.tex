@@ -4,27 +4,30 @@ Prendiamo il sistema dinamico autonomo a tempo continuo:
 \[
     \frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x}),  \quad \vect{x}\in \mathbb{R}^n, \quad F:\mathbb{R}^n\to \mathbb{R}^n, \quad F \in C^r,\ r\ge 2
 \] 
-Supponiamo che le soluzioni esistano globalmente. \\
-\marginpar{
+Supponiamo che le soluzioni $\v{x}(t)$ esistano globalmente e che $\v{x}_p(t)$ sia uno stato stabile secondo Lyapunov\marginpar{
     \captionsetup{type=figure}
         \incfig{2_3_1}
 	\caption{\scriptsize Perturbazione ($y(t)$) della soluzione $x_p(t)$.}
     \label{fig:2_3_1}
-}
-Figura: Se l'orbita è stabile allora $y(t)$  è confinata ad un tubo di flusso\\
-La soluzione allora è definita dalla somma della soluzione imperturbata e del disturbo.
+}.\\
+Perturbando tale soluzione con una quantità dipendente dal tempo $\v{y}(t)$ abbiamo che la nuova soluzione sarà definita dalla somma di quella non perturbata e del disturbo.
 \[
-    \vect{x(t)} =\vect{x}_p(t)+\vect{y} (t) \qquad \text{ con } \left|\vect{y} (t)\right|\ll 1
+    \vect{x}(t) =\vect{x}_p(t)+\vect{y} (t) \qquad \text{ con } \left|\vect{y} (t)\right|\ll 1
 \] 
-Quindi possiamo dire che:
+Possiamo studiare l'evoluzione di questo nuovo stato secondo la dinamica imposta dal SD:
 \[
-    \frac{\text{d} \vect{x}}{\text{d} t} = \frac{\text{d} \vect{x}_p}{\text{d} t} + \frac{\text{d} \vect{t}}{\text{d} t} = F(\vect{x}_p + \vect{y}_p)
+    \frac{\text{d} \vect{x}}{\text{d} t} = \frac{\text{d} \vect{x}_p}{\text{d} t} + \frac{\text{d} \vect{y}}{\text{d} t} = F(\vect{x}_p + \vect{y}_p)
 \] 
+\subsection{Linearizzazione in $\mathbb{R}^n$}%
+\begin{defn}[Spazio delle applicazioni lineari]
+    Definiamo lo spazio delle applicazioni lineari da $\mathbb{R}^n$ a $\mathbb{R}^n$ come $L(\mathbb{R}^n, \mathbb{R}^n)$ (alcune volte compattato a $L(\mathbb{R}^n)$) 
+\end{defn}
+\noindent
 \begin{defn}[Funzione differenziabilie]
     Sia $F:I\to J$ con $I \subset \mathbb{R}^n, \ J \subset \mathbb{R}^n$. $I$ è un aperto e $\vect{x}_0 \in I$.\\
-    Si dice che $F$ è differenziabile in $\vect{x}_0$ se $\exists$ $DF(\vect{x}_0) \in L(\mathbb{R}^n, \mathbb{R}^n)$ (spazio delle applicazioni lineari) tale che:
+    Si dice che $F$ è differenziabile in $\vect{x}_0$ se $\exists$ $DF(\vect{x}_0) \in L(\mathbb{R}^n, \mathbb{R}^n)$ tale che:
     \[
-	\lim_{\left|\vect{h}\right| \to 0} \frac{\left|F(\vect{x}_0+ \vect{h})-F(\vect{x}_0)-DF(\vect{x}_0) \vect{h}\right|}{\left|h\right|} = 0
+	\lim_{\left|\vect{h}\right| \to 0} \frac{\left|F(\vect{x}_0+ \vect{h})-F(\vect{x}_0)-DF(\vect{x}_0) \vect{h}\right|}{\left|\v{h}\right|} = 0
     \] 
 \end{defn}
 \noindent
@@ -42,7 +45,8 @@ Quindi possiamo dire che:
     \end{enumerate}
 \end{thm}
 \noindent
-Tornando alla nostra linearizzazione:
+\subsection{Linearizzare la perturbazione}%
+Tornando al sistema dinamico perturbato possiamo linearizzare in $\v{y}$:
 \[
     \frac{\text{d} \vect{x}_p(t)}{\text{d} t} + \frac{\text{d} \vect{y} (t)}{\text{d} t} = 
     F(\vect{x}_p(t)+ \vect{y} (t)) \simeq 
@@ -53,11 +57,11 @@ Quindi eliminando l'identità nella precedente equazione ci si riduce alla sola 
     \frac{\text{d} \vect{y} (t)}{\text{d} t} = DF(\vect{x}_p(t))\vect{y}\equiv
     J(\vect{x}_p)\vect{y}
 \] 
-Questo campo vettoriale ha una soluzione soluzione stazionaria: 
+Questo campo vettoriale ha una soluzione stazionaria nell'origine: 
 \[
 \vect{y}_s = \begin{pmatrix} 0 \\ \vdots \\ 0 \end{pmatrix}
 \] 
-L'unica cosa da tenere a mente è che $J(\vect{x}_p(t))$  potrebbe dipendere dal tempo (se $\vect{x}_p(t)$ non è una soluzione stazionaria il sistema non è autonomo). Per adesso ci limitiamo a considerare le soluzioni $\vect{x}_p(t)$  stazionarie: $\vect{x}_s$:
+L'unica cosa da tenere a mente è che $J(\vect{x}_p(t))$  potrebbe dipendere dal tempo (se $\vect{x}_p(t)$ non è una soluzione stazionaria il sistema non è autonomo). Per adesso ci limitiamo a considerare le soluzioni $\vect{x}_p(t)$  stazionarie con la notazione $\v{x}_p(t) = \vect{x}_s$:
 \[
     \frac{\text{d} \vect{y}}{\text{d} t} = J(\vect{x}_s)\vect{y}  \qquad \vect{J(\vect{x}_s)}  \text{: matrice costante}
 \] 
@@ -215,7 +219,7 @@ Quindi gli autovalori sono:
 \[
     \Lambda_{12} = \frac{T \pm \sqrt{T^2 - 4D}}{2}
 \] 
-Andiamo ad analizzare in quali situazioni si può avere un autovalore nullo: 
+Andiamo ad analizzare in quali situazioni si può avere un autovalore con parte reale nulla: 
 \begin{enumerate}
     \item Matrice nulla. 
     \item Se $T=0$, $D > 0$ (resta solo una radice negativa)
