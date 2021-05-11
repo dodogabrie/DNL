@@ -1,0 +1,137 @@
+\section{Actracting set ed Attrattori}%
+\subsection{Actracting set}%
+\begin{defn}[Actracting set per SD a tempo continuo]
+    Dato il campo vettoriale
+    \[
+	\frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) \quad  \varphi_t(\v{x}):\mathbb{R}^n\to \mathbb{R}^n \quad\v{x}\in \mathbb{R}^n \quad  F:\mathbb{R}^n\to \mathbb{R}^n
+    .\] 
+    E sia $A$ un insieme positivamente invariante chiuso. \\
+    Diciamo che $A$ è un Actracting set (o insieme attrattivo) se esiste $U$ intorno di $A$ ($A\in U$) tale che 
+    \begin{itemize}
+	\item $\forall t \ge 0$ $\varphi_t(U) \in U$ 
+	\item $A = \bigcap\limits_{t\ge 0}\varphi_t(U)$
+    \end{itemize}
+\end{defn}
+\noindent
+Scelto un tempo $t_1$ sarà vero che $\varphi_{t_1}(U) \subset U$. Allo stesso modo preso $t_2$ tale che $t_2>t_1$  si avrà che $\varphi_{t_2}(U) \subset \varphi_{t_1}(U) \subset U$.\\
+L'insieme $U$ (l'intorno di $A$) è denominato \textbf{Trapping region} (regione di intrappolamento). 
+\begin{exmp}[Trovare la regione di intrappolamento]
+    Prendiamo il campo vettoriale non lineare in $\mathbb{R}^2$:
+    \[
+    \begin{dcases}
+	\frac{\text{d} x}{\text{d} t} = \mu_1x-x(x^2+y^2) -xy^2 = F_1(\v{V}) \\
+	\frac{\text{d} y}{\text{d} t} = \mu_2y-y(x^2+y^2) -yx^2 = F_2(\v{V}) 
+    \end{dcases}
+    \qquad \v{V} = \begin{pmatrix} x \\ y \end{pmatrix}
+    \]
+    Vogliamo dimostrare che in $\mathbb{R}^2$ c'è una regione di intrappolamento. In particolare dimostriamo che questa regione è:
+    \[
+        x^2+y^2=c
+    .\] 
+    Definiamo a tal scopo la quantità
+    \[
+	\phi(x, y) = x^2+y^2-c
+    .\] 
+    Calcoliamo la derivata nel tempo di questa curva chiusa (che in questo caso è un cerchio).
+    \[\begin{aligned}
+	&\frac{\text{d} \phi (x, y) }{\text{d} t} = \nabla \phi  \cdot \begin{pmatrix} F_1 \\ F_2 \end{pmatrix} = \\
+	&= (2x, 2y) (\mu_1x-x(x^2+y^2)-xy^2, \mu_2y-y(x^2+y^2) - yx^2) = \\
+	&= 2\left[\mu_1x^2-x^2(x^2+y^2) - x^2 y^2\right] + 2\left[\mu_2y^2-y^2(x^2+y^2) - y^2x^2\right] = \\
+	&= (2\mu_1x^2+2\mu_2y^2) - 2(x^2+y^2)^2 - 4 x^2y^2 = \\
+	&= (2\mu_1x^2+2\mu_2y^2) -2c^2 - 4x^2y^2 
+    .\end{aligned}\]
+    Vorremmo che questa quantità fosse minore o uguale di $0$, in questo modo abbiamo che tutti i punti che giacciono su queste curve di livello vanno verso l'interno di $\phi$ (quindi cadono dentro la circonferenza).
+    \begin{itemize}
+        \item $\mu_1, \mu_2 < 0$: $\frac{\text{d} \phi}{\text{d} t} < 0 $.
+	\item $\mu_1 < 0, \mu_2 > 0$: si ha che
+	    \[
+	        \frac{\text{d} \phi}{\text{d} t}  \le 2\left[\left|\mu_1\right|x^2+2\mu_2y^2\right]-2c^2-4x^2y^2
+	    .\] 
+	    Definiamo $M = max\left\{\left|\mu_1\right|, \mu_2\right\}$, in tal modo si ha:
+	    \[\begin{aligned}
+		\frac{\text{d} \phi}{\text{d} t}  &\le 2M\left[x^2+y^2\right]-2c^2-4x^2y^2 = \\
+									   &=2c(M-c) - 4x^2y^2
+	    .\end{aligned}\]
+		Che se $c>M$ verifica la condizione $\frac{\text{d} \phi}{\text{d} t} < 0$. Quindi la regione di intrappolamento è definita dagli elementi lineari del campo vettoriale $\mu_1$ e $\mu_2$.
+    \end{itemize}
+\end{exmp}
+\noindent
+Possiamo definire questo insieme anche per le mappe ricorsive:
+\begin{defn}[Actracting set per SD a tempo discreto]
+    Data la mappa 
+    \[
+	\v{x}_{k+1}G(\v{x}_k) \quad\v{x}\in \mathbb{R}^n \quad  G:\mathbb{R}^n\to \mathbb{R}^n
+    .\] 
+    con $A\subset\mathbb{R}^n$ chiuso ed invariante positivamente. $A$ è denominato \textbf{Attracting Set} se esiste un intorno $U$ di $A$ ($A \subset U$) tale che 
+    \begin{itemize}
+	\item $G^n(U) \subset U$ $\forall n > 0$.
+	\item $A = \bigcap\limits_{n>0}G^n(U)$ 
+    \end{itemize}
+\end{defn}
+\noindent
+Possiamo allora chiederci quanto può esser grande l'insieme intorno di $A$: $U$. In particolare qual'è il più grande $U$ per il quale una condizione iniziale del sistema dinamico finisce sull'attracting set.
+\begin{defn}[Bacino di Attrazione di un Actracting Set]
+    Supponiamo di avere (a) un campo vettoriale $\varphi_t:\mathbb{R}^2\to \mathbb{R}^2$ o di avere (b) $G:\mathbb{R}^2\to \mathbb{R}^2$ una mappa ricorsiva. Inoltre supponiamo vi sia un aitracting set $A$ ed un intorno di $A$ definito $U$.\\
+    a) il bacino di attrazione si definisce come:
+    \[
+	B_A = \bigcup\limits_{t\le 0}\varphi_t(U) 
+    .\] 
+    b) il bacino di attrazione si definisce come:
+    \[
+	B_A = \bigcup\limits_{m\le 0}G^m(U) 
+    .\] 
+    Se la mappa non è invertibile allora $G^m \ (m<0)$ va inteso in senso insiemistico\sidenote{\scriptsize non si calcola $G^{-m}$ ma si considera $G^{-1}(\v{y})$ con $\v{y}\in \mathbb{R}^n$, si definisce allora:
+    \[
+	G^{-1}(\v{y}) = \left\{\v{x}| G(\v{x}) = \v{y}\right\}
+     .\] Similmente si opera con $G^{-2}$ ect\ldots}.
+\end{defn}
+\noindent
+Ma il concetto di actracting set è sufficiente a caratterizzare la dinamica per $t\to \infty$? Vorremmo costruire una quantità che porti con se le proprietà dell'actracting set e sia in oltre "tutto d'un pezzo", quindi connesso. Stiamo quindi cercando di definire un Attrattore.
+\begin{exmp}[L'actracting set non è una definizione soddisfacente di attrattore]
+    \[
+    \begin{dcases}
+    \frac{\text{d} x}{\text{d} t} = x-x^3\\
+    \frac{\text{d} y}{\text{d} t} = -y	
+    \end{dcases}
+    \]
+    \marginpar{
+            \captionsetup{type=figure}
+            \incfig{4_2_1}
+            \caption{\scriptsize Punti stazionari del sistema e regione di intrappolamento $U$}
+        \label{fig:4_2_1}
+        }
+    Gli stati stazionari del sistema sono: 
+    \[\begin{aligned}
+	& \v{V}_{s_1} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \quad  \text{Sella}\\
+	& \v{V}_{s_2} = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \quad  \text{Pozzo}\\
+	& \v{V}_{s_3} = \begin{pmatrix} -1 \\ 0 \end{pmatrix} \quad  \text{Pozzo}
+    .\end{aligned}\]
+    Prendendo una regione $U$ come in figura \ref{fig:4_2_1} si può dimostrare che tale $U$ è una regione di intrappolamento.\\
+    Costruiamo l'insieme invariante $A$:
+    \[
+	A = \bigcap\limits_{t\ge 0}\varphi_t(U) 
+    .\] 
+    Tale intersezione esiste poiché l'immagine di $U$ sarà sicuramente inclusa in $U$ (per definizione di regione di intrappolamento).\\
+    Possiamo allora sccegliere $t$ sempre più grande e man a mano che $t$ aumenta si ha che $\varphi_t(U)$ si schiaccerà sull'intervallo $\left[-1, 1\right]$. Quindi questo intervallo è proprio l'insieme $A$ cercato.\\
+    Quindi la definizione di attracting set in questo caso ci dice che 
+    \[
+        A = \left\{(x, y) | y = 0, x \in \left[-1, 1\right] \right\}
+    .\] 
+    Tuttavia questa definizione non tiene di conto della sella presente nell'origine, la dinamica non è equalmente attratta dall'intervallo $\left[-1, 1\right]$ ma tende ad avvicinarsi ai punti stazionari di Pozzo. \\
+    La definizione di Actracting set in questo caso quindi non è sufficiente a caratterizzare il comportamento atteso dal sistema: non può essere una buona definizione di attrattore.
+\end{exmp}
+\noindent
+Prima di definire un attrattore diamo un'alra definizione:
+\begin{defn}[Transitività Topologica]
+    Un insieme $A$ chiuso ed invariante è denominato topologicamente transitivo se $\forall U, V \in A$ con $(U, V)$ aperti si ha:
+    \begin{enumerate}
+	\item Campo vettoriale: $\exists t \in \mathbb{R}: $ $\varphi_t(U) \cap V \neq 0$.
+	\item Mappe $\exists n \in \mathbb{Z}:$ $G^n(U) \cap V \neq 0$.
+    \end{enumerate}
+\end{defn}
+\noindent
+In un certo senso è come se ogni traiettoria passasse da ogni punto dell'insieme.
+\begin{defn}[Transitività topologica (alternativa)]
+    Un insieme $A$ chiuso ed invariante positivamente è denominato topologicamente transitivo se  $\varphi_t$ o $G^n$ ha una orbita che è densa in $A$.
+\end{defn}
+\noindent

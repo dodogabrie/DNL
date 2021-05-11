@@ -99,7 +99,11 @@ con associato il campo vettoriale $\varphi_t:\mathbb{R}^n\to \mathbb{R}^n$. Sia 
 .\] 
 Formuliamo il teorema che caratterizza la struttura dei set asintotici e quindi l'intera dinamica asintotica.
 \begin{thm}[Proprietà del $\omega$-limit set]
-    Sia dato un campo vettoriale ed $A \in \mathbb{R}^n$ sia compatto e positivamente invariante. Allora $\forall \v{P} \in A$ l'evoluzione asintotica di $\v{P}$ (che va in $\omega (\v{P})$) si ha:
+    Sia dato un campo vettoriale 
+    \[
+	\frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) \quad  \v{x}\in \mathbb{R}^n \quad  F:\mathbb{R}^n\to \mathbb{R}^n \quad  F \in C^r, \ r\ge 1
+    .\] 
+    ed $A \in \mathbb{R}^n$ sia compatto e positivamente invariante. Allora $\forall \v{P} \in A$ l'evoluzione asintotica di $\v{P}$ (che va in $\omega (\v{P})$) si ha:
     \begin{enumerate}
 	\item $\omega (\v{P}) \neq 0$.
 	\item $\omega (\v{P})$ è un insieme chiuso.
@@ -107,4 +111,41 @@ Formuliamo il teorema che caratterizza la struttura dei set asintotici e quindi 
 	\item $\omega (\v{P})$ è connesso.
     \end{enumerate}
 \end{thm}
+\noindent 
+\begin{proof}
+Partiamo da 1.\\
+Dato un compatto $A$ grazie al teorema di Bolzano-Weierstrass sappiamo che:
+\begin{center}
+    Data una sequenza di eventi $\in A$ allora ogni sottosuccessione è convergente ad un elemento di $A$.
+\end{center}
+Per ipotesi possiamo prendere una sequenza di tempi tale che $t_i\to \infty$ quando $i\to \infty$. Per ipotesi scegliamo la sequenza $\varphi_{t_i}(\v{P}) \in A$ (per ipotesi di positivamente invariate).
+\[
+    \varphi_{t_1}(\v{P}) \quad  \varphi_{t_2}(\v{P}) \quad \ldots \quad \varphi_{t_n}(\v{P}) 
+.\] 
+Da questa possiamo estrarre una sottosuccessione di $\overline{t}_i: \ \varphi_{\overline{t}_i}$ con $\left\{\left\{\overline{t}_i\right\} \subset \left\{t_J\right\}\right\}$. Per il teorema BW si ha:
+\[
+    \lim_{i \to \infty} \varphi_{\overline{t}_i}(\v{P}) = \omega_1 \in A \implies  \omega (\v{P}) \neq 0
+.\] 
+Per quanto riguarda la 2. invece:\\
+Dobbiamo dimostrare che, preso $\v{s}\notin \omega(\v{P})$ e $\v{s}\in A$, si ha che tutto un intorno aperto di $\v{s}$ (che chiamiamo $M$) non appartiene a $\omega (\v{P})$. 
+\end{proof}
+\begin{exmp}[Perché prendere una sequenza discreta]
+    Prendiamo un sistema dinamico in $\mathbb{R}^2$ con un'orbita periodica (un ciclo limite).
+   \marginpar{
+            \captionsetup{type=figure}
+            \incfig{4_1_2}
+            \caption{\scriptsize Orbita periodica per il sistema in $\mathbb{R}^2$}
+        \label{fig:4_1_2}
+        }
+    Su tale orbita scegliamo un punto $\v{x}_0$ ed consideriamo inoltre un punto $\v{x}$ esterno all'orbita. \\
+    Se facciamo evolvere $\v{x}$ (pensata come condizione iniziale) allora abbiamo l'evoluzione $\varphi_t(\v{x})$ $(t\ge 0)$ che finirà sul ciclo limite.\\
+    Facendo questa operazione con un tempo continuo finiremo su tutti i possibili stati appartenenti al ciclo limite, noi invece vorremmo proprio finire su $\v{x}_0$.\\
+    Utilizzando una sequenza discreta di tempi possiamo fare in modo di collare precisamente sul punto $\v{x}_0$ come mostrato in figura \ref{fig:4_1_3}
+    \marginpar{
+            \captionsetup{type=figure}
+            \incfig{4_1_3}
+            \caption{\scriptsize Sequenza discreta di tempi per raggiungere $\v{x}_0$}
+        \label{fig:4_1_3}
+        }
+\end{exmp}
 \noindent
