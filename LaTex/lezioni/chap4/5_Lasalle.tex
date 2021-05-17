@@ -1,0 +1,90 @@
+\section{Teorema di Lasalle}%
+\label{sub:Teorema di Lasalle}
+
+\begin{thm}[Teorema di Lasalle]
+    Dato un sistema dinamico a tempo continuo
+    \[
+	\frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) \quad  \v{x}\in \mathbb{R}^n \quad  F:\mathbb{R}^n\to \mathbb{R}^n
+    .\] 
+    Supponiamo che esista $M\subset \mathbb{R}^n$ positivamente invariante.\\
+    Supponiamo che in $M$ sia definita una funzione $V:M\to \mathbb{R}$  che ha derivata orbitale tale che:
+    \[
+	\left.\frac{\text{d} V(\v{x}) }{\text{d} t}\right|_{\v{x}_0} \le 0 \quad  \forall \v{x}_0\in M
+    .\] 
+    Definiamo inoltre i seguenti insiemi:
+    \[
+	E = \left\{\v{x}\in M| \frac{\text{d} V(\v{x}) }{\text{d} t} = 0\right\} \subset M
+    .\] 
+    \[\begin{aligned}
+	R = &\left\{\text{Insieme delle orbite aventi }\right.\\
+	    &\left.\text{condizioni iniziali in (o passanti per) } E \right.\\
+	    &\left.\text{ che rimangono in } E \text{ } \forall t \ge  0\right\}
+    .\end{aligned}\]
+    Allora $\forall \v{x}\in M$ si ha che:
+    \[
+	\lim_{t \to \infty} \varphi_t(\v{x}) \in R
+    .\] 
+\end{thm}
+\noindent
+Quindi il teorema dice che, sotto tali ipotesi, la dinamica asintotica ($\omega$-limit set) rimane intrappolata in $R$.
+\begin{exmp}[Duffling]
+    Prendiamo il noto sistema dinamico:
+    \[
+    \begin{dcases}
+    \frac{\text{d} x}{\text{d} t} = y\\
+    \frac{\text{d} y}{\text{d} t} = x-x^3-\delta y
+    \end{dcases}
+    \]
+    Se pongo $\delta = 0$  allora si ha:
+    \[
+        \frac{\text{d} y}{\text{d} t} = x-x^3\implies  \frac{\text{d} ^2x}{\text{d} t^2} = x-x^3
+    .\] 
+    Quindi una equazione di Newton con la "classica" doppia buca.
+    \[
+	\frac{\text{d} x}{\text{d} t} \frac{\text{d} ^2x}{\text{d} t^2} = \frac{\text{d} x}{\text{d} t} (x-x^3) 
+    .\] 
+    \[
+	\frac{\text{d} }{\text{d} t} \left(\frac{1}{2} \left(\frac{\text{d} x}{\text{d} t}\right)\right)= 
+	\frac{\text{d} }{\text{d} t} \left[\frac{x^2}{2}-\frac{x^4}{4}\right]
+    .\] 
+    \[
+        \frac{\text{d} }{\text{d} t} \left[\frac{1}{2}\left(\frac{\text{d} x}{\text{d} t} \right)^2- \left(\frac{x^2}{2} - \frac{x^4}{4}\right) \right] = 0
+    .\] 
+    Quindi abbiamo una equazione di conservazione (dell'energia in sostanza).\\
+    Poniamo adesso di nuovo $y = \frac{\text{d} x}{\text{d} t}$  e definiamo la funzione:
+    \[
+	V(x, y) = \frac{y^2}{2}-\frac{x^2}{2} + \frac{x^4}{4}
+    .\] 
+    Per casa mostrare che se si considera il sistema dinamico completo (con $\delta>0$) si ha che:
+    \[
+	\frac{\text{d} V(x, y) }{\text{d} t} \le 0
+    .\] 
+    In particolare si ha che:
+    \[
+        \frac{\text{d} V}{\text{d} t} = -\delta y^2
+    .\] 
+    Questo è il funzionale di Lyapunov\ldots
+    \begin{itemize}
+	\item Abbiamo una regione di intrappolamento che circonda i punti stazionari (già visto in passato) positivamente invariante (per il sistema senza la perturbazione $\delta$).
+	\item Abbiamo un funzionale $V$ con derivata orbitale negativa.
+    \end{itemize}
+    Quindi l'insieme $E$ è quello per cui la derivata di $V$ si annulla:
+    \[
+	E = \left[(x, y) \in \mathbb{R}^2| y = 0\right]
+    .\] 
+    Troviamo adesso l'insieme $R$: anche ponendoci con le condizioni iniziali su $E$ usciamo da $E$ a meno che non ci si ponga sugli stati stazionari (vedere dalle equazioni del sistema).
+    \[
+	y(0 + \Delta t) = y(0) + (x_0-x_0^3) \Delta t\simeq (x_0-x_0^3) \Delta t \neq 0
+    .\] 
+    Per questo motivo l'insieme $R$ è composto da:
+    \[
+        R = \left\{\begin{pmatrix} 0 \\ 0 \end{pmatrix}, \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \begin{pmatrix} -1 \\ 0 \end{pmatrix}\right\}
+    .\] 
+    Il teorema di Lasalle ci dice che il limite della dinamica per $t\to \infty$ ci dice che cadremo su uno di questi tre punti.\\
+    Alternativamente:
+    \[
+        \frac{\text{d} y}{\text{d} x} = \frac{x-x^3 - \delta y}{y}
+    .\] 
+    Si vede immediatamente che ogni punto dell'asse $x$ non coincidente con i 3 stazionari è attraversato dall'orbita in maniera ortogonale. Quindi $R$ può solo coincidere con gli stati stazionari.
+\end{exmp}
+\noindent

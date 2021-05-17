@@ -1,0 +1,96 @@
+\section{Teorema di Poincare Bendixon}%
+\label{sub:Teorema di Poincare Bendixon}
+Dimostriamo il teorema in $\mathbb{R}^2$, tale teorema vale anche in Manifold in bidimensionali: $\mathbb{R} \times S^1$ (cilindro) e $S^1\times S^1$ (toro 2D).\\
+Dato un campo vettoriale in $\mathbb{R}^2$:
+\[
+    \v{V}=\begin{pmatrix} x \\ y \end{pmatrix} \quad  
+    \begin{dcases}
+	\frac{\text{d} x}{\text{d} t} = F(x, y) \\
+	\frac{\text{d} y}{\text{d} t} = G(x, y) 
+    \end{dcases}
+\]
+Definito in $D \subset \mathbb{R}^2$ con $F, G \in C^r$ $(r\ge 1)$. Supponiamo che vi sia una regione $M \subset D$ con le proprietà seguenti:
+\begin{itemize}
+    \item $M$ è positivamente invariante
+	\[
+	(\forall \v{V}\in M \implies  \varphi_t(\v{V}) \in M, \ t\ge 0)
+	.\] 
+    \item $M$ compatto.
+\end{itemize}
+\begin{thm}[Poincare-Bendixon]
+    Sia $M$ l'insieme con le proprietà di cui sopra, supponiamo che $M$ contenga un numero finito di stati stazionari: $\v{P}_J$ ($J=1, 2,\ldots, n$).\\
+    Allora, $\forall \v{p}\in M$, l'insieme $\omega (\v{p})$ sarà:
+    \begin{enumerate}
+        \item Uno stato stazioario.
+	\item Una orbita periodica.
+	\item Un numero finito di stati stazionari $\v{p}_J$ con orbite che connettono tali stati in questi due possibili modi:
+	    \begin{itemize}
+		\item Orbite Omocliniche (connettono lo stato $\v{p}_J$ con se stesso).
+		\item Orbite Eterocliniche (connettono lo stato $\v{p}_{J_1}$ con lo stato $\v{p}_{J_2}$ con $J_1 \neq J_2$).
+	    \end{itemize}
+    \end{enumerate}
+\end{thm}
+\noindent
+\begin{ex}[Ricerca di orbite periodiche del sistema]
+    \[
+    \begin{dcases}
+	\frac{\text{d} x}{\text{d} t} = -x -y -x(x^2+2y^2) \\
+	\frac{\text{d} y}{\text{d} t} = x + y - y (x^2 + 2y^2) 
+    \end{dcases}
+    \]
+    Per casa verificare che $\v{V}_s = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$ è l'unico stato stazioario.\\
+    Se si prova che in questo sistema dinamico esiste una regione con le proprietà di $M$ (basta trovare un insieme con dinamica entrante o tangente) allora abbiamo le ipotesi del teorema.
+    Considero l'insieme:
+    \[
+        C = \left\{\begin{pmatrix} x \\ y \end{pmatrix}| x^2 + y^2 = r^2, \ r \in \mathbb{R}^+\right\} \subset \mathbb{R}^2
+    .\] 
+    Deriviamo rispetto al tempo l'equazione che definisce $C$:
+    \[
+        2x\frac{\text{d} x}{\text{d} t} + 2y\frac{\text{d} y}{\text{d} t} = 2r\frac{\text{d} r}{\text{d} t} 
+    .\] 
+    Inserendo adesso le equazioni del sistema dinamico e semplificando si ottiene:
+    \[
+	r\frac{\text{d} r}{\text{d} t} = (x^2+y^2) -(x^2+y^2) (x^2+2y^2) 
+    .\] 
+    Introduciamo adesso un sistema di coordinate polari:
+    \[\begin{aligned}
+	& x = r\cos\theta\\
+	& y = r\sin\theta
+    .\end{aligned}\]
+    Si ottiene l'equazione per $r$ e $\theta$:
+    \[
+        r\frac{\text{d} r}{\text{d} t} = r^2\left[1-x^2-2y^2\right]= r^2\left[1-r^2-r^2\sin^2\theta\right]
+    .\] 
+    ed in modo ancor più compatto:
+    \[
+	\frac{\text{d} r}{\text{d} t} = r-r^3(1+\sin^2\theta) 
+    .\] 
+    Per casa verificare che\sidenote{\scriptsize Conviene partire dalla funzione $\tan\theta = \frac{y}{x}$ e giocare sulle derivate di questa}:
+    \[
+        \frac{\text{d} \theta}{\text{d} t} = 1
+    .\] 
+    La dinamica (di attrazione o repulsione) dipende dalla prima delle due equazioni (quella di $r$). In particolare se $\dot{r}$ è negativa si va verso il centro del sistema (una regione di intrappolamento).\\
+    Notiamo intanto che:
+    \[
+	r-r^3(1+\sin^2\theta) \ge r-2r^3 
+    .\] 
+    Vorremo trovare la regione in cui l'equazione a destra è positiva.
+    \[
+	r(1-2r^2) > 0 \implies  r_{\text{min}} < \frac{1}{\sqrt{2}}
+    .\] 
+    Quindi si ha che sicuramente c'è una regione vicina all'origine per cui la dinamica spinge verso l'esterno. Cerchiamo adesso la condizione opposta:
+    \[
+        \frac{\text{d} r}{\text{d} t} < 0 \implies  r - r^3-r^3\sin^2\theta  < 0
+    .\] 
+    Notiamo che l'unico termine è sicuramente positivo (non conderando il segno $-$ davanti), quindi possiamo minorare:
+    \[
+        r-r^3-r^3\sin^2\theta  < r-r^3 < 0 \implies  r_{\text{max}} = 1
+    .\] 
+    Abbiamo quindi trovato la regione $M$:
+    \[
+	M = \left\{(r, \theta\in \mathbb{R}^2) | \frac{1}{\sqrt{2}} < r < 1\right\}
+    .\] 
+    Un orbita che ha come condizioni iniziali $\v{p}_0\in M$ resta all'interno di $M$ sempre!\\
+    All'interno di $M$ non vi sono punti stazionari. Quindi ogni traiettoria o si trova su una orbita periodica oppure ci collassa.
+\end{ex}
+\noindent
