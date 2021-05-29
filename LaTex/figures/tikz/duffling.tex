@@ -1,0 +1,22 @@
+% tikzpic.tex
+\documentclass[convert=false, border=10pt]{standalone}% 'crop' is the default for v1.0, before it was 'preview'
+\usepackage{circuitikz}
+\usepackage{geometry}
+\geometry{
+    top=2.5cm,
+    left=2.6cm
+}
+%\usetikzlibrary{}% tikz package already loaded by 'tikz' option
+\begin{document}
+%\begin{tikzpicture}
+\begin{circuitikz}[american, scale = 1.1][americanvoltages]
+    \draw (0,2)
+    to[C, C=$C$] (1.5, 2) 
+    to[L, L=$L$] (3,2) % The resistor
+    to[tgeneric, tgeneric=$V(I)$] (3,0) %Capacitor Two
+    to[] (0,0); % The voltage source
+    \draw (0,2) to[V, l_=$E\sin(\omega t) $] (0,0);
+    %\draw[thin, <-, >=triangle 45] (1.5,1)node{$i$}  ++(-60:0.5) arc (-60:170:0.5);
+\end{circuitikz}
+%\end{tikzpicture}
+\end{document}

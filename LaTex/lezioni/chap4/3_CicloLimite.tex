@@ -14,7 +14,14 @@
         }
 \end{defn}
 \noindent
-Se si costruisce un intorno di un ciclo limite $N(\gamma)$ si ha che in tale intorno non devono esistere altre orbite periodiche chiuse. Nello spazio delle fasi il ciclo limite deve essere isolato.\\
+Se si costruisce un intorno di un ciclo limite $N(\gamma)$ si ha che in tale intorno non devono esistere altre orbite periodiche chiuse. Per questo motivo, nello spazio delle fasi il ciclo limite deve essere isolato.\\
+\marginpar{
+        \captionsetup{type=figure}
+        \incfig{4_3_2}
+	\caption{\scriptsize Ciclo limite $\gamma$ con il relativo intorno senza orbite periodiche chiuse $N(\gamma) $.}
+    \label{fig:4_3_2}
+    }
+
 \begin{thm}[Inesistenza dei cicli limite per i sistemi lineari]
 Un sistema dinamico lineare $\frac{\text{d} \v{x}}{\text{d} t} = A \v{x}$ non può possedere un ciclo limite.
 \end{thm}
@@ -24,7 +31,7 @@ Un sistema dinamico lineare $\frac{\text{d} \v{x}}{\text{d} t} = A \v{x}$ non pu
     Per casa\ldots
 \end{proof}
 \begin{defn}[Varietà stabile e instabile locali rispetto a $\gamma$]
-    Sia $\gamma$ un ciclo limite ed $N$ un suo intorno.
+    Dato un sistema dinamico con flusso di fase $\varphi_t(\v{x})$, sia $\gamma$ un ciclo limite di tale sistema ed $N$ un suo intorno tale che $N \subset B$ con $B$ bacino di attrazione di $\gamma$.
     \[
 	W_{loc}^s(\gamma) = \left\{\v{x}\in N| d(\varphi_t(\v{x}) , \gamma)\to 0 \text{ con } t\to \infty; \ \varphi_t (\v{x}) \in N\right\}
     .\] 
@@ -50,14 +57,15 @@ Preso un campo vettoriale:
     Se in $D$  la funzione 
     \[
         \frac{\partial F}{\partial x} + \frac{\partial G}{\partial x} 
-    .\] Non è identicamente $0$ o non cambia segno allora non può esserci in $D$ alcuna orbita chiusa.
+    .\] 
+    Ha sempre lo stesso segno allora in $D$ non può esserci alcuna orbita chiusa.
 \end{thm}
 \noindent
 \begin{proof}
     Prendiamo una superficie $S \subset \mathbb{R}^3$ con contorno $\tau$. Supponiamo di aver definito un campo vettoriale $E$ in $S$.\\
-    Facendo una circuitazione lungo $\tau$ si $E$ :
+    Facendo una circuitazione lungo $\tau$ di $E$ si può sfruttare il teorema del rotore:
     \[
-	\int \v{E}d\v{s} = \int \int_S (\nabla \times \v{E}) d\v{a}
+	\oint_{\tau} \v{E}d\v{s} = \int \int_S (\nabla \times \v{E}) d\v{a}
     .\] 
     Supponiamo di prendere ad esempio il campo:
     \[
@@ -103,10 +111,17 @@ Preso un campo vettoriale:
 \end{exmp}
 \subsection{Oscillatore Wan Der Pole}%
 \label{sub:Oscillatore Wan Der Pole}
+La particolarità di questo oscillatore è la presenza di un componente elettronico non lineare $V(I)$ tale che:
+    \marginpar{
+        \captionsetup{type=figure}
+        \fbox{\includegraphics[width=\marginparwidth]{figures/tikz/duffling.pdf}}
+        \caption{\scriptsize Schema circuitale dell'oscilaltore di Wan Der Pole}
+        \label{fig:tikz-3_rlc-pdf}
+    }
 \[
     V(I) = RI_0\left[- \frac{I(t) }{I_0} + \frac{1}{3}\left(\frac{I}{I_0}\right)^3\right]
 .\] 
-Quindi si ha:
+L'equazione che regola il circuito è la seguente:
 \[
     E\sin (\omega t) = \frac{q}{c}+ L\frac{\text{d} I}{\text{d} t}  + V(I) 
 .\] 
@@ -136,7 +151,7 @@ Utilizzando il criterio:
 \[
     \frac{\partial F}{\partial x} + \frac{\partial G}{\partial y} = - \mu\left[x^2-1\right]
 .\] 
-Quindi dallo studio del segno di questa quantità se ne deduce che studiando il sistema tra $\left[-1, 1\right]$  non troveremo orbite periodiche poiché la somma delle derivate parziali non cambia segno. Tuttavia studiando in $\mathbb{R}^2$  le orbite periodiche ci potrebbero essere.
+Quindi dallo studio del segno di questa quantità si ottengono i due punti annullamento del funzionale: $x=\pm 1$. Se ne deduce che studiando il sistema in regioni nel quale il segno di questa quantità non cambia ($x<-1$  $-1< x < 1$ e $x > 1$) non troveremo orbite periodiche. Tuttavia studiando il sistema in $\mathbb{R}^2$, ad esempio, le orbite periodiche ci potrebbero essere.
 \paragraph{Metodo 2: Teorema di Lienard}%
 \begin{thm}[Teorema di Lienard]
     Data l'equazione (di Lienard)
@@ -209,6 +224,12 @@ in questo modo derivando otteniamo:
     \frac{\text{d} y}{\text{d} t} = -\frac{1}{\mu}\left[-\frac{\text{d} ^2x}{\text{d} t^2} - \mu (x^2-1) \frac{\text{d} x}{\text{d} t} \right] = \frac{x}{\mu}
 .\] 
 Per la variabile $x$  invece si ottiene (invertendo la relazione per $y$):
+\marginpar{
+        \captionsetup{type=figure}
+        \incfig{4_3_3}
+        \caption{\scriptsize Andamento delle Nurk lines ed una possibile orbita periodica}
+    \label{fig:4_3_3}
+    }
 \[
     \frac{\text{d} x}{\text{d} t} = \mu\left[x-\frac{x^3}{3}-y\right]
 .\] 
@@ -217,4 +238,5 @@ Utilizzando queste due equazioni possiamo determinare gli stati stazioari e la l
     &N_x = \left\{(x, y) \in \mathbb{R}^2| y = x-\frac{x^3}{3}\right\}\\
     &N_y = \left\{(x, y) \in \mathbb{R}^2| x = 0\right\}
 .\end{aligned}\]
-Queste regioni indicano il cambio di segno del campo vettoriale $\frac{\text{d} \v{x}}{\text{d} t}$.
+Queste regioni indicano il cambio di segno del campo vettoriale $\frac{\text{d} \v{x}}{\text{d} t}$.\\
+Nella figura \ref{fig:4_3_3} sono rappresentate le Nurk lines per il caso in questione. Si nota che la regione delimitata dalla linea gialla è una regione di intrappolamento (le linee di livello puntano sempre verso l'interno di tale regione. Come conseguenza questa è una regione positivamente invariante (compatta), quindi ogni $\begin{pmatrix} x \\ y \end{pmatrix}$ in tale regione cadrà su una orbita periodica in quanto il punto stazionario nell'origine è un punto stabile (ed è l'unico).
