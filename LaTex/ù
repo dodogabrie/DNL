@@ -1,0 +1,26 @@
+\section{Teorema del Center Manifold}%
+L'idea è di andare a studiare la dinamica su dei Manifold "caratteristici" del sistema, riducendo in questo modo la dimensionalità e semplificando di conseguenza il problema.\\
+Sia dato il sistema dinamico 
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) 
+.\] E sia $\v{x}_s$ uno stato stazionario.\\
+Definiamo $\v{x}= \v{x}_s + \v{y}$ e riscrivo il sistema nel seguente modo:
+\[
+    \frac{\text{d} \v{y}}{\text{d} t} = F(\v{x}_s + \v{y})  = \left.DF\right|_{\v{x}=\v{x}_s}\v{y} + R(\v{y}) 
+.\] 
+Possimao allora definire le variabili $\v{u}$, $\v{v}$ e $\v{w}$ in modo tale che:
+\[
+    \begin{pmatrix} \v{u} \\ \v{v}\\\v{w} \end{pmatrix}= T^{-1}\v{y}
+.\] 
+E, come abbiamo visto con la teoria dei Manifold, si ha:
+\[\begin{aligned}
+    & \frac{\text{d} \v{u}}{\text{d} t} = A_s\v{u}+ R_s(\v{u}, \v{v}, \v{w}) \\
+    & \frac{\text{d} \v{v}}{\text{d} t} = A_u\v{v}+ R_u(\v{u}, \v{v}, \v{w}) \\
+    & \frac{\text{d} \v{w}}{\text{d} t} = A_c\v{w}+ R_c(\v{u}, \v{v}, \v{w}) 
+.\end{aligned}\]
+Supponiamo che dopo questa trasformazione sia presente soltanto la varietà centrale e quella stabile (non ci sia la parte instabile). In questo caso possiamo riscrivere il sistema dinamico nella seguente forma:
+\[\begin{aligned}
+    &\frac{\text{d} \v{x}}{\text{d} t} = A\v{x}+  f(\v{x}, \v{y}) \\
+    &\frac{\text{d} \v{y}}{\text{d} t} = B\v{y}+  g(\v{x}, \v{y}) 
+.\end{aligned}\]
+Con $(\v{x}, \v{y}) \in \mathbb{R}^c \times \mathbb{R}^s$, quindi $\v{x}$ descrive la varietà centrale mentre $\v{y}$ descrive la varietà stabile.

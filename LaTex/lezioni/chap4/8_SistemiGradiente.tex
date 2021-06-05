@@ -1,0 +1,79 @@
+\section{Sistemi dinamici di tipo Gradiente}%
+\label{sub:SIstemi dinamici di tipo Gradiente}
+Un sistema dinamico di tipo gradiente ha una struttura del tipo:
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) = - \nabla V(\v{x}) \quad 
+    \v{x}\in \mathbb{R}^n \quad  V:\mathbb{R}^n\to \mathbb{R}^n, \quad V \in C^r \ r\ge 2
+.\] 
+Quindi gli stati stazionari sono punti per il quale:
+\[
+    F(\v{x}) = 0 \implies  \nabla V(\v{x}) = 0
+.\] 
+\begin{thm}[Sui sistemi di tipo gradiente]
+    Dato un sistema dinamico di tipo gradiente, allora si ha che 
+    \[
+	\frac{\text{d} V(\v{x}) }{\text{d} t} \le 0
+    .\] 
+\end{thm}
+\noindent
+\begin{proof}
+    \[
+	\frac{\text{d} V(\v{x}) }{\text{d} t} = \nabla V \cdot \frac{\text{d} \v{x}}{\text{d} t} = \nabla V \cdot (-\nabla V) = -(\nabla V)^2 \le 0
+    .\] 
+\end{proof}
+\begin{thm}[Inesistenza di orbite chiuse per Sistemi Gradiente]
+    Dato un sistema dinamico di tipo gradiente, allora non possono esistere orbite chiuse.
+\end{thm}
+\noindent
+\begin{proof}
+    Assumiamo per assurdo che esista una curva chiusa $\gamma$. Prendiamo un punto $\v{P}$ su tale curva chiusa.\\
+    Ipotizzando $T$ sia il tempo che si impiega a compiere un giro su tale curva partendo da $\v{P}$, possiamo calcolare allora la quantità:
+    \[
+	\int_0^T \frac{\text{d} V}{\text{d} t} dt = \int_0^T dV = V(\v{x}(T) ) - V(\v{x}(0) ) = \v{P}-\v{P} = 0
+    .\] 
+    Quindi abbiamo che:
+    \[
+        0 = \int_{0}^{T} \frac{\text{d} V}{\text{d} t}dt = \int_{0}^{T} \nabla V \cdot \frac{\text{d} x}{\text{d} t} dt  
+    .\] 
+    Ma possiamo anche scrivere questo integrale come:
+    \[
+	0 = \int_{0}^{T} \nabla V\cdot (-\nabla V) dt = - \int_{0}^{T} \left|\nabla V\right|^2 dt  
+    .\] 
+    Quindi, essendo il contributo dell'integrale sempre positivo l'unico modo per il quale si verifichi l'ugualianza è $\nabla V = 0$. Questo contraddice  il fatto che esista una curva chiusa poichè l'unico campo che rispetti $\nabla V = 0$ è $\dot{\v{x}}=0$ (campo nullo), tale campo non presenta orbite chiuse.
+\end{proof}
+\begin{thm}[Minimo locale quindi asintoticamente stabile]
+    Sia dato il sistema 
+     \[
+	 \frac{\text{d} \v{x}}{\text{d} t} = -\nabla V(\v{x}) 
+     .\] con $\v{x}_s$ uno stato stazionario isolato (avente un intorno senza stati stazionari). Supponiamo inoltre che $\v{x}_s$ corrisponda ad un minimo locale di $V(\v{x})$ (ricordiamo che $\nabla V(\v{x}_s) = 0$). Allora $\v{x}_s$ è asintoticamente stabile.
+\end{thm}
+\noindent
+\section*{Sistemi dinamici reversibili}%
+Dato un sistema dinamico 
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) \quad  \v{x}\in \mathbb{R}^n, \quad  F:\mathbb{R}^n\to \mathbb{R}^n
+.\] 
+Supponiamo esista un operatore di involuzione $G$  tale che:
+\[
+    G:\mathbb{R}^n\to \mathbb{R}^n \qquad  G \circ G = I
+.\]
+\begin{defn}[Sistema dinamico reversibile]
+    Il sistema dinamico descritto sopra è reversibile se l'evoluzione temporale degli stati trasformati sotto $G$  rispetta l'equazione della dinamica:
+    \[
+	\frac{\text{d} G(\v{x}) }{\text{d} t} = F(G(\v{x}) ) 
+    .\] 
+    Con $G$ operatore di involuzione.
+\end{defn}
+\noindent
+Definizione analoga può esser data alle mappe:
+\begin{defn}[Mappa reversibile]
+    Sia data una mappa ricorsiva
+    \[
+	\v{x}_{k+1} = M(\v{x}_k) 
+    .\] 
+    E $G$ sia un operatore di involuzione, allora si dice sistema dinamico a tempo discreto reversibile se 
+    \[
+	M \circ G \circ M (\v{x}_n) = M(\v{x}_n) 
+    .\] 
+\end{defn}
+\noindent

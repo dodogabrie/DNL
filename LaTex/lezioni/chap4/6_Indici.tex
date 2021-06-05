@@ -1,5 +1,12 @@
 \section{Teoria degli indici}%
 \label{sub:Teoria degli indici}
+Questo metodo è molto utilizzato in $\mathbb{R}^2$ ed aiuta a capire se un sistema può contenere orbite periodiche.\\
+\marginpar{
+        \captionsetup{type=figure}
+        \incfig{4_6_1}
+        \caption{\scriptsize Linee di campo lungo il percorso chiuso $\tau$. Notiamo che $\tau$ non è necessariamente una traiettoria, basta sia un percorso chiuso da noi definito dentro a $D$.}
+    \label{fig:4_6_1}
+    }
 Sia dato un campo vettoriale 
 \[
 \begin{dcases}
@@ -7,16 +14,87 @@ Sia dato un campo vettoriale
     \frac{\text{d} y}{\text{d} t} = G(x, y) 
 \end{dcases}
 \]
-Definito nell'insieme $D \subset \mathbb{R}^2$ e $D$ semplicemente connesso.
+Definito nell'insieme $D \subset \mathbb{R}^2$ e $D$ semplicemente connesso.\\
+Supponiamo di prendere un percorso chiuso $\tau$ all'interno di $D$ come in figura \ref{fig:4_6_1}. Prendiamo un punto di riferimento su $\tau$ e si calcola la variazione dell'inclinazione del campo vettoriale lungo $\tau$ punto per punto.
 \begin{exmp}[]
-    Prendiamo una sorgente, il campo vettoriale\ldots Da riascoltare. 
+    \marginpar{
+            \captionsetup{type=figure}
+            \incfig{4_6_2}
+	    \caption{\scriptsize Sorgente di campo vettoriale (nell'origine). Le linee blu sono le linee di campo che escono dalla sorgente, come curva chiusa possiamo prendere una circonferenza attorno all'origine. La teoria degli indici consiste nel sommare tutti gli angoli $\theta_{ij}$ del campo per fare un giro completo in una curva chiusa di una regione $D$.}
+        \label{fig:4_6_2}
+        }
+	Prendiamo un campo vettoriale avente una sorgente, scegliamo alcune direzioni del campo che partono dalla sorgente ed una curva chiusa attorno a questa come in figura \ref{fig:4_6_2}, l'indice di una circonferenza chiusa attorno all'origine è in questo caso $\frac{2\pi}{2\pi}=1$.
 \end{exmp}
 \noindent
 \begin{defn}[Indice di Curva chiusa]
     Sia dato il sistema dinamico di sopra, si definisce indice di una curva chiusa $\Gamma$ la seguente quantità:
     \[
-	K \ (\text{indice}) = \frac{1}{2\pi}\oint \frac{FdG-GdF}{F^2+G^2}
+	K \ (\text{indice}) = \frac{1}{2\pi}\oint_{\tau} \frac{FdG-GdF}{F^2+G^2}
     .\] 
     Con $dF$ e $dG$ differenziali dei relativi funzionali.
 \end{defn}
+\noindent
+\begin{thm}[Teorema degli indici]
+    Dato il sistema dinamico in $\mathbb{R}^2$ di sopra definito in $D\subset \mathbb{R}^2$ semplicemente connesso. Sia $\tau\subset D$ una curva chiusa non contenente stati stazionari (su di essa).
+    Allora a seconda degli stati stazioari contenuti all'interno dell'area sottesa alla curva $\tau$ si ha:
+    \begin{enumerate}
+        \item $K=+1$ se contiene un pozzo, una sorgente o un centro.
+	\item $K=-1$ se contiene una sella iperbolica.
+	\item $K = +1$ se contiene un'orbita periodica.
+	\item $K = 0$ se non contenente alcuno stato stazionario.
+	\item L'indice di una curva chiusa $\tau$ è uguale alla somma degli indici di tutti gli stati stazioari contenuti all'interno.
+    \end{enumerate}
+\end{thm}
+\noindent
+\begin{exmp}[Orbita periodica]
+    Visto che l'indice di una orbita periodica deve essere $K=1$ questo significa che in tale orbita vi è presenta un pozzo o una sorgente o un centro per la proprietà 5).\\
+    Notiamo che il teorema non esclude la presenza (sempre all'interno della curva chiusa periodica) di una sella iperbolica e due pozzi ad esempio (l'importante è che la sommma sia 1 perché l'orbita è periodica).
+\end{exmp}
+\noindent
+\begin{cor}[Sugli stati iperbolici]
+    Sia data una orbita periodica $\gamma$, supponiamo che all'interno di $\gamma$ ci siano soltanto stati stazionari iperbolici. Allora all'interno di $\gamma$ ci devono essere $n$ selle e $n+1$ pozzi o sorgenti.
+\end{cor}
+\noindent
+In presenza di stati stazionari non iperbolici possono verificarsi situazioni come quella del prossimo esempio:
+\begin{exmp}[Sella non iperbolica]
+    Prendiamo il campo vettoriale
+    \[
+    \begin{dcases}
+    \frac{\text{d} x}{\text{d} t} = x^2\\
+    \frac{\text{d} y}{\text{d} t} = - y
+    \end{dcases}
+    \]
+    \marginpar{
+            \captionsetup{type=figure}
+            \incfig{4_6_3}
+            \caption{\scriptsize Phase Portrait per il sistema in esame.}
+        \label{fig:4_6_3}
+        }
+    Questo ha uno stato stazioario $\v{V}_s$ nell'origine non iperbolico con $\lambda_1 = 0$ e $\lambda_2=-1$ (sella non iperbolica). \\
+    L'indice per una curva chiusa che circonda lo stato stazioario nell'origine è in questo caso $K = 0$, infatti possiamo risalire velocente al Phase Portrait dalla relazione:
+    \[
+        \frac{\text{d} y}{\text{d} x} = -\frac{y}{x ^2}
+    .\] 
+    In base al Phase Portrait in figura \ref{fig:4_6_3} si nota come gli angoli della parte superiore compensano quelli della parte inferiore dando somma 0.
+\end{exmp}
+\noindent
+\begin{exmp}[]
+    \[
+    \begin{dcases}
+	\frac{\text{d}x}{\text{d} t} = x-y-x(x^2+2y^2) \\
+	\frac{\text{d} y}{\text{d} t} =  x+y-y(x^2+2y^2) 
+    \end{dcases}
+    \]
+    \marginpar{
+            \captionsetup{type=figure}
+            \incfig{4_6_4}
+	    \caption{\scriptsize Regione di definizione del ciclo limite (rosso) e l'orbita periodica al suo interno (nero).}
+        \label{fig:4_6_4}
+        }
+    Abbiamo visto che per questo sistema si ha un unico stato stazionario nell'origine. Inoltre tramite le coordinate polari ed il teorema di Poincare-Bendixon abbiamo dimostrato che questo sistema dinamico ha un ciclo limite (orbita periodica).
+    La regione contenente tale ciclo era stata nominata $M$, in tale regione abbiamo detto che non può esistere alcuno stato stazionario.\\
+    Presa allora l'orbita periodica come curva chiusa in $M$ abbiamo una contraddizione con quanto visto con il teorema degli indici? Infatti all'interno della regione $M$ non si hanno stati stazionari, quindi si dovrebbe avere $K=0$, mentre un orbita periodica dovrebbe avere $K = 1$. \\
+    La questione è risolta da una violazione delle ipotesi del teorema degli indici: il dominio $M$ non è semplicemente connesso (ha il buco). \\
+    Includendo l'origine (rimuovendo il buco) si ha che il teorema torna valido.
+\end{exmp}
 \noindent

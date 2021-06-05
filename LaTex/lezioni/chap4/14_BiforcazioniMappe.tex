@@ -1,0 +1,107 @@
+\section{Biforcazioni di Mappe (1D)}%
+Consideriamo la mappa:
+\[
+    x_{n+1}=G(x_n, \mu) \quad  x_n \in \mathbb{R}, \ \mu  \in \mathbb{R}
+.\] 
+\subsection{Biforcazione Nodo Sella per mappe}%
+Nel caso delle mappe questa biforcazione è espressa da:
+\[
+    x_{k+1}= \mu  + x_k -x_k^2 = G(x, \mu) 
+.\] 
+Si verifica immediatamente che:
+\[
+    G(x_s, \mu) = x_s \implies  x_s = \pm \sqrt{\mu} \text{ con }\mu >0
+.\] 
+Lo Jacobiano è\sidenote{\scriptsize Ricordiamo che uno stato non iperbolico per le mappe deve avere autovalori della matrice $J$ unitari.}:
+\[
+    J(x, \mu) = 1-2x \implies  J(0, 0) = 1 \implies  \text{ Non iperbolico}
+.\] 
+Si trova inoltre immediatamente che $x_{s_1}$ (+) è stabile mentre $x_{s_2}$ è instabile. Il grafico di biforazione è lo stesso di figura \ref{fig:4_12_2}.
+\subsection{Biforcazione Transcritica per mappe}%
+La forma normale per questa biforcazione è:
+\[
+    x_{n+1}=x_n + \mu x_n - x_n^2 = G(x_n, \mu) 
+.\] 
+Per quanto concerne gli stati stazionari si ha:
+\[
+    G(x_s, \mu) = x_s \implies  x_s(\mu-x_s) = 0 \implies 
+    \begin{cases}
+        x_{s_1}= 0\\
+	x_{s_2}= \mu
+    \end{cases}
+.\] 
+Inoltre si ha la non iperbolicità dello stato stazionario nell'origine:
+\[
+    J(x, \mu) = 1+\mu-2x \implies  J(0, 0) = 1
+.\] 
+Dallo studio della stabilità di $x_{s_1}$ e di $x_{s_2}$ si ottiene nuovamente il grafico \ref{fig:4_13_3}.
+\subsection{Biforcazione a forchetta per mappe}%
+Il sistema normale per questa biforcazione è:
+\[
+    x_{n+1}= x_n + \mu x_n -x_n^3 = G(x_n, \mu) 
+.\] 
+Gli stati stazionari sono dati dalla equazione:
+\[
+    x_s\left[\mu-x_s^2\right]= 0 \implies 
+    \begin{cases}
+	x_{s_1}=0 & \forall \mu\\
+	x_{s_2}=\sqrt{\mu} & \mu\ge 0\\
+	x_{s_3}= -\sqrt{\mu} & \mu\ge 0
+    \end{cases}
+.\] 
+Dallo studio della stabilità si ottiene il medesimo grafico di figura \ref{fig:4_13_4}.\\
+Insieme a queste 3 biforcazioni abbiamo anche le speculari: le subcritiche
+\[\begin{aligned}
+    &x_{k+1}= x_k + \mu +x_k^2\\
+    &x_{k+1}= x_k + \mu x_k + x_k^2\\
+    &x_{k+1}= x_k + \mu x_k +x_k^3
+.\end{aligned}\]
+
+\subsection{Biforcazione Flip (period-dubling)}%
+La forma normale di questa biforcazione è la seguente:
+\[
+    x_{n+1}= -x_n - \mu x_n + x_n^3 = F(x_n, \mu) 
+.\] 
+Questo sistema ha la peculiarità che, al variare di $\mu$, il numeo di stati stazionari "raddoppia". Inoltre il sistema oscilla tra questi nuovi stati stazionari. Chiariamo adesso meglio il significato di questa affermazione studiando il sistema.
+\[\begin{aligned}
+    &x_s = - x_s - \mu x_s + x_s^3 \implies  x_s^3-(2 + \mu) x_s = 0\implies \\
+    &\implies\begin{cases}
+	x_{s_1} = 0 & \\
+	x_{s_2}= \sqrt{2 + \mu} & \mu\ge -2\\
+	x_{s_3}= -\sqrt{2 + \mu} & \mu  \ge -2
+    \end{cases}
+.\end{aligned}\]
+La matrice Jaobiana invece è:
+\[
+    J(x, \mu) = -1 -\mu  + 3x^2 \implies  J(0 , 0) = -1 \implies  \text{ Non Ip.}
+\] 
+Per quanto riguarda la stabilità dello stato stazionario si ha che:
+\[
+    J(x_{s_1}, \mu) = -1-\mu\implies  \lambda  = -1-\mu
+.\] 
+L'autovalore deve avere modulo minore o uguale di 1:
+\[
+    \left|-1-\mu\right|<1 \implies  -2<\mu <0
+.\] 
+\marginpar{
+        \captionsetup{type=figure}
+        \incfig{4_14_1}
+        \caption{\scriptsize Diagramma di biforcazioe per il sistema.}
+    \label{fig:4_14_1}
+    }
+
+Vediamo cosa succcede agli altri due stati:
+\[
+    J(x_{s_{2, 3}}, \mu) = 5 + 2\mu
+.\] 
+La richiesta di stabilità porta al sistema:
+\[
+    \left|5 + 2\mu\right|< 1 \implies 
+    \begin{cases}
+        2\mu  + 5 < 1\\
+	2\mu +5 > -1
+    \end{cases}
+    \implies 
+    -3<\mu <-2
+.\] 
+Quindi questi due stati sono non stabili (poichè i due stati per esistere deve essere $\mu >-2$).

@@ -1,0 +1,110 @@
+\section{Mappe di Poincaré}%
+Prendiamo un campo vettoriale:
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}), \quad  \v{x}\in \mathbb{R}^n, \quad  F:\mathbb{R}^n\to \mathbb{R}^n
+.\] 
+\marginpar{
+        \captionsetup{type=figure}
+        \incfig{4_10_1}
+        \caption{\scriptsize Esempio di mappa di Poincaré}
+    \label{fig:4_10_1}
+    }
+Prendiamo un piano nello spazio delle fasi ed indichiamo con $\hat{n}(\v{x}_0)$ la normale a questo piano nel punto $\v{x}_0$.\\
+Se imponiamo la \textbf{Condizione di trasversalità} sul campo vettoriale (ovvero che il campo non passi mai in modo tangente al piano):
+\[
+    \forall \v{x} \quad  F(\v{x}) \cdot \hat{n}(\v{x}) \neq 0
+.\] 
+Allora la mappa di Poincaré $P$ sul piano $\Sigma$ definita su:
+\[
+    P: \mathbb{R}^{n-1}\to \mathbb{R}^{n-1}
+.\] 
+Tale per cui:
+\[
+    \v{x}_{J+1}= P(\v{x}_J) 
+.\] 
+con $\v{x}_J$ "bucatura" del piano $\Sigma$ da parte della traiettoria $\forall J \in \mathbb{N}$.
+\begin{thm}[]
+    Sia $\v{x}_p(t) = \Gamma$ una orbita periodica di periodo $T$ del sistema dinamico. 
+    \[
+	\Gamma  = \left\{\v{x}\in \mathbb{R}^n | \v{x}= \varphi_t(\v{x}_0), \ 0 \le t \le T, \ \forall \v{x}_0 \text{ sull'orb. periodica}\right\}
+    .\] 
+    Sia $\Sigma$ una superficie trasversale al campo vettoriale in $\v{x}_0$. Allora si ha
+    \begin{enumerate}
+	\item Esiste $\delta >0$ e $\tau (\v{x}): U_{\delta (\v{x}_0)}\to \mathbb{R}^+$ continua e differenziabile.\\
+	    $\forall \v{x}\in U_{\delta}(\v{x}_0) $ si ha $\varphi_{\tau (\v{x})}(\v{x})\in \Sigma$ 
+	\item $\tau(\v{x}_0) = T$.
+    \end{enumerate}
+\end{thm}
+\noindent
+Ipotizziamo di avere la mappa 
+\[
+    \v{x}_{J+1}= P(\v{x}_J) 
+.\] Questo significa che $\v{x}_0$ (appartenente ad una orbita periodica e punto di intersezione con $\Sigma$) sarà uno stato stazionario della mappa.
+\begin{thm}[]
+    Nelle ipotesi del teorema precedente si ha:
+    \begin{enumerate}
+	\item Gli autovalori di $P(\v{x}_0)$ sono indipendenti dalla scelta dello specifico stato $\v{x}_0$.
+	\item Gli autovalori di $P(\v{x}_0)$ non dipendono dal sistema di coordinate locali utilizzate.
+    \end{enumerate}
+\end{thm}
+\begin{exmp}[]
+    Dato il sistema dinamico seguente:
+    \[
+    \begin{dcases}
+	\frac{\text{d} x}{\text{d} t} = \mu x-y-x(x^2+y^2) \\
+	\frac{\text{d} y}{\text{d} t} = x + \mu y - y(x^2+y^2) 
+    \end{dcases}
+    \]
+    Notiamo che la prima parte (quella lineare) contiene un blocco di Jordan, in particolare è la matrice legata alle rotazioni\ldots\\
+    Passando alle coordinate polari si ottiene il sistema:
+    \[
+        \frac{\text{d} r}{\text{d} t} = \mu r-r^3
+    .\] 
+    \[
+        \frac{\text{d} \theta}{\text{d} t} = 1
+    .\] 
+    Le equazioni sono quindi disaccopiate, risolvendo entrambe si ha:
+    \[
+	\varphi_t(r_0,\theta_0) = \left(\left[\frac{1}{\mu} + \left(\frac{1}{r_0^2}-\frac{1}{\mu}\right)e^{-2\mu t}\right]^{-\frac{1}{2}}, t + \theta_0\right)
+    .\] 
+    Scegliamo allora la mappa:
+    \[
+	P(r) = \left[\frac{1}{\mu}+\left(\frac{1}{r^2}-\frac{1}{\mu}\right)e^{-2\mu t}\right]^{-\frac{1}{2}}
+    .\] 
+    Quindi:
+    \[
+	r_{J+1}= P(r_{J}) \qquad  \tau (r) = 2\pi
+    .\] 
+    Visto che $\tau$ è indipendente da $J$ allora si ha:
+    \[
+        r_{J+1}=\left[\frac{1}{\mu}+ \left(\frac{1}{r_J^2 - \frac{1}{\mu}}\right)e^{-4\pi\mu}\right]^{-\frac{1}{2}}
+    .\] 
+    Per esercizio trovare lo stato stazionario della mappa:
+    \[
+	r_{J+1}= P(r_J) 
+    .\] E studiarne la stabilità.
+\end{exmp}
+\noindent
+\section*{Mappa di Poincaré per sistemi dinamici non autonomi (stroboscopica)}%
+Preso il sistema non autonomo:
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}, t), \quad  F: \mathbb{R}^n\times \mathbb{R}\to \mathbb{R}^n
+.\] 
+\marginpar{
+        \captionsetup{type=figure}
+        \incfig{4_10_2}
+        \caption{\scriptsize Mappa stroboscopica per un sistema generico.}
+    \label{fig:4_10_2}
+    }
+Tale per cui la perturbazione sia periodica di periodo $T$:
+\[
+    F(\v{x}, t) = F(\v{x}, t + T) 
+.\] 
+Se $x(t, t_0, \v{x}_0)$ è la soluzione del problema allora si ha che:
+\[
+\begin{dcases}
+    \v{x}_{n+1}= P(\v{x}_n) = x(t_{n+1}, t_n, \v{x}_n)\\
+    t_n = nT
+\end{dcases}
+\]
+e questa è la mappa stroboscopica raffigurata anche in Figura \ref{fig:4_10_2}.

@@ -1,0 +1,290 @@
+\section{Teoria delle Biforcazioni}%
+Una biforcazione è un cambiamento qualitativo dello spazio delle fasi al variare dei parametri del sistema (comparsa di nuove orbite periodiche o di nuovi stati stazionari etc\ldots).\\
+Le biforcazioni possono essere suddivise in due gruppi:
+\begin{itemize}
+    \item \textbf{Locali}: negli intorni di stati stazionari ed orbite periodiche.
+    \item \textbf{Globali}: in regioni dello spazio delle fasi che non possono ridursi ad intorni di stati stazionari o orbite periodiche.
+\end{itemize}
+Noi consideriamo qui le biforcazioni locali in $\mathbb{R}$ ed in $\mathbb{R}^2$ con quella di Hopf.\\
+Gli stati stazionari iperbolici rimangono tali anche sotto perturbazione, la questione è diversa quando abbiamo \textbf{stati stazionari non iperbolici}. Su questi ultimi stati ci concentriamo per cercare le biforcazioni.
+\begin{exmp}[Sistema senza biforcazione]
+    Prendiamo il campo vettoriale:
+    \[
+	\frac{\text{d} x}{\text{d} t} = \mu-x^3=F(x, \mu) 
+    .\] 
+    Abbiamo immediatamente lo stato stazionario $(x_s, \mu_s) = (0, 0)$. Valutando lo Jacobiano 1D si ha che:
+    \[
+	\left.\frac{\text{d} F(x, \mu) }{\text{d} t} \right|_{(x, \mu) = (0,0)}=0
+    .\] 
+    \marginpar{
+            \captionsetup{type=figure}
+            \incfig{4_12_1}
+            \caption{\scriptsize Stato stazionario al variare di $\mu$}
+        \label{fig:4_12_1}
+        }
+    Quindi lo stato stazionario è non iperbolico, se lo perturbo potrei ottenere nuovi comportamenti non osservati prima. Cerchiamo gli stati stazionari:
+    \[
+	\mu\neq 0\implies x_s = \sqrt[3]{\mu} 
+    .\] 
+    Per quanto riguarda la stabilità di questo stato si ha ($\mu\neq 0$):
+    \[
+	J(x, \mu) = -3x^2 \implies  \lambda  < 0
+    .\] 
+    Quindi tutti gli stati stazionari sono sempre stabili. In questo caso lo stato stazionario, pur essendo iperbolico non ha determinato nessun tipo di biforcazione.
+\end{exmp}
+\noindent
+Uno stato non iperbolico è condizione necessaria per avere biforcazioni, tuttavia non è sufficiente.
+\subsection{Biforcazione Nodo-Sella}%
+Prendiamo un campo vettoriale in una dimensione:
+\[
+    \frac{\text{d} x}{\text{d} t} = \mu-x^2 = F(x, \mu) 
+.\] 
+Nuovamente si ha uno stato stazionario nell'origine $(x_s, \mu_s) = (0, 0)$  e anche in questo caso:
+\[
+    \left. \frac{\text{d} F}{\text{d} x} \right|_{(x, \mu) = (0, 0)}=\left.-2x\right|_{(x, \mu) = (0, 0) } = 0
+.\] 
+Quindi abbiamo uno stato stazionario non iperbolico. Prendiamo adesso $\mu\neq 0$: 
+\[
+    \mu-x^2 = 0 \implies  x = \pm\sqrt{\mu} \text{ con }\mu>0
+.\] 
+\marginpar{
+        \captionsetup{type=figure}
+        \incfig{4_12_2}
+	\caption{\scriptsize Rappresentazione della biforcazione con lo sviluppo dello stato stazionario stabile (blu) e quello instabile (rosso).}
+    \label{fig:4_12_2}
+    }
+
+Per quanto riguarda la stabilità di questo stato si ha:
+\[
+    J(x, \mu) = -2x \implies  
+    \begin{cases}
+        x_{s_1}= \sqrt{\mu} \implies\lambda_1 = -2\sqrt{\mu} < 0 \\
+        x_{s_2}= -\sqrt{\mu} \implies\lambda_2 = 2\sqrt{\mu} >0
+    \end{cases}
+.\] 
+Quindi abbiamo una biforcazione, si passa dal non avere alcuno stato stazionario ($\mu<0$) ad averne 2, uno stabile ed uno instabile. Questo tipo di biforcazione è detta Nodo-Sella.
+
+\subsection{Biforcazione Transcritica}%
+Per questa biforcazione l'esempio pricipale è il seguente:
+\[
+    \frac{\text{d} x}{\text{d} t} = \mu x - x^2 = F(x, \mu) 
+.\] 
+Ricordiamo che 
+\marginpar{
+        \captionsetup{type=figure}
+        \incfig{4_13_3}
+        \caption{\scriptsize Inversione di stabilità da parte degli stati stazionari non iperbolici.}
+    \label{fig:4_13_3}
+    }
+\begin{itemize}
+    \item Per avere una biforcazione è necessaria (ma non sufficiente) la presenza di uno stato stazionario non iperbolico.
+    \item La biforcazione avviene in prossimità di stati stazionari (o di orbite periodiche come i cicli limite).
+    \item Le biforcazioni che analizziamo sono tutte locali.
+\end{itemize}
+\[
+    F(x, \mu) = 0 \implies  x(\mu-x) = 0 \implies  
+    \begin{cases}
+        x_{s_1}= 0\\
+	x_{s_2}= \mu
+    \end{cases}
+\] 
+\[
+    J(x, \mu) = \mu-2x \implies J(0, 0) = 0 \implies  (x, \mu) = (0, 0) \text{ Non.Ip.}
+\] 
+Possiamo studiare la stabilità degli stati stazionari con $\mu\neq 0$:
+\[
+    x_{s_1}=0\implies  J(0, \mu) = \mu \implies 
+    \begin{cases}
+        \text{Stabile con }\mu <0\\
+	\text{Instabile con }\mu >0
+    \end{cases}
+.\] 
+\[
+    x_{s_2}=\mu\implies  J(0, \mu) = -\mu \implies 
+    \begin{cases}
+        \text{Instabile con }\mu <0\\
+	\text{Stabile con }\mu >0
+    \end{cases}
+.\] 
+Notiamo che la stabilità dopo $\mu=0$ si "scambia" tra gli stati stazionari: biforcazione Transcritica.
+
+\subsection{Biforcazione a Forchetta (Pitchfork)}%
+Il modello dinamico che sottende questo tipo di comportamento è descritto dal campo vettoriale:
+\[
+    \frac{\text{d} x}{\text{d} t} = \mu x - x^3 = F(x, \mu) 
+.\] 
+Rispetto alla transcritica il sistema ha una potenza di ordine 3 per la parte non lineare del SD. Studiamo i punti stazionari:
+\[
+    F(x, \mu) = 0 \implies  x(\mu-x^2) =0
+    \implies 
+    \begin{cases}
+	x_{s_1}=0 & \forall \mu\\
+	x_{s_2}=\sqrt{\mu}&  \mu\ge 0\\
+	x_{s_2}=-\sqrt{\mu}& \mu\ge 0
+    \end{cases}
+\] 
+\marginpar{
+        \captionsetup{type=figure}
+        \incfig{4_13_4}
+        \caption{\scriptsize Andamento degli stati stazionari al variare di $\mu$ per un sistema che presenza biforcazione a forchetta.}
+    \label{fig:4_13_4}
+    }
+
+Possiamo gia pensare che ci sia una biforcazione poiché appaiono stati stazionari al variare di $\mu$.
+\[
+    J(x, \mu) = \mu-3x^2 \implies  J(0, 0) = 0 \implies  \text{ Non Ip.}
+\] 
+Studiamo la stabilità di questi punti:
+\[\begin{aligned}
+    & x_{s_1}\implies J(x_{s_1}, \mu) = \mu  \implies  \begin{cases}
+	\text{Stabile} & \mu <0\\
+	\text{Instabile} & \mu > 0
+    \end{cases}\\
+    & x_{s_{23}}\implies J(x_{s_{23}}, \mu) = -2\mu\implies  x_{s_{23}}\text{ Stabile}
+\end{aligned}\]
+Come si vede dalla figura \ref{fig:4_13_4} questo sistema dinamico può dar luogo ad una bistabilità per via dei due stati stazionari stabili per nascono con $\mu >0$.\\
+In qualche modo questa bistabilità poteva esser dedotta dal fatto che il campo vettoriale è di tipo gradiente:
+\[
+    \frac{\text{d} x}{\text{d} t} = -\frac{\partial V(x) }{\partial x} \qquad  V(x) = - \mu  \frac{x^2}{2} + \frac{x^4}{4}
+.\] Che è appunto il classico potenziale a doppia buca.\\
+Un sistema di questo tipo con l'aggiunta del rumore può dar luogo a delle transizioni da una buca all'altra. Questo da luogo a dei fenomini fisici interessanti (tempo di primo passaggio).\\
+Le 3 biforcazioni viste fin'ora sono dette \textbf{SuperCritiche}, esiste anche una classe di biforcazioni speculari a queste (stesse equazioni ma con il segno positivo della $x$) che sono dette \textbf{SubCritiche}. Vediamo un esempio di queste.
+\subsection{Biforcazione Nodo-Sella Subcritica}%
+\label{sub:Biforcazione Nodo-Sella Subcritica}
+\[
+    \frac{\text{d} x}{\text{d} t} = \mu  + x^2 = F(x, \mu) 
+.\] 
+Ripetiamo velocemente tutti i passaggi già visti in precedenza:
+\[
+    F(x, \mu) = 0 \implies  x^2 = \mu  \qquad  (\mu\le  0) 
+.\] 
+\[
+    J(x, \mu) = 2x \implies  J(x, \mu) =0 \implies  (0, 0) \text{ Non Ip.}
+.\] 
+\[\begin{aligned}
+    &x_{s_1}= \sqrt{-\mu} \quad  \mu\le 0\\
+    &x_{s_2}=-\sqrt{-\mu} \quad  \mu\le 0
+.\end{aligned}\]
+Quindi produce lo stesso Phase portrait del caso precedente ma speculare rispetto all'asse $y$.
+\subsection{Perturbare una Biforcazione}%
+Possiamo adesso vedere cosa succede quando si perturba un sistema con una biforcazione. La prima che abbiamo visto (nodo-sella) possiamo dire che è robusta: di fronte ad una perturbazione presenta un comportamento simile.\\
+Prima di partire fissiamo la notazione, prendiamo ad esempio il caso della biforcazione nodo sella: 
+\[
+    \frac{\text{d} x}{\text{d} t} = \mu-x^2
+.\] 
+La perturbazione che andiamo ad inserire viene inserita nelle equazione del sistema dinamico:
+\[
+    \frac{\text{d} x}{\text{d} t} = \mu-x^2+g(x) 
+.\] 
+Assumiamo che valga:
+\[
+    \lim_{\left|x\right| \to 0} \frac{g(x)}{x^2} = 0
+.\] 
+\begin{thm}[Riduzione a Nodo-Sella]
+    Sia dato un sistema dinamico
+    \[
+	\frac{\text{d} x}{\text{d} t} = F(x, \mu), \quad  x\in \mathbb{R} \quad  \mu\in \mathbb{R}
+    .\] 
+    Con le condizioni:
+    \begin{itemize}
+	\item $F(0,0)= 0$  (stato stazionario).
+	\item $J(0, 0) = 0$  (non iperbolicità).
+	\item $\left.\frac{\partial ^2F}{\partial x^2} \right|_{(0,0)}\neq 0$ (il profolo di $F$  deve avere concavità positiva o negativa).
+	\item $\left.\frac{\partial F}{\partial \mu}\right|_{(0, 0)}\neq 0$ (per il teorema del Dini se $F(x, \mu) = 0$ 
+		allora localmente si ha $\mu =f(x)$).
+    \end{itemize}
+    Allora esiste una trasformazione invertibile dallo spazio delle fasi di partenza $(x, \mu )$  ad un nuovo spazio $(\eta, \beta)$  tale che:
+    \[
+	\frac{\text{d} \eta}{\text{d} t} = \beta\pm \eta^2 + o(\eta^3) 
+    .\] 
+    Ovvero il sistema equivale al sistema canonico del Nodo-Sella e quindi biforca.
+\end{thm}
+\noindent
+
+\subsection{Biforcazione di Hoopf}%
+La biforcazione di Hoopf si realizza in un sistema bidimensionale in cui uno stato stazionario presenta due autovalori complessi coniugati con parte reale nulla.
+\[
+    \lambda_{1, 2} = \pm i \omega
+.\] 
+\begin{thm}[Teorema di Hoopf]
+    Dato un campo vettoriale:
+    \[
+    \begin{dcases}
+	\frac{\text{d} x}{\text{d} t} = F(x, y, \mu) \\
+	\frac{\text{d} y}{\text{d} t} = G(x, y, \mu) 
+    \end{dcases}
+    \qquad  (x, y) \in \mathbb{R}^2 \quad  F, G \in C^r \text{ con } r\ge 4
+    \]
+    Con le ipotesi
+    \begin{itemize}
+	\item $(x, y, \mu) = (0, 0, 0) $  è stato stazionario.
+	\item $\left.J(x, y, \mu) \right|_{(0, 0, 0)}$  ha autovalori $\pm i\omega$.
+    \end{itemize}
+    Se la quantità $d$  così definita\sidenote{\scriptsize Ricordiamo che la traccia della Jacobiana fornisce la parte reale degli autovalori.}:
+    \[
+        d = \frac{\partial }{\partial \mu} \left[\frac{\partial F}{\partial x} + \frac{\partial G}{\partial x} \right]
+    .\] 
+    è diversa da $0$  nell'origine:
+    \[
+	d(0, 0, 0) \neq 0
+    .\] 
+    Deve valere anche:
+    \[\begin{aligned}
+	&\left.a(x, y, \mu)\right|_{(0, 0, 0) } = \\
+	&\left\{\frac{1}{16}\left[F_{xx x} + G_{x x x } + F_{x y y } + G_{y  y y }\right] \right.+ \\
+	&\quad\frac{1}{16\omega (\mu)}\left[F_{xy}\left(F_{xx} + F_{yy}\right)\right. - G_{xy}\left(G_{x x} + G_{yy}\right) + \\
+	& \qquad \qquad\left.\bigg.\left. - F_{x x }G_{x x }+ F_{yy}G_{yy}\right]\bigg\}\right|_{(x, y, \mu) = (0, 0, 0)}\neq 0
+    .\end{aligned}\]
+    Allora 
+    \begin{itemize}
+        \item Se $a\cdot d > 0$ allora esistono orbite periodiche per $\mu <0$.
+	\item Se $a\cdot d < 0$ allora esistono orbite periodiche per $\mu > 0$.
+	\item Se $a<0$ le orbite sono asintoticamente stabili.
+	\item Se $a>0$ le orbite sono instabili.
+	\item Se $a<0$ la biforcazione è supercritica.
+	\item Se $a>0$ la biforcazione è subcritica.
+	\item Se $\left|\mu\right|\to 0$ il periodo dell'orbita tende a $2\pi /\omega$. 
+	\item Se $\left|\mu\right|\to 0$ l'ampiezza dell'orbita varia come $\left|\mu\right|^{1 / 2}$.
+    \end{itemize}
+\end{thm}
+\noindent
+\begin{exmp}[]
+    Prendiamo il campo vettoriale
+	\[
+	\begin{dcases}
+	\frac{\text{d} x}{\text{d} t} = \mu x - y - x(x^2+y^2) = F\\
+	\frac{\text{d} y}{\text{d} t} = x + \mu y - y(x^2 + y^2) =G
+	\end{dcases}
+	\]
+    Il sistema presenta uno stato stazionario nell'origine $\v{V}_s$ presente per ogni $\mu$.
+    \[
+	J(\v{V}_s, \mu) = 
+\begin{pmatrix}
+    \mu & -1 \\
+    1 & \mu \\
+\end{pmatrix}
+    .\] 
+    Quindi si ha:
+    \[
+        \lambda_{1, 2}= \mu  \pm i \implies  \text{ Se }\mu =0 \ \implies\  \lambda_{1, 2} = \pm i\omega, \quad\omega =1
+    .\] 
+    Verifichiamo l'ipotesi di trasversalità:
+    \[
+	d = \frac{\partial }{\partial \mu} \left.\left[\frac{\partial F}{\partial x} + \frac{\partial G}{\partial x} \right]\right|_{(0, 0, 0)}=1\neq 0
+    .\] 
+    Verificare per casa che $a(0, 0, 0) = -1$. Quindi abbiamo che
+    \[
+        a\cdot d<0
+    .\] 
+    Quindi le orbite periodiche avvengono per $\mu <0$ e sono stabili, inotre la biforcazione è supercritica.
+\end{exmp}
+\noindent
+\paragraph{Forma normale della biforcazione di Hoopf}%
+La forma normale della biforcazione di Hopf può essere espressa nel seguente modo:
+\[
+\begin{dcases}
+    \frac{\text{d} x}{\text{d} t} = \mu x-\omega y + (\alpha x -\beta y) (x^2 + y^2) \\
+    \frac{\text{d} y}{\text{d} t} = \omega x + \mu  y + (\beta x + \alpha  y) (x^2 + y^2) 
+\end{dcases}
+\]
+Per casa verificare che con $\alpha < 0	$ si hanno orbite periodiche stabili.

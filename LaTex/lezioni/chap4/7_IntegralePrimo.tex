@@ -1,0 +1,45 @@
+\section{Sistemi dinamici con integrale Primo}%
+\label{sub:Sistemi dinamici con integrale Primo}
+Dato un sistema dinamico 
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) \quad  \v{x}\in \mathbb{R}^n, \quad F:\mathbb{R}^n\to \mathbb{R}^n, \quad  F \in C^r \ r \ge 1
+.\] 
+Supponiamo $\exists I (\v{x}) $  un funzionale:
+\[
+    I(\v{x}): \mathbb{R}^n\to \mathbb{R}^n
+.\] 
+Avente derivata orbitale nulla:
+\[
+    \frac{\text{d} I(\v{x}) }{\text{d} t} =  \nabla I(\v{x}) \cdot F = 0
+.\] 
+\marginpar{
+        \captionsetup{type=figure}
+        \incfig{4_7_1}
+        \caption{\scriptsize Integrale del moto e orbite del sistema.}
+    \label{fig:4_7_1}
+    }
+Allora si dice che il sistema dinamico ha un integrale primo del moto.\\
+Il fatto che un sistema ammetta un integrale primo del moto implica dei pesanti vincoli geometrici sulla struttura delle orbite (vedi ad esempio i sistemi Hamiltoniani che devono conservare l'energia).\\
+Osservando la definizione di derivata orbbitale si deduce che le orbite del sistema giaciono tutte sulle superfici $I(\v{x}) = c$, questo perchè deve esser sempre vera la condizione sulla derivata orbitale $\nabla I(\v{x}) \cdot F(\v{x}) = 0$ (vedere figura \ref{fig:4_7_1}).
+\begin{exmp}[]
+    \[
+    \begin{dcases}
+    \frac{\text{d} x}{\text{d} t} = y\\
+    \frac{\text{d} y}{\text{d} t} = x-x^3
+    \end{dcases}
+    \]
+    Questo campo vettoriale conserva una quantità, possiamo notarlo riscrivendo il sistema:
+    \[
+        \frac{\text{d} }{\text{d} t} \left[\frac{1}{2}\left(\frac{\text{d} x}{\text{d} t} ^2\right)- \frac{x^2}{2}+\frac{x^4}{4}\right]= 0
+    .\] 
+    Quindi abbiamo che:
+    \[
+	I(x, y) = \frac{y^2}{2}-\frac{x^2}{2}+\frac{x^4}{4}= \text{cost}\equiv H
+    .\] 
+    Quindi possiamo risalire alle orbite come:
+    \[
+	y(x) = \pm \sqrt{2(H + \frac{x^2}{2}-\frac{x^4}{4}) } 
+    .\] 
+    Notiamo che tutte le orbite che attraversano l'asse $x$ lo fanno perpendicolarmente.
+\end{exmp}
+\noindent

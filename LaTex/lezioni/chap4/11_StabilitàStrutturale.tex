@@ -1,0 +1,45 @@
+\section{Cenni di stabilità strutturale}%
+La stabilità strutturale consente di ottenere risultati riproducibili per un esperimento facendo variare di piccole quantità le condizioni iniziali.\\
+Per esempio prendiamo un sistema dinamico 
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) 
+.\] avente una orbita periodica $\v{x}_p(t) $. Se perturbo il sistema 
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) + \epsilon g(\v{x}, t) 
+.\] 
+Si ottiene sempre l'orbita periodica $\v{x}_p(t)$ (anch'essa perturbata) o questa orbita cessa di esistere? Questa domanda equivale alla richiesta di avere stabilità strutturale. \\
+Dobbiamo quindi chiederci quando il sistema perturbato e quello iniziale sono equivalenti, quindi introdurremo delle classi di equivalenza (dettagli nel libro di Hirch, Smale: Differential equations, Dynamical System and Linear Algebra). \\
+Facciamo alcuni esempi di insiemi strutturalmente stabili:
+\begin{itemize}
+    \item Gli stati stazionari iperbolici sono strutturalmente stabili.
+    \item Le orbite periodiche iperboliche sono strutturalmente stabili.
+\end{itemize}
+\marginpar{
+            \captionsetup{type=figure}
+            \incfig{4_11_1}
+            \caption{\scriptsize Tipi di orbite non permesse dal teorema.}
+        \label{fig:4_11_1}
+        }
+\begin{thm}[Peixoto]
+    Dato un campo vettoriale in $\mathbb{R}^2$:
+    \[
+	\frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) \quad  \v{x}\in \mathbb{R}^2 \quad  F:D\to D \quad  F \in C^r \ r \ge 2
+    .\] 
+    In cui $D$ è connesso e compatto. Inoltre $D$ deve essere limitato da una curva chiusa $\Gamma$ con normale uscente $n$. Si assume anche che il campo vettoriale è trasverso:
+    \[
+	F(\v{x}) \cdot \hat{n}(\v{x}) \neq 0 \quad  \forall \v{x}\in \Gamma
+    .\] 
+    Allora il campo vettoriale è strutturalmente stabile se valgono le seguenti:
+    \begin{itemize}
+        \item Tutti gli stati stazionari sono iperbolici.
+	\item Tutte le orbite periodiche sono iperboliche.
+	\item Se $\v{x}$ e $\v{y}$ sono selle iperboliche allora deve valere:
+	    \[
+		W^s(\v{x}) \cup W^u(\v{y}) = 0
+	    .\] 
+	    E deve valere anche con $\v{x}= \v{y}$. \\
+	    Questo punto quindi esclude le orbite di Figura \ref{fig:4_11_1}.
+	\item L'insieme dei campi vettoriali strutturalmente stabili in $\mathbb{R}^2$ è denso.
+    \end{itemize}
+\end{thm}
+\noindent

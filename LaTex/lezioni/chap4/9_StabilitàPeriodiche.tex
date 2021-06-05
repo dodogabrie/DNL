@@ -1,0 +1,266 @@
+\section{Stabilità di orbite periodiche (Floquet) }%
+Prendiamo il sistema dinamico
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}), \quad  \v{x}\in \mathbb{R}^n, \quad F:\mathbb{R}^n\to \mathbb{R}^n, \quad F\in C^r \ r\ge 2
+.\] 
+Supponiamo che esista una orbita periodica $\gamma = \v{x}_p(t) $ per il sistema:
+\[
+    \v{x}_p(t) = \v{x}_p(t+T) \quad  \forall t\ge 0
+.\] 
+Vogliamo studiare la stabilità di $\gamma$: definiamo allora la quantità
+\[
+    \v{x}(t) = \v{x}_p(t) + \v{y}(t) \quad  \left|\v{y}(t) \right|\ll 1
+.\] 
+Quindi sviluppiamo al primo ordine in $\v{y}$:
+\[
+    \frac{\text{d} \v{x}_p(t) }{\text{d} t} + \frac{\text{d} y(t) }{\text{d} t} = F(\v{x}_p+\v{y}) \simeq 
+    F(\v{x}_p) + D F(\v{x}_p) \v{y}
+.\] 
+Quindi eliminando l'identità si ha l'evoluzione della perturbazione nel tempo:
+\[
+    \frac{\text{d} \v{y}}{\text{d} t} = DF(\v{x}_p) \v{y}
+.\] 
+Questo sistema è lineare ma \textbf{non autonomo}. Quest'ultima proprietà esclude l'utilizzo di tutta la teoria della linearizzazione per determinare la stabilità.
+Possiamo utilizzare come unico vincolo la periodicità:
+\[
+    A(t) \equiv DF(\v{x}_p) \implies  A(t) = A(t+ T) 
+.\] 
+Possiamo riscrivere il sistema dinamico perturbato nella forma compatta:
+\[
+    \frac{\text{d} \v{y}}{\text{d} t} = A(t) \v{t}
+.\] 
+e dare la definizione:
+\begin{defn}[Sistema fondamentale di soluzioni]
+    Dato l'insieme di soluzioni:
+    \[
+	\left\{\v{y}_J(t) | \frac{\text{d} \v{y}_J}{\text{d} t} = A(t) \v{y}_J, \ J = 1, 2, \ldots, n  \right\} = S_F
+    .\] 
+    Allora $S_F$ è un sistema fondamentale di soluzioni se 
+    \[
+	\sum_{J=1}^{n} c_J\v{y}_J(t) = 0
+    .\] soltanto se $c_J = 0 $ $\forall J = 1, 2, \ldots, n$ (quindi sono linearmente indipendenti).
+\end{defn}
+\noindent
+\begin{thm}[Costruzione di un sistema fondamentale di soluzioni]
+   Dato il sistema lineare:
+   \[
+       \frac{\text{d} \v{y}}{\text{d} t} = A(t) \v{y }(t) \quad  \v{y}\in \mathbb{R}^n
+   .\] Allora esiste sempre un sistema fondamentale di soluzioni $S_F$.
+\end{thm}
+\noindent
+\begin{proof}
+    Prendiamo l'insieme costituito dai vettori della base canonica in $\mathbb{R}^n$.
+    \[
+        \left\{\hat{e}_J | J = 1, 2, \ldots, n\right\}
+    .\] 
+    Sia $\v{y}_J(t)$  la soluzione del sistema dinamico che soddisfa 
+    \[
+	\v{y}_J(0) = \hat{e}_J
+    .\] Questa soluzione esiste per il teorema di esistenza ed unicità della soluzione.\\
+    Dobbiamo dimostrare che una qualsiasi combinazione lineare è nulla solo con i oefficienti tutti nulli.
+    \[
+	\sum_{J=1}^{n} c_J\v{y}_J(t) = 0 \implies  c_J = 0
+    .\] 
+    Ma questa espressione è vera in quanto deve valere per ogni $t$ positivo, in particolare per $t = 0$. 
+    \[
+    \sum_{J = 1}^{n} c_J e_J
+    .\] 
+\end{proof}
+\begin{defn}[Matrice fondamentale]
+    Sia $S_F$ un sistema fondamentale di soluzioni di 
+    \[
+	\frac{\text{d} \v{y}}{\text{d} t} = A(t) \v{y}(t) 
+    .\] 
+    La matrice fondamentale associata a tale sistema dinamico è data da:
+    \[
+	\phi  = \left[\v{y}_1(t) \ldots \v{y}_n(t) \right]
+    .\] 
+\end{defn}
+\noindent
+Dalla definizione data si evince che vale 
+\[
+    \frac{\text{d} \phi}{\text{d} t} = A(t) \phi
+.\] 
+\begin{thm}[]
+    Sia $A(t) $ tale che $A(t) = A(t+T)$,  allora $\phi (t+T)$  è soluzione di 
+    \[
+	\frac{\text{d} \phi}{\text{d} t} = A(t) \phi
+    .\] 
+\end{thm}
+\noindent
+\begin{proof}
+    Facciamo il cambio di variabile:
+    \[
+        t' = t - T
+    .\] Inserendo nella equazione:
+    \[
+	\frac{\text{d} \phi (t) }{\text{d} t} = \frac{\text{d} \phi (t' + T) }{\text{d} t'} = A(t) \phi (t) = 
+	A(t'+T) \phi (t' + T) 
+    .\] 
+    \[
+	\frac{\text{d} \phi (t'+T) }{\text{d} t} = A(t'+T) \phi (t'+T) \implies 
+	\frac{\text{d} \phi (t' + T) }{\text{d} t} = A(t') \phi (t'+T)
+    .\] 
+    Quindi $\phi (t'+T)$ è soluzione.
+\end{proof}
+\noindent 
+Quindi ora sappiamo che la matrice fondamentale e la sua traslata di un periodo $T$ sono entrambe soluzioni. Questo implica che $\phi (t+T)$ si deve ottenere dalla combinazione lineare di $\phi (t) $.
+\[
+    \phi (t+T) = \phi (t) \cdot M
+.\] 
+Con $M$  definita come \textbf{Matrice di Monodromia}.\\
+A questa particolare matrice (di numeri, costanti) è legata la stabilità del sistema.\\
+Dato che $\phi (t) $  è costruita utilizzando il sistema canonico $S_F$ implica che 
+\[
+    \phi (0) = \left[y_1(0) \ldots y_n(0) \right] \equiv \mathbb{I}
+.\] 
+Grazie a questa inizializzazione ed alla equazione sopra si ha che:
+\[
+    \phi (0 + T) = \phi (0) M \implies  \phi (T) = M
+.\] 
+Questa equazione è importantissima perchè ci consente di calcolare la matrice $M$  semplicemente trovando le $n$  soluzioni e sostituendovi il periodo $T$.\\
+Sempre valuando l'equazione per $t = T$  si ha che:
+\[
+    \phi (T + T) = \phi (T) M \implies\phi (2T) = M^2=\phi (T) ^2
+.\] 
+Ed in generale abbiamo che:
+\[
+    \phi (nT) = M^n = \phi (T)^n 
+.\] 
+\begin{defn}[Moltiplicatori di Floquet]
+    Gli autovalori della matrice di Monodromia sono definiti autovalori di Floquet.
+\end{defn}
+\noindent
+Supponiamo che esista una matrice $P$  (non singolare) tale che 
+\[
+    D = P\phi (T) P^{-1} = PMP^{-1}
+.\] 
+In cui stiamo implicitamente assumento che $M$  abbia $n$  autovalori distinti.\\
+Definiamo adesso la seguente matrice:
+\[
+    V(t) = \left[\v{v}_1(t) \ldots\v{v}_n(t) \right]= \phi (t) P^{-1}
+.\] 
+Inoltre possiamo scrivere che:
+\[\begin{aligned}
+    \phi (t+T) = \phi (t) \phi (T) 
+.\end{aligned}\]
+Moltiplicando a sinistra per $P^{-1}$  si ha:
+\[\begin{aligned}
+    \phi (t + T) P^{-1}= \phi (t) \phi (T) P^{-1}=\phi (t) P^{-1}P\phi (T) P^{-1} = v(t) D
+.\end{aligned}\]
+Se ne conclude allora che:
+\[
+    V(t+T) = V(t) D
+.\] 
+E questa relazione ci aiuta a decretare la stabilità dell'orbita periodica. Esplicitiamola diversamente:
+\[
+    \left[\v{v}_1\ldots\v{v}_n\right]_{t + T} = \left[\v{v}_1\ldots\v{v}_n\right]_{t} D
+.\] 
+Quindi i vettori $\v{v}_i$  sono i vettori di un cambiamento di base che sfrutta la matrice di monodronia.
+\[
+    \v{v}_J(t+T) = \v{v}_J(t) \lambda_J\implies\v{v}_J(t+nT) = \v{v}_J(t) \lambda^n_J
+.\] 
+Quindi possiamo vedere che
+\begin{itemize}
+    \item Se $\left|\lambda_J\right|>1$ allora $\v{v}_J$ diverge: quindi abbiamo una instabilità.
+    \item Se $\left|\lambda_J\right|<1$ allora $\v{v}_J$ decade a zero, quindi l'orbita perturbata dovrà decadere su quella periodica non perturbata.
+\end{itemize}
+\begin{thm}[]
+    Sia $\v{x}_p(t) $  un'orbita periodica del sistema dinamico
+    \[
+	\frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) 
+    .\] 
+    Allora la matrice $M$ di monodromia ha sempre un autovalore $\lambda =1$.
+\end{thm}
+\noindent
+Una giustificazione intuitiva del precedente teorema è data dal fatto che, perturbando il sistema lungo la direzione dell'orbita periodica si deve ottenere sempre l'orbita periodica stessa.
+\begin{defn}[Stabilità]
+    Un'orbita periodica $\v{x}_p(t)$ è stabile se $\left|\lambda_J\right|<1$ $\forall J$ ( tranne uno).
+\end{defn}
+\noindent
+\begin{defn}[Orbita iperbolica]
+    L'orbita periodica $\v{x}_p(t) $ è iperbolica se nessuno (tranne uno) dei moltiplicatori di Floquet ha modulo 1.
+\end{defn}
+\noindent
+\begin{defn}[Selle]
+    $\v{x}_p(t)$ è una orbita periodica di tipo sella se esistono moltiplicatori di Floquet di modulo sia maggiore che minore di 1 (tranne uno).
+\end{defn}
+\noindent
+\begin{defn}[Orbita periodica non iperbolica]
+    $\v{x}_p(t)$ è una orbita periodica non iperbolica se almeno 1 dei moltiplilcatori di Floquet ha modulo 1.
+\end{defn}
+\noindent
+\begin{exmp}[]
+    Prendiamo il seguente sistema dinamico:
+    \[
+    \begin{dcases}
+    \frac{\text{d} x}{\text{d} t} = x-y-x^3-xy^2\\
+    \frac{\text{d} y}{\text{d} t} = x + y - x^2y-y^3\\
+    \frac{\text{d} z}{\text{d} t} = \lambda z
+    \end{dcases}
+    \]
+    Verificare (per casa) che una soluzione è:
+    \[
+	\v{x}_p(t) = (\cos t, \sin t, 0)
+    .\] 
+    E che tale soluzione è periodica (di periodo $T = 2\pi$). Vogliamo studiare la stabilità di $\v{x}_p(t) $, per farlo partiamo dalla Jacobiana:
+    \[
+	J(x, y, z) = 
+	\begin{pmatrix}
+	    1-3x^2 -y^2 & -1-2xy  & 0 \\
+	    1-2xy & 1-x^2-3y^2 & 0 \\
+	    0 & 0 & \lambda \\
+	\end{pmatrix}
+    .\] 
+    La matrice valutata nell'orbita periodica è:
+    \[
+	\left.J(x, y, z)\right|_{\v{x}_p(t) }=
+	   \begin{pmatrix}
+	       -2\cos^2t & -1-\sin (2t)  & 0 \\
+	       1-\sin (2t)  & -2\sin^2t & 0 \\
+	       0 & 0 & \lambda \\
+	   \end{pmatrix}
+    .\] 
+    Perturbiamo adesso il sistema:
+    \[
+	\v{x}(t) = \v{x}_p(t) + \v{ q}(t) \quad  \left|\v{ q}\right|\ll 1
+    .\] 
+    \[
+	\frac{\text{d} \v{q }}{\text{d} t} = A(t) \v{ q}(t) 
+    .\] 
+    Determiniamo $S_F$: il sistema fondamentale di soluzioni (per casa). Data la condizione iniziale (vettore e soluzione associata):
+    \[
+	\hat{e}_1 = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} \implies  \v{q}_1(t) = (e^{-2t}\cos t, e^{-2t}\sin t, 0)
+    .\] 
+    \[
+	\hat{e}_2 = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} \implies  \v{q}_2(t) = (-\sin t, \cos t, 0)
+    .\] 
+    \[
+	\hat{e}_3 = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} \implies  \v{q}_3(t) = (0, 0, e^{\lambda t})
+    .\] 
+    Si ha il sistema fondamentale di soluzioni (per il teorema dimostrato):
+    \[
+	S_F = \left\{\v{q }_1(t) , \v{q }_2(t) , \v{q }_3(t) \right\}
+    .\] 
+    A questo punto calcoliamo la matrice fondamentale $\phi$ e la matrice di Monodromia $M$. 
+    \[
+	\phi (t) = \left(\v{q }_1(t) , \v{q }_2(t) , \v{q }_3(t)\right)
+    .\] 
+    Che soddisfa ovviamente la condizione $\phi (0) = \mathbb{I}$. Inserendo il periodo nella matrice fondamentale otteniamo subito la matrice di Monodromia:
+    \[
+	M = \phi (T) = 
+\begin{pmatrix}
+    e^{-4\pi} & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & e^{2\pi\lambda} \\
+\end{pmatrix}
+    .\] 
+    Quindi i moltiplicatori di Floquet sono:
+    \[\begin{aligned}
+        & \lambda_1 = e^{-4\pi}<1\\
+	& \lambda_2=1\\
+	& \lambda_3=e^{2\pi\lambda}
+    .\end{aligned}\]
+    Quindi la stabilità dell'orbita periodica dipende dal segno di $\lambda$. 
+\end{exmp}
+\noindent

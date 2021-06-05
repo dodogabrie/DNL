@@ -1,0 +1,231 @@
+\section{Teorema del Center Manifold}%
+L'idea è di andare a studiare la dinamica su dei Manifold "caratteristici" del sistema, riducendo in questo modo la dimensionalità e semplificando di conseguenza il problema.\\
+Sia dato il sistema dinamico 
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) 
+.\] E sia $\v{x}_s$ uno stato stazionario.\\
+Definiamo $\v{x}= \v{x}_s + \v{y}$ e riscrivo il sistema nel seguente modo:
+\[
+    \frac{\text{d} \v{y}}{\text{d} t} = F(\v{x}_s + \v{y})  = \left.DF\right|_{\v{x}=\v{x}_s}\v{y} + R(\v{y}) 
+.\] 
+Possimao allora definire le variabili $\v{u}$, $\v{v}$ e $\v{w}$ in modo tale che:
+\[
+    \begin{pmatrix} \v{u} \\ \v{v}\\\v{w} \end{pmatrix}= T^{-1}\v{y}
+.\] 
+E, come abbiamo visto con la teoria dei Manifold, si ha:
+\[\begin{aligned}
+    & \frac{\text{d} \v{u}}{\text{d} t} = A_s\v{u}+ R_s(\v{u}, \v{v}, \v{w}) \\
+    & \frac{\text{d} \v{v}}{\text{d} t} = A_u\v{v}+ R_u(\v{u}, \v{v}, \v{w}) \\
+    & \frac{\text{d} \v{w}}{\text{d} t} = A_c\v{w}+ R_c(\v{u}, \v{v}, \v{w}) 
+.\end{aligned}\]
+Supponiamo che dopo questa trasformazione sia presente soltanto la varietà centrale e quella stabile (non ci sia la parte instabile). In questo caso possiamo riscrivere il sistema dinamico nella seguente forma:
+\begin{equation}
+\begin{dcases}
+    \frac{\text{d} \v{x}}{\text{d} t} = A\v{x}+  f(\v{x}, \v{y}) \\
+    \frac{\text{d} \v{y}}{\text{d} t} = B\v{y}+  g(\v{x}, \v{y}) 
+\end{dcases}
+\label{eq:CM}
+\end{equation}
+Con $(\v{x}, \v{y}) \in \mathbb{R}^c \times \mathbb{R}^s$, quindi $\v{x}$ descrive la varietà centrale mentre $\v{y}$ descrive la varietà stabile. 
+Abbiamo che $f(0, 0) = g(0, 0) = (0)$, $DFf(0, 0) = DFg(0, 0) = (0)$.
+\begin{defn}[Center Manifold]
+    Il Center Manifold (invariante per la dinamica) può essere rappresentato localmente dal seguente insieme:
+    \[
+	W^c(0) = \left\{(\v{x}, \v{y}) \in \mathbb{R}^c\times \mathbb{R}^s|\v{y}=h(\v{x}), \ \left|\v{x}\right|<\delta, \ h(0) = 0, Dh(0) = 0\right\}
+    .\] 
+\end{defn}
+\noindent
+Ricordiamo che la richiesta $h(\v{0}) = \v{0}$ indica che si deve passare per lo stato stazionario mentre $Dh(\v{0}) = \v{0}$ indica che il Manifold deve essere tangente alla varietà lineare nello stato stazionario.
+\begin{thm}[Esistenza del Center Manifold]
+    Nelle ipotesi della definizione precedente $W^c(0)$ esiste e la dinamica del sistema \ref{eq:CM}, ristretta a tale Manifold $W^c(0)$, è descritta da 
+    \[
+	\frac{\text{d} \v{x}}{\text{d} t} = A\v{x} + f(\v{x}, h(\v{x})) \quad  \text{se} \ \left|\v{x}\right|<\delta
+    .\] 
+    con $\v{x}\in W^c(0)$.
+\end{thm}
+\noindent
+Il teorema ora scritto diventa molto potente dal momento che si conosce $h(\v{x})$, in tal caso la dinamica è semplificata moltissimo.
+\subsection{Calcolo di $h(\v{x})$}%
+\[
+    \v{y} = h(\v{x}) \implies  \frac{\text{d} \v{y}}{\text{d} t} = Dh(\v{x}) \frac{\text{d} \v{x}}{\text{d} t} 
+.\] 
+Ma sappiamo che è lecito scrivere:
+\[
+    B\v{y}+g(\v{x}, \v{y}) = Bh(\v{x}) + g(\v{x}, h(\v{x}) ) 
+.\] 
+Dalla prima parte si ha che:
+\[
+    Dh(\v{x}) \frac{\text{d} \v{x}}{\text{d} t} = Dh(\v{x}) \left[A\v{x}+ f(\v{x}, h(\v{x}) ) \right]
+.\] 
+Uguagliando le espressioni:
+\[
+    \Sigma (h) =   Dh(\v{x})\left[A\v{x}+ f(\v{x}, h(\v{x}))\right]-Bh(\v{x}) - g(\v{x}, h(\v{x})) = 0
+.\] 
+L'equazione $\Sigma (h) = 0$ non è differenziale ordinaria: è una equazione alle derivate parziali non lineare. Fortunatamente c'è un teorema che ci aiuta nella ricerca di $h(\v{x})$.
+\begin{thm}[]
+    Sia $\phi :\mathbb{R}^c\to \mathbb{R}^s$ e sia $\phi  \in C^1$. Inoltre supponiamo che 
+    \[
+	\phi (0) = 0 \qquad  D\phi (0) = 0 
+    .\] 
+    e che $\Sigma (\phi) \simeq O(\left|\v{x}\right|^p)$ con $p>1$ se $\left|\v{x}\right|\to 0$ allora vale che
+    \[
+	\left|\phi (\v{x}) -h(\v{x}) \right| \simeq O(\left|\v{x}\right|^p) \quad  \text{se } \left|\v{x}\right|\to 0
+    .\] 
+\end{thm}
+\noindent
+Quindi possiamo approssimare la $h$  con una espansione in serie secondo le ipotesi del teorema.
+\begin{exmp}[]
+    \[
+    \begin{dcases}
+    \frac{\text{d} x}{\text{d} t} = x^2y-x^5\\
+    \frac{\text{d} y}{\text{d} t} = -y + x^2
+    \end{dcases}
+    \qquad 
+    (x, y) \in \mathbb{R}^2
+    \]
+    Lo stato stazionario del sistema è l'origine
+    \[
+        \v{V}_s = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \implies  
+	\left.J(x, y)\right|_{\v{V}_s} = 
+	   \begin{pmatrix}
+	       0 & 0 \\
+	       0 & -1 \\
+	   \end{pmatrix}
+    .\] 
+    Gli autovalori della matrice sono 
+    \[
+        \lambda_1=0 \qquad  \lambda_2=-1
+    .\] 
+    Quindi siamo in presenza di uno stato stazionario non iperbolico. Riscriviamo il campo vettoriale esplicitando parte lineare-non lineare
+    \[
+    \begin{dcases}
+    \frac{\text{d} x}{\text{d} t} = 0\cdot x+ x^2y-x^5\\
+    \frac{\text{d} y}{\text{d} t} = -y + x^2
+    \end{dcases}
+    \implies 
+    \begin{cases}
+	A = 0 \quad  f(x, y) = x^2y-x^5\\
+	B = -1 \quad  g(x, y) = x^2
+    \end{cases}
+    \]
+    Andiamo a trovare il center manifold (locale):
+    \[
+	W^c(0) = \left\{(x, y) \in \mathbb{R}^2  | y = h(x), \ \left|x\right|<\delta, \ h(0) = 0, \ Dh(0) = 0\right\}
+    .\] 
+    Proviamo allora con una espansione:
+    \[
+	y(x) = m + nx + ax^2 + bx^3 + \ldots
+    .\] 
+    Le richieste di annullamento nell'origine impongono:
+    \[
+        m = n = 0
+    .\] 
+    Allora:
+    \[
+	y(x) = ax^2+bx^3 + \ldots
+    .\]
+    Sostituiamo questa $h$  nella equazione $\Sigma (h)=0$:
+    \[
+        \left[2ax+3bx^2 + \ldots\right]\left[x^2\left(ax^2+bx^3\right)-x^5\right]-
+	\left[ax^2+bx^3 + \ldots - x^2\right] = 0
+    .\] 
+    Risolvendo (eguagliando le potenze) si trova:
+    \[
+        a = 1 \quad  b = 0
+    .\] 
+    Quindi per piccoli $x$  abbiamo 
+    \[
+	y = x^2 + \ldots
+    .\] 
+    La dinamica ristretta al Center Manifold sarà (prendendo la prima equazione del sistema per $\dot{x}$ e sostituendovi l'approssimazione):
+    \[
+        \frac{\text{d} x}{\text{d} t} = x^4
+    .\] 
+    E con questa equazione possiamo rispondere direttamente alla questione di stabilità/instabilità di $\v{V}_s$: è instabile poiché $\dot{x}> 0$.
+\end{exmp}
+\noindent
+\subsection{Center Manifold in presenza di parametri (stati stazionari)}%
+Supponiamo di avere un campo vettoriale con parametri:
+\[
+\begin{dcases}
+    \frac{\text{d} \v{x}}{\text{d} t} = A\v{x} + f(\v{x}, \v{y}, \v{\epsilon}) \\
+    \frac{\text{d} \v{y}}{\text{d} t} = B\v{x} + g(\v{x}, \v{y}, \v{\epsilon}) \\
+    \frac{\text{d} \v{\epsilon}}{\text{d} t} = 0
+\end{dcases}
+\]
+In cui $\v{\epsilon}$  rappresenta l'insieme dei parametri, quindi:
+\[
+    (\v{x}, \v{y}, \v{\epsilon}) \in \mathbb{R}^c \times \mathbb{R}^s \times \mathbb{R}^p
+.\] 
+Supponiamo vi sia uno stato stazionario nell'origine
+\[
+    \v{V}_s = (\v{0}, \v{0}, \v{0}) 
+.\] 
+E che le funzioni di perturbazione $f, g$  si annullino (con anche le loro derivate) in tale stato stazionario:
+\[\begin{aligned}
+    &f(\v{0}, \v{0}, \v{0}) = Df(\v{0}, \v{0}, \v{0}) = \v{0}\\
+    &g(\v{0}, \v{0}, \v{0}) = Dg(\v{0}, \v{0}, \v{0}) = \v{0}
+.\end{aligned}\]
+In un certo senso introdurre dei parametri è come ampliare la varietà di centro per via della terza equazione $\dot{\v{\epsilon}} = 0$\sidenote{\scriptsize Gli autovalori della corrispondente matrice Jacobiana sono tutti nulli}.
+\[\begin{aligned}
+    W^c(\v{0}) = &\left\{(\v{x}, \v{y}, \v{\epsilon}) \in \mathbb{R}^c \times \mathbb{R}^s \times \mathbb{R}^p\right.| \v{y}=h(\v{x},\v{\epsilon}),\\
+		 &\left.  \ \left|\v{x}\right|<\delta, \left|\v{\epsilon}\right|<\delta_+, \ h(\v{0}, \v{0}) = Dh(\v{0}, \v{0}) = \v{0} \right\}
+.\end{aligned}\]
+Determiniamo l'equazione per trovare la funzione $h$:
+\[\begin{aligned}
+    \frac{\text{d} \v{y}}{\text{d} t} =& B\v{y}+g(\v{x}, \v{y}, \v{\epsilon}) = 
+    Bh(\v{x}, \v{\epsilon}) + g(\v{x}, h(\v{x}, \v{\epsilon}), \v{\epsilon}) =\\
+    = & D_{\v{x}}h(\v{x}, \v{\epsilon}) \frac{\text{d} \v{x}}{\text{d} t} +
+    D_{\v{\epsilon}}h(\v{x}, \v{\epsilon}) \frac{\text{d} \v{\epsilon}}{\text{d} t}
+.\end{aligned}\]
+Sfruttando la derivata nulla di $\v{\epsilon}$ si arriva infine alla equazione:
+\[\begin{aligned}
+     &D_{\v{x}}h(\v{x}, \v{\epsilon}) \left[A\v{x} + f(\v{x}, h(\v{x}, \v{\epsilon }), \v{\epsilon}) \right] +\\
+     & \qquad  \qquad  -Bh(\v{x}, \v{\epsilon}) - g(\v{x}, h(\v{x}, \v{\epsilon}), \v{\epsilon}) = 0
+.\end{aligned}\]
+In conclusione si ha che la trattazione rimane invariata se si include anche l'eventuale varietà insabile.
+\subsection{Center Manifold per mappe (stati stazionari)}%
+Prendiamo una mappa ricorsiva:
+\[
+\begin{dcases}
+    \v{x}_{n+1}=A\v{x}_n + f(\v{x}_n, \v{y}_n) \\
+    \v{y}_{n+1}=B\v{y}_n + g(\v{x}_n, \v{y}_n) 
+\end{dcases}
+\qquad  (\v{x}_n, \v{y}_n) \in \mathbb{R}^c \times \mathbb{R}^s
+\]
+E supponiamo vi sia uno stato stazionario $\v{V}_s$ nell'origine. Come nel caso precedente deve valere:
+\[\begin{aligned}
+    &f(\v{0}, \v{0}) = Df(\v{0},\v{0}) = 0 \\
+    &g(\v{0}, \v{0}) = Dg(\v{0},\v{0}) = 0 
+.\end{aligned}\]
+\begin{thm}[Di esistenza]
+    Esiste localmente in un opportuno intorno di $\v{V}_s$ il Center Manifold ed è rappresentato dall'insieme:
+    \[
+	W^c(\v{0}) = 
+	\left\{(\v{x}, \v{y}) \in \mathbb{R}^c \times \mathbb{R}^s| \v{y}=h(\v{x}), \ \left|\v{x}\right|<\delta, \ h(\v{0}) = Dh(\v{0}) = \v{0}\right\}
+    .\] 
+\end{thm}
+\noindent
+Determiniamo la funzione $h(\v{x})$:
+\[
+\begin{dcases}
+    \v{x}_{n+1}= A\v{x}_n + f(\v{x}_n, h(\v{x}_n) ) \\
+    \v{y}_{n+1}= h(\v{x}_{n+1}) =B\v{x}_n + g(\v{x}_n, h(\v{x}_n) ) \\
+\end{dcases}
+\]
+Sostituendo la prima nella seconda (in $h$):
+\[
+h(A\v{x}_n + f(\v{x}_n, h(\v{x}_n) )) - B\v{x}_n + g(\v{x}_n, h(\v{x}_n) ) = 0
+.\] 
+Risolvere per $h$ questa equazione è proibitivo, possiamo anche qua approssimare grazie al teorema:
+\begin{thm}[]
+    Se $\phi :\mathbb{R}^c\to \mathbb{R}^s$ con $\phi (0) = D\phi(0)=0 $ e 
+    \[
+	D(\phi) = O(\left|\v{x}\right|^p) \qquad  p>1 \qquad  \left| \v{x}\right|\to 0
+    .\] 
+    Allora 
+    \[
+	\left|h(\v{x}) - \phi (\v{x}) \right|\simeq O(\left|\v{x}\right|^p) \qquad  \text{se }\left|\v{x}\right|\to 0
+    .\] 
+\end{thm}
+\noindent
