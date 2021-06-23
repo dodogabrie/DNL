@@ -104,4 +104,18 @@ La richiesta di stabilità porta al sistema:
     \implies 
     -3<\mu <-2
 .\] 
-Quindi questi due stati sono non stabili (poichè i due stati per esistere deve essere $\mu >-2$).
+Quindi questi due stati sono non stabili (poichè i due stati per esistere deve essere $\mu >-2$).\\
+Il fatto che l'autovalore in $x_{s_1}$ sia $-1$ fa si che la mappa alterni il suo stato tra $x_{s_2}$ e $x_{s_3}$. Questa peculiarità non ha un equivalente nei sistemi dinamici a tempo continuo, la cosa particolare è che osserviamo una orbita periodica in una zona dello spazio delle fasi in cui non dovrebbe esserci.\\
+Per capire cosa succede prendiamo la mappa iterata due volte:
+\[
+    G =F\circ F (x) 
+.\] 
+Vedremo che gli stati stazionari di $F^2$ corrispondono all'orbita di periodo 2 che si osserva con la simulazione. Approssimiamo la mappa iterata due volte nel seguente modo:
+\[
+    G(x, \mu) = x + \mu (2+\mu) x-2x^3 + o(x^4) 
+.\] 
+Si trascurano anche i termini $(\mu x^3)$, sono di ordine 4 nello spazio delle fasi in questione.
+\[
+    x_{n+1}= x + \mu (2+\mu) x-2x^3 \equiv M(x, \mu) 
+.\] 
+La mappa $M(x, \mu)$ così definita mostra una biforcazione a forchetta: l'orbita periodica osservata $O_2=\left\{\overline{x}_1, \overline{x}_2\right\}$ è tale per cui $\overline{x}_1$ e $\overline{x}_2$ sono stati stazionari di $M$.

@@ -66,7 +66,7 @@ L'unica cosa da tenere a mente è che $J(\vect{x}_p(t))$  potrebbe dipendere dal
     \frac{\text{d} \vect{y}}{\text{d} t} = J(\vect{x}_s)\vect{y}  \qquad \vect{J(\vect{x}_s)}  \text{: matrice costante}
 \] 
 \begin{thm}[Stabilità delle soluzioni stazionarie]
-    Dato $\frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x})$ con $\vect{x}\in\mathbb{R}^n$, $F:\mathbb{R}^n \to \mathbb{R}^n$, $F \in C^r, \ r\ge 2$ e sia $\vect{x}_s$ tale che $F(\vect{x}_s)=0$.\\
+    Dato $\frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x})$ autonomo con $\vect{x}\in\mathbb{R}^n$, $F:\mathbb{R}^n \to \mathbb{R}^n$, $F \in C^r, \ r\ge 2$ e sia $\vect{x}_s$ tale che $F(\vect{x}_s)=0$.\\
     Se tutti gli autovalori di $J(\vect{x}_s)$ hanno parte reale negativa allora $\vect{x}_s$ è asintoticamente stabile.
 \end{thm}
 \noindent
@@ -100,7 +100,7 @@ Se in tal caso trovassi autovalori con parte reale minore di zero potrei conclud
     \] 
     Applicando alla lettera il teorema la soluzione stazionaria deve essere stabile. Se consideriamo invece:
     \[
-	\vect{x}_1(t)=e^{t /2}\begin{pmatrix} -\cos t \\ \sin t \end{pmatrix}  \qquad \vect{x}_1(t)=e^{-t}\begin{pmatrix} \sin t \\ \cos t \end{pmatrix} 
+	\vect{x}_1(t)=e^{t /2}\begin{pmatrix} -\cos t \\ \sin t \end{pmatrix}  \qquad \vect{x}_2(t)=e^{-t}\begin{pmatrix} \sin t \\ \cos t \end{pmatrix} 
     \] 
     Si scopre che queste due sono soluzioni indipendenti (per casa). \\
     Quindi prendendo queste due soluzioni per descrivere la soluzione del sistema dinamico e ponendoci in un intorno della soluzione stazionaria si vede che una direzione non è stabile ($\vect{x_1}$), mentre una direzione è stabile $\vect{x}_2$. Il fatto che la soluzione in $\vect{x}_1$ diverga rende il punto $\vect{V}_0 = \begin{pmatrix} 0\\ 0 \end{pmatrix} $ instabile. \\
@@ -116,7 +116,7 @@ Se in tal caso trovassi autovalori con parte reale minore di zero potrei conclud
     \begin{pmatrix} F_1(x, y)\\ F_2(x, y) \end{pmatrix} 
     \] 
     L'unico stato stazionario in questo caso è il vettore $\vect{V}_s = (0,0)$.\\
-    Per determinare la stabilità come prima cosa dobbiamo calcolare la generica matrice $J$:
+    Per determinare la stabilità come prima cosa dobbiamo calcolare la generica matrice $J$ e successivamente sostituirvi lo stato stazionario $\v{V}_s$:
     \[
 	J(\vect{V})=
         \left.
@@ -280,6 +280,10 @@ Prendiamo $i \ge 3$, in tal caso possiamo definire la sequenza:
     \left(r_{i, 1} \quad r_{i, 2} \quad r_{i, 3} \quad \ldots\right) = &\left(r_{i-2, 2} \quad r_{i-2, 3} \quad r_{i-2, 4} \quad \ldots\right) + \\
     & - \frac{r_{i-2, 1}}{r_{i-1,1}}(r_{i-1,2} \quad r_{i-1,3} \quad r_{i-1,4} \quad \ldots)
 .\end{aligned}\]
+In generale si ha la relazione:
+\[
+    r_{i, j} = r_{i-2, j + 1} - \frac{r_{i-2, j}}{r_{i-1, j}}\left(r_{i-1, j + 1}\right)
+.\] 
 Ad esempio abbiamo che:
 \[
     r_{i,1}= r_{i-2,2} - \frac{r_{i-2,1}}{r_{i-1,1}}r_{i-1,2} = 

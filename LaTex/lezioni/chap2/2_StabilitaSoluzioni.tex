@@ -23,6 +23,7 @@ Inoltre si parla di stabilità sempre in un contesto asintotico: serve che il si
     Se $F$ è globalmente Lipshitziana ($k(\vect{x})=k$ indipendente da $\vect{x}$) allora la soluzione è globalmente definita.
 \end{thm}
 \noindent
+\subsection{Stabilità secondo Lyapunov di stati stazionari di SD a tempo continuo}%
 \begin{defn}[Stabilità secondo Lyapunov]
     \marginpar{
         \captionsetup{type=figure}
@@ -84,13 +85,13 @@ La cosa particolare della seconda definizione è che condizione 2) non basta per
     }
     Data la mappa
     \[
-	\vect{x}_{k+1}=G(\vect{x}_k) \ \text{con} \vect{x}_k \in \mathbb{R}^n \ \text{e } G: \mathbb{R}^n\to \mathbb{R}^n.
+	\vect{x}_{k+1}=G(\vect{x}_k) \quad \text{con} \quad  \vect{x}_k \in \mathbb{R}^n \ \text{e } G: \mathbb{R}^n\to \mathbb{R}^n.
     \] 
     Diciamo che un orbita\sidenote{\scriptsize $\left\{\vect{u}_k\right\}$ Inteso come insieme di valori} $\left\{\vect{u}_k\right\}$ è \textbf{stabile secondo Lyapunov} se 
     \[
 	\forall \epsilon > 0 \ \exists \delta (\epsilon)>0:
     \] 
-    Per ogni altra orbita $\vect{V}_k$ per la quale vale che:
+    Per ogni altra orbita $\vect{V}_k$ vale:
     \[
 	\left|\left|\vect{V}_m - \vect{u}_m\right|\right|< \delta (\epsilon), \ m \in \mathbb{N} \implies 
         \left|\left|\vect{V}_K - \vect{u}_K\right|\right|<\epsilon \quad \forall K > m
@@ -106,27 +107,7 @@ La cosa particolare della seconda definizione è che condizione 2) non basta per
     \end{enumerate}
 \end{defn}
 \noindent
-\subsection{Stabilità secondo Lyapunov di stati stazionari di SD a tempo continuo}%
-\label{sub:Stabilità secondo Lyapunov di stati stazionari di SD a tempo continuo}
-Sia $\frac{\text{d} \vect{x}}{\text{d} t} = F(\vect{x})$  con $\vect{x}_s$ stazionario ($F(\vect{x}_s) = 0$). Ricordiamo che lo stato stazionario è anch'esso una soluzione.
-\begin{defn}[Stabilità di stato stazionario secondo Lyapunov]
-    Si dice che $\vect{x}_s$ è stabile secondo Lyapunov se
-    \[
-	\forall \epsilon  > 0 \exists \ \delta (\epsilon) > 0:
-    \] 
-    \[
-	\text{se } \left|\left|\vect{x}_0-\vect{x}_s\right|\right|< \delta (\epsilon) \implies  \left|\left|\vect{x} (t)-\vect{x}_s\right|\right| < \epsilon
-    \] 
-\end{defn}
-\noindent
-\begin{defn}[Stabilità asintotica di stato stazionario]
-    Nelle stesse ipotesi della definizione precedente diciamo che $\vect{x}_s$ è asintoticamente stabile se 
-    \begin{enumerate}
-        \item $\vect{x}_s$ è stabile secondo Lyapunov.
-	\item $\lim\limits_{t \to \infty} \left|\left|\vect{x} (t)-\vect{x}_s\right|\right|=0$.
-    \end{enumerate}
-\end{defn}
-\noindent
+\subsection{Esempi di stabilità di SD a tempo continuo}%
 \begin{exmp}[Vinograd]
 In un articolo di Vinograd del 1957 (ineguality of the method of deterministic experiments for the study of nonlinear diff. equations) è stato dimostrato che il seguente sistema:
 \[\begin{dcases}
@@ -140,8 +121,6 @@ Che l'unico stato stazionario è $\vect{V}_s = \begin{pmatrix} 0 \\ 0 \end{pmatr
 Quindi lo stato stazionario è asintoticamente stabile ma non è stabile secondo Lyapunov.
 \end{exmp}
 \noindent
-\subsection{Esempi sulla stabilità secondo Lyapunov di soluzioni di ODE}%
-\label{sub:Esempi sulla stabilità secondo Lyapunov di soluzioni di ODE}
 \begin{exmp}[1]
     Prendiamo il campo vettoriale definito come:
     \[\begin{dcases}

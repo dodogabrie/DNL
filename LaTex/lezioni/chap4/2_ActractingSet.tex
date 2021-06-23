@@ -8,7 +8,7 @@
     E sia $A$ un insieme positivamente invariante chiuso. \\
     Diciamo che $A$ è un Actracting set (o insieme attrattivo) se esiste $U$ intorno di $A$ ($A\in U$) tale che 
     \begin{itemize}
-	\item $\forall t \ge 0$ $\varphi_t(U) \in U$ 
+	\item $\forall t \ge 0$ $\varphi_t(U) \subset U$ 
 	\item $A = \bigcap\limits_{t\ge 0}\varphi_t(U)$
     \end{itemize}
 \end{defn}
@@ -60,7 +60,7 @@ Possiamo definire questo insieme anche per le mappe ricorsive:
 \begin{defn}[Actracting set per SD a tempo discreto]
     Data la mappa 
     \[
-	\v{x}_{k+1}G(\v{x}_k) \quad\v{x}\in \mathbb{R}^n \quad  G:\mathbb{R}^n\to \mathbb{R}^n
+	\v{x}_{k+1} = G(\v{x}_k) \quad\v{x}\in \mathbb{R}^n \quad  G:\mathbb{R}^n\to \mathbb{R}^n
     .\] 
     con $A\subset\mathbb{R}^n$ chiuso ed invariante positivamente. $A$ è denominato \textbf{Attracting Set} se esiste un intorno $U$ di $A$ ($A \subset U$) tale che 
     \begin{itemize}
@@ -69,6 +69,7 @@ Possiamo definire questo insieme anche per le mappe ricorsive:
     \end{itemize}
 \end{defn}
 \noindent
+\subsection{Bacino di attrazione di un Actracting set}%
 Possiamo allora chiederci quanto può esser grande l'insieme intorno di $A$: $U$. In particolare qual'è il più grande $U$ per il quale una condizione iniziale del sistema dinamico finisce sull'attracting set.
 \begin{defn}[Bacino di Attrazione di un Actracting Set]
     Supponiamo di avere (a) un campo vettoriale $\varphi_t:\mathbb{R}^2\to \mathbb{R}^2$ o di avere (b) $G:\mathbb{R}^2\to \mathbb{R}^2$ una mappa ricorsiva. Inoltre supponiamo vi sia un aitracting set $A$ ed un intorno di $A$ definito $U$.\\
@@ -112,7 +113,7 @@ Ma il concetto di actracting set è sufficiente a caratterizzare la dinamica per
 	A = \bigcap\limits_{t\ge 0}\varphi_t(U) 
     .\] 
     Tale intersezione esiste poiché l'immagine di $U$ sarà sicuramente inclusa in $U$ (per definizione di regione di intrappolamento).\\
-    Possiamo allora sccegliere $t$ sempre più grande e man a mano che $t$ aumenta si ha che $\varphi_t(U)$ si schiaccerà sull'intervallo $\left[-1, 1\right]$. Quindi questo intervallo è proprio l'insieme $A$ cercato.\\
+    Possiamo allora scegliere $t$ sempre più grande e man a mano che $t$ aumenta si ha che $\varphi_t(U)$ si schiaccerà sull'intervallo $\left[-1, 1\right]$. Quindi questo intervallo è proprio l'insieme $A$ cercato.\\
     Quindi la definizione di attracting set in questo caso ci dice che 
     \[
         A = \left\{(x, y) | y = 0, x \in \left[-1, 1\right] \right\}

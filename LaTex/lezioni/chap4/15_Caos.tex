@@ -1,0 +1,238 @@
+\section{Caos Deterministico}%
+\subsection{Definizione di caos deterministico}%
+Un sistema che presenta caos deterministico esibisce le seguenti caratteristiche:
+\begin{itemize}
+    \item Comportamento irregolare e aperiodico.
+    \item Sensibilità alle condizioni iniziali.
+    \item Deterministico.
+    \item L'insieme delle orbite è contenuto in una regione limitata dello spazio delle fasi.
+\end{itemize}
+Prendiamo un campo vettoriale:
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) \qquad  \v{x}\in \mathbb{R}^n \qquad  \varphi :\mathbb{R}^n\to \mathbb{R}^n
+.\] 
+ed una mappa ricorsiva:
+\[
+    \v{x}_{n+1}=G(\v{x}_n) \qquad  \v{x}\in \mathbb{R}^n \qquad  G:\mathbb{R}^n\to \mathbb{R}^n
+.\] 
+Supponiamo che esista $\Lambda \subset \mathbb{R}^n$ con le proprietà:
+\begin{itemize}
+    \item $\Lambda$ compatto.
+    \item $\Lambda$ invariante per la dinamica.
+\end{itemize}
+\begin{defn}[Sensibilità alle condizioni iniziali]
+    Diciamo che un campo vettoriale $\varphi$ (oppure la mappa $G$) è sensibile alle condizioni iniziali (su $\Lambda$) se esiste $\epsilon >0$ tale che
+    \[
+	\forall \v{x}\in \Lambda\qquad  \forall I(\v{x}) \exists \v{y} \in I(\v{x}), t \mathbb{R}^+ 
+    .\] 
+    Per cui vale:
+    \[
+	\left|\v{x}(t) - \v{y}(t) \right|>\epsilon
+    .\] 
+    In cui $I$ è un intorno qualsiasi di $\v{x}$.
+\end{defn}
+\noindent
+\begin{exmp}[Sistema sensibile alle condizioni iniziali]
+    \label{exmp:15_1}
+    Il sistema dinamico
+    \[
+        \frac{\text{d} x}{\text{d} t} = \alpha  x
+    .\] è un sistema sensibile alle condizioni iniziali (dimostrare per casa).
+\end{exmp}
+\noindent
+\begin{defn}[Insieme caotico]
+    Sia $\Lambda$ un insieme compatto ed invariante rispetto alla dinamica (che sia $\varphi$ oppure $G$). Diciamo che $\Lambda$ è caotico se valgono le seguenti cose:
+    \begin{itemize}
+	\item $\varphi$ o $ (G) $ è sensibile alle condizioni iniziali.
+	\item $\varphi$ o $ (G) $ deve essere topologicamente transitivo\sidenote{\scriptsize Qualunque coppia di insiemi aperti presi su $\Lambda$ l'immagine di uno dei due ha intersezione nulla con l'altro.}.
+    \end{itemize}
+\end{defn}
+\noindent
+Il problema vero di questa definizione sta nel mostrare che vale il primo punto: la sensibilità alle condizioni iniziali.
+\begin{defn}[Attrattore strano]
+    Sia $A \subset \mathbb{R}^n$ un attrattore, diciamo che esso è strano se $A$ è caotico.
+\end{defn}
+\noindent
+\begin{exmp}[Mappa logistica]
+    La mappa logistica è un sistema sensibile alle condizioni iniziali e mostra caos deterministico.
+\end{exmp}
+\noindent
+\subsection{Esponenti di Lyapunov}%
+Gli esponenti di Lyapunov sono un efficiente metodo per accertare la presenza di Caos Deterministico.\\
+\marginpar{
+        \captionsetup{type=figure}
+        \incfig{4_15_1}
+	\caption{\scriptsize Orbita iniziale (blu) e perturbazione, l'orbita perturbata in rosso.}
+    \label{fig:4_15_1}
+    }
+Dobbiamo stare attenti al fatto che sono soltanto un indicatore di caos, possono esistere esempi in cui tali esponenti hanno una misura positiva (tra poco ne vedremo il significato) ma il sistema non è affatto caotico (ad esempio in \ref{exmp:15_1}).\\
+Dato un sistema dinamico (o una mappa):
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) \qquad  \v{x}\in \mathbb{R}^n \qquad F:\mathbb{R}^n\to \mathbb{R}^n
+.\] 
+E presa una orbita $\v{x}_p(t)$. Possiamo perturbare tale orbita con un vettore $\v{y}(t)$.\\
+Linearizzando il sistema si ottiene 
+\[
+    \frac{\text{d} \v{y}}{\text{d} t} = DF(\v{x}_p(t)) \v{y}
+.\] 
+Sappiamo che $DF(\v{x}_p(t))$ in generale non è autonomo. Riprendiamo adesso la teoria dei moltipolicatori di Floquet ed indichiamo con $\Phi (\v{x}_p(t))$  la matrice fondamentale dell'orbita $\v{x}_p(t)$.\\
+Prendiamo adesso un vettore $\v{v}\in \mathbb{R}^n$  e definiamo la quantità:
+\[
+    \Lambda_t(\v{x}_p(t)) = \frac{\left|\Phi (\v{x}_p(t) ) \v{v}\right|}{\left|\v{v}\right|} 
+.\] 
+Questa quantità definisce il \textbf{coefficiente di espansione} nella direzione $\v{v}$ dell'orbita $\v{x}_p$.
+\begin{defn}[Esponente di Lyapunov nella direzione $\v{v}$]
+    \[
+	\Lambda (\v{v}) = \lim_{t \to \infty} \frac{1}{t}\log(\Lambda_t(\v{x}_p(t) )) 
+    .\] 
+\end{defn}
+\noindent
+Possiamo anche associare ad un insieme di vettori $\left\{\v{v}_i\right\}$ i corrispondenti esponenti di Lyapunov $\left\{\Lambda_i (\v{v}_i) \right\}$.  
+\begin{defn}[Base normale]
+    Diciamo che $\v{y}_i\in \mathbb{R}^n$  con $i = 1, \ldots, n$ è una base normale se vale:
+    \[
+	\sum_{i=1}^{n} \Lambda_i(\v{v}_i) \le \sum_{i=1}^{n} \Lambda_i(\v{z}_i)
+    .\] 
+\end{defn}
+\noindent
+In cui $\left\{\v{z}_i\right\}$ è una qualunque altra base di $\mathbb{R}^n$.
+\begin{defn}[Famiglia regolare]
+    Diciamo che $\Phi (\v{x}_p(t)) $ è regolare (o appartiene ad una famiglia regolare) se valgono le seguenti:
+    \begin{enumerate}
+        \item \[
+		\lim_{t \to \infty} \frac{1}{t}\log\left|\text{det}(\Phi (\v{x}_p(t)))\right| \text{ esiste}
+        .\] 
+    \item $\forall$ base normale ($\v{y}_i$ $i= 1, \ldots, n$) si deve avere che:
+	\[
+	    \sum_{i=1}^{n} \Lambda_i(\v{y}_i) = \lim_{t \to \infty} \frac{1}{t}\log\left|\text{det}(\Phi (\v{x}_p(t)))\right|
+	.\] 
+    \end{enumerate}
+\end{defn}
+\noindent
+\begin{defn}[Spettro di Lyapunov]
+    Sia dato il sistema dinamico 
+    \[
+	\frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) \qquad\v{x}\in \mathbb{R}^n \qquad  F:\mathbb{R}^n\to \mathbb{R}^n
+    .\] 
+    L'insieme $\left\{\Lambda_i(\v{y}_i) , \ i = 1, \ldots, n\right\}$ è denominato \textbf{Spettro di Lyapunov}
+
+\end{defn}
+\noindent
+\begin{thm}[]
+    Se $\Phi (\v{x}_p(t))$ è una matrice fondamentale regolare (o appartenente ad una famiglia regolare) allora
+    \[
+	\lim_{t \to \infty} \frac{1}{t}\log\left( \frac{\left|\Phi (\v{x}_p(t)) \v{v}\right|}{\left|\v{v}\right|} \right) \text{ esiste finito} \quad  
+	\forall \v{v}\in \mathbb{R}^n
+    .\] 
+\end{thm}
+\noindent
+Il problema è che noi stiamo selezionando una orbita, cosa succede se la cambiamo? Si avrà sempre una matrice $\Phi$  regolare?
+\begin{thm}[Moltiplicative Ergodic Theorem]
+    Tutte le orbite del sistema (a meno di un insieme di misura nulla rispetto ad una certa misura\ldots) generano matrici regolari. 
+\end{thm}
+\noindent
+Questo teorema ci garantisce che le cose viste sopra continuano a funzionare prendento una qualsiasi orbita.\\
+Osserviamo che nello spettro degli esponenti di Lyapunov si avrà sempre un esponente nullo, questo è quello che corrisponde alla direzione tangente all'orbita.\\
+Per un sistema dinamico dissipativo si ha una somma di tutti gli esponenti di Lyapunov negativa.
+\begin{exmp}[Calcolo degli esponenti di Lyapunov]
+    \[
+    \begin{dcases}
+    \frac{\text{d} x}{\text{d} t} = x-x^3\\
+    \frac{\text{d} y}{\text{d} t} = -y
+    \end{dcases}
+    \]
+    Sappiamo che questo sistema presenta tre stati stazionari in $y=0$, $x=0; -1; 1$. \\
+    Calcoliamo allora gli esponenti di Lyapunov relativi all'orbita $\v{V}_p(t) = (x_p(t) = -1, y_p(t) = 0)$.\\
+    Dalla linearizzazione del sistema si ottiene:
+    \[
+	J(x, y)_{\v{V}_p}= 
+	\left.\begin{pmatrix}
+              1-3x^2 & 0 \\
+              0 & -1 \\
+              \end{pmatrix}
+	\right|_{\v{V}_p}= 
+        \begin{pmatrix}
+            -2 & 0 \\
+            0 & -1 \\
+        \end{pmatrix}
+    .\] 
+    Quindi il sistema linearizzato ha la struttura seguente:
+    \[
+        \frac{\text{d} }{\text{d} t} \begin{pmatrix} \xi_1 \\ \xi_2 \end{pmatrix} = 
+        \begin{pmatrix}
+            -2 & 0 \\
+            0 & -1 \\
+        \end{pmatrix}
+        \begin{pmatrix} \xi_1 \\ \xi_2 \end{pmatrix}
+    .\] 
+    La matrice fondamentale allora si esprime come:
+    \[
+	\Phi
+        \begin{pmatrix}
+            e^{-2t} & 0 \\
+            0 & e^{-t} \\
+        \end{pmatrix}
+    .\] 
+    Si applica allora la definizione di esponenti di Lyapunov alla matrice fondamentale scegliendo come direzione $\hat{e}_1$:
+    \[
+	\Lambda_1 (\hat{e}_1) = 
+	\lim_{t \to \infty} \frac{1}{t}\log\left(\frac{\left|\Phi \hat{e}_1 \right|}{\left|\hat{e}_1\right|}\right)
+    .\] 
+    Visto che noi abbiamo:
+    \[
+        \left|\Phi\hat{e}_1\right|=e^{-2t } \qquad  \left|\hat{e}_1\right|=1
+    .\] 
+    Allora se ne deduce subito che $\Lambda_1(\hat{e}_1) = -2$. Per casa trovare anche che l'altro esponente (con $\hat{e}_2$).
+\end{exmp}
+\noindent
+\subsection{Calcolo di esponenti di Lyapunov per sistemi dinamici a tempo continuo}%
+Preso il sistema dinamico:
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}) \qquad  \v{x}\in \mathbb{R}^n \qquad F:\mathbb{R}^n\to \mathbb{R}^n
+.\] 
+Supponiamo che $\v{x}_p(t)$ sia un orbita del sistema,  si calcola $\Phi (\v{x}_p(t))$:
+\begin{equation}
+    \frac{\text{d} \v{y}}{\text{d} t} = DF(\v{x}_p(t) ) \v{y}
+    \label{eq:15_1}
+\end{equation}
+Per costruire $\Phi$ si prendono i versori $\left\{\hat{e}_i\right\}$ della base canonica di $\mathbb{R}^n$, si sceglie un tempo $T$ e si calcola $\v{y}_1(T)$: la soluzione del problema \ref{eq:15_1} avente condizione inziale $\hat{e}_1$ (in generale $\v{y}_i(T)$ è la soluzione di \ref{eq:15_1} con condizione iniziale $\hat{e}_i$).\\
+A questo punto si usa il metodo di Gran-Schmidt per la costruzione di una base ortonormale: si definisce un primo vettore nel seguente modo:
+\[
+    \hat{\v{y}}_1 = \frac{\v{y}_1(T) }{\left|\v{y}_1(t)\right|} 
+.\] 
+Mentre per gli altri vettori si ha:
+\[
+    \hat{\v{y}}_m= 
+    \frac{\v{y}_m(T) - \sum_{i= 1}^{m-1} \left[\v{y}_m(t) \hat{\v{y}_i}\right]\hat{\v{y}_i}}{\left|\v{y}_m(T) - \sum_{i= 1}^{m-1} \left[\v{y}_m(t) \hat{\v{y}_i}\right]\hat{\v{y}_i}\right|}
+.\] 
+Adesso si memorizzano i valori del modulo del denominatore di $\hat{\v{y}}_m$ che denominiamo $D_m^K$. Alla fine troviamo gli esponenti come:
+\[
+    \Lambda  = \frac{1}{RT}\sum_{K=1}^{R} \log (D_i^K) \qquad  i =1, \ldots, n
+.\] 
+In cui $R$ è il numero di volte in cui è stato integrato il sistema per ottenere gli esponenti (si fa variare $T$).
+\subsection{Esponenti di Lyapunov per mappe 1D}%
+Prendiamo il sistema dinamico
+\[
+    x_{n+1}= G(x_{n}) 
+.\] 
+L'esponente di Lyapunov è definito come:
+\[
+    \lambda  = \lim_{n \to \infty} = \frac{1}{n}\sum_{J=1}^{n} \log\left|\frac{\text{d} G}{\text{d} x} \right|_{x = x_J}
+.\] 
+\begin{exmp}[Mappa a tenda]
+    Questa mappa è simile alla logistica:
+    \[
+	G(x) =
+	\begin{cases}
+	    rx & 0 \le x \le \frac{1}{2}\\
+	    r-rx & \frac{1}{2}<x\le 1
+	\end{cases}
+	\quad  r>0
+    .\] 
+    L'esponente di Lyapunov per la mappa è:
+    \[
+        \lambda  = \lim_{n \to \infty} = 
+	\frac{1}{n}\sum_{J=1}^{n} \log (r) = \log (r) 
+    .\] 
+\end{exmp}
+\noindent

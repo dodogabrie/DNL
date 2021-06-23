@@ -6,7 +6,8 @@ Le biforcazioni possono essere suddivise in due gruppi:
     \item \textbf{Globali}: in regioni dello spazio delle fasi che non possono ridursi ad intorni di stati stazionari o orbite periodiche.
 \end{itemize}
 Noi consideriamo qui le biforcazioni locali in $\mathbb{R}$ ed in $\mathbb{R}^2$ con quella di Hopf.\\
-Gli stati stazionari iperbolici rimangono tali anche sotto perturbazione, la questione è diversa quando abbiamo \textbf{stati stazionari non iperbolici}. Su questi ultimi stati ci concentriamo per cercare le biforcazioni.
+Gli stati stazionari iperbolici rimangono tali anche sotto perturbazione, la questione è diversa quando abbiamo \textbf{stati stazionari non iperbolici}. 
+Questi ultimi stati sono responsabili delle bifocazioni.
 \begin{exmp}[Sistema senza biforcazione]
     Prendiamo il campo vettoriale:
     \[
@@ -44,17 +45,16 @@ Nuovamente si ha uno stato stazionario nell'origine $(x_s, \mu_s) = (0, 0)$  e a
     \left. \frac{\text{d} F}{\text{d} x} \right|_{(x, \mu) = (0, 0)}=\left.-2x\right|_{(x, \mu) = (0, 0) } = 0
 .\] 
 Quindi abbiamo uno stato stazionario non iperbolico. Prendiamo adesso $\mu\neq 0$: 
-\[
-    \mu-x^2 = 0 \implies  x = \pm\sqrt{\mu} \text{ con }\mu>0
-.\] 
 \marginpar{
         \captionsetup{type=figure}
         \incfig{4_12_2}
 	\caption{\scriptsize Rappresentazione della biforcazione con lo sviluppo dello stato stazionario stabile (blu) e quello instabile (rosso).}
     \label{fig:4_12_2}
     }
-
-Per quanto riguarda la stabilità di questo stato si ha:
+\[
+    \mu-x^2 = 0 \implies  x = \pm\sqrt{\mu} \text{ con }\mu>0
+.\] 
+Per quanto riguarda la stabilità di questi stati si ha:
 \[
     J(x, \mu) = -2x \implies  
     \begin{cases}
@@ -114,6 +114,12 @@ Il modello dinamico che sottende questo tipo di comportamento è descritto dal c
     \frac{\text{d} x}{\text{d} t} = \mu x - x^3 = F(x, \mu) 
 .\] 
 Rispetto alla transcritica il sistema ha una potenza di ordine 3 per la parte non lineare del SD. Studiamo i punti stazionari:
+\marginpar{
+        \captionsetup{type=figure}
+        \incfig{4_13_4}
+        \caption{\scriptsize Andamento degli stati stazionari al variare di $\mu$ per un sistema che presenza biforcazione a forchetta.}
+    \label{fig:4_13_4}
+    }
 \[
     F(x, \mu) = 0 \implies  x(\mu-x^2) =0
     \implies 
@@ -123,14 +129,7 @@ Rispetto alla transcritica il sistema ha una potenza di ordine 3 per la parte no
 	x_{s_2}=-\sqrt{\mu}& \mu\ge 0
     \end{cases}
 \] 
-\marginpar{
-        \captionsetup{type=figure}
-        \incfig{4_13_4}
-        \caption{\scriptsize Andamento degli stati stazionari al variare di $\mu$ per un sistema che presenza biforcazione a forchetta.}
-    \label{fig:4_13_4}
-    }
-
-Possiamo gia pensare che ci sia una biforcazione poiché appaiono stati stazionari al variare di $\mu$.
+Possiamo gia supporre che il sistema presenti una biforcazione poiché appaiono stati stazionari al variare di $\mu$.
 \[
     J(x, \mu) = \mu-3x^2 \implies  J(0, 0) = 0 \implies  \text{ Non Ip.}
 \] 

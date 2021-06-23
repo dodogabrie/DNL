@@ -113,9 +113,10 @@ La chain rule vale anche in questo caso:
 	DG^k(\v{x}_{p, 0}) = DG(\v{x}_{p, k-1}) DG(\v{x}_{p, k-2})\ldots DG(\v{x}_{p, 0}) 
     .\] 
     Se partissi invece da $\v{x}_{p, j}$ allora otterrei:
-    \[
-	DG^{k}(\v{x}_{p, j}) = DG(\v{x}_{p, j-1}) DG(\v{x}_{p, j-2})\ldots DG(\v{x}_{p, 0}) \ldots DG(\v{x}_{k-1}) DG(\v{x}_{k-2}) \ldots DG(\v{x}_{p, j}) 
-    .\] 
+    \[\begin{aligned}
+	DG^{k}(\v{x}_{p, j}) =& DG(\v{x}_{p, j-1}) DG(\v{x}_{p, j-2})\ldots DG(\v{x}_{p, 0}) \ldots \\
+			      & \ldots DG(\v{x}_{p, k-1}) DG(\v{x}_{p, k-2}) \ldots DG(\v{x}_{p, j}) 
+    .\end{aligned}\]
 \end{exmp}
 \noindent
 C'è un teorema che afferma che shiftando il punto della orbita k periodica di partenza ciclicamente gli autovalori della matrice complessiva non cambiano.

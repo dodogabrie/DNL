@@ -3,14 +3,14 @@ Prendiamo un campo vettoriale:
 \[
     \frac{\text{d} \v{x}}{\text{d} t} = F(\v{x}), \quad  \v{x}\in \mathbb{R}^n, \quad  F:\mathbb{R}^n\to \mathbb{R}^n
 .\] 
+Prendiamo un piano $\Sigma$ nello spazio delle fasi ed indichiamo con $\hat{n}(\v{x}_0)$ la normale a questo piano nel punto $\v{x}_0$.\\
+Se imponiamo la \textbf{Condizione di trasversalità} sul campo vettoriale (ovvero che il campo non passi mai in modo tangente al piano):
 \marginpar{
         \captionsetup{type=figure}
         \incfig{4_10_1}
         \caption{\scriptsize Esempio di mappa di Poincaré}
     \label{fig:4_10_1}
     }
-Prendiamo un piano nello spazio delle fasi ed indichiamo con $\hat{n}(\v{x}_0)$ la normale a questo piano nel punto $\v{x}_0$.\\
-Se imponiamo la \textbf{Condizione di trasversalità} sul campo vettoriale (ovvero che il campo non passi mai in modo tangente al piano):
 \[
     \forall \v{x} \quad  F(\v{x}) \cdot \hat{n}(\v{x}) \neq 0
 .\] 
@@ -55,7 +55,14 @@ Ipotizziamo di avere la mappa
 	\frac{\text{d} y}{\text{d} t} = x + \mu y - y(x^2+y^2) 
     \end{dcases}
     \]
-    Notiamo che la prima parte (quella lineare) contiene un blocco di Jordan, in particolare è la matrice legata alle rotazioni\ldots\\
+    Notiamo che la prima parte (quella lineare) contiene un blocco di Jordan, in particolare è la matrice legata alle rotazioni $\sigma_{\text{rot}}$:
+    \[
+        \sigma_{\text{rot}} = 
+	\begin{pmatrix}
+	    \mu & -1 \\
+	    -1 & \mu \\
+	\end{pmatrix}
+    .\] 
     Passando alle coordinate polari si ottiene il sistema:
     \[
         \frac{\text{d} r}{\text{d} t} = \mu r-r^3
