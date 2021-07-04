@@ -1,0 +1,65 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Set Up Manuale della prima maledetta pagina  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter % Fare alla lettera???
+\setbeamertemplate{title page}{%
+  \vskip2em\par
+  \vbox{}% Questi due fanno spazio 
+  \vfill%  verticale 
+  \begingroup
+    \centering
+    % ColorBox di Title e Subtitle
+    \begin{beamercolorbox}[sep=8pt,center]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%     
+    \end{beamercolorbox}%
+%
+    \vskip2em\par
+
+    % Logo Università
+    \begin{figure}
+	\includegraphics[width=1.5cm]{figures/Unipi.png}
+    \end{figure}
+%
+    \vskip1em\par
+    \vfill%<- added
+
+    % Autore
+    \begin{beamercolorbox}[sep=8pt,center]{author}
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \vfill%<- added
+%
+    % Istituto
+    \begin{beamercolorbox}[sep=8pt,center]{institute}
+      \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+    \vfill%<- added
+%
+    % Data
+    \begin{beamercolorbox}[sep=8pt,center]{date}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}%
+    \vskip0cm%<- changed
+%    {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+  \endgroup
+%  \vfill%<- removed
+}
+\makeatother
+
+% Sfondo personalizzato
+% \setbeamertemplate{background}{
+%     \begin{tikzpicture}
+% 	\node[opacity=0.35] {\includegraphics[height=\paperheight,width=\paperwidth]{../Figure/Lorenz1.png}};
+%     \end{tikzpicture}
+% }
+% 
+\setbeamerfont{title}{size=\Huge}
+\setbeamerfont{author}{size=\Large}
+
+\renewcommand{\v}[1]{\boldsymbol{#1}}
+

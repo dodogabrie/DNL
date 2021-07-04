@@ -6,6 +6,20 @@ in Sandri (1996), through the use of the variational matrix.
 import numpy as np
 from numba import jit, njit, prange
 
+@njit
+def complete_motion(t, t_inner, x, a, r):
+    #Ssol_temp = np.append(x[: , 0], Phi.flatten())
+    for i,(t1,t2) in enumerate(zip(t[:-1], t[1:])):
+        x[i+1] = x[i] + RK4(func, x[i], t1, t2, a, r)
+    x0 = x[-1]
+    D = 4
+    Phi = np.eye(D, dtype=np.float64).flatten() # Identità di tipo float
+    Ssol = np.append(x0, Phi.flatten())
+    for i,(t1,t2) in enumerate(zip(t_inner[:-1], t_inner[1:])):
+        Ssol_temp = Ssol + RK4(dSdt, Ssol, t1, t2, a, r)
+        Ssol = Ssol_temp
+        
+    return x, np.reshape(Ssol[D:], (D,D))
 
 @njit
 def motion(t, x, a, r):
@@ -42,9 +56,9 @@ def fjac(t, val, a, r):
     for i in range(len(r)):
         for j in range(len(r)):
             if i == j: 
-                J[i][j] = r[i] * val[i] * (1 - s[i]) - r[i] * val[j] * a[i][j]
+                J[i][j] = r[i] * (1 - s[i]) - r[i] * val[i] * a[i][j]
             else:
-                J[i][j] = - r[i] * val[j] * a[i][j]
+                J[i][j] = - r[i] * val[i] * a[i][j]
     return J
 
 
@@ -68,6 +82,12 @@ def RK4(f, x, t1, t2, a, r):
 
     return dt * (K1/2 + K2 + K3 + K4/2) / 3
 
+@jit
+def break_cond(f, xi, t1, t2, a, r, lim_dead):
+    c1 = np.min(xi) < lim_dead 
+    #c2 = np.max(RK4(f, xi, t1, t2, a, r)) < 0.0000001
+    #c3 = np.sum(xi) > 1.3
+    return c1# or c2 or c3
 
 @njit
 def computeLE(x0, t, a, r, ttrans=None, lim_dead = 0.001, early_stopping = False):
@@ -100,7 +120,7 @@ def computeLE(x0, t, a, r, ttrans=None, lim_dead = 0.001, early_stopping = False
         for i,(t1,t2) in enumerate(zip(ttrans[:-1], ttrans[1:])):
             xip1 = xi + RK4(func, xi, t1, t2, a, r)
             xi = xip1
-            if np.min(xi) < lim_dead:
+            if break_cond(func, xi, t1, t2, a, r, lim_dead):
                 block = True
                 break
         x0 = xi
@@ -119,9 +139,11 @@ def computeLE(x0, t, a, r, ttrans=None, lim_dead = 0.001, early_stopping = False
         Ssol[0] = np.append(x0, Phi0)
         for i,(t1,t2) in enumerate(zip(t[:-1], t[1:])):
             Ssol_temp = Ssol[i] + RK4(dSdt, Ssol[i], t1, t2, a, r)
-            if np.min(Ssol_temp[:D]) < lim_dead:
+            
+            if break_cond(func, Ssol_temp[:D], t1, t2, a, r, lim_dead):
                 block = True
                 break
+                
             # perform QR decomposition on Phi
             rPhi = np.reshape(Ssol_temp[D:], (D, D))
             Q,R = np.linalg.qr(rPhi)
@@ -139,7 +161,7 @@ def computeLE(x0, t, a, r, ttrans=None, lim_dead = 0.001, early_stopping = False
                     temp = temp + 1
                 else: 
                     temp = 0
-                if temp >= N/10:
+                if temp >= N/5:
                         break
                 L1 = np.max(final_LE[i])
         if not block:
@@ -162,7 +184,7 @@ def patience_gestion(pat, patience, a, r, a_aux, r_aux):
     if pat >= patience:
         rr = np.random.rand(4,4)
         a = rr - (np.diag(rr) - 1 )*np.eye(4)
-        rr = np.random.exponential(3)
+        rr = np.random.rand(3)
         r[0] = 1
         r[1:] = rr
         pat = 0
@@ -171,32 +193,35 @@ def patience_gestion(pat, patience, a, r, a_aux, r_aux):
     return pat, a, r, a_aux, r_aux
 
 @njit
-def store_val(LE, dead, save, a_save, radi, r_save, a, r, a_aux, r_aux, LE_save):
+def store_val(LE, dead, save, a_save, radi, r_save, a, r, a_aux, r_aux, LE_save, pat):
     if not dead:
-        if np.max(LE[-1]) > np.max(LE_save) and np.min(np.abs(LE[-1])) < 0.001:
+        if np.max(LE[-1]) > np.max(LE_save):
             a_save = a
             r_save = r
             LE_save = LE
             save = save + 1
-            radi = radi + 1
+            radi = radi + radi
             a_aux = a_save
             r_aux = r_save
-            print(LE_save[-1])
+            pat = 0
+            #print(LE_save[-1])
         else:
             a = a_aux
-            r = r_aux   
+            r = r_aux
+            radi = max(2, radi/2)
     else: 
         a = a_aux
         r = r_aux
-    return save, a_save, r_save, a, r, a_aux, r_aux, LE_save, radi
+        radi = max(2, radi/2)
+    return save, a_save, r_save, a, r, a_aux, r_aux, LE_save, radi, pat
 
 @njit
 def find_best(x0, t, ttrans=None, n = 10, seed = None, patience = 10, early_stopping = False):
     np.random.seed(seed)
-    rr = np.random.exponential(4,4)
+    rr = np.random.rand(4,4)
     a = rr - (np.diag(rr) - 1 )*np.eye(4)
     r = np.zeros(4)
-    rr = np.random.exponential(3)
+    rr = np.random.rand(3)
     r[0] = 1
     r[1:] = rr
     a_save = a
@@ -211,8 +236,8 @@ def find_best(x0, t, ttrans=None, n = 10, seed = None, patience = 10, early_stop
     for i in range(n):
         pat, a, r, a_aux, r_aux = patience_gestion(pat, patience, a, r, a_aux, r_aux)
         LE, dead = computeLE(x0, t, a, r, ttrans=ttrans, early_stopping = early_stopping)
-        save, a_save, r_save, a, r, a_aux, r_aux, LE_save, radi = store_val(LE, dead, save, a_save, radi,
-                                                                      r_save, a, r, a_aux, r_aux, LE_save)
+        save, a_save, r_save, a, r, a_aux, r_aux, LE_save, radi, pat = store_val(LE, dead, save, a_save, radi,
+                                                                      r_save, a, r, a_aux, r_aux, LE_save, pat)
         da, dr = update_init(a, r, radi)
         if pat == 0:
             radi = 2
@@ -221,3 +246,25 @@ def find_best(x0, t, ttrans=None, n = 10, seed = None, patience = 10, early_stop
         tot_dead = tot_dead + dead 
         pat = pat + 1
     return a_save, r_save, LE_save, save, tot_dead
+
+@njit
+def maximal_le(x0, t, ttrans=None, n = 10, seed = None, early_stopping = False):
+    np.random.seed(seed)
+    LE_save = np.empty(n)
+    tot_dead = 0
+    i = 0
+    while i < n:
+        rr = np.random.rand(4,4)
+        a = rr - (np.diag(rr) - 1 )*np.eye(4)
+        r = np.zeros(4)
+        rr = np.random.rand(3)
+        r[0] = 1
+        r[1:] = rr
+        
+        LE, dead = computeLE(x0, t, a, r, ttrans=ttrans, early_stopping = early_stopping)
+        da, dr = update_init(a, r, radi=1)
+        tot_dead = tot_dead + dead
+        if not dead:
+            LE_save[i] = np.max(LE[-1])
+            i = i + 1
+    return LE_save, tot_dead

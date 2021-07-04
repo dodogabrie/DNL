@@ -1,0 +1,98 @@
+%%%%%%%%%%%%%
+%  Frame 1  %
+%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Definizione di Esponenti di Lyapunov}
+\begin{itemize}
+    \item $\v{x}_0\in \mathbb{R}^n$: Condizione iniziale.
+    \item $\v{y}_0\in \mathbb{R}^n$ Perturbazione.
+    \item $\varphi_t$ Flusso di fase.
+    \item $U_0$ "Parallelepipedo" con vertici $\v{y}_i$, $i = 1, \ldots , p$.
+\end{itemize}
+\begin{block}{LE di ordine 1}
+\[
+    \lambda (\v{x}_0, \v{y}_0) = \lim_{t \to \infty} \frac{1}{t}\ln\left|\left|D_{\v{x}_0}\varphi_t(\v{x}_0) \v{y}_0\right|\right|
+.\] 
+\end{block}
+\begin{block}{LE di ordine $p\le n$}
+\[
+    \lambda^p(\v{x}_0, U_0) = \lim_{t \to \infty} \frac{1}{t}\ln\left[\text{Vol}^p\left(D_{\v{x}_0}\varphi_t(U_0)\right)\right]
+.\]
+\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%
+%  Frame 2  %
+%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Proprietà degli Esponenti di Lyapunov e dinamica tangente}
+\begin{block}{Equazione Variazionale}
+Andamento delle possibili perturbazioni:
+\[
+    \dot{\Phi}_t (\v{x}_0)  = D_{\v{x}}F\left(\varphi_t(\v{x}_0) \right)\cdot \Phi_t(\v{x}_0) \qquad  \Phi_0(\v{x}_0) = \mathbb{I}
+.\] 
+\end{block}
+\begin{block}{Teorema di Oseledec}
+Prese $\v{y}_i$, $i=1, \ldots, p$, perturbazioni linearmente indipendenti:
+\begin{equation}
+    \lambda^p(\v{x}_0, U_0)  = \lambda(\v{x}_0, \v{y}_1)  + \ldots + \lambda(\v{x}_0, \v{y}_p) 
+    \label{eq:sumlambda}
+\end{equation}
+\end{block}
+\begin{block}{Spettro di Lyapunov}
+    L'insieme dei $\lambda (\v{x}_0, \v{y}_i)$ con $\v{y}_i$, $i = 1, \ldots, n$ perturbazioni linearmente indipendenti è chiamato spettro di Lyapunov.
+\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%
+%  Frame 3  %
+%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Calcolo dello spettro di Lyapunov (Benedettin)}
+\framesubtitle{Utilizzo dell'algoritmo di Gran-Schmidt}
+Dato un set $\left\{\v{y}_1, \ldots, \v{y}_p\right\}$  linearmente indipendenti ortonormalizziamo con Gran-Schmidt:
+\[\begin{aligned}
+    & \v{w}_1 = \v{y}_1 &\quad&\quad& \v{v}_1 = \frac{\v{w}_1}{\left|\left|\v{w}_1\right|\right|}\\
+    & \v{w}_p = \v{y}_p - \sum_{i = 1}^{p-1} \left<\v{y}_p, \v{v}_i\right>\v{v}_i &\quad&\quad& \v{v}_p =\frac{\v{w}_p}{\left|\left|\v{w}_p\right|\right|} 
+.\end{aligned}\]
+Il volume del parallelepipedo $U_0$ è quindi:
+\[
+    \text{Vol}\left\{\v{y}_1, \ldots, \v{y}_p\right\} = \left|\left|\v{w}_1\right|\right|\cdot \cdot \cdot \left|\left|\v{w}_p\right|\right|
+.\] 
+\end{frame}
+
+
+%%%%%%%%%%%%%
+%  Frame 4  %
+%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Calcolo degli esponenti di Lyapunov (Benedettin)}
+\framesubtitle{Idea algoritmica}
+\begin{itemize}
+    \item Scelta perturbazione iniziale $U_0 = \left[\v{y}^0_1, \ldots, \v{y}^0_n\right]$, $\v{y}_i \in \mathbb{R}^n$ ed intervallo di integrazione $T$.
+    \item Evoluzione della mappa tangente:
+	\[
+	    U_1 = D_{\v{x}_0}\varphi_T(U_0) = J_T(\v{x}_0) \left[\v{y}^0_1,\ldots, \v{y}^0_n\right]
+	.\] 
+    \item Ortogonalizzo $U_1$, ottengo vettori ortogonali $\v{w}^1_i$ e ortonormali $V_1 \equiv \left[\v{v}^1_1, \ldots, \v{v}^1_n\right]$. 
+    \item Il volume aumenta di un fattore $\left|\left|\v{w}^1_1\right|\right|\cdot \cdot \cdot \left|\left|\v{w}_n^1\right|\right|$ 
+	\[
+	    \text{Vol}_1^p = \left|\left|\v{w}^0_1\right|\right|\cdot \cdot \cdot \left|\left|\v{w}_n^0\right|\right|\cdot
+	    \left|\left|\v{w}^1_1\right|\right|\cdot \cdot \cdot \left|\left|\v{w}_n^1\right|\right|
+	.\] 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Calcolo degli esponenti di Lyapunov (Benedettin) }
+Sostituendo il volume nella definizione ed iterando infinite volte:
+\[
+    \lambda^n(\v{x}_0, U_0) = \lim_{k \to \infty} \frac{1}{kT}\sum_{i = 1}^{k} 
+    \ln\left(\left|\left|\v{w}^i_1\right|\right|\cdot \cdot \cdot \left|\left|\v{w}_n^i\right|\right|\right)
+.\] 
+Sottraendo $\lambda^{n-1}$ ed usando la \ref{eq:sumlambda}:
+\[
+    \lambda_n = \lim_{k \to \infty} \frac{1}{kT}\sum_{i = 1}^{k} \ln\left(\left|\left|\v{w}_n^i\right|\right|\right)
+.\] 
+Si può troncare l'ultima espressione per ottenere $\lambda_1, \ldots, \lambda_n$ 
+\end{frame}

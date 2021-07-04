@@ -1,0 +1,182 @@
+%%%%%%%%%%%%%
+%  Frame 1  %
+%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Equazioni Differenziali per Specie in Competizione}
+\framesubtitle{Modello Generale}
+\begin{itemize}
+    \item $x_i$: popolazione della $i$-esima specie.
+    \item Spazio degli stati:
+	\[
+	    R_+^n = \left\{\v{x}\in \mathbb{R}^n \ | \ \v{x}= \left(x_1, x_2, \ldots, x_n\right), \ x_i \ge 0\right\}
+	\] 
+    \item Dinamica delle popolazioni:
+	\begin{equation}
+	    \frac{\text{d} x_i}{\text{d} t} = x_i M_i(\v{x}), \qquad i = 1, \ldots, n
+	\end{equation}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%
+%  Frame 2  %
+%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Equazioni Differenziali per Specie in Competizione}
+\framesubtitle{Condizioni su $M_i$}
+\[
+    \frac{\text{d} x_i}{\text{d} t} = x_i M_i(\v{x}), \qquad i = 1, \ldots, n
+.\] 
+\begin{enumerate}
+    \item Funzione liscia: $M_i: \mathbb{R}_+^n \to \mathbb{R}$,  $M_i \in C^{\infty}$.
+	\label{en:c1}
+    \item Affollamento inibisce la crescita: $\forall \ i, j \in \left[1, \ldots n\right] \times \left[1, \ldots n\right]$ 
+	\label{en:c2}
+	\[
+	    \text{Se } x_i > 0  \implies \frac{\partial M_i}{\partial x_j} < 0
+	\] 
+    \item Risorse limitate: $\exists \ K\in \mathbb{R}$, $K>0$:
+	\[
+	    \forall i \text{ se } \left|\v{x}\right| > K \implies  M_i(\v{x})  < 0
+	\] 
+	\label{en:c3}
+\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%
+%  Frame 3  %
+%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Equazioni Differenziali per Specie in Competizione}
+\framesubtitle{Modello di partenza}
+\[
+M_i(\v{x}) = 1-\sum_{j=1}^{n} x_j
+.\] 
+Bordo invariante:
+\[
+    \partial \mathbb{R}^n_+ \equiv \left\{\v{x}\in \mathbb{R}^n_+ \ | \ \text{ qualche } x_i = 0\right\}
+.\] 
+Se $t\to \infty$ le soluzioni finiscono nell'insieme invariante:
+\[
+    \Delta_1 \equiv \left\{\v{x}\in \mathbb{R}^n_+ \ | \ \sum_{i}^{n} x_i = 1\right\}
+.\] 
+Dimostrazione:
+\[
+    \sum_{i}^{n} x_i = y \implies  \frac{\text{d} y}{\text{d} t} = y(1-y) \implies  
+    \begin{cases}
+        y=0 \text{ instabile}\\
+        y=1 \text{ stabile}
+    \end{cases}
+\] 
+\end{frame}
+
+%%%%%%%%%%%%%
+%  Frame 4  %
+%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Equazioni Differenziali per Specie in Competizione}
+\framesubtitle{Prima generalizzazione del modello: definizioni}
+\begin{itemize}
+    \item $\Delta_0 \equiv \left\{\v{x}\in \mathbb{R}^n_+ \ | \ \sum_{i}^{\infty} x_i = 0\right\}$
+    \item $\beta : \mathbb{R}\to \mathbb{R}, \beta(t) \in C^{\infty}$,
+	    $\beta (t) = 
+            \begin{cases}
+	    1 \text{ se } t \in U_{\delta}(1), \delta<\frac{1}{2} \\
+		0 \text{ se } \left|t + 1\right| > \frac{1}{2}
+            \end{cases}$
+    \item $h: \mathbb{R}^n_+ \to \Delta_0$:
+	\[
+	    h(\v{x}) = \left(\frac{1}{n}\right)I_0- \frac{\v{x}}{\sum_{i}^{n} x_i}; \qquad
+	    I_0 \equiv \left(1, 1, \ldots, 1\right) \in \mathbb{R}^n_+
+	.\] 
+    \item $m_i:\mathbb{R}^n_+ \to \Delta_0$:
+	\[
+	     m_i(\v{x}) = \frac{1}{x_i}\beta\left(\sum_{j}^{n} x_j\right) \left(\prod_{j=1}^{n} x_j \right)h(\v{x}); \qquad \sum m_i x_i = 0
+	.\] 
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%
+%  Frame 4  %
+%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Equazioni Differenziali per Specie in Competizione}
+\framesubtitle{Prima generalizzazione del modello: l'evoluzione segue $h(\v{x})$}
+\begin{equation}
+    \frac{\text{d} x_i}{\text{d} t} = x_i\left(M_i + \eta m_i\right) \equiv x_i N_i; \qquad  \eta > 0
+    \label{eq:smale2}
+\end{equation}
+\[
+    N_i: \mathbb{R}^n_+ \to \mathbb{R}, \quad N_i \in C^{\infty}
+.\] 
+\begin{itemize}
+    \item Preso $\eta$ sufficientemente piccolo $N_i$ soddisfa \ref{en:c2} e \ref{en:c3}.
+    \item L'insieme $\Delta_1$ è ancora un attracting set poiché $\sum_{i}^{n} m_ix_i = 0$. 
+\end{itemize}
+Dinamica su $\Delta_1$:
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = \eta  \v{x} m \propto h(\v{x})  = \frac{1}{n}I_0 - \frac{\v{x}}{1}
+.\] 
+Un unico punto stazionario in $\v{x} = \frac{1}{n}I_0 \in \mathbb{R}^n_+$ (per soluzioni che non stanno su $\partial \mathbb{R}^n_+$).
+\end{frame}
+
+%%%%%%%%%%%%%
+%  Frame 5  %
+%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Equazioni Differenziali per Specie in Competizione}
+\framesubtitle{Seconda generalizzazione del modello}
+\[
+    \frac{\text{d} x_i}{\text{d} t} = x_i\left(M_i + \eta m_i\right) \equiv x_i N_i; \qquad  \eta > 0
+.\] 
+Siano due funzionali:
+\begin{itemize}
+    \item $h_0: \Delta_1 \to \Delta_0$, $h_0 \in C^{\infty}$.
+    \item $h:\mathbb{R}^n_+ \to \Delta_0$, $h\in C^{\infty}$.
+\end{itemize}
+tali per cui $h_0 = h_1$ in $\Delta_1$. Per $\eta$ sufficientemente piccolo si hanno le condizioni \ref{en:c1}, \ref{en:c2}, \ref{en:c3}.\\
+Prese delle soluzioni non appartenenti a $\partial \mathbb{R}^n_+$ la dinamica asintotica sull'attracting set $\Delta_1$ sarà descritta da:
+\[
+    \frac{\text{d} \v{x}}{\text{d} t} = h_0(\v{x}) 
+.\] 
+\end{frame}
+
+%%%%%%%%%%%%%
+%  Frame 7  %
+%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Equazioni Differenziali per Specie in Competizione}
+\framesubtitle{Tipo di soluzioni al variare della dimensione}
+\begin{itemize}
+    \item $n=2$:\\
+	$\Delta_1$ ha dimensione 1, le soluzioni in $\Delta_1$ tenderanno ad un punto stazionario stabile (strutturalmente stabile).
+    \item $n = 3$:\\
+	$\Delta_1$ ha dimensione 2, possiamo sceglierlo in modo tale che presenti un ciclo limite $\gamma$ (strutturalmente stabile).
+    \item $n\ge 5$:\\
+	$\Delta_1$ è almeno di dimensione 4, le soluzioni in $\Delta_1$ non è detto siano strutturalmente stabili.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%
+%  Frame 8  %
+%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Il Sistema di Lotka Volterra Competitivo}
+$n$ specie $x_i$ ($i = 1, \ldots, n$) che competono per le risorse.
+\begin{equation}
+    \frac{\text{d} x_i}{\text{d} t} = r_i x_i \left(1-\sum_{j}^{n} a_{ij}x_j\right)
+    \label{eq:LVC}
+\end{equation}
+\begin{itemize}
+    \item $r_i$: Rate di crescita di $x_i$.
+    \item $a_{ij}$: Parametro di competizione tra $x_i$ e $x_j$.
+\end{itemize}
+\vspace{1.5em}
+\begin{equation}
+    r_i > 0 \qquad  a_{ij} \ge 0
+    \label{eq:cond_ar}
+\end{equation}
+\[
+    r_0 =  a_{ii} = 1
+.\] 
+\end{frame}
+

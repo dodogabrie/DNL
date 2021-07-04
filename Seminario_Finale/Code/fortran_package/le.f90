@@ -96,6 +96,8 @@
           real*8                  :: dt, tmid
           real*8, dimension(4)    :: s, dx, k1, k2, k3, k4
           real*8, intent(in)      :: r(4), x(4), t1, t2, a(4,4)
+          dt = t2 - t1
+          tmid = (t2 + t1)/2
           k1 = lv4d(x, r, a)
           k2 = lv4d(x + dt * k1/2d0, r, a)
           k3 = lv4d(x + dt * k2/2d0, r, a)
@@ -105,7 +107,7 @@
 
       function varrg4(x, t1, t2, r, a) result(dx)
           interface
-              function varlv4d(x, r, a) result(dx)
+              function jac(x, r, a) result(dx)
                   integer                 :: i, j
                   real*8                  :: s(4)
                   real*8                  :: dx(4)
@@ -118,10 +120,12 @@
           real*8                  :: dt, tmid
           real*8, dimension(4)    :: s, dx, k1, k2, k3, k4
           real*8, intent(in)      :: r(4), x(4), t1, t2, a(4,4)
-          k1 = lv4d(x, r, a)
-          k2 = lv4d(x + dt * k1/2d0, r, a)
-          k3 = lv4d(x + dt * k2/2d0, r, a)
-          k4 = lv4d(x + dt * k3, r, a)
+          dt = t2-t1
+          tmid = (t2 + t1)/2
+          k1 = jac(x, r, a)
+          k2 = jac(x + dt * k1/2d0, r, a)
+          k3 = jac(x + dt * k2/2d0, r, a)
+          k4 = jac(x + dt * k3, r, a)
           dx = dt * (k1/2d0 + k2 + k3 + k4/2d0)/3d0
       end function
 

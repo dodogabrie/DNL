@@ -1,0 +1,55 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tikz, calc, amsmath, mathtools, hyperref}
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{caption}
+\usepackage{bm}
+\usepackage[italian]{babel}
+\renewcommand{\v}[1]{\boldsymbol{#1}}
+\input{0FirstPageSetup.tex}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\title{Caos nel sistema di Lotka-Volterra Competitivo}
+\subtitle[SisComp]{Dinamica Non Lineare}
+\date[]{}
+\author[Edoardo Gabrielli]{Edoardo Gabrielli}
+\institute[Unipi]{Università di Pisa}
+\usetheme{Singapore}
+
+\AtBeginSection[]
+{
+    \begin{frame}
+	\begin{center}
+        \tableofcontents[currentsection]
+	\end{center}
+    \end{frame}
+}
+
+\begin{document}
+{% Aggiungo sfondo al titolo
+\usebackgroundtemplate{
+    \begin{tikzpicture}
+	\node[opacity=0.8] 
+	    {\includegraphics[height=1.1\paperheight,width=1.1\paperwidth]{./figures/LV_copertina_crop.png}};
+    \end{tikzpicture}}
+\begin{frame} %%  Titolo  %%
+   \titlepage  
+\end{frame}}  %%%%%%%%%%%%%%
+
+\section{Introduzione} %%%%%%%%%%%%%  Frames  %%%%%%%%%%%%%
+\input{Slides/1_Intro.tex}
+\section{Studio della stabilità}%
+\input{Slides/2_Stabilità.tex}
+\section{Ricerca del caos}%
+\input{Slides/3_Caos.tex}
+%\section*{Appendice: Esponenti di Lyapunov}%
+%\input{Slides/4_LE.tex}
+\section{Bibliografia}%
+\input{Slides/bibliography.tex}
+\end{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
