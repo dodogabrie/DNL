@@ -1,6 +1,7 @@
 ## Core latex/pdflatex auxiliary files:
 Seminario_Finale/Bib
 Seminario_Finale/Code/data/frames/
+Seminario_Finale/Code/data/Bif_data.txt
 *.aux
 *.lof
 *.log
