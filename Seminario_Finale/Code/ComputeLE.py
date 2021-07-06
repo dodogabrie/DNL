@@ -84,13 +84,13 @@ def RK4(f, x, t1, t2, a, r):
 
 @jit
 def break_cond(f, xi, t1, t2, a, r, lim_dead):
-    c1 = np.min(xi) < lim_dead 
+    c1 = np.min(xi) <= lim_dead 
     #c2 = np.max(RK4(f, xi, t1, t2, a, r)) < 0.0000001
     #c3 = np.sum(xi) > 1.3
     return c1# or c2 or c3
 
 @njit
-def computeLE(x0, t, a, r, ttrans=None, lim_dead = 0.001, early_stopping = False):
+def computeLE(x0, t, a, r, ttrans=None, lim_dead = 0.00001, early_stopping = False):
     """
     Computes the global Lyapunov exponents for a set of ODEs.
     f - ODE function. Must take arguments like f(t, x, p) where x and t are 
@@ -122,54 +122,49 @@ def computeLE(x0, t, a, r, ttrans=None, lim_dead = 0.001, early_stopping = False
             xi = xip1
             if break_cond(func, xi, t1, t2, a, r, lim_dead):
                 block = True
-                break
+                return np.zeros((len(t)-1, 4)), block
         x0 = xi
-    if not block:
-        # start LE calculation
-        if early_stopping: 
-            early = 0
-        else:
-            early = N-1
-        temp = 0
-        L1 = np.inf
-        LE = np.zeros((N-1, D), dtype=np.float64)
-        final_LE = np.zeros((N-1, D), dtype=np.float64)
-        LE_aux = np.zeros((N-1, D), dtype=np.float64)
-        Ssol = np.zeros((N, D*(D+1)), dtype=np.float64)
-        Ssol[0] = np.append(x0, Phi0)
-        for i,(t1,t2) in enumerate(zip(t[:-1], t[1:])):
-            Ssol_temp = Ssol[i] + RK4(dSdt, Ssol[i], t1, t2, a, r)
-            
-            if break_cond(func, Ssol_temp[:D], t1, t2, a, r, lim_dead):
-                block = True
-                break
-                
-            # perform QR decomposition on Phi
-            rPhi = np.reshape(Ssol_temp[D:], (D, D))
-            Q,R = np.linalg.qr(rPhi)
-            Ssol[i+1] = np.append(Ssol_temp[:D], Q.flatten())
-            LE[i] = np.abs(np.diag(R))
-            logLE = np.log(LE[i])
-            if i > 0:
-                LE_aux[i, :] = LE_aux[i-1, :] + logLE
-            else:
-                LE_aux[i, :] = logLE
-            final_LE[i] = LE_aux[i]/(t2)
-            if early_stopping:
-                early = early + 1
-                if np.abs(np.max(final_LE[i]) - L1) < 0.0001:
-                    temp = temp + 1
-                else: 
-                    temp = 0
-                if temp >= N/5:
-                        break
-                L1 = np.max(final_LE[i])
-        if not block:
-            return final_LE[:early], block
-        else:
-            return np.zeros((len(t)-1, 4)), block
+    # start LE calculation
+    if early_stopping: 
+        early = 0
     else:
-        return np.zeros((len(t)-1, 4)), block
+        early = N-1
+    temp = 0
+    L1 = np.inf
+    LE = np.zeros((N-1, D), dtype=np.float64)
+    final_LE = np.zeros((N-1, D), dtype=np.float64)
+    LE_aux = np.zeros((N-1, D), dtype=np.float64)
+    Ssol = np.zeros((N, D*(D+1)), dtype=np.float64)
+    Ssol[0] = np.append(x0, Phi0)
+    for i,(t1,t2) in enumerate(zip(t[:-1], t[1:])):
+        Ssol_temp = Ssol[i] + RK4(dSdt, Ssol[i], t1, t2, a, r)
+
+        if break_cond(func, Ssol_temp[:D], t1, t2, a, r, lim_dead):
+            block = True
+            return np.zeros((len(t)-1, 4)), block 
+
+        # perform QR decomposition on Phi
+        rPhi = np.reshape(Ssol_temp[D:], (D, D))
+        Q,R = np.linalg.qr(rPhi)
+        Ssol[i+1] = np.append(Ssol_temp[:D], Q.flatten())
+        LE[i] = np.abs(np.diag(R))
+        logLE = np.log(LE[i])
+        if i > 0:
+            LE_aux[i, :] = LE_aux[i-1, :] + logLE
+        else:
+            LE_aux[i, :] = logLE
+        final_LE[i] = LE_aux[i]/(t2)
+        if early_stopping:
+            early = early + 1
+            if np.abs(np.max(final_LE[i]) - L1) < 0.0001:
+                temp = temp + 1
+            else: 
+                temp = 0
+            if temp >= N/5:
+                return final_LE[:early], block
+            L1 = np.max(final_LE[i])
+    return final_LE, block
+               
 
 @njit
 def update_init(a, r, radi):

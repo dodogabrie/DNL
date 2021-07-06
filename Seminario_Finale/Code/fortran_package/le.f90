@@ -13,7 +13,7 @@
               function jac(x, r, a)
                   integer                 :: i, j
                   real*8                  :: s(4)
-                  real*8                  :: jac(4,4)
+                  real*8                  :: jac(4,4), ff
                   real*8                  :: dx(4)
                   real*8, intent(in)      :: a(4,4)
                   real*8, intent(in)      :: r(4)
@@ -71,11 +71,11 @@
                   s(i) = s(i) + a(i, j) * x(j)
               enddo
               do j = 1, 4
-                  ff = r(i) * x(j) * a(i,j)
+                  ff = r(i) * x(i) * a(i,j)
                   if (i == j) then
-                      jac(i, j) = r(i) * x(i) * (1 - s(i)) - ff
+                      jac(i, j) = r(i) * (1 - s(i)) - ff
                   else
-                      jac(i, j) = r(i) * x(i) * (1 - s(i)) 
+                      jac(i, j) = ff
                   endif
               enddo
           enddo
@@ -107,11 +107,12 @@
 
       function varrg4(x, t1, t2, r, a) result(dx)
           interface
-              function jac(x, r, a) result(dx)
+              function jac(x, r, a)
                   integer                 :: i, j
                   real*8                  :: s(4)
                   real*8                  :: dx(4)
                   real*8, intent(in)      :: a(4,4)
+                  real*8                  :: jac(4,4), ff
                   real*8, intent(in)      :: r(4)
                   real*8, intent(in)      :: x(4)
               end function
